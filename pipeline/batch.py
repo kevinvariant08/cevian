@@ -30,7 +30,7 @@ def req(custom_id, model, system, prompt, effort, max_tokens):
 
 def run(name, script, requests, poll=60, log=print):
     ledger.check_cap()
-    client = anthropic.Anthropic()  # Reads ANTHROPIC_API_KEY from the environment.
+    client = anthropic.Anthropic(max_retries=8)  # Reads ANTHROPIC_API_KEY from the environment.
     DIR.mkdir(parents=True, exist_ok=True)
     state = DIR / f"{name}.json"
     if state.exists():
@@ -49,7 +49,12 @@ def run(name, script, requests, poll=60, log=print):
     out = {}
     for bid in ids:
         while True:
-            b = client.messages.batches.retrieve(bid)
+            try:
+                b = client.messages.batches.retrieve(bid)
+            except anthropic.APIConnectionError as e:  # The network dropped for a moment. The batch keeps running, so wait and ask again.
+                log(f"{name}: connection error, retrying ({str(e)[:60]})")
+                time.sleep(poll)
+                continue
             if b.processing_status == "ended":
                 break
             log(f"{name}: {bid} {b.request_counts.processing} processing, {b.request_counts.succeeded} done")
