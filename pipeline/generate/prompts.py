@@ -42,6 +42,15 @@ WRITE_FORMAT = """<subtopics>Taxonomy IDs separated by commas, the one the crux 
 STYLE = """THE STYLE TO AIM FOR
 The problem should read and feel like a real AIME problem: a short, clean statement, no contrived story, one satisfying crux, and an integer answer from 0 to 999, encoded as $m + n$ or similar where the AIME would do that. Use the same kinds of ideas and the same difficulty curve. Sharing an idea family with AIME problems is the goal. Copying is not: never reuse a specific problem's setting, numbers or phrasing, and never write a reskin."""
 
+TOPICS = {"A": "algebra", "C": "combinatorics or probability", "G": "geometry", "N": "number theory"}
+
+# Kevin's ladder, as in js/lib/ranks.js on main.
+ANCHORS = {5: "late AMC 12 and AIME 1 to 5", 4: "AIME 6 to 10", 3: "AIME 11 to 15 and olympiad openers"}
+
+# Pilot evidence: of 10 drafts aimed at 5 kyu, the ruler put 6 at 3 kyu and 1 at 2 kyu, and the reviewer moved one down to 4 kyu.
+CALIBRATION = {5: """CALIBRATING 5 KYU
+Drafts aimed at 5 kyu have been coming out about two kyu too hard, so aim lower than feels natural. One crux, found by the first sensible attempt, then routine work. A strong solver finishes in 6 to 12 minutes, and the solution fits in a short paragraph or two. Do not stack a second idea, and do not make the solver run an idea backwards through a further counting or divisibility step. If a candidate needs two non-routine steps, take one out, even if it is less impressive. For the combine recipe, the second technique must be the routine part."""}
+
 IDEA_RULES = """How your work is checked. Every point here has rejected real drafts.
 - Do not work out the answer by hand. A sandbox runs your program and its output becomes the key, so spend your thought on the idea and on making the statement exact. Keep your reasoning short.
 - The key must be an integer from 2 to 999 and must not appear as a number in the statement. Choose the statement's parameters, or ask for a remainder modulo $1000$ or an encoding such as $m + n$ (rule A4), so that this holds. Do not make the encoding the hard part.
@@ -57,6 +66,7 @@ WRITE_RULES = """How your work is checked.
 - The key comes from a program, so a solution that reaches any other number is wrong. Work it out honestly. If you find the key or the statement is wrong, reply with only <disagree>one sentence on what is wrong</disagree> instead of bending the argument.
 - No hint may state the key. Each hint adds something, and the last stops one routine step short.
 - All text uses UK spelling. Use $...$ and $$...$$ for maths: \\dfrac in display maths and \\frac inline, always with braces, \\cdot for products and never *, \\le and \\ge. Use only <b> and <code> as markup, and write cases as prose, never as a list.
+- Never argue from a picture, and never refer to a figure or diagram, unless the problem is geometry.
 - The solution's last paragraph is exactly: <b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause on why the idea fits. Each ID must also be in subtopics."""
 
 
@@ -135,10 +145,20 @@ def describe_record(record):
             f"Solution routes:\n{paths}\nTraps: {'; '.join(record.get('traps') or [])}\nNote on using it: {record.get('generation_note') or 'none'}")
 
 
+def _topic_rules(topic):
+    """The bank needs every topic at every kyu, and left alone the model drifts into number theory."""
+    rule = f"THE TOPIC\nEvery candidate must be {TOPICS[topic]}, whatever the recipe says: the main work of solving it must belong to that topic. Set <topic> to {topic}."
+    if topic != "G":
+        rule += " Any model you use must not be geometric, and the solution must never argue from a picture."
+    return [rule]
+
+
 def _idea_context(inp, kyu, digest):
     parts = [
-        f"Write for {kyu} kyu. Its difficulty must come from an idea, not from arithmetic.",
+        f"Write for {kyu} kyu, in the style and at the level of {ANCHORS[kyu]}. Its difficulty must come from an idea, not from arithmetic.",
         STYLE,
+        *_topic_rules(inp.record["topic"]),
+        *([CALIBRATION[kyu]] if kyu in CALIBRATION else []),
         f"THE KYUCLID STANDARD\n{idea_rules(kyu)}",
         IDEA_RULES.format(imports=", ".join(sorted(ALLOWED_IMPORTS))),
         f"THE IDEA TO TEACH\n{describe_record(inp.record)}",

@@ -88,6 +88,18 @@ class Linting(unittest.TestCase):
         self.assertIn("A1", drafts.lint_key(self.i(), "1234"))
         self.assertIn("A1", drafts.lint_key(self.i(), "2/3"))
 
+    def test_topic_is_held(self):
+        i = self.i()
+        self.assertEqual(drafts.idea_checks({**i, "topic": "G"}, INPUT, None, 0.87)[0], "topic")
+        self.assertIn("number theory", prompts.ideas(INPUT, 4, ["transplant"]))
+        self.assertIn("CALIBRATING 5 KYU", prompts.ideas(INPUT, 5, ["transplant"]))
+        self.assertNotIn("CALIBRATING 5 KYU", prompts.ideas(INPUT, 4, ["transplant"]))
+
+    def test_no_picture_outside_geometry(self):
+        d = self.draft()
+        d["solution"] = "From the diagram it is clear.\n\n" + d["solution"]
+        self.assertIsNotNone(drafts.PICTURE.search(d["solution"]))
+
     def test_unknown_tag(self):
         d = self.draft()
         d["subtopics"] = ["not-a-technique"]
@@ -155,6 +167,40 @@ class Choosing(unittest.TestCase):
             self.assertEqual(sorted(set(topics)), list("ACGN"))
             self.assertEqual(len(topics), 10)
         self.assertEqual(p, plan.sample(rows))
+
+
+class FullPlan(unittest.TestCase):
+    def rows(self):
+        out = []
+        for kyu in (5, 4, 3):
+            for t in "ACN":
+                for i in range(12):
+                    out.append(dict(id=f"{kyu}{t}{i}", kyu=kyu, topic=t, family=f"{kyu}{t}{i % 4}", techniques=["x"], generation_potential="high", figure_needed=False))
+        return out
+
+    def test_families_take_turns_and_cells_stay_level(self):
+        p = plan.full(self.rows(), set(), {}, set(), per_cell=4, expected_pass=1)
+        cell = [x["family"] for x in p["inputs"] if x["kyu"] == 5 and x["topic"] == "A"]
+        self.assertEqual(len(set(cell)), 4)
+        self.assertEqual({x["kyu"] for x in p["inputs"][:9]}, {5, 4, 3})
+
+    def test_counts_what_it_has_and_skips_what_was_used(self):
+        p = plan.full(self.rows(), set(), {(5, "A"): 3}, {"5A0"}, per_cell=4, expected_pass=1)
+        self.assertEqual(p["cells"]["5A"], 1)
+        self.assertNotIn("5A0", [x["id"] for x in p["inputs"]])
+
+    def test_a_thin_cell_goes_round_again_with_new_keys(self):
+        p = plan.full([r for r in self.rows() if r["id"] in ("3A0", "3A1")], set(), {}, set(), kyus=(3,), topics="A", per_cell=3, expected_pass=1)
+        keys = [x["key"] for x in p["inputs"]]
+        self.assertEqual(len(set(keys)), 3)
+        self.assertEqual(sum("#2" in k for k in keys), 1)
+
+    def test_pictures_wait_for_diagrams(self):
+        r = dict(topic="N", techniques=["t"], core_idea="", crux="")
+        self.assertFalse(plan.needs_a_figure(r, {"g"}))
+        self.assertTrue(plan.needs_a_figure({**r, "techniques": ["g"]}, {"g"}))
+        self.assertTrue(plan.needs_a_figure({**r, "crux": "Draw a sketch of it"}, {"g"}))
+        self.assertTrue(plan.needs_a_figure({**r, "topic": "G"}, {"g"}))
 
 
 class Decisions(unittest.TestCase):

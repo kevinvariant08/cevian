@@ -4,7 +4,7 @@ from collections import Counter, defaultdict
 
 from .run import run_dir
 
-IDEA_STEPS = ["idea_lint", "leak", "originality_lexical", "program", "key"]
+IDEA_STEPS = ["topic", "idea_lint", "leak", "originality_lexical", "program", "key"]
 WRITE_STEPS = ["disagree", "schema", "standard", "lint", "leak_write"]
 GATE_STEPS = ["program_judge", "blind_solves", "well_posedness", "solution_audit", "difficulty", "originality"]
 

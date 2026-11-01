@@ -14,6 +14,10 @@ class Input:
     record: dict
     statement: str
     answer: str
+    key: str = ""  # Set when one source feeds more than one problem. The run log and the recipe seed use it.
+
+    def __post_init__(self):
+        self.key = self.key or self.id
 
 
 def load_analysis(path=None):

@@ -103,10 +103,10 @@ def make_one(inp, ctx, seed):
     """One input: at most one generation and REPAIRS repairs. Raises PlanLimit so the batch can stop cleanly."""
     profile, run_name = ctx["profile"], ctx["run"]
     kyu = inp.record["kyu"]
-    rng = random.Random(f"{seed}:{inp.id}")
+    rng = random.Random(f"{seed}:{inp.key}")
     chosen_recipes = recipes.pick(inp.record, rng, profile.candidates)
     partner = recipes.rare_partner(inp.record, ctx["records"], rng) if "combine" in chosen_recipes else None
-    log = dict(input=inp.id, kyu=kyu, topic=inp.record["topic"], recipes_offered=chosen_recipes, partner=partner, attempts=[], outcome=None, model=profile.model, effort=profile.effort)
+    log = dict(input=inp.key, source=inp.id, kyu=kyu, topic=inp.record["topic"], recipes_offered=chosen_recipes, partner=partner, attempts=[], outcome=None, model=profile.model, effort=profile.effort)
     usage = Usage()
     idea, key, failure, earlier_write = None, None, None, None
 
@@ -200,9 +200,9 @@ def run_inputs(items, ctx, seed, concurrency, stop_file=None):
             row = make_one(item, ctx, seed)
         except PlanLimit as e:
             stopped.append(str(e))
-            row = dict(input=item.id, outcome="plan_limit", reason=str(e)[:200])
+            row = dict(input=item.key, outcome="plan_limit", reason=str(e)[:200])
         except ModelError as e:
-            row = dict(input=item.id, outcome="error", reason=str(e)[:200])
+            row = dict(input=item.key, outcome="error", reason=str(e)[:200])
         _append(log_path, row)
         print(f"{row['input']}: {row['outcome']} {row.get('id', '')} {row.get('verdict', row.get('reason', ''))[:160]} usd={row.get('usd', 0)}", flush=True)
         return row

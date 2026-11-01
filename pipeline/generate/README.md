@@ -5,6 +5,7 @@ Turns a corpus analysis record into an original problem, runs it through the gat
 ```
 python -m pipeline.generate --from AIME-2019-I-07 [--n 2]
 python -m pipeline.generate --make-plan plan.json [--per-kyu 10] [--seed 6]
+python -m pipeline.generate --make-full-plan plan.json --topics ACN [--per-cell 25]
 python -m pipeline.generate --plan plan.json --run NAME [--limit 5] [--stop-file path]
 python -m pipeline.generate --report NAME
 ```
@@ -31,6 +32,10 @@ As for the gate (`pipeline/verify/README.md`), plus these environment variables:
 6. Run the free write-up checks, then the gate. On a fail, repair, up to two repairs in all. A fault in the solution repairs only the write-up. Anything else repairs the idea. After that, discard and log why.
 
 Two stages because the first version asked for three full candidates at high effort: Opus used the whole 32,000-token cap three times running and wrote nothing, at about $2 of API-equivalent usage. Neither `--effort`, `MAX_THINKING_TOKENS` nor `alwaysThinkingEnabled` limits thinking through the CLI. A stated thinking budget in the system prompt does.
+
+## Topic and calibration
+
+A candidate must stay in its input's topic, because in the pilot only 1 of 29 problems came out as algebra. 5 kyu has a calibration passage in the idea prompt, because the ruler put most 5 kyu drafts about two kyu too hard. Until task 10's diagrams land, `--make-full-plan` leaves out geometry and anything whose solution argues from a picture.
 
 ## What happens to a gate result
 
