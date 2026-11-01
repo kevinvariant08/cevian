@@ -56,7 +56,7 @@ class Suite(unittest.TestCase):
                     self.assertIn(name_in(report["verdict"]), allowed, report["verdict"])
 
     def test_cheap_failures_never_reach_a_model(self):
-        for pid in ("bad-key-digit-product", "hard-coded-literal", "sandbox-network", "schema-bad-kyu", "standard-one-hint", "latex-undefined-macro", "near-copy-of-bank-divisors"):
+        for pid in ("bad-key-digit-product", "hard-coded-literal", "sandbox-network", "schema-bad-kyu", "standard-one-hint", "latex-undefined-macro", "near-copy-of-bank-digit-weight"):
             with self.subTest(pid):
                 report, be = run(pid)
                 self.assertEqual(be.prompts, [], report["verdict"])
@@ -307,8 +307,8 @@ class Corpus(unittest.TestCase):
 
     def test_masking_ignores_numbers_and_variable_names(self):
         ix = originality.Index(originality.load_bank())
-        a = ix.similarities("How many positive divisors does $720$ have?")[0]
-        self.assertEqual(a[0]["id"], "divisor-census")
+        a = ix.similarities("How many positive integers less than $10^{18}$ have decimal digits that sum to $5$ and are divisible by $41$?")[0]
+        self.assertEqual(a[0]["id"], "three-units-of-digit-weight")
         self.assertGreater(a[1], 0.9)
 
 

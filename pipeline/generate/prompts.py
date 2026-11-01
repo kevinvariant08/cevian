@@ -42,19 +42,27 @@ WRITE_FORMAT = """<subtopics>Taxonomy IDs separated by commas, the one the crux 
 STYLE = """THE STYLE TO AIM FOR
 The problem should read and feel like a real AIME problem: a short, clean statement, no contrived story, one satisfying crux, and an integer answer from 0 to 999, encoded as $m + n$ or similar where the AIME would do that. Use the same kinds of ideas and the same difficulty curve. Sharing an idea family with AIME problems is the goal. Copying is not: never reuse a specific problem's setting, numbers or phrasing, and never write a reskin."""
 
+LOW_STYLE = """THE STYLE TO AIM FOR
+The problem should read and feel like a real problem from the early or middle part of an AMC paper: one or two short, clean sentences, a real small idea, and a single checkable answer. It is free response: there are no answer options, and it must not depend on elimination. Short does not mean trivial. A bare calculation, a formula applied once, a one-step word problem or schoolbook arithmetic is not acceptable at any kyu here: the reviewer removed the bank's old easy problems for being "too easy and poor quality". Never reuse a specific problem's setting, numbers or phrasing, and never write a reskin."""
+
 TOPICS = {"A": "algebra", "C": "combinatorics or probability", "G": "geometry", "N": "number theory"}
 
 # Kevin's ladder, as in js/lib/ranks.js on main.
-ANCHORS = {5: "late AMC 12 and AIME 1 to 5", 4: "AIME 6 to 10", 3: "AIME 11 to 15 and olympiad openers"}
+ANCHORS = {8: "the openers of an AMC 8 paper", 7: "the last third of an AMC 8 paper and the openers of AMC 10", 6: "the middle of an AMC 10 or AMC 12 paper", 5: "late AMC 12 and AIME 1 to 5", 4: "AIME 6 to 10", 3: "AIME 11 to 15 and olympiad openers"}
 
 # Pilot evidence: of 10 drafts aimed at 5 kyu, the ruler put 6 at 3 kyu and 1 at 2 kyu, and the reviewer moved one down to 4 kyu.
-CALIBRATION = {5: """CALIBRATING 5 KYU
+LOW_NOTE = """The reviewer's calibration so far: a problem whose whole difficulty is one divisibility or perfect-square observation was moved from 5 kyu down to 6 kyu. A problem was rejected for being loose about the form of its answer (say exactly what form is wanted), for being a slog with no idea, and for being ambiguous."""
+
+CALIBRATION = {8: """CALIBRATING 8 KYU
+A young contest solver should finish it in one or two minutes, with no technique beyond careful thought: a count, a small logical deduction, a pattern, a neat piece of arithmetic that rewards looking before calculating. There is still something to notice, so a solver who only follows instructions should not be done. """ + LOW_NOTE, 7: """CALIBRATING 7 KYU
+Two to four minutes. At most one choice for the solver to make, such as how to split a count, what to name, or working backwards, and it should be nearly forced. Below AMC 10 middle in difficulty. """ + LOW_NOTE, 6: """CALIBRATING 6 KYU
+Three to six minutes. One real idea, found by the first sensible attempt, then short routine work. Harder than an opener, easier than the last five problems of an AMC 10 paper. """ + LOW_NOTE, 5: """CALIBRATING 5 KYU
 Drafts aimed at 5 kyu have been coming out about two kyu too hard, so aim lower than feels natural. One crux, found by the first sensible attempt, then routine work. A strong solver finishes in 6 to 12 minutes, and the solution fits in a short paragraph or two. Do not stack a second idea, and do not make the solver run an idea backwards through a further counting or divisibility step. If a candidate needs two non-routine steps, take one out, even if it is less impressive. For the combine recipe, the second technique must be the routine part."""}
 
 IDEA_RULES = """How your work is checked. Every point here has rejected real drafts.
 - Do not work out the answer by hand. A sandbox runs your program and its output becomes the key, so spend your thought on the idea and on making the statement exact. Keep your reasoning short.
-- The key must be an integer from 2 to 999 and must not appear as a number in the statement. Choose the statement's parameters, or ask for a remainder modulo $1000$ or an encoding such as $m + n$ (rule A4), so that this holds. Do not make the encoding the hard part.
-- check_program computes the actual quantity from the problem's own definitions: enumerate, search or do exact symbolic work, using exact coordinates for geometry. A judge rejects a program that evaluates a closed formula from the solution, searches a smaller case and then applies a formula, or contains the answer. It must finish within 30 seconds and print only the key on its last line, as a plain integer.
+- {key_rule}
+- check_program computes the actual quantity from the problem's own definitions: enumerate, search or do exact symbolic work, using exact coordinates for geometry. A judge rejects a program that evaluates a closed formula from the solution, searches a smaller case and then applies a formula, or contains the answer. It must finish within 30 seconds and print only the key on its last line, {key_form}.
 - check_program may import only: {imports}. Never use random, files or the network.
 - A strict critic reads the statement for anything a competent solver could read two ways. Define every object, say whether integers are positive, whether pairs are ordered, whether a set may be empty, and whether points lie on sides or on lines. Avoid informal shorthand such as "uses the letters A, B and C"; state exactly what is meant.
 - Seven models then solve it blind from the statement alone. Do not rely on a figure: describe every point and condition in words.
@@ -153,14 +161,22 @@ def _topic_rules(topic):
     return [rule]
 
 
+def _key_rules(kyu):
+    if kyu >= 6:
+        return dict(key_rule="The key must be an integer of absolute value below $10^9$, or a fraction with at most three digits above and below, and must not be 0 or 1 or appear as a number in the statement. If it is a fraction the statement must end: Give your answer as a fraction in lowest terms. Prefer an integer. There is no encoding: ask for the quantity itself.",
+                    key_form="as a plain integer or as a/b in lowest terms")
+    return dict(key_rule="The key must be an integer from 2 to 999 and must not appear as a number in the statement. Choose the statement's parameters, or ask for a remainder modulo $1000$ or an encoding such as $m + n$ (rule A4), so that this holds. Do not make the encoding the hard part.",
+                key_form="as a plain integer")
+
+
 def _idea_context(inp, kyu, digest):
     parts = [
         f"Write for {kyu} kyu, in the style and at the level of {ANCHORS[kyu]}. Its difficulty must come from an idea, not from arithmetic.",
-        STYLE,
+        LOW_STYLE if kyu >= 6 else STYLE,
         *_topic_rules(inp.record["topic"]),
         *([CALIBRATION[kyu]] if kyu in CALIBRATION else []),
         f"THE KYUCLID STANDARD\n{idea_rules(kyu)}",
-        IDEA_RULES.format(imports=", ".join(sorted(ALLOWED_IMPORTS))),
+        IDEA_RULES.format(imports=", ".join(sorted(ALLOWED_IMPORTS)), **_key_rules(kyu)),
         f"THE IDEA TO TEACH\n{describe_record(inp.record)}",
         ("THE SOURCE PROBLEM, for calibration only. It shows how hard the target is. Do not reuse its setting, objects, numbers or phrasing, "
          f"and never mention it.\n<<<\n{inp.statement}\n>>>"),

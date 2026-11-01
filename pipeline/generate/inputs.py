@@ -39,7 +39,7 @@ def load_statements():
 
 def load_inputs(records):
     statements = load_statements()
-    return {r["id"]: Input(r["id"], r, statements[r["id"]]["text"], str(statements[r["id"]].get("answer") or "")) for r in records if r["id"] in statements}
+    return {r["id"]: Input(r["id"], r, statements[r["id"]]["text"], str(statements[r["id"]].get("answer") or "").strip("$ ")) for r in records if r["id"] in statements}
 
 
 def build_index(records, extra=()):

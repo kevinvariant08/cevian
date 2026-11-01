@@ -49,7 +49,7 @@ def build(idea, write, key, inp, kyu, profile, run):
     write = {**write, "solution": tidy_latex(write["solution"]), "hints": [tidy_latex(h) for h in write["hints"]]}
     return dict(
         id=pid, title=idea["title"], kyu=kyu, topic=inp.record["topic"], subtopics=write["subtopics"],
-        type=profile.type, status="draft", statement=idea["statement"], answer_format=profile.answer_format,
+        type=profile.type, status="draft", statement=idea["statement"], answer_format="rational" if "/" in key else profile.answer_format,
         answer_hash=answers.answer_hash(pid, key), hints=write["hints"], solution=write["solution"],
         provenance=dict(kind="original", author=AUTHOR, pipeline_run=run), stats=dict(solves=0, attempts=0, liked=0),
         answer=key, check_program=idea["check_program"], inspired_by=inp.id, variation_recipe=idea["recipe"],
@@ -112,13 +112,20 @@ def lint_idea(idea):
     return None
 
 
-def lint_key(idea, key):
-    """A1 and A6, on what the program printed."""
+def lint_key(idea, key, kyu=5):
+    """A1 and A3 to A6, on what the program printed. 8-6 kyu are free response, so any integer or simple fraction will do."""
+    low = kyu >= 6
+    if low and re.fullmatch(r"-?\d{1,3}/\d{1,3}", key):
+        if "lowest terms" not in idea["statement"]:
+            return f"the key {key} is a fraction, so the statement must say to give it as a fraction in lowest terms (S3)"
+        return None
     try:
         value = int(key)
     except ValueError:
-        return f"the key must be a plain integer from 2 to 999 (A1), but the program printed {key or 'nothing'}"
-    if not 0 <= value <= 999:
+        return f"the key must be a plain integer{'' if low else ' from 2 to 999'} (A1), but the program printed {key or 'nothing'}"
+    if low and abs(value) >= 10 ** 9:
+        return f"the key must be below $10^9$ (A1), but the program printed {value}"
+    if not low and not 0 <= value <= 999:
         return f"the key must be from 2 to 999 (A1), but the program printed {value}: change the parameters or ask for a remainder modulo $1000$"
     if value in (0, 1):
         return f"a key of {value} is guessable (A6)"
@@ -211,7 +218,7 @@ def idea_checks(idea, inp, index, threshold):
     key, reason = run_program(idea["check_program"])
     if reason:
         return "program", reason, None
-    problem = lint_key(idea, key)
+    problem = lint_key(idea, key, inp.record["kyu"])
     if problem:
         return "key", problem, key
     if inp.answer and answers.canon(inp.answer) == answers.canon(key):

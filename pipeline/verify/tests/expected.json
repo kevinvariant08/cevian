@@ -523,7 +523,7 @@
       }
     }
   },
-  "near-copy-of-bank-divisors": {
+  "near-copy-of-bank-digit-weight": {
     "verdict": [
       "FAIL"
     ],
@@ -542,7 +542,7 @@
       }
     }
   },
-  "near-copy-of-bank-zeros": {
+  "near-copy-of-bank-triples": {
     "verdict": [
       "FAIL"
     ],
