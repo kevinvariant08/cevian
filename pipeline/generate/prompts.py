@@ -48,7 +48,7 @@ The problem should read and feel like a real problem from the early or middle pa
 TOPICS = {"A": "algebra", "C": "combinatorics or probability", "G": "geometry", "N": "number theory"}
 
 # Kevin's ladder, as in js/lib/ranks.js on main.
-ANCHORS = {8: "the openers of an AMC 8 paper", 7: "the last third of an AMC 8 paper and the openers of AMC 10", 6: "the middle of an AMC 10 or AMC 12 paper", 5: "late AMC 12 and AIME 1 to 5", 4: "AIME 6 to 10", 3: "AIME 11 to 15 and olympiad openers"}
+ANCHORS = {8: "the first three quarters of an AMC 8 paper", 7: "the end of an AMC 8 paper and AMC 10 problems 1 to 10", 6: "the middle of an AMC 10 or AMC 12 paper", 5: "late AMC 12 and AIME 1 to 5", 4: "AIME 6 to 10", 3: "AIME 11 to 15 and olympiad openers"}
 
 # Pilot evidence: of 10 drafts aimed at 5 kyu, the ruler put 6 at 3 kyu and 1 at 2 kyu, and the reviewer moved one down to 4 kyu.
 LOW_NOTE = """The reviewer's calibration so far: a problem whose whole difficulty is one divisibility or perfect-square observation was moved from 5 kyu down to 6 kyu. A problem was rejected for being loose about the form of its answer (say exactly what form is wanted), for being a slog with no idea, and for being ambiguous."""

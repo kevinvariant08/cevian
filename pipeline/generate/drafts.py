@@ -146,7 +146,7 @@ def lint(d):
     missing = [u for u in re.findall(r"<code>([a-z0-9-]+)</code>", paras[-1]) if u not in d["subtopics"]]
     if missing:
         return f"the Why this works line uses IDs not in subtopics (M4): {', '.join(missing)}"
-    if not re.search(rf"(?<![\d.]){re.escape(d['answer'])}(?![\d.])", "\n\n".join(paras[-3:-1])):
+    if d["type"] == "answer" and not re.search(rf"(?<![\d.]){re.escape(d['answer'])}(?![\d.])", "\n\n".join(paras[-3:-1])):
         return "the solution must state the final answer just before the Why this works line (M3)"
     for text in [d["solution"], *d["hints"]]:
         problem = _lint_text(text)
@@ -229,6 +229,20 @@ def idea_checks(idea, inp, index, threshold):
 def blames_the_idea(reason):
     """A standard failure in the statement or title can't be fixed by rewriting the solution."""
     return bool(re.search(r"\b(statement|title)\b", reason))
+
+
+def write_checks_proof(d):
+    """The free checks on a proof draft. There is no source problem, so there is nothing to leak."""
+    for check in (schema_check.run, standard.run):
+        status, reason, _ = check(d)
+        if status == "fail":
+            return check.__module__.rsplit(".", 1)[-1], reason
+    problem = lint_idea(d)
+    if problem:
+        return "lint", problem
+    if d["topic"] != "G" and PICTURE.search(standard._prose(d["solution"] + " " + " ".join(d["hints"]))):
+        return "lint", "the solution argues from a picture or refers to a figure, which this problem must not do"
+    return None
 
 
 def write_checks(d, inp):

@@ -25,8 +25,10 @@ generation_potential is low if the problem is only arithmetic, one formula, or a
 
 def start_kyu(exam, number):
     if exam == "AMC8":
-        return 8 if number <= 12 else 7
-    return 7 if number <= 8 else 6 if number <= 18 else None
+        return 8 if number <= 18 else 7
+    if number <= 10:
+        return 7 if exam == "AMC10" else None
+    return 6 if number <= 20 else None
 
 
 def pool():
@@ -65,8 +67,9 @@ def main():
     ap.add_argument("out")
     ap.add_argument("--per-kyu", type=int, default=24)
     ap.add_argument("--seed", type=int, default=8)
+    ap.add_argument("--kyus", default="876", help="only these kyus, such as 87")
     a = ap.parse_args()
-    chosen = sample(pool(), a.per_kyu, a.seed)
+    chosen = [r for r in sample(pool(), a.per_kyu, a.seed) if str(r["kyu"]) in a.kyus]
     backend = make_backend("cli", 4)
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -85,7 +88,7 @@ def main():
                 continue
             if r.get("id") in kyu_of:
                 rows.append(dict(r, kyu=kyu_of[r["id"]], figure_needed=False, analysis_meta=dict(method="sample_low", model=SONNET)))
-        (out / f"batch_{i // BATCH:02d}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+        (out / f"batch_s{a.seed}_{i // BATCH:02d}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
         print(f"batch {i // BATCH}: {len(rows)} of {len(part)} usd={reply.usd:.3f} truncated={reply.truncated}", flush=True)
     print(f"total usd={total:.3f}")
 
