@@ -1,0 +1,92 @@
+name: Kyuclid overnight run
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to work on (never main)"
+        required: true
+        default: "claude/all-kyus-433418"
+      max_turns:
+        description: "Maximum agent turns"
+        required: true
+        default: "300"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kyuclid-overnight
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: Refuse to run on main
+        if: ${{ inputs.branch == 'main' }}
+        run: |
+          echo "This workflow must never run on main."
+          exit 1
+
+      - name: Check out the work branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          if [ -f package.json ]; then npm ci || npm install; fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install anthropic
+
+      - name: Configure git
+        run: |
+          git config user.name "kyuclid-overnight"
+          git config user.email "kyuclid-overnight@users.noreply.github.com"
+
+      - name: Run Claude
+        timeout-minutes: 330
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          {
+            echo "## Cloud run notes (these override the brief where they conflict)"
+            echo ""
+            echo "- You are running on a GitHub Actions Linux machine, not Kevin's PC."
+            echo "- The repo root IS branch ${{ inputs.branch }}. Ignore the Windows paths"
+            echo "  and the .claude/worktrees path in the brief; work directly here."
+            echo "- The private corpus repo is not available. Skip any step that needs it"
+            echo "  and note it in the report."
+            echo "- Do not run git push yourself. Commit on this branch only; the workflow"
+            echo "  pushes this branch when you finish. Never touch main."
+            echo "- Keep tool output short. This repo is public and so is this log."
+            echo ""
+            cat .github/overnight-brief.md
+          } > /tmp/prompt.md
+          claude -p --model sonnet --max-turns ${{ inputs.max_turns }} \
+            --permission-mode acceptEdits --allowedTools "Bash" \
+            < /tmp/prompt.md > /tmp/run.log 2>&1
+          echo "Claude exited with code $?"
+          tail -n 40 /tmp/run.log
+
+      - name: Push the work branch
+        if: always()
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "Overnight run: save remaining work"
+          git push origin HEAD:${{ inputs.branch }}
