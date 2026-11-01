@@ -101,7 +101,7 @@ def mechanical(p, candidate):
     if problem:
         return problem
     def fails(d):
-        return {f for f in standard.run(d)[2].get("failures", []) if f.split(":")[0] in SOLUTION_RULES}
+        return {f for f in standard.run(dict(d, answer="2"))[2].get("failures", []) if f.split(":")[0] in SOLUTION_RULES}
     new = fails(candidate) - fails(dict(p, solution="Done."))  # Old statements may break newer rules, and that isn't this rewrite's fault.
     return sorted(new)[0] if new else None
 

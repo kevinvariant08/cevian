@@ -7,3 +7,6 @@ __pycache__/
 
 # Review queue: drafts, reports and decisions hold answers, check programs and inspired_by.
 review/
+
+# API call ledger: script, model, token counts and cost only, never the key.
+pipeline/api-ledger.jsonl
