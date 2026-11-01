@@ -171,7 +171,7 @@ def run(draft, taxonomy=None):
                 fails.append(f'S13: the {name} gives away the technique "{found[0]}"')
     if d.get("inspired_by") and any(d["inspired_by"] in t for _, t in public):
         fails.append("O5: the public text mentions its private inspired_by ID")
-    if d.get("provenance", {}).get("pipeline_run") and not d.get("inspired_by"):
+    if d["type"] == "answer" and d.get("provenance", {}).get("pipeline_run") and not d.get("inspired_by"):
         fails.append("O4: a generated draft must set inspired_by")
 
     last = re.split(r"\n\s*\n", d["solution"].strip())[-1].strip()

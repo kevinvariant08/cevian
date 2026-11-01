@@ -26,7 +26,7 @@ ANCHORS = {3: "an olympiad opener: a late BMO1 problem, a Balkan MO or Canadian 
            1: "IMO P3/P6, the hardest USAMO and USEMO problems, or the last problem of a Canadian MO paper. Deep: nothing in the statement points at the crux"}
 THEMES = {
     "G": ["a circle through two feet or midpoints, reached by one auxiliary point", "two circles and a common chord or tangent, with an equal-length conclusion", "a reflection of a triangle centre and a concyclicity", "a spiral similarity hidden in two intersecting circles",
-          "isogonal lines and a point on the circumcircle", "a mixtilinear or excircle configuration with a collinearity", "a moving point and a fixed point or fixed circle", "an inversion or a projective map that the statement does not suggest"],
+          "isogonal lines and a point on the circumcircle", "an excircle configuration with a collinearity", "a moving point and a fixed point or fixed circle", "an inversion or a projective map that the statement does not suggest"],
     "N": ["orders modulo a prime and a divisibility for all n", "valuations in a sum or a product of consecutive terms", "a Diophantine equation closed by size and residues", "a sequence that must contain infinitely many primes or prime factors"],
     "A": ["an inequality with a natural equality case and no heavy machinery", "a functional equation over the reals or positive integers", "a polynomial whose values or roots are constrained", "a recursive sequence with a hidden invariant"],
     "C": ["an invariant or monovariant in a process", "a double count on a grid or a graph", "an extremal argument with a construction", "a two-player game with a pairing or a potential"],
@@ -45,7 +45,7 @@ The style is that of USAMO, USEMO, the Balkan MO, the Canadian MO and the IMO, a
 
 Rules:
 - You must have an actual proof. The sketch is the real route in at most ten lines, with the crux named. Never state something you merely believe.
-- If you recognise the statement, or something equivalent up to renaming, as a published contest problem or a named theorem or a well-known lemma, drop it and write another. A strict check compares it with everything you could remember, and it rejects restated configuration lemmas (mixtilinear touch points, excircle collinearities, tangent-length identities and so on). Standard lemmas may be steps, but the claim itself must need its own thought.
+- If you recognise the statement, or something equivalent up to renaming, as a published contest problem or a named theorem or a well-known lemma, drop it and write another. A strict check compares it with everything you could remember, and it rejects restated configuration lemmas (excircle collinearities, tangent-length identities and so on). Do not use mixtilinear circles at all: every such attempt so far has been rejected. Standard lemmas may be steps, but the claim itself must need its own thought.
 - Pick the difficulty from how hidden the crux is, not from length. A computation slog fails. So does anything ambiguous.
 - Every point, set and domain is defined. Say whether points lie on sides or lines. Give only the conditions the proof needs, but exclude every degenerate case the statement would fail on.
 - Use "Prove that" or "Determine all". For "Determine all" the answer must be unique and clear.
@@ -72,7 +72,7 @@ Test the claim itself, from its definitions, not any route to a proof. Number th
 
 <claimed_answer>{sketch}</claimed_answer>
 
-Allowed imports only: {imports}. The time and random modules are banned, so write a small linear congruential generator. It must finish in 50 seconds, so stop at a time-independent limit that is safe. Skip degenerate configurations and do not count them.
+Allowed imports only: {imports}. The time and random modules are banned, so write a small linear congruential generator. It must finish well inside 60 seconds on a slow machine, and a timeout loses the problem, so choose small loop limits: aim for 15 seconds, with mpmath configurations costing about a millisecond per operation. Skip degenerate configurations and do not count them.
 The last line printed must be exactly one of: TESTED <number of real cases checked> or COUNTEREXAMPLE <short data> or NOT_TESTABLE <reason>. Use NOT_TESTABLE only if no finite search touches the claim.
 Output only the Python source, with no fence."""
 
@@ -302,13 +302,21 @@ class Job:
             if d is None:
                 raise Discard("known_problem", "the reply was unreadable")
             rows.append(dict(model=r.model, **d))
-            if d.get("known") or d.get("unsure"):
-                near = (d.get("closest") or [{}])[0]
-                raise Discard("known_problem", f"{r.model}: {near.get('source', 'unnamed')}: {near.get('note', '')}"[:200])
+            near = (d.get("closest") or [{}])[0]
+            line = f"{r.model}: {near.get('source', 'unnamed')}: {near.get('note', '')}"[:200]
+            if model == OPUS and (d.get("known") or d.get("unsure")):
+                raise Discard("known_problem", line)
+            if model == SONNET and (d.get("known") or d.get("unsure")):
+                # In the first 30 candidates Sonnet "recalled" nearly every statement with no contest or year, so a vague memory goes to Kevin. A placed one discards.
+                if re.search(r"(19|20)\d\d", str(near.get("source"))) and near.get("how_close") in ("same", "same-up-to-setting"):
+                    raise Discard("known_problem", line)
+                return ("investigate", f"Opus recalls nothing, but Sonnet has an unplaced memory: {line}", dict(answers=rows, corpus_compared=False))
         return ("pass", "two independent models recall no matching problem. There is no olympiad corpus, so this rests on memory alone", dict(answers=rows, corpus_compared=False))
 
     def disprove(self, c, usage):
-        r = self.call(usage, OPUS, "You break olympiad problems. You have no tools.", DISPROVE.format(statement=c["statement"]), 12000, "proof_disprove", c["title"])
+        r = self.call(usage, OPUS, "You break olympiad problems. You have no tools.", DISPROVE.format(statement=c["statement"] + (f"
+
+The author's claimed answer and route: {c['sketch']}" if "etermine" in c["statement"] else "")), 12000, "proof_disprove", c["title"])
         d = last_json(r.text)
         if d is None:
             raise Discard("disprove", "the reply was unreadable")
