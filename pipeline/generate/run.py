@@ -42,6 +42,12 @@ def classify(report):
     return "accept", report["verdict"]
 
 
+def far_too_hard(report, kyu):
+    """At 8 and 7 kyu a draft the ruler puts 3 or more kyus harder doesn't join the queue. Kevin asked for this after seeing AIME-rated 8 kyu drafts."""
+    estimate = next((c["evidence"].get("estimated_kyu") for c in report["checks"] if c["check"] == "difficulty"), None)
+    return kyu >= 7 and estimate is not None and kyu - estimate >= 3
+
+
 def _save(d, report, folder):
     folder.mkdir(parents=True, exist_ok=True)
     (folder / f"{d['id']}.json").write_text(json.dumps(dict(draft=d, report=report), indent=2, ensure_ascii=False), encoding="utf-8")
@@ -160,6 +166,9 @@ def make_one(inp, ctx, seed):
         entry.update(step="gate", verdict=report["verdict"], decision=decision, checks=_checks_for_log(report), gate_usage=report["usage"])
         if decision == "error":
             log["outcome"], log["reason"] = "error", reason
+            break
+        if decision == "accept" and far_too_hard(report, kyu):
+            log["outcome"], log["reason"] = "discard", f"too hard for {kyu} kyu: {report['verdict'][:120]}"
             break
         if decision in ("accept", "hold"):
             _save(d, report, PENDING if decision == "accept" else HELD)

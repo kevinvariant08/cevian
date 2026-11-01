@@ -84,7 +84,7 @@ KNOWN = """You guard a bank of olympiad problems against copies. There is no dat
 
 Name the three closest things you can recall and how close each is, in your own words and never quoting. Reply with JSON only:
 {{"closest":[{{"source":"<contest and year, or lemma name>","how_close":"same|same-up-to-setting|same-key-lemma|same-technique-only","note":"<max 20 words>"}}],"known":true|false,"unsure":true|false}}
-known is true if any is "same" or "same-up-to-setting", or if the statement is a named theorem or a standard lemma. A "same-key-lemma" match also counts as known when a solver who knows that source would finish with no new thought. unsure is true if you have a feeling of having seen this but cannot place it."""
+known is true only if: any is "same" or "same-up-to-setting"; or the claim itself is a named theorem or a standard lemma; or a "same-key-lemma" match where a solver who knows that source would finish with no new thought. A standard lemma used as one step among others, with real work left, is not known. unsure is true only if you recall the statement itself but cannot place it, not for a general feeling about the area."""
 
 DISPROVE = """Try to break this olympiad claim. Assume it is false and look for a counterexample: small cases, degenerate and extreme configurations, boundary values, and a configuration or order of points the author did not picture. Also look for ways the statement is ill-posed: an undefined object, a case where something doesn't exist, a condition that makes it vacuous.
 
