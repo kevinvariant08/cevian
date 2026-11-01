@@ -88,9 +88,6 @@ def taxonomy_ids():
     return {x["id"] for x in t["techniques"] + t["configurations"] if x.get("status") != "legacy"}
 
 
-WHY = re.compile(r"^<b>Why this works\.</b> <code>[a-z0-9-]+</code>(, <code>[a-z0-9-]+</code>)*: .+$", re.S)
-
-
 def _lint_text(text):
     if re.search(r"\*\*|`|^\s*[-*] ", text, re.M):
         return "Markdown isn't rendered: use <b> and <code>, and no lists (S10)"
@@ -141,13 +138,8 @@ def lint(d):
     if bad:
         return f"subtopics not in the taxonomy (M5): {', '.join(bad[:4])}"
     paras = [p.strip() for p in d["solution"].split("\n\n") if p.strip()]
-    if not WHY.match(paras[-1]):
-        return 'the last paragraph must be exactly the "Why this works" line (M4): <b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause'
-    missing = [u for u in re.findall(r"<code>([a-z0-9-]+)</code>", paras[-1]) if u not in d["subtopics"]]
-    if missing:
-        return f"the Why this works line uses IDs not in subtopics (M4): {', '.join(missing)}"
-    if d["type"] == "answer" and not re.search(rf"(?<![\d.]){re.escape(d['answer'])}(?![\d.])", "\n\n".join(paras[-3:-1])):
-        return "the solution must state the final answer just before the Why this works line (M3)"
+    if d["type"] == "answer" and not re.search(rf"(?<![\d.]){re.escape(d['answer'])}(?![\d.])", "\n\n".join(paras[-2:])):
+        return "the solution must state the final answer at the end (M3)"
     for text in [d["solution"], *d["hints"]]:
         problem = _lint_text(text)
         if problem:

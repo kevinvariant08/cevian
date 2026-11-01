@@ -200,14 +200,13 @@ Task 21 governs bosses. Where it differs from this standard, task 21 wins:
 ## 4. Solution rules
 
 - **M1. Shortest complete solution first.** Other routes follow under `<b>Solution 2.</b>` and so on.
-- **M2. Every step is justified.** Routine algebra may be skipped. A named theorem may be cited, but a less well-known lemma needs a proof or a one-line reason. At 8–6 kyu, write for a reader who doesn't know the technique.
+- **M2. Every step is justified.** Routine algebra may be skipped. A named theorem may be cited, but a less well-known lemma needs a proof or a one-line reason.
 - **M3. The final answer is stated clearly,** at the end and in the exact form of the key, including the encoded value under A4.
-- **M4. A "Why this works" line.** The last paragraph of `solution`, in this exact format:
-  `<b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause on why the idea fits.`
-  Each ID is in `data/taxonomy.json` and in `subtopics`. The first is the one the crux turns on.
 - **M5. Tags.** `subtopics` use taxonomy IDs and never entries marked `legacy`.
 - **M6. Independent check.** A draft's `check_program` computes the quantity from the problem's definitions, not from the solution's formula (task 05).
 - **M7. No appeal to the program.** The written solution stands by itself.
+- **M8. Style.** Solutions read like a strong olympiad student's write-up: direct and concise, with no narration, no restating the problem and no signposting. The words "key idea", "key insight", "crux", "elegant", "beautiful", "the trick", "the heart of", "delicate", "we only need", "note that", "it remains" and "therefore each", the phrase "why this works" and em dashes are banned in solutions, hints and rubrics. Lemma, Claim, Remark and Theorem are used only where they help.
+- **M9. Length follows difficulty.** 8–7 kyu: 1 to 4 lines. 6 kyu: up to about 80 words. 5–4 kyu: up to about 150. 3 kyu and proofs: as long as rigour needs and no longer.
 
 **Worked example (5 kyu).**
 
@@ -220,8 +219,6 @@ Task 21 governs bosses. Where it differs from this standard, task 21 wins:
 > **Hint 3.** Combine the conditions modulo $4$ and modulo $5$ into residues modulo $20$, then count up to $999$.
 >
 > **Solution.** We have $n^2 + n = n(n + 1)$ with $n$ and $n + 1$ coprime. So $4$ divides it exactly when $n \equiv 0$ or $3 \pmod 4$, and $5$ divides it exactly when $n \equiv 0$ or $4 \pmod 5$. By the Chinese remainder theorem this gives four residues modulo $20$: $0, 4, 15, 19$. Now $999 = 49 \cdot 20 + 19$. The $980$ integers from $1$ to $980$ contain $49 \cdot 4 = 196$ solutions, and $981$ to $999$ have residues $1$ to $19$, which contain $3$ more. The answer is $199$.
->
-> **Why this works.** `crt`, `coprime-divisibility`: coprime factors split one divisibility condition into independent conditions on residues.
 
 ## 5. Hint rules
 
@@ -289,10 +286,8 @@ The full list of why each seed fails is in `pipeline/verify/SEED_VERDICTS.md` on
 ### 8.2 The model solution must include
 
 - **P7.** A complete, rigorous proof with all cases, written so that a competent reader needs no filling-in.
-- **P8.** The crux marked in the text, so markers and reviewers can see it.
-- **P9.** At least one other route where one exists, or a statement that none has been found.
+- **P9.** A short Remark giving another route, where one exists.
 - **P10.** Lemmas that aren't standard are proved in full. Standard theorems are cited by name.
-- **P11.** The "Why this works" line (M4).
 
 ### 8.3 The seven-mark rubric
 
@@ -324,8 +319,6 @@ Rules H1 to H6 apply. "One step short" (H4) means one routine step short of a co
 > Use angles between lines, taken modulo $180^\circ$. First suppose $X \ne C$. Triangle $XAB$ is isosceles, so $\angle(XB, XC) = \angle(XB, XA) = 2\angle(AB, AC)$, and also $\angle(OB, OC) = 2\angle(AB, AC)$. Hence $X$ lies on $\omega$. Since $XA = XB$, point $X$ is on the perpendicular bisector of $AB$, so $OX \perp AB$. Note $X \ne O$, because $O$ is strictly inside an acute triangle and so not on line $AC$. As $X$ is on the circle with diameter $OT$, either $X = T$ or $XT \perp OX$, and in both cases the line through $X$ parallel to $AB$ passes through $T$. If $X = C$, then $CA = CB$, so the tangent at $C$ is parallel to $AB$, and again the line through $X$ parallel to $AB$ passes through $T$.
 >
 > In the same way, the line through $Y$ parallel to $AC$ passes through $T$. The point $P$ is the intersection of the line through $X$ parallel to $AB$ and the line through $Y$ parallel to $AC$, and these two lines are not parallel. So $P = T$, and $PB$ and $PC$ are tangent to $\Gamma$.
->
-> **Why this works.** `circumcircle-tangent-intersection`, `inscribed-angle-theorem`, `angle-chasing`: the point defined by a parallelogram is easier to reach from the expected answer: name the tangent point first and show it has the parallelogram's properties.
 
 | Marks | Criterion |
 |---|---|
@@ -423,7 +416,8 @@ Every example went through the real gate (task 05 branch at `8d13ea6`, with the 
 | A7 | None | A fact about the checker | |
 | M1, M2 | Judge | Solution audit | Covered: `solution_audit` |
 | M3 | Auto | Key appears in the solution's last paragraphs | Partly. A warning, and it searches the whole solution |
-| M4 | Auto | Format regex; IDs in taxonomy and `subtopics` | **Gap** |
+| M8 | Auto | Banned-word regex on solution, hints and rubric | Covered: `standard` |
+| M9 | Human | Length by kyu, also in the write prompts | None needed |
 | M5 | Auto | Subtopics in taxonomy, none `legacy` | Partly. `validate.mjs` checks membership once the taxonomy lands, not `legacy` |
 | M6 | Judge | Program judge | Covered: `program_judge` |
 | M7 | Judge | Audit | Covered in effect |
@@ -445,14 +439,14 @@ Every example went through the real gate (task 05 branch at `8d13ea6`, with the 
 | O5 | Auto | Private ID absent from public text | Covered: `standard`, and the corpus-text scan |
 | O6 | Human | Review | Known limits, documented in the gate's README |
 | P1–P6 | Judge | Critic and task 09's gate | Partly. Proofs get `well_posedness`, `solution_audit` and `originality`; truth testing is task 09's |
-| P7–P11 | Judge | Audit | Partly: `solution_audit`. P8, P9 aren't checked |
+| P7–P10 | Judge | Audit | Partly: `solution_audit`. P9 isn't checked |
 | P12 | Auto | Total is 7 | Covered: `validate.mjs` |
 | P13–P19 | Judge, human | Task 09's rubric check | Task 09 |
 | BS1–BS5 | Human | Kevin | Task 21 |
 
 ### Gaps worth fixing first
 
-1. **The spelling check breaks the "Why this works" line.** `standard.py` removes maths but not `<code>`, and it splits words on hyphens. So the taxonomy ID `perpendicular-from-center-to-chord` fails on "center". Remove `<code>…</code>` before checking.
+1. **The spelling check splits taxonomy IDs on hyphens.** `standard.py` removes maths but not `<code>`, so a bare ID such as `perpendicular-from-center-to-chord` fails on "center". Remove `<code>…</code>` before checking.
 2. **The word list misses the geometry terms.** Add incenter, circumcenter, orthocenter and excenter. It must then allow the book's title.
 3. **The scan misses some fields.** `title`, `rubric[].criterion` and `figure_alt` aren't checked for spelling or contest names.
 4. **Kyu and type aren't cross-checked** (K4, A1).

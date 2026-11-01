@@ -35,7 +35,7 @@ WRITE_FORMAT = """<subtopics>Taxonomy IDs separated by commas, the one the crux 
 <hint>Hint 1.</hint>
 <hint>Hint 2.</hint>
 <hint>Hint 3 (optional).</hint>
-<solution>The solution, ending with the "Why this works" paragraph.</solution>
+<solution>The solution.</solution>
 <figure>A tkz-euclide figure, as described above. Repeat the block for a second figure, only if the argument has two separate pictures.</figure>
 <no_figure>Only if this isn't topic G and the argument doesn't use a picture: one sentence saying why.</no_figure>"""
 
@@ -70,12 +70,23 @@ IDEA_RULES = """How your work is checked. Every point here has rejected real dra
 - All text uses UK spelling. Use $...$ and $$...$$ for maths, with no custom macros."""
 
 WRITE_RULES = """How your work is checked.
-- A strict auditor reads the solution. Justify every non-routine step and every case. Routine algebra may be skipped. It must state the key in the second-last paragraph, and the "Why this works" paragraph follows it as the last paragraph.
+- A strict auditor reads the solution. Justify every non-routine step and every case. Routine algebra may be skipped. It must state the key in its last paragraph.
 - The key comes from a program, so a solution that reaches any other number is wrong. Work it out honestly. If you find the key or the statement is wrong, reply with only <disagree>one sentence on what is wrong</disagree> instead of bending the argument.
 - No hint may state the key. Each hint adds something, and the last stops one routine step short.
 - All text uses UK spelling. Use $...$ and $$...$$ for maths: \\dfrac in display maths and \\frac inline, always with braces, \\cdot for products and never *, \\le and \\ge. Use only <b> and <code> as markup, and write cases as prose, never as a list.
-- Never argue from a picture, and never refer to a figure or diagram, unless the problem is geometry.
-- The solution's last paragraph is exactly: <b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause on why the idea fits. Each ID must also be in subtopics."""
+- Never argue from a picture, and never refer to a figure or diagram, unless the problem is geometry."""
+
+SOLUTION_STYLE = """THE STYLE OF THE SOLUTION
+Write as a strong olympiad student writes up a solution: direct and concise, with no narration, no restating the problem and no signposting. Never use these or anything like them: "we only need", "note that", "it remains", "therefore each", "key idea", "key insight", "crux", "elegant", "beautiful", "the trick", "the heart of", "delicate", "why this works". No em dashes. Do not end with a summary or a comment on the idea. Use the labels Lemma, Claim, Remark or Theorem only where they actually help, usually at 3 kyu and on proofs. Rigour stays: every non-routine step and every case is justified, only shorter. State the final answer.
+
+An example of the right voice, for an easy problem about four-digit palindromes with digit sum 14: "Write the number as $abba$. Then $2(a+b)=14$, so $a+b=7$ with $1\\le a\\le 7$, giving $7$ palindromes." """
+
+LENGTHS = {8: "1 to 4 lines, often one sentence plus the arithmetic", 7: "1 to 4 lines, often one sentence plus the arithmetic", 6: "at most about 80 words",
+           5: "at most about 150 words", 4: "at most about 150 words", 3: "as long as rigour needs and no longer", 2: "as long as rigour needs and no longer", 1: "as long as rigour needs and no longer"}
+
+
+def length_guide(kyu):
+    return f"LENGTH\nThis is {kyu} kyu, so: {LENGTHS[kyu]}. Length follows difficulty. An easy problem has a short solution, and not every problem needs a long paragraph."
 
 
 FIGURE_RULES = r"""THE FIGURE
@@ -116,7 +127,7 @@ Rules. Each one is enforced by a program that rejects the draft.
 - %! scale turns the problem's units into centimetres. Make the drawing about 7.5 cm across. It must fit in 9.5 cm by 10.5 cm with its labels.
 - Colours: draw only with the preamble's styles aux (dashed construction lines), key (the one object the argument turns on), mk (marks), lbl (point labels) and len (lengths), and the fills figtint and figaccenttint. Mark equal lengths, right angles and tangency where they help the reader.
 - No label may touch another label, a line or a point. Choose each label's side so it sits in empty space.
-- after_paragraph is how many solution paragraphs come above the figure, and it comes before the "Why this works" paragraph."""
+- after_paragraph is how many solution paragraphs come above the figure."""
 
 
 def _section(text, start, end):
@@ -215,6 +226,8 @@ def write_up(idea, kyu, key, record, earlier=None, failure=None):
         f"A {kyu} kyu problem has been chosen. Write its hints and solution.",
         f"THE KYUCLID STANDARD\n{write_rules()}",
         WRITE_RULES,
+        SOLUTION_STYLE,
+        length_guide(kyu),
         FIGURE_RULES,
         f"TAXONOMY IDS, the only tags allowed\n{taxonomy_ids()}",
         f"THE PROBLEM\n{idea['statement']}\n\nTHE KEY, computed by a program: {key}\n\nTHE PROGRAM\n{idea['check_program']}\n\nTHE AUTHOR'S SKETCH\n{idea.get('sketch', '')}",

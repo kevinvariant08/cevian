@@ -15,7 +15,7 @@
     "Look at the triangles with $P$ as a vertex and a right angle at $A$ or $B$.",
     "Use Pythagoras in triangles $PAD$ and $PBC$ to find each squared length."
   ],
-  "solution": "Put $A = (0,0)$, $B = (12,0)$, $C = (12,5)$, $D = (0,5)$, so $P = (4,0)$. Then $PC^2 = 8^2 + 5^2 = 89$ and $PD^2 = 4^2 + 5^2 = 41$, by Pythagoras in the right-angled triangles $PBC$ and $PAD$. The sum is $89 + 41 = 130$.\n\n<b>Why this works.</b> <code>pythagorean-theorem</code>: the right angles at the corners give each squared length directly.",
+  "solution": "Put $A = (0,0)$, $B = (12,0)$, $C = (12,5)$, $D = (0,5)$, so $P = (4,0)$. Then $PC^2 = 8^2 + 5^2 = 89$ and $PD^2 = 4^2 + 5^2 = 41$, by Pythagoras in the right-angled triangles $PBC$ and $PAD$. The sum is $89 + 41 = 130$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

@@ -15,7 +15,7 @@
     "Which numbers meet the conditions for $5$ and $7$?",
     "By the Chinese remainder theorem those numbers repeat every $35$, so test them in turn against the last condition."
   ],
-  "solution": "By the Chinese remainder theorem the three conditions have a unique solution modulo $5 + 7 + 4 = 16$. Adding the remainders gives $2 + 3 + 0 = 5$, and $5 + 3 \\cdot 16 + (-1) = 52$, so the answer is $52$.\n\n<b>Why this works.</b> <code>crt</code>: conditions with coprime moduli combine into one residue class.",
+  "solution": "By the Chinese remainder theorem the three conditions have a unique solution modulo $5 + 7 + 4 = 16$. Adding the remainders gives $2 + 3 + 0 = 5$, and $5 + 3 \\cdot 16 + (-1) = 52$, so the answer is $52$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

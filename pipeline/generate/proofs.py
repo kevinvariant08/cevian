@@ -114,15 +114,16 @@ THE AUTHOR'S SKETCH, which may be wrong
 
 Rules on top of the standard, each enforced:
 - The solution is a complete proof with every case, for a competent reader who needs no filling-in. If you find the claim false or the sketch unfixable, reply with only <disagree>one sentence</disagree>.
-- Mark the crux by starting its paragraph with <b>Crux.</b>. The last paragraph but one starts <b>Other routes.</b> and gives another route in a sentence or two, or says none has been found.
-- The last paragraph is exactly: <b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause on why the idea fits. Each ID must be in subtopics.
+- {style}
+- {length}
+- If another route exists, a final <b>Remark.</b> gives it in a sentence or two.
 - Use only <b> and <code> as markup. No Markdown, no lists. UK spelling. \\dfrac in display maths, \\frac inline, \\cdot, \\le, \\ge.
 - Two or three hints. Hint 1 points at the object and doesn't name the technique. No hint finishes the proof.
-- Rubric lines total exactly 7, the crux gets the most, each line is an achievement seen in a script, worded so other routes can earn it. At most one "Deduct 1 if ..." per line, naming a common error. A correct answer alone earns at most 1 on a "Determine" problem. End with a line that says a complete proof by another route earns all marks, inside the last criterion.
+- Rubric lines total exactly 7, the hardest idea gets the most, each line is an achievement seen in a script, worded so other routes can earn it. At most one "Deduct 1 if ..." per line, naming a common error. A correct answer alone earns at most 1 on a "Determine" problem. End with a line that says a complete proof by another route earns all marks, inside the last criterion.
 - A program will mark scripts from this later, so each criterion must be checkable by itself. Where a real second route exists, give it as an <alternative> whose steps also total exactly 7. Do not invent a route you haven't checked: if none exists, leave it out. Give at least one <fatal>: a common error that invalidates a script, with the most marks such a script can earn (0 to 6).
 {earlier}
 Output with nothing around it:
-<subtopics>Taxonomy IDs separated by commas, the crux first.</subtopics>
+<subtopics>Taxonomy IDs separated by commas, the main one first.</subtopics>
 <hint>Hint 1.</hint>
 <hint>Hint 2.</hint>
 <hint>Hint 3 (optional).</hint>
@@ -250,10 +251,6 @@ def lint_proof(d):
         return "each <alternative> must have steps totalling exactly 7"
     if not m["fatal_errors"] or any(not 0 <= f["cap"] <= 6 for f in m["fatal_errors"]):
         return "give at least one <fatal>, each with a cap from 0 to 6"
-    if "<b>Crux.</b>" not in d["solution"]:
-        return "mark the crux with <b>Crux.</b> (P8)"
-    if "<b>Other routes.</b>" not in d["solution"]:
-        return "state another route, or that none was found, under <b>Other routes.</b> (P9)"
     return drafts.lint(d) or next(filter(None, map(drafts._lint_text, [r["criterion"] for r in d["rubric"]])), None)
 
 
@@ -326,7 +323,7 @@ class Job:
     def write(self, c, kyu, topic, usage, earlier=""):
         text = prompts._standard()
         standard = "\n\n".join([prompts._section(text, "## 5. Hint rules", "## 6. What makes a problem bad"), prompts._section(text, "## 8. Proof problems", "### 8.5 Worked example"), prompts._section(text, "## 2. Statement rules", "## 3. Answer rules")])
-        prompt = WRITE.format(kyu=kyu, standard=standard, figure_rules=prompts.FIGURE_RULES, taxonomy=prompts.taxonomy_ids(), statement=c["statement"], sketch=c["sketch"], earlier=earlier)
+        prompt = WRITE.format(kyu=kyu, standard=standard, figure_rules=prompts.FIGURE_RULES, taxonomy=prompts.taxonomy_ids(), statement=c["statement"], sketch=c["sketch"], earlier=earlier, style=prompts.SOLUTION_STYLE, length=prompts.length_guide(kyu))
         r = self.call(usage, OPUS, prompts.WRITE_SYSTEM.replace("about 1,500 words", THINK[kyu]), prompt, 24000, "proof_write", c["title"])
         return r.text
 

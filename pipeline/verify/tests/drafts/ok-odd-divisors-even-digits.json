@@ -15,7 +15,7 @@
     "When do the divisors of a number fail to pair up?",
     "Pairing $d$ with $n/d$ shows only perfect squares qualify, so list the squares up to $300$ and check their digit sums."
   ],
-  "solution": "A positive integer has an odd number of divisors exactly when it is a perfect square, because divisors pair up as $d, n/d$ except when $d^2 = n$. The squares up to $300$ are $1^2, \\dots, 17^2$. Their digit sums are $1,4,9,7,7,9,13,10,9,1,4,9,16,16,9,13,19$. The even ones belong to $4, 64, 121, 169, 196$, which gives $5$ numbers.\n\n<b>Why this works.</b> <code>divisor-pairing</code>: divisors pair up except at a square root, which leaves only squares.",
+  "solution": "A positive integer has an odd number of divisors exactly when it is a perfect square, because divisors pair up as $d, n/d$ except when $d^2 = n$. The squares up to $300$ are $1^2, \\dots, 17^2$. Their digit sums are $1,4,9,7,7,9,13,10,9,1,4,9,16,16,9,13,19$. The even ones belong to $4, 64, 121, 169, 196$, which gives $5$ numbers.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

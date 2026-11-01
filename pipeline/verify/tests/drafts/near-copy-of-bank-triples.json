@@ -15,7 +15,7 @@
     "Name the units digit, since the tens digit depends on it.",
     "Use the place value of each digit to list the options: the tens digit is at most $9$, which limits the units digit."
   ],
-  "solution": "With $x = b - a$ and $y = c - b$ the condition is $x^2 + xy + y^2 = 1027$. Counting the positive solutions, each weighted by the room left for $a$, gives the answer.\n\n<b>Why this works.</b> <code>place-value-representation</code>: the tens digit is at most nine, which limits the units digit.",
+  "solution": "With $x = b - a$ and $y = c - b$ the condition is $x^2 + xy + y^2 = 1027$. Counting the positive solutions, each weighted by the room left for $a$, gives the answer.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

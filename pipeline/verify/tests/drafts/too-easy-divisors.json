@@ -15,7 +15,7 @@
     "Which small numbers go into $12$?",
     "Use divisor pairing: each divisor $d$ goes with $12/d$."
   ],
-  "solution": "The divisors are $1, 2, 3, 4, 6, 12$, so there are $6$.\n\n<b>Why this works.</b> <code>divisor-pairing</code>: each divisor pairs with its partner, so few checks are needed.",
+  "solution": "The divisors are $1, 2, 3, 4, 6, 12$, so there are $6$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

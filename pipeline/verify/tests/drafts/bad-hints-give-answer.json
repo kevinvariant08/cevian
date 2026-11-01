@@ -15,7 +15,7 @@
     "What seat number does each person have?",
     "They are in seats $7$ and $16$, so the count is $8$."
   ],
-  "solution": "Ann is in seat $7$. The fifth seat from the right is seat $20 - 4 = 16$, so Ben is in seat $16$. The seats strictly between them are $8, 9, \\dots, 15$, and there are $8$ of them.\n\n<b>Why this works.</b> <code>rule-of-product</code>: converting both positions to one numbering makes the gap a direct count.",
+  "solution": "Ann is in seat $7$. The fifth seat from the right is seat $20 - 4 = 16$, so Ben is in seat $16$. The seats strictly between them are $8, 9, \\dots, 15$, and there are $8$ of them.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

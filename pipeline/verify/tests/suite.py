@@ -12,7 +12,7 @@ from ..answers import answer_hash
 
 HERE = Path(__file__).resolve().parent
 ALL = {}
-# id: (taxonomy slug, the clause for its Why this works line). A variant uses its base's entry.
+# id: (taxonomy slug, a note on why it fits). A variant uses its base's entry.
 WHY = {
     "ok-digit-product": ("place-value-representation", "the tens digit is at most nine, which limits the units digit."),
     "ok-seat-row": ("rule-of-product", "converting both positions to one numbering makes the gap a direct count."),
@@ -240,10 +240,8 @@ def main():
         old.unlink()
     for pid, e in ALL.items():
         d = e["draft"]
-        slug, clause = WHY.get(pid) or WHY.get(e.get("base")) or ("casework", "splitting into cases makes each part simple to count.")
+        slug = (WHY.get(pid) or WHY.get(e.get("base")) or ("casework",))[0]
         d["subtopics"] = [slug]
-        if "solution" in d:
-            d["solution"] += f"\n\n<b>Why this works.</b> <code>{slug}</code>: {clause}"
         (out / f"{pid}.json").write_text(json.dumps(e["draft"], indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     expected = {pid: dict(e["expected"], sim=e["sim"]) for pid, e in ALL.items()}
     (HERE / "expected.json").write_text(json.dumps(expected, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")

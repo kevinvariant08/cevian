@@ -15,7 +15,7 @@
     "Compare the first day with the last.",
     "Use the arithmetic series trick: pair days so each pair has the same total."
   ],
-  "solution": "Pair day $k$ with day $41 - k$: each pair totals $41$ laps and there are $20$ pairs, so the total is $820$.\n\n<b>Why this works.</b> <code>arithmetic-series-sum</code>: pairing first with last makes every pair total the same.",
+  "solution": "Pair day $k$ with day $41 - k$: each pair totals $41$ laps and there are $20$ pairs, so the total is $820$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

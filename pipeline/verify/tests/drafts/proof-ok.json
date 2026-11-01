@@ -12,7 +12,7 @@
     "Look at the factors of the expression.",
     "Factorise it: a product of three consecutive integers appears, which settles divisibility by $2$ and by $3$."
   ],
-  "solution": "Write $n^5 + 5n^3 - 6n = n(n^2 - 1)(n^2 + 6) $, which holds because $(n^2-1)(n^2+6) = n^4 + 5n^2 - 6$. The product $(n-1)n(n+1)$ of three consecutive integers is divisible by both $2$ and $3$, hence by $6$, and it divides the expression. So the expression is divisible by $6$.\n\n<b>Why this works.</b> <code>polynomial-factoring</code>: the factorisation shows three consecutive integers.",
+  "solution": "Write $n^5 + 5n^3 - 6n = n(n^2 - 1)(n^2 + 6) $, which holds because $(n^2-1)(n^2+6) = n^4 + 5n^2 - 6$. The product $(n-1)n(n+1)$ of three consecutive integers is divisible by both $2$ and $3$, hence by $6$, and it divides the expression. So the expression is divisible by $6$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

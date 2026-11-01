@@ -184,10 +184,8 @@ class Standard(unittest.TestCase):
         return standard.run({**DRAFTS["ok-seat-row"], **changes}, taxonomy=TAXONOMY)[2]["failures"]
 
     def test_taxonomy_ids_are_exempt_from_spelling(self):
-        why = "<b>Why this works.</b> <code>perpendicular-from-center-to-chord</code>: the radius meets the chord at a right angle."
         d = DRAFTS["ok-seat-row"]
-        solution = d["solution"].rsplit("\n\n", 1)[0] + "\n\n" + why
-        self.assertEqual(self.fails(solution=solution, subtopics=["perpendicular-from-center-to-chord"]), [])
+        self.assertEqual(self.fails(subtopics=["perpendicular-from-center-to-chord"]), [])
         bare = d["solution"] + " See perpendicular-from-center-to-chord."
         self.assertFalse([f for f in self.fails(statement=d["statement"], hints=[*d["hints"][:1], bare]) if "S8" in f])
 
@@ -233,8 +231,9 @@ class Standard(unittest.TestCase):
         self.assertTrue([f for f in self.fails(statement="Is $x \\leq 2$ true?") if f.startswith("S9")])
         self.assertTrue([f for f in self.fails(statement="Find **this** number.") if f.startswith("S10")])
         self.assertTrue([f for f in self.fails(statement="How many? And why?") if f.startswith("S1")])
-        self.assertTrue([f for f in self.fails(solution="No line here.") if f.startswith("M4")])
-        self.assertTrue([f for f in self.fails(subtopics=["not-a-slug"]) if f.startswith("M4") or f.startswith("M5")])
+        self.assertTrue([f for f in self.fails(solution="The crux is parity, so the answer is $5$.") if f.startswith("M8")])
+        self.assertTrue([f for f in self.fails(solution="So $5$.\n\n<b>Why this works.</b> Parity.") if f.startswith("M8")])
+        self.assertTrue([f for f in self.fails(subtopics=["not-a-slug"]) if f.startswith("M5")])
         self.assertTrue([f for f in self.fails(provenance={"kind": "original", "author": "x", "pipeline_run": "r1"}) if f.startswith("O4")])
 
     def test_inspired_by_stays_private(self):

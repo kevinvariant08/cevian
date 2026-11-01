@@ -15,7 +15,7 @@
     "Compare $n$ with $n + 30$: what is $n^2 + 300$ close to?",
     "Reduce modulo $n + 30$: the remainder is a constant, so $n + 30$ must be one of its divisors above $30$."
   ],
-  "solution": "Trying a few values shows that the pattern gives half of the $30$ divisors of a related number, so the answer is $15$.\n\n<b>Why this works.</b> <code>divisor-counting</code>: reducing modulo the divisor leaves a constant, whose divisors can be counted.",
+  "solution": "Trying a few values shows that the pattern gives half of the $30$ divisors of a related number, so the answer is $15$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

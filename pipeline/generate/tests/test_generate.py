@@ -13,7 +13,6 @@ from pipeline.verify.backend import Backend, Reply
 RECORD = dict(id="SRC-1", topic="N", kyu=4, techniques=["crt", "bounding"], core_idea="x", crux="y", traps=["t"], generation_potential="high", figure_needed=False,
               solution_paths=[dict(name="a", difficulty_of_path="easy", key_steps=["s"]), dict(name="b", difficulty_of_path="hard", key_steps=["s"])])
 INPUT = inputs.Input("SRC-1", RECORD, "A pond holds exactly seventeen silver fish and twenty three golden fish swimming around in circles today. How many?", "40")
-WHY = "<b>Why this works.</b> <code>crt</code>: residues split."
 PROGRAM = "print(sum(1 for n in range(1, 100) if n % 3 == 1 and n % 5 == 2))"
 STATEMENT = "How many integers $n$ with $1 \\le n \\le 99$ leave remainder $1$ on division by $3$ and remainder $2$ on division by $5$?"
 
@@ -25,7 +24,7 @@ def idea(title="Quiet residues", statement=STATEMENT, recipe="transplant", inter
 
 def write(answer="7"):
     return (f"<subtopics>crt</subtopics><hint>Look at residues.</hint><hint>Use the Chinese remainder theorem.</hint>"
-            f"<solution>The residue is $7$ modulo $15$. The answer is ${answer}$.\n\n{WHY}</solution>")
+            f"<solution>The residue is $7$ modulo $15$. The answer is ${answer}$.</solution>")
 
 
 class Scripted(Backend):
@@ -104,11 +103,6 @@ class Linting(unittest.TestCase):
         d = self.draft()
         d["subtopics"] = ["not-a-technique"]
         self.assertIn("M5", drafts.lint(d))
-
-    def test_missing_why_line(self):
-        d = self.draft()
-        d["solution"] = "The answer is $7$."
-        self.assertIn("M4", drafts.lint(d))
 
     def test_math_asterisk(self):
         self.assertIn("S9", drafts.lint_idea(self.i(statement="How many integers $n$ satisfy $2*n < 9$ with $n$ positive?")))
