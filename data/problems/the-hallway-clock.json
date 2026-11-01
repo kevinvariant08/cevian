@@ -17,7 +17,7 @@
     "Treat the clock's lead as a quantity that changes at a constant rate. The clock is $6$ minutes ahead at $14:00$ and $10$ minutes ahead at $16:00$, so find how many true minutes it takes to gain $1$ minute.",
     "The lead grows by $4$ minutes during the $120$ true minutes from $14:00$ to $16:00$, so the clock gains $1$ minute every $30$ true minutes. Now work backwards from $14:00$ to the moment when the lead was $0$."
   ],
-  "solution": "Call the number of minutes by which the clock is ahead of the correct time its lead. The lead is $6$ minutes at $14:00$ and $10$ minutes at $16:00$. Since the clock gains time at a constant rate, its lead changes by equal amounts in equal periods of true time.\n\nFrom $14:00$ to $16:00$, the lead grows by $10 - 6 = 4$ minutes in $120$ true minutes. So the clock gains $1$ minute every $\\frac{120}{4} = 30$ true minutes.\n\nThe clock showed the correct time exactly when its lead was $0$. Its lead then grew at this same rate to reach $6$ minutes at $14:00$, which took $6 \\cdot 30 = 180$ true minutes.\n\nThe answer is $180$.\n\n<b>Why this works.</b> <code>rate-and-mixture-modeling</code>, <code>reverse-the-process</code>: the clock's lead grows at a constant rate, so that rate can be run backwards from $14:00$ to the moment the lead was zero.",
+  "solution": "The lead (clock minus true time) grows linearly. It rises from $6$ to $10$ minutes in $120$ true minutes, so it grows by $1$ minute every $30$ true minutes. The lead was $0$ exactly $6\\cdot 30=180$ minutes before $14:00$.",
   "provenance": {
     "kind": "original",
     "author": "kyuclid",
