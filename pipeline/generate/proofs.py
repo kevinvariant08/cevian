@@ -314,9 +314,7 @@ class Job:
         return ("pass", "two independent models recall no matching problem. There is no olympiad corpus, so this rests on memory alone", dict(answers=rows, corpus_compared=False))
 
     def disprove(self, c, usage):
-        r = self.call(usage, OPUS, "You break olympiad problems. You have no tools.", DISPROVE.format(statement=c["statement"] + (f"
-
-The author's claimed answer and route: {c['sketch']}" if "etermine" in c["statement"] else "")), 12000, "proof_disprove", c["title"])
+        r = self.call(usage, OPUS, "You break olympiad problems. You have no tools.", DISPROVE.format(statement=c["statement"] + (f"\n\nThe author's claimed answer and route: {c['sketch']}" if "etermine" in c["statement"] else "")), 12000, "proof_disprove", c["title"])
         d = last_json(r.text)
         if d is None:
             raise Discard("disprove", "the reply was unreadable")
