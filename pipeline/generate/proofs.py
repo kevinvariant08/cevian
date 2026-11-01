@@ -45,7 +45,7 @@ The style is that of USAMO, USEMO, the Balkan MO, the Canadian MO and the IMO, a
 
 Rules:
 - You must have an actual proof. The sketch is the real route in at most ten lines, with the crux named. Never state something you merely believe.
-- If you recognise the statement, or something equivalent up to renaming, as a published contest problem or a named theorem or a well-known lemma, drop it and write another. A strict check compares it with everything you could remember.
+- If you recognise the statement, or something equivalent up to renaming, as a published contest problem or a named theorem or a well-known lemma, drop it and write another. A strict check compares it with everything you could remember, and it rejects restated configuration lemmas (mixtilinear touch points, excircle collinearities, tangent-length identities and so on). Standard lemmas may be steps, but the claim itself must need its own thought.
 - Pick the difficulty from how hidden the crux is, not from length. A computation slog fails. So does anything ambiguous.
 - Every point, set and domain is defined. Say whether points lie on sides or lines. Give only the conditions the proof needs, but exclude every degenerate case the statement would fail on.
 - Use "Prove that" or "Determine all". For "Determine all" the answer must be unique and clear.
@@ -72,7 +72,7 @@ Test the claim itself, from its definitions, not any route to a proof. Number th
 
 <claimed_answer>{sketch}</claimed_answer>
 
-Allowed imports only: {imports}. The random module is banned, so write a small linear congruential generator. It must finish in 50 seconds, so stop at a time-independent limit that is safe. Skip degenerate configurations and do not count them.
+Allowed imports only: {imports}. The time and random modules are banned, so write a small linear congruential generator. It must finish in 50 seconds, so stop at a time-independent limit that is safe. Skip degenerate configurations and do not count them.
 The last line printed must be exactly one of: TESTED <number of real cases checked> or COUNTEREXAMPLE <short data> or NOT_TESTABLE <reason>. Use NOT_TESTABLE only if no finite search touches the claim.
 Output only the Python source, with no fence."""
 
@@ -448,7 +448,7 @@ class Job:
         usage = Usage()
         log = dict(slot=spec, kyu=kyu, topic=topic, candidates=[], outcome=None)
         themes = rng.sample(THEMES[topic], len(THEMES[topic]))
-        for round_ in range(2):
+        for round_ in range(3):
             if usage.fresh_usd > SLOT_BUDGET[kyu] or log["outcome"]:
                 break
             tried = "; ".join(x["title"] for x in log["candidates"]) or "nothing yet"
