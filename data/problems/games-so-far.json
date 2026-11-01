@@ -1,0 +1,33 @@
+{
+  "id": "games-so-far",
+  "title": "Games So Far",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "complementary-counting",
+    "binomial-selection",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Six players, each with a different name, enter a tournament in which each pair of players is scheduled to play exactly one game, making $15$ scheduled games. So far, exactly $12$ of these games have been played. How many different sets of $12$ played games are possible for which at least one player has played all of their scheduled games?",
+  "answer_format": "integer",
+  "answer_hash": "e04e16d5",
+  "hints": [
+    "Instead of looking at the $12$ games that have been played, look at the $3$ games that have not. What does it mean, in terms of these $3$ games, for a player to have played all of their scheduled games?",
+    "A player has played all of their games exactly when they appear in none of the $3$ unplayed games. Use complementary counting: count the choices of $3$ unplayed games in which every player appears in at least one of them.",
+    "The $3$ unplayed games have only $3 \\cdot 2 = 6$ player places, so if all six players appear, each appears exactly once. The unplayed games must then split the players into $3$ pairs, and there are $5 \\cdot 3 \\cdot 1$ such splits. Compare this with the total number of ways to choose $3$ games from $15$."
+  ],
+  "solution": "Each set of $12$ played games corresponds to exactly one set of $3$ unplayed games, namely the games left over from the $15$ scheduled. So we may count sets of $3$ unplayed games instead. There are $\\binom{15}{3} = 455$ such sets in total. A player has played all of their scheduled games exactly when they appear in none of the $3$ unplayed games.\n\nWe count the complement: the sets of $3$ unplayed games in which every player appears at least once. Three games have $3 \\cdot 2 = 6$ player places in total, and all six players must fill them, so each player appears in exactly one unplayed game. Thus these sets are precisely the ways of splitting the six players into $3$ pairs.\n\nTo count the splits, take any player: they have $5$ possible partners. Then take the first remaining player in some fixed order of the names: they have $3$ possible partners. The last two players must form the final pair. Following these steps gives each split exactly once, so there are $5 \\cdot 3 \\cdot 1 = 15$ splits.\n\nTherefore the number of sets with at least one player having played all of their games is $455 - 15 = 440$. The answer is $440$.\n\n<b>Why this works.</b> <code>complementary-counting</code>, <code>binomial-selection</code>, <code>rule-of-product</code>: \"at least one player\" is awkward directly, but its complement forces the three unplayed games to pair off all six players, which is quick to count and subtract from the total selections.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-games-so-far"
+}

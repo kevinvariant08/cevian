@@ -1,0 +1,32 @@
+{
+  "id": "a-set-of-sixty-tiles",
+  "title": "A Set of Sixty Tiles",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "double-counting",
+    "factor-pair-enumeration"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A set of $60$ tiles is made using $a$ colours and $b$ symbols, where $a$ and $b$ are integers with $a \\ge 2$ and $b \\ge 2$. Each tile has one colour and one symbol, and each of the $a \\cdot b = 60$ possible colour-symbol combinations appears on exactly one tile. An unordered pair of two different tiles is called matching if the two tiles have the same colour or the same symbol. Over all possible choices of $a$ and $b$, what is the smallest possible number of matching pairs?",
+  "answer_format": "integer",
+  "answer_hash": "8ba73e41",
+  "hints": [
+    "Fix one tile and count how many other tiles match it, in terms of $a$ and $b$.",
+    "Use double counting: add up, over all $60$ tiles, the number of tiles that each one matches. Every matching pair contributes to this sum from both of its tiles, so the sum is twice the number of pairs.",
+    "Each tile matches $b-1$ tiles of the same colour and $a-1$ tiles with the same symbol, and no tile is in both groups. So the number of matching pairs is $30(a+b-2)$. Now you need the smallest value of $a+b$ among factorisations $a \\cdot b = 60$ with $a, b \\ge 2$, so list them."
+  ],
+  "solution": "Fix one tile. Exactly $b-1$ other tiles have its colour, since that colour appears once with each of the $b$ symbols. Likewise, exactly $a-1$ other tiles have its symbol. No other tile is in both groups, because a tile with the same colour and the same symbol would be the same tile. So each tile belongs to exactly $(a-1)+(b-1) = a+b-2$ matching pairs.\n\nNow count in two ways. Adding this number over all $60$ tiles gives $60(a+b-2)$, and this total counts each matching pair exactly twice, once from each of its two tiles. Hence the number of matching pairs is $\\frac{60(a+b-2)}{2} = 30(a+b-2)$.\n\nThis is smallest when $a+b$ is smallest. The sum is symmetric in $a$ and $b$, so we may take $a \\le b$. Then $a^2 \\le 60$, so $a \\le 7$, and $a$ is a divisor of $60$ with $a \\ge 2$. The possible factorisations are $2 \\cdot 30$, $3 \\cdot 20$, $4 \\cdot 15$, $5 \\cdot 12$ and $6 \\cdot 10$, with sums $32$, $23$, $19$, $17$ and $16$ respectively. The smallest sum is $16$, from $6$ and $10$.\n\nThe smallest possible number of matching pairs is therefore $30 \\cdot 14$, so the answer is $420$.\n\n<b>Why this works.</b> <code>double-counting</code>, <code>factor-pair-enumeration</code>: counting matches tile by tile reduces the total to a function of $a+b$, which only a few factor pairs of $60$ can minimise.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-set-of-sixty-tiles"
+}

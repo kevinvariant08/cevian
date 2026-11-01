@@ -1,0 +1,32 @@
+{
+  "id": "three-terms-one-condition",
+  "title": "Three Terms, One Condition",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "conjugate-modulus-identity",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Among all complex numbers $z$ with $|z|=3$, find the largest possible value of $\\left|z^{2}+8z-9\\right|$.",
+  "answer_format": "integer",
+  "answer_hash": "04af1f2f",
+  "hints": [
+    "The condition $|z|=3$ and the constant term $-9$ in the expression are linked. Look for another way to write the number $9$ using $z$.",
+    "Use the conjugate identity $z\\bar z=|z|^2$. Here it gives $9=z\\bar z$, and after this substitution every term of $z^2+8z-9$ has a factor of $z$.",
+    "Substituting $9=z\\bar z$ gives $z^2+8z-9=z(8+z-\\bar z)$. Write $z=x+yi$ with $x,y$ real, so that $z-\\bar z=2iy$. Then the modulus is $3\\sqrt{64+4y^2}$, and it remains to find how large $y^2$ can be when $|z|=3$."
+  ],
+  "solution": "Write $z=x+yi$ with $x,y$ real, so that $x^2+y^2=9$. For any complex number, $z\\bar z=x^2+y^2=|z|^2$, so here $9=z\\bar z$. Substituting this for the constant term gives\n$$z^2+8z-9=z^2+8z-z\\bar z=z\\left(8+z-\\bar z\\right).$$\nSince $z-\\bar z=(x+yi)-(x-yi)=2iy$, the second factor is $8+2iy$, which has real part $8$ and imaginary part $2y$.\n\nThe modulus of a product is the product of the moduli, so\n$$\\left|z^2+8z-9\\right|=|z|\\cdot|8+2iy|=3\\sqrt{64+4y^2}.$$\nThis depends only on $y^2$ and increases as $y^2$ increases. Since $y^2=9-x^2\\le 9$, we get\n$$\\left|z^2+8z-9\\right|\\le 3\\sqrt{64+36}=30.$$\n\nEquality holds when $y^2=9$, that is, when $x=0$. For example, $z=3i$ satisfies $|z|=3$, and $z^2+8z-9=-9+24i-9=-18+24i$, which has modulus $\\sqrt{18^2+24^2}=30$. The largest possible value is therefore $30$.\n\n<b>Why this works.</b> <code>conjugate-modulus-identity</code>, <code>bounding</code>: writing $9$ as $z\\bar z$ lets $z$ factor out with fixed modulus, leaving a quantity that depends only on $y^2$, which is bounded by $9$.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-terms-one-condition"
+}

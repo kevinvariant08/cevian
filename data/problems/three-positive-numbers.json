@@ -1,0 +1,32 @@
+{
+  "id": "three-positive-numbers",
+  "title": "Three Positive Numbers",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "linear-combination-of-equations",
+    "log-properties"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Positive real numbers $x$, $y$ and $z$ satisfy $$\\log_{2}(xy)=7,\\qquad \\log_{2}(yz)=11,\\qquad \\left|\\log_{2}(zx)-6\\right|=4.$$ What is the product of all possible values of $xyz$?",
+  "answer_format": "integer",
+  "answer_hash": "ab8ec5c5",
+  "hints": [
+    "Give names to $\\log_{2} x$, $\\log_{2} y$ and $\\log_{2} z$. Which combination of these three numbers tells you the value of $xyz$?",
+    "Use the logarithm law $\\log_{2}(uv)=\\log_{2}u+\\log_{2}v$. With $a=\\log_{2}x$, $b=\\log_{2}y$ and $c=\\log_{2}z$, the conditions become linear equations such as $a+b=7$ and $b+c=11$. Since $\\log_{2}(xyz)=a+b+c$, try combining the equations to reach this sum directly, without finding $a$, $b$ and $c$ one by one.",
+    "With $a$, $b$ and $c$ as the base-$2$ logarithms of $x$, $y$ and $z$, the absolute value condition says that $a+c$ is $10$ or $2$. Adding this to $a+b=7$ and $b+c=11$ gives $2(a+b+c)=28$ or $2(a+b+c)=20$. So $xyz$ is either $2^{14}$ or $2^{10}$, provided each case really occurs. Check that it does, then combine the two values as the question asks."
+  ],
+  "solution": "Since $x$, $y$ and $z$ are positive, we may set $a=\\log_{2}x$, $b=\\log_{2}y$ and $c=\\log_{2}z$. The law $\\log_{2}(uv)=\\log_{2}u+\\log_{2}v$ turns the first two conditions into $a+b=7$ and $b+c=11$, and the third into $|a+c-6|=4$. A number has absolute value $4$ exactly when it equals $4$ or $-4$, so $a+c=10$ or $a+c=2$.\n\nWe want $xyz$, and $\\log_{2}(xyz)=a+b+c$. Each of $a$, $b$ and $c$ appears in exactly two of the three equations, so adding the equations gives $2(a+b+c)=7+11+(a+c)=18+(a+c)$. If $a+c=10$, then $a+b+c=14$. If $a+c=2$, then $a+b+c=10$.\n\nBoth cases occur. Subtracting each two-variable equation from the sum recovers the remaining variable. In the first case, $(a,b,c)=(3,4,7)$, so $(x,y,z)=(8,16,128)$. Then $xy=2^{7}$, $yz=2^{11}$ and $zx=2^{10}$, and $|10-6|=4$. In the second case, $(a,b,c)=(-1,8,3)$, so $(x,y,z)=\\left(\\frac{1}{2},256,8\\right)$. Then $xy=2^{7}$, $yz=2^{11}$ and $zx=2^{2}$, and $|2-6|=4$. Both triples consist of positive numbers, so both are valid.\n\nHence the possible values of $xyz$ are exactly $2^{14}$ and $2^{10}$, and their product is $2^{24}$. The answer is $16777216$.\n\n<b>Why this works.</b> <code>linear-combination-of-equations</code>, <code>log-properties</code>: logarithms turn the products into linear equations, and adding these gives the sum that determines $xyz$ without solving for each variable first.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-positive-numbers"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strings-that-repeat",
+  "title": "Strings That Repeat",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "periodicity",
+    "inclusion-exclusion",
+    "euclidean-algorithm"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A binary string is a sequence $a_1a_2\\dots a_{30}$ in which each $a_i$ is $0$ or $1$. For a positive integer $d < 30$, the string is said to have repeat length $d$ if $a_{i+d} = a_i$ for every integer $i$ with $1 \\le i \\le 30 - d$. How many binary strings of length $30$ have at least one of the repeat lengths $6$ and $10$, but do not have repeat length $15$?",
+  "answer_format": "integer",
+  "answer_hash": "cab9da36",
+  "hints": [
+    "Start with a single repeat length $d$: which entries of the string can be chosen freely, and which are then forced? Next, suppose a string has repeat lengths $6$ and $10$, and compare $a_i$ with $a_{i+4}$ by going through a suitable third entry.",
+    "Write $R_d$ for the set of strings with repeat length $d$. Use inclusion-exclusion: $|A \\cup B| = |A| + |B| - |A \\cap B|$. Apply it once to $R_6 \\cup R_{10}$, then again to the part of that union lying in $R_{15}$, which is the part to remove. The overlaps can be found by a subtractive Euclidean algorithm on repeat lengths.",
+    "If a string has repeat lengths $d < e$ with $d + e \\le 30$, it also has repeat length $e - d$. This is checked by stepping through $a_{i+e}$ when that entry exists and through $a_{i-d}$ otherwise. Repeating this step gives $R_6 \\cap R_{10} = R_2$, $R_6 \\cap R_{15} = R_3$, $R_{10} \\cap R_{15} = R_5$ and $R_3 \\cap R_5 = R_1$. Since $|R_d| = 2^d$, it remains to compute $|R_6 \\cup R_{10}|$ and $|R_3 \\cup R_5|$ and subtract."
+  ],
+  "solution": "Let $R_d$ be the set of strings with repeat length $d$. The first $d$ entries of such a string can be chosen freely, and the condition $a_{i+d} = a_i$ then forces every later entry, so $|R_d| = 2^d$. If $g$ is a repeat length and $kg < 30$, then $kg$ is also a repeat length, because $a_{i+kg} = a_{i+(k-1)g} = \\dots = a_i$. Hence $R_g \\subseteq R_{kg}$.\n\n<b>Lemma.</b> If a string has repeat lengths $d < e$ with $d + e \\le 30$, then it has repeat length $e - d$. Take $i$ with $1 \\le i \\le 30 - (e - d)$. If $i + e \\le 30$, then $a_{i+e-d} = a_{i+e} = a_i$, using repeat length $d$ and then $e$. If $i + e > 30$, then $i > 30 - e \\ge d$, so $i - d \\ge 1$. Also $(i - d) + e \\le 30$, so $a_{i+e-d} = a_{i-d} = a_i$, using repeat length $e$ and then $d$. In both cases $a_{i+e-d} = a_i$.\n\nNow we find the overlaps. A string in $R_6 \\cap R_{10}$ has repeat length $10 - 6 = 4$ (as $6 + 10 \\le 30$), and then $6 - 4 = 2$ (as $4 + 6 \\le 30$). Conversely, $R_2$ lies in both $R_6$ and $R_{10}$, so $R_6 \\cap R_{10} = R_2$. In the same way, the pairs $(6, 15)$ and $(6, 9)$ give repeat lengths $9$ and $3$, so $R_6 \\cap R_{15} = R_3$. The pair $(10, 15)$ gives repeat length $5$, so $R_{10} \\cap R_{15} = R_5$. The pairs $(3, 5)$ and $(2, 3)$ give repeat lengths $2$ and $1$, so $R_3 \\cap R_5 = R_1$. All the sums $d + e$ used here are at most $30$.\n\nInclusion-exclusion, $|A \\cup B| = |A| + |B| - |A \\cap B|$, gives\n$$|R_6 \\cup R_{10}| = 2^6 + 2^{10} - 2^2 = 1084.$$\n\nThe strings to remove from this union are those also in $R_{15}$. They form\n$$(R_6 \\cup R_{10}) \\cap R_{15} = (R_6 \\cap R_{15}) \\cup (R_{10} \\cap R_{15}) = R_3 \\cup R_5,$$\nand this set has size\n$$|R_3 \\cup R_5| = 2^3 + 2^5 - 2^1 = 38.$$\n\nThe number of strings with at least one of the repeat lengths $6$ and $10$, but without repeat length $15$, is therefore $1084 - 38$. The answer is $1046$.\n\n<b>Why this works.</b> <code>periodicity</code>, <code>inclusion-exclusion</code>, <code>euclidean-algorithm</code>: on a string long enough for the lemma, two repeat lengths reduce by subtraction to their gcd, so every overlap in the inclusion-exclusion is again a set of strings with a single repeat length, which is easy to count.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-strings-that-repeat"
+}

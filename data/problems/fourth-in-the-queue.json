@@ -1,0 +1,32 @@
+{
+  "id": "fourth-in-the-queue",
+  "title": "Fourth in the Queue",
+  "kyu": 8,
+  "topic": "N",
+  "subtopics": [
+    "prime-factorization",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Consider all composite positive integers that have no prime factor less than $20$. When these integers are listed in increasing order, what is the fourth integer in the list?",
+  "answer_format": "integer",
+  "answer_hash": "0b070ce8",
+  "hints": [
+    "Write down the primes greater than $20$, starting with the smallest. Every prime factor of a number in the list must come from these primes.",
+    "Use prime factorisation: a composite number is a product of at least two primes, counted with repetition. So each number in the list is a product of at least two primes from $23, 29, 31, 37, \\dots$, and the smallest numbers will be products of exactly two of them.",
+    "The three products $23 \\cdot 23$, $23 \\cdot 29$ and $23 \\cdot 31$ are in the list. To find the next number, don't assume that it is another multiple of $23$. Compare the next product that uses $23$ with the smallest product that doesn't use $23$."
+  ],
+  "solution": "Every composite positive integer can be written as a product of at least two primes, where a prime may be repeated. The primes above $20$ are $23, 29, 31, 37, \\dots$, because the other numbers from $21$ to $36$ are even or are one of $21 = 3 \\cdot 7$, $25 = 5^2$, $27 = 3^3$, $33 = 3 \\cdot 11$ and $35 = 5 \\cdot 7$. So a number is in the list exactly when it is a product of at least two primes from $23, 29, 31, 37, \\dots$.\n\nThe number $29^2 = 841$ is in the list. We now find every number in the list below $841$. Let $n < 841$ be such a number and let $p$ be its smallest prime factor. Write $n = p \\cdot k$. Since $n$ is composite, $k > 1$, and every prime factor of $k$ is at least $p$, so $k \\ge p$ and $n \\ge p^2$. If $p \\ge 29$, then $n \\ge 841$, which is false. Hence $p = 23$ and $n = 23k$.\n\nSince $23 \\cdot 36 = 828$ and $23 \\cdot 37 = 851$, the condition $23k < 841$ means that $k \\le 36$. Also, every prime factor of $k$ is at least $23$. If $k$ were composite, it would be a product of at least two such primes, so $k \\ge 23^2 = 529$, which contradicts $k \\le 36$. So $k$ is prime with $23 \\le k \\le 36$, which leaves $k = 23$, $29$ or $31$.\n\nThese values give $23 \\cdot 23 = 529$, $23 \\cdot 29 = 667$ and $23 \\cdot 31 = 713$, each of which is in the list. So exactly three numbers in the list are below $841$, and the list begins $529, 667, 713, 841$. The tempting next multiple of $23$, namely $23 \\cdot 37 = 851$, comes too late. The answer is $841$.\n\n<b>Why this works.</b> <code>prime-factorization</code>, <code>bounding</code>: factorisation reduces the list to products of large primes, and the bound $n \\ge p^2$ shows which of those products can come before $29^2$.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-fourth-in-the-queue"
+}

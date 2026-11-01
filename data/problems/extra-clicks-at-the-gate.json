@@ -1,0 +1,32 @@
+{
+  "id": "extra-clicks-at-the-gate",
+  "title": "Extra Clicks at the Gate",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "block-grouping-of-sums",
+    "periodicity"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A counter at a gate starts at $0$. People pass through the gate one at a time. Each person adds $1$ to the counter, except that every sixth person (the $6$th, $12$th, $18$th and so on) adds $2$ instead. After the last person has passed through, the counter shows $500$. How many people passed through the gate?",
+  "answer_format": "integer",
+  "answer_hash": "22520064",
+  "hints": [
+    "Work out what the first six people do to the counter altogether. Then do the same for the next six people.",
+    "Use block grouping: split the people into consecutive blocks of $6$. Every complete block contains exactly one person who adds $2$, so each block adds the same amount, $7$, to the counter. Now divide $500$ by $7$ to see how many complete blocks fit.",
+    "Since $500 = 71 \\cdot 7 + 3$, the counter shows $497$ after $71$ complete blocks of $6$ people. The people in the next block each add $1$, until that block's sixth person. Work out how many more people are needed to add the remaining $3$, then include them in the total number of people."
+  ],
+  "solution": "Split the people, in order, into consecutive blocks of $6$: persons $1$ to $6$, then persons $7$ to $12$, and so on. In each complete block, the first five people add $1$ each and the sixth adds $2$, so the block adds $5 + 2 = 7$ to the counter.\n\nNow divide $500$ by $7$ to get $500 = 71 \\cdot 7 + 3$. After $71$ complete blocks, $71 \\cdot 6 = 426$ people have passed through and the counter shows $71 \\cdot 7 = 497$.\n\nThe counter still has to rise by $3$. The next three people are persons $427$, $428$ and $429$. They are the first three people of a new block, so none of them is a multiple of $6$ in the count, and each adds exactly $1$. The counter therefore shows $498$, $499$ and then $500$. Every person raises the counter, so it never returns to $500$ later and it can show $500$ after only this one number of people.\n\nThe number of people who passed through the gate is $426 + 3 = 429$.\n\n<b>Why this works.</b> <code>block-grouping-of-sums</code>, <code>periodicity</code>: the pattern of additions repeats every six people, so whole blocks each add $7$ and only a short remainder has to be counted by hand.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-extra-clicks-at-the-gate"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "the-hidden-bag",
+  "title": "The Hidden Bag",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "favorable-over-total"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Bag P and Bag Q each contain $10$ cards, and each card shows one positive integer. In Bag P, exactly $8$ of the cards show odd numbers. One card is drawn at random from each bag, with all cards in a bag equally likely. The probability that the sum of the two numbers drawn is even is $\\frac{31}{50}$. How many cards in Bag Q show odd numbers?",
+  "answer_format": "integer",
+  "answer_hash": "dbc927dd",
+  "hints": [
+    "Only one feature of each number matters here. For each possible draw, ask whether each card is odd or even, and see what that says about the sum.",
+    "Use parity: a sum of two integers is even exactly when both are odd or both are even. Let $k$ be the number of odd cards in Bag Q, and count the pairs of cards, one from each bag, that have an even sum.",
+    "Bag Q has $k$ odd cards and $10 - k$ even cards, and Bag P has $8$ odd cards and $2$ even cards. Of the $100$ equally likely pairs, $8k$ are both odd and $2(10 - k)$ are both even. Since $\\frac{31}{50}$ of $100$ is $62$, these two counts must add up to $62$."
+  ],
+  "solution": "Let $k$ be the number of cards in Bag Q that show odd numbers, so $10 - k$ cards in Bag Q show even numbers. Bag P has $8$ odd cards and $2$ even cards.\n\nEach of the $10$ cards in Bag P can be paired with each of the $10$ cards in Bag Q, which gives $10 \\cdot 10 = 100$ pairs. All cards in a bag are equally likely and the two draws are made separately, so these pairs are equally likely. The required probability is therefore the number of pairs with an even sum divided by $100$.\n\nThe sum of two integers is even exactly when they are both odd or both even: odd + odd and even + even are even, while odd + even is odd. There are $8k$ pairs with both cards odd and $2(10 - k)$ pairs with both cards even, so $8k + 2(10 - k)$ pairs have an even sum.\n\nSince $\\frac{31}{50} = \\frac{62}{100}$, exactly $62$ pairs must have an even sum. This gives\n$$8k + 2(10 - k) = 62,$$\nthat is, $6k + 20 = 62$, so $k = 7$.\n\nTherefore the number of cards in Bag Q that show odd numbers is $7$.\n\n<b>Why this works.</b> <code>parity</code>, <code>favorable-over-total</code>: only odd or even matters for the sum, so counting the equally likely pairs by parity turns the given probability into one linear equation.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-the-hidden-bag"
+}

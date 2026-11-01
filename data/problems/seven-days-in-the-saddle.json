@@ -1,0 +1,32 @@
+{
+  "id": "seven-days-in-the-saddle",
+  "title": "Seven Days in the Saddle",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "inclusion-exclusion",
+    "linear-combination-of-equations"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A cyclist rides on each of $7$ consecutive days. The mean distance ridden per day is $10$ km over the first $4$ days, $16$ km over the last $4$ days, and $12$ km over all $7$ days. How many kilometres does the cyclist ride on the fourth day?",
+  "answer_format": "integer",
+  "answer_hash": "168c1486",
+  "hints": [
+    "Means are awkward to combine directly. For each of the three groups of days, work out the total distance ridden.",
+    "Each group's total is its mean multiplied by its number of days. Now use inclusion-exclusion: the first four days and the last four days together cover the whole week, so ask which day belongs to both groups.",
+    "The three totals are $40$ km for the first four days, $64$ km for the last four days and $84$ km for the week. Adding the first two totals counts day $4$ twice and every other day once, so this sum exceeds the week's total by exactly the distance ridden on day $4$."
+  ],
+  "solution": "A mean is the total divided by the number of days, so each total is the mean multiplied by the number of days. The first $4$ days total $4 \\cdot 10 = 40$ km, the last $4$ days total $4 \\cdot 16 = 64$ km, and all $7$ days total $7 \\cdot 12 = 84$ km.\n\nThe first four days are days $1$ to $4$, and the last four days are days $4$ to $7$. Day $4$ is in both groups, and each other day is in exactly one. So the sum $40 + 64$ counts every day's distance once and then counts day $4$ a second time. In other words, $40 + 64$ equals the week's total plus the distance on day $4$.\n\nThe distance on day $4$ is therefore $40 + 64 - 84 = 20$ km. The other six distances are not fixed individually, but this does not matter, as the argument never uses them. The cyclist rides $20$ km on the fourth day, so the answer is $20$.\n\n<b>Why this works.</b> <code>inclusion-exclusion</code>, <code>linear-combination-of-equations</code>: two overlapping groups cover the week and share only day $4$, so adding their totals and subtracting the week's total isolates that day.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-seven-days-in-the-saddle"
+}

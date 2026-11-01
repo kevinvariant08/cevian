@@ -1,0 +1,32 @@
+{
+  "id": "zeros-at-the-end",
+  "title": "Zeros at the End",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "p-adic-valuation",
+    "prime-factorization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $A$ be the product of all odd positive integers from $1$ to $61$ inclusive, and let $B$ be the product of all odd positive integers from $1$ to $63$ inclusive. How many consecutive zeros does the decimal representation of $A + B$ have at its right-hand end?",
+  "answer_format": "integer",
+  "answer_hash": "874396ee",
+  "hints": [
+    "Compare the two products: which single factor does $B$ have that $A$ doesn't? Use it to write $A + B$ as a product rather than a sum.",
+    "Final zeros count the factors of $10$ in a number. So use the prime factorisation: the number of final zeros is the smaller of the exponent of $2$ and the exponent of $5$. Find these two exponents for $A + B$ after writing it as a product.",
+    "Since $B = 63A$, we have $A + B = 64A$. Here $A$ is odd, so every factor of $2$ comes from $64$, and every factor of $5$ comes from $A$. To count the factors of $5$, list the odd multiples of $5$ up to $61$, remembering that $25$ contains two of them."
+  ],
+  "solution": "The product $B$ contains exactly one factor that $A$ doesn't, namely $63$, so $B = 63A$. Therefore $A + B = A(1 + 63) = 64A = 2^6 \\cdot A$.\n\nA positive integer ends in at least $k$ zeros exactly when $10^k = 2^k \\cdot 5^k$ divides it. This happens exactly when $k$ is at most the exponent of $2$ and at most the exponent of $5$ in its prime factorisation. So the number of final zeros is the smaller of these two exponents.\n\nNow $A$ is a product of odd numbers, so $A$ is odd. Hence the exponent of $2$ in $2^6 \\cdot A$ is exactly $6$.\n\nSince $64$ has no factor of $5$, every factor of $5$ comes from $A$. The odd multiples of $5$ from $1$ to $61$ are $5, 15, 25, 35, 45, 55$. Each of these contains exactly one factor of $5$, except $25 = 5^2$, which contains two. So the exponent of $5$ is $5 \\cdot 1 + 2 = 7$.\n\nThe smaller of the exponents $6$ and $7$ is $6$, so the decimal representation of $A + B$ ends in exactly $6$ consecutive zeros. The answer is $6$.\n\n<b>Why this works.</b> <code>p-adic-valuation</code>, <code>prime-factorization</code>: once the sum becomes the product $64A$, the final zeros depend only on the exponents of $2$ and $5$, which can be counted separately.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-zeros-at-the-end"
+}

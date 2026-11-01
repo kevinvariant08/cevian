@@ -1,0 +1,32 @@
+{
+  "id": "lamps-in-a-row",
+  "title": "Lamps in a Row",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "run-decomposition",
+    "stars-and-bars"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A row of $14$ lamps, in fixed positions, has exactly $6$ lamps switched on and the other $8$ switched off. A block is a set of one or more consecutive lamps that are all on, such that any lamp immediately to the left or right of the set is off. How many different patterns of on and off lamps have exactly $3$ blocks? Two patterns are different if at least one position has a lamp that is on in one pattern and off in the other; a pattern and its mirror image count as different unless they are identical.",
+  "answer_format": "integer",
+  "answer_hash": "6af1ee07",
+  "hints": [
+    "Instead of tracking the on lamps directly, consider the $8$ off lamps. Where, relative to these, can the on lamps be, and how many such places are there?",
+    "Two different blocks must have at least one off lamp between them. Use this to split the count into two independent choices: which places hold a block, and how large each block is. The block sizes can then be counted with stars and bars.",
+    "The $8$ off lamps create $9$ gaps, counting both ends of the row, and each non-empty gap holds exactly one block. So choose $3$ of the $9$ gaps, then count the positive integer solutions of $a + b + c = 6$, where $a, b, c$ are the block sizes from left to right."
+  ],
+  "solution": "Any pattern has $8$ off lamps, and these create $9$ gaps: one before the first off lamp, $7$ between neighbouring off lamps, and one after the last off lamp. The on lamps inside a gap are consecutive, and each end of the gap is bounded by an off lamp or the end of the row. So each non-empty gap contains exactly one block, and every block lies in exactly one gap. A pattern therefore has exactly $3$ blocks precisely when exactly $3$ gaps are non-empty.\n\nSuch a pattern is determined by its $3$ non-empty gaps and the sizes $a, b, c$ of the blocks in them, taken from left to right. Here $a, b, c$ are positive integers with $a + b + c = 6$. Conversely, any choice of $3$ gaps and any such sizes gives a valid pattern with $6$ on lamps, $8$ off lamps and exactly $3$ blocks. Different choices give different patterns, because a pattern determines how many on lamps lie in each gap.\n\nThere are $\\binom{9}{3} = 84$ ways to choose the gaps. To count the sizes, send each triple $(a, b, c)$ to the pair of partial sums $a$ and $a + b$. These are two different integers from $\\{1, 2, 3, 4, 5\\}$, since $a \\ge 1$, $b \\ge 1$ and $c \\ge 1$. Conversely, any two integers $s < t$ from this set come from exactly one triple, namely $a = s$, $b = t - s$, $c = 6 - t$, and all three values are positive. So there are $\\binom{5}{2} = 10$ triples.\n\nThe choice of gaps and the choice of sizes are independent, so the number of patterns is $84 \\cdot 10$. The answer is $840$.\n\n<b>Why this works.</b> <code>run-decomposition</code>, <code>stars-and-bars</code>: splitting a pattern into its blocks separates where they go from how large they are, and each of these is a simple selection count.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-lamps-in-a-row"
+}

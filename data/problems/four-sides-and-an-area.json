@@ -1,0 +1,40 @@
+{
+  "id": "four-sides-and-an-area",
+  "title": "Four Sides and an Area",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "bounding",
+    "area-by-decomposition",
+    "pythagorean-theorem"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A convex quadrilateral $ABCD$ has $AB = 2$, $BC = 9$, $CD = 6$, $DA = 7$, and its area is $30$. What is the value of $AC^2$?",
+  "answer_format": "integer",
+  "answer_hash": "8b7beac5",
+  "hints": [
+    "Draw the diagonal $AC$. It cuts the quadrilateral into triangle $ABC$, with known sides $2$ and $9$, and triangle $ACD$, with known sides $6$ and $7$. How large could each triangle's area be?",
+    "Bound the area of each triangle formed by the diagonal $AC$. If a triangle has two sides $p$ and $q$, take $p$ as the base. The height is then at most $q$, so the area is at most $\\frac{1}{2} \\cdot p \\cdot q$, with equality only when the two sides are perpendicular.",
+    "The bound gives $[ABC] \\le 9$ and $[ACD] \\le 21$. These add up to exactly the given area, $30$, so both bounds must be attained. This forces right angles at $B$ and $D$, making $AC$ the hypotenuse of two right-angled triangles."
+  ],
+  "solution": "Since $ABCD$ is convex, the diagonal $AC$ lies inside it and splits it into triangles $ABC$ and $ACD$ without overlap. Hence $[ABC] + [ACD] = 30$.\n\nTake $BC$ as the base of triangle $ABC$. The height from $A$ is the distance from $A$ to line $BC$, which is at most $AB$, with equality exactly when $AB \\perp BC$. So $[ABC] \\le \\frac{1}{2} \\cdot 2 \\cdot 9 = 9$. In the same way, with base $CD$ and height at most $DA$, we get $[ACD] \\le \\frac{1}{2} \\cdot 6 \\cdot 7 = 21$, with equality exactly when $DA \\perp CD$. Now $9 + 21 = 30$, which is exactly the total area. If either inequality were strict, the total would be less than $30$, so both are equalities, and the angles at $B$ and $D$ are right angles.\n\nBy Pythagoras' theorem in triangle $ABC$,\n$$AC^2 = AB^2 + BC^2 = 2^2 + 9^2 = 85.$$\nThis agrees with triangle $ACD$, where $CD^2 + DA^2 = 6^2 + 7^2 = 85$.\n\nThe answer is $AC^2 = 85$.\n\n<b>Why this works.</b> <code>bounding</code>, <code>area-by-decomposition</code>, <code>pythagorean-theorem</code>: the area of $30$ equals the largest value the two triangles can reach together, which forces both right angles and lets Pythagoras give the diagonal.",
+  "solution_figures": [
+    {
+      "src": "figures/four-sides-and-an-area-solution.svg?v=fe8d0521",
+      "alt": "Convex quadrilateral ABCD with AB = 2, BC = 9, CD = 6 and DA = 7. The diagonal AC is highlighted, and right angles are marked at B and D, so AC is the hypotenuse of both triangles ABC and ACD.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-four-sides-and-an-area"
+}

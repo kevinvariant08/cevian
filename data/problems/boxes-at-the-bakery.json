@@ -1,0 +1,32 @@
+{
+  "id": "boxes-at-the-bakery",
+  "title": "Boxes at the Bakery",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "complementary-counting",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A bakery makes exactly one cake for each combination of one flavour and one icing. Exactly $2$ of the flavours and exactly $2$ of the icings are premium. Each cake with a premium flavour or a premium icing (or both) is packed alone in its own box. The non-premium flavours are split into pairs, and so are the non-premium icings. For each pair of flavours and each pair of icings, the $4$ cakes that combine a flavour from the pair of flavours with an icing from the pair of icings are packed together in one box. The bakery uses $44$ boxes containing one cake and $24$ boxes containing four cakes. There are more icings than flavours. How many icings are there?",
+  "answer_format": "integer",
+  "answer_hash": "82d6c66e",
+  "hints": [
+    "Look at the cakes that do not go in single boxes. These have a non-premium flavour and a non-premium icing. How many of them are there if the bakery has $x$ flavours and $y$ icings?",
+    "Use complementary counting. The single boxes hold all $xy$ cakes except the $(x-2)(y-2)$ cakes with no premium part. This avoids counting twice the cakes with both a premium flavour and a premium icing.",
+    "The count of single boxes gives $xy-(x-2)(y-2)=2x+2y-4=44$, so $x+y=24$. Let $a$ and $b$ be the numbers of pairs of non-premium flavours and icings, so that $x=2a+2$ and $y=2b+2$. Then $a+b=10$, and the four-cake boxes give $ab=24$. Now find $a$ and $b$, remembering that there are more icings than flavours."
+  ],
+  "solution": "Let there be $x$ flavours and $y$ icings, so the bakery makes $xy$ cakes by the rule of product. A cake goes in a four-cake box exactly when both its flavour and its icing are non-premium, and there are $(x-2)(y-2)$ such cakes. All the other cakes are in single boxes. Counting them this way avoids counting twice the cakes that have both a premium flavour and a premium icing. Therefore\n$$xy-(x-2)(y-2)=2x+2y-4=44,$$\nwhich gives $x+y=24$.\n\nLet $a$ be the number of pairs of non-premium flavours and $b$ the number of pairs of non-premium icings. Then $x-2=2a$ and $y-2=2b$, so $2a+2b=x+y-4=20$ and $a+b=10$. Each choice of one pair of flavours and one pair of icings gives one four-cake box, so $ab=24$.\n\nThe positive integers with sum $10$ are $\\{1,9\\}$, $\\{2,8\\}$, $\\{3,7\\}$, $\\{4,6\\}$ and $\\{5,5\\}$, with products $9$, $16$, $21$, $24$ and $25$. Only $\\{4,6\\}$ has product $24$. Since there are more icings than flavours, $b>a$, so $a=4$ and $b=6$. This gives $x=10$ and $y=14$.\n\nAs a check, $10\\cdot 14-8\\cdot 12=44$ and $4\\cdot 6=24$, as required. The number of icings is $14$.\n\n<b>Why this works.</b> <code>complementary-counting</code>, <code>rule-of-product</code>: subtracting the non-premium cakes from the total counts the overlapping premium cakes once, and the box counts then give the sum and product of the pair counts.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-boxes-at-the-bakery"
+}

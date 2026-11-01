@@ -1,0 +1,39 @@
+{
+  "id": "a-point-sliding-along-an-arc",
+  "title": "A Point Sliding Along an Arc",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "angle-chasing",
+    "two-intersecting-circles"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Two circles of equal radius have centres $A$ and $B$. The circle centred at $A$ passes through $B$, and the circle centred at $B$ passes through $A$. Let $E$ be one of the two points where the circles intersect. The line $AB$ meets the circle centred at $A$ at $B$ and at a second point $C$. A point $P$ moves along the arc $CE$ of the circle centred at $A$ that does not contain $B$, and $P$ is never equal to $C$ or $E$. How many different integer values can the degree measure of $\\angle BEP$ take?",
+  "answer_format": "integer",
+  "answer_hash": "164a2c5d",
+  "hints": [
+    "Draw the radii $AE$ and $AP$. What kind of triangle is $ABE$, and what kind is $AEP$?",
+    "Use angle chasing. Triangle $ABE$ has three sides equal to the common radius, and triangle $AEP$ is isosceles because $AE = AP$. Split $\\angle BEP$ along the ray $EA$ into $\\angle BEA$ and $\\angle AEP$.",
+    "Let $\\theta = \\angle EAP$. Then $\\theta$ can be any value strictly between $0^\\circ$ and $120^\\circ$, and $\\angle AEP = 90^\\circ - \\frac{\\theta}{2}$. Adding $\\angle BEA = 60^\\circ$ shows that $\\angle BEP$ takes every value strictly between $90^\\circ$ and $150^\\circ$. It remains to count the integers in this range."
+  ],
+  "solution": "Each of $AB$, $AE$ and $BE$ is a radius of one of the two equal circles, so triangle $ABE$ is equilateral and $\\angle BEA = \\angle BAE = 60^\\circ$. Since $BC$ is a diameter of the circle centred at $A$, the point $A$ lies between $B$ and $C$, so $\\angle EAC = 180^\\circ - 60^\\circ = 120^\\circ$. Thus the arc $CE$ not containing $B$ has central angle $120^\\circ$. As $P$ moves along this arc, excluding its endpoints, $\\theta = \\angle EAP$ takes every value strictly between $0^\\circ$ and $120^\\circ$.\n\nSince $AE = AP$, triangle $AEP$ is isosceles with apex angle $\\theta$. Its base angles are equal and the angles of the triangle sum to $180^\\circ$, so $\\angle AEP = 90^\\circ - \\frac{\\theta}{2}$.\n\nNext we show that the angles at $E$ add. The points $B$ and $C$ lie on opposite sides of line $AE$, because segment $BC$ crosses that line at $A$. The arc from $E$ to $C$ has central angle less than $180^\\circ$, so apart from $E$ it does not meet line $AE$ and stays on the same side as $C$. Hence $P$ and $B$ lie on opposite sides of line $AE$. Also $\\angle BEA + \\angle AEP = 60^\\circ + 90^\\circ - \\frac{\\theta}{2} < 180^\\circ$, so the ray $EA$ lies inside $\\angle BEP$. Therefore $$\\angle BEP = 60^\\circ + 90^\\circ - \\dfrac{\\theta}{2} = 150^\\circ - \\dfrac{\\theta}{2}.$$\n\nAs $\\theta$ takes every value strictly between $0^\\circ$ and $120^\\circ$, the quantity $150^\\circ - \\frac{\\theta}{2}$ takes every value strictly between $90^\\circ$ and $150^\\circ$, and no others. The integer degree values are therefore $91, 92, \\ldots, 149$, and there are $149 - 91 + 1 = 59$ of them. The answer is $59$.\n\n<b>Why this works.</b> <code>angle-chasing</code>, <code>two-intersecting-circles</code>: equal radii fix an equilateral triangle and an isosceles triangle, which turn $\\angle BEP$ into a simple function of the central angle at $A$.",
+  "solution_figures": [
+    {
+      "src": "figures/a-point-sliding-along-an-arc-solution.svg?v=5b976e16",
+      "alt": "Two equal circles with centres A and B, each passing through the other's centre, meet at E. C is the second point where line AB meets the circle centred at A, and P lies on arc CE away from B. Triangle ABE is equilateral with a 60 degree angle at E, triangle AEP is isosceles with AE = AP and apex angle theta at A, and segment EP is highlighted.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-point-sliding-along-an-arc"
+}

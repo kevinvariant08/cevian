@@ -1,0 +1,32 @@
+{
+  "id": "three-ranges",
+  "title": "Three Ranges",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "casework",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "The integers $x$, $y$ and $z$ satisfy $-6 \\le x \\le 2$, $-5 \\le y \\le 3$ and $1 \\le z \\le 4$. What is the smallest possible value of the product $x \\cdot y \\cdot z$?",
+  "answer_format": "integer",
+  "answer_hash": "62ab26a6",
+  "hints": [
+    "Since $z$ is always positive, look at the sign of $x \\cdot y$. Which signs must $x$ and $y$ have for the whole product to be negative? Notice that taking the largest sizes, $x = -6$ and $y = -5$, gives a positive product.",
+    "Use casework on the signs. For a negative product, $x$ and $y$ must have opposite signs, so either $x < 0 < y$ or $y < 0 < x$. In each case, find the largest possible size of $x \\cdot y$.",
+    "If $x < 0 < y$, the most negative value of $x \\cdot y$ is $(-6) \\cdot 3 = -18$. If $y < 0 < x$, it is $2 \\cdot (-5) = -10$. Since $z$ is positive, a larger $z$ makes a negative product more negative, so now choose $z$."
+  ],
+  "solution": "We split into cases according to the signs of $x$ and $y$. Since $z \\ge 1$, the number $z$ is always positive, so $x \\cdot y \\cdot z$ has the same sign as $x \\cdot y$. If $x \\cdot y \\ge 0$, the product is not negative. For example, $x = -6$ and $y = -5$ have the largest sizes but give a positive product. So a negative product needs $x$ and $y$ to have opposite signs.\n\nSuppose first that $x < 0 < y$. Then $|x| \\le 6$ and $|y| \\le 3$, so $|x \\cdot y| \\le 18$. Suppose instead that $y < 0 < x$. Then $|x| \\le 2$ and $|y| \\le 5$, so $|x \\cdot y| \\le 10$. In both cases $|x \\cdot y| \\le 18$.\n\nSince $|z| \\le 4$, every negative product satisfies $|x \\cdot y \\cdot z| \\le 18 \\cdot 4 = 72$, which means $x \\cdot y \\cdot z \\ge -72$. Products that are not negative are certainly at least $-72$ too. This value is attained, because $x = -6$, $y = 3$, $z = 4$ satisfy all the ranges and give $(-6) \\cdot 3 \\cdot 4 = -72$.\n\nThe smallest possible value of the product is $-72$.\n\n<b>Why this works.</b> <code>casework</code>, <code>bounding</code>: splitting on the signs of $x$ and $y$ leaves only two patterns that can give a negative product, and in each one the size of the product is bounded by the largest allowed sizes.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-ranges"
+}

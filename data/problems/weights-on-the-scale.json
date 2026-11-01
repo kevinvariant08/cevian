@@ -1,0 +1,32 @@
+{
+  "id": "weights-on-the-scale",
+  "title": "Weights on the Scale",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "correct-for-overcounting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A box contains seven weights: three of mass $1$ g, two of mass $5$ g and two of mass $10$ g. Sam places one or more of these weights on a scale, and the scale shows their total mass. How many different total masses can the scale show?",
+  "answer_format": "integer",
+  "answer_hash": "be44774c",
+  "hints": [
+    "Set the $1$ g weights aside for a moment. Which totals can the $5$ g and $10$ g weights make by themselves? Beware that different selections can give the same total.",
+    "Split each total into two parts: the mass from the $5$ g and $10$ g weights, and the mass from the $1$ g weights. Count the possible values of each part, then use the rule of product, which says that independent choices multiply. To use it safely, check that different pairs of values can't give the same total.",
+    "The $5$ g and $10$ g weights make exactly the multiples of $5$ from $0$ to $30$, and the $1$ g weights add $0$, $1$, $2$ or $3$. This added part is less than $5$, so it is the remainder when the total is divided by $5$, and each total comes from just one pair of values. Multiply the numbers of values, remembering that Sam must place at least one weight."
+  ],
+  "solution": "Split any total into two parts: the mass from the $5$ g and $10$ g weights, and the mass from the $1$ g weights. We count the possible values of each part, allowing the empty selection for now. Simply multiplying the numbers of ways to choose each type of weight would give $4 \\cdot 3 \\cdot 3 = 36$, which overcounts because two $5$ g weights have the same mass as one $10$ g weight.\n\nThe $5$ g and $10$ g weights can only make multiples of $5$, and their greatest possible total is $5 + 5 + 10 + 10 = 30$. Every multiple of $5$ from $0$ to $30$ can be made: $0$ uses no weights, and $5 = 5$, $10 = 10$, $15 = 5 + 10$, $20 = 10 + 10$, $25 = 5 + 10 + 10$ and $30 = 5 + 5 + 10 + 10$. So this part has exactly $7$ possible values.\n\nThe three $1$ g weights can add $0$, $1$, $2$ or $3$, so this part has $4$ possible values, and it can be chosen independently of the first part.\n\nDifferent pairs of values always give different totals. Indeed, the first part is a multiple of $5$ and the second part is less than $5$, so the second part is the remainder when the total is divided by $5$, and the first part is what is left. A total therefore determines both parts. By the rule of product, which says that independent choices multiply, there are $7 \\cdot 4 = 28$ different totals when the empty selection is allowed.\n\nOne of these totals is $0$, which arises only when no weights are placed. Sam places at least one weight, so this total is not allowed, while each of the others comes from a non-empty selection. The number of different total masses the scale can show is $28 - 1 = 27$.\n\n<b>Why this works.</b> <code>rule-of-product</code>, <code>correct-for-overcounting</code>: counting totals rather than selections removes the repeats, and because the $1$ g part is less than $5$, the two parts can be chosen independently without creating new ones.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-weights-on-the-scale"
+}

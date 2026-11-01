@@ -1,0 +1,32 @@
+{
+  "id": "the-stockroom-count",
+  "title": "The Stockroom Count",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "complementary-counting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A shop stocks exactly one T-shirt for each combination of a colour and a size, and it offers the same number of colours as sizes. One of the colours is red and one of the sizes is small. Exactly $121$ of the T-shirts are neither red nor small. How many of the T-shirts are red, small or both?",
+  "answer_format": "integer",
+  "answer_hash": "e00cf5d5",
+  "hints": [
+    "Look at the $121$ T-shirts that are neither red nor small. Which colours and which sizes can they have?",
+    "Use the rule of product. If there are $n$ colours and $n$ sizes, a T-shirt that is neither red nor small has one of $n - 1$ colours and one of $n - 1$ sizes. This gives an equation for $n$. The T-shirts you want can then be counted by complementary counting: subtract the unwanted ones from the total.",
+    "The equation $(n - 1)^2 = 121$, where $n$ is the number of colours and also the number of sizes, gives $n = 12$. So the shop has $12 \\cdot 12 = 144$ T-shirts altogether, and the $121$ that are neither red nor small are exactly the ones not asked for."
+  ],
+  "solution": "Let $n$ be the number of colours, which is also the number of sizes. The shop stocks exactly one T-shirt for each colour and size pair, so by the rule of product it has $n \\cdot n = n^2$ T-shirts. A T-shirt is neither red nor small exactly when its colour is one of the $n - 1$ colours other than red and its size is one of the $n - 1$ sizes other than small. By the rule of product again, there are $(n - 1)^2$ such T-shirts, so $(n - 1)^2 = 121$. Since $n - 1 \\ge 0$, this gives $n - 1 = 11$, so $n = 12$ and the shop has $12^2 = 144$ T-shirts.\n\nEvery T-shirt is either neither red nor small, or else it is red, small or both, and no T-shirt is in both groups. So the number of T-shirts that are red, small or both is $144 - 121 = 23$. The answer is $23$.\n\n<b>Why this works.</b> <code>rule-of-product</code>, <code>complementary-counting</code>: the excluded T-shirts form a full grid of colours and sizes, so their square count reveals the total, and the wanted T-shirts are what remains.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-the-stockroom-count"
+}

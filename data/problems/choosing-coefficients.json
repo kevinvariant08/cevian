@@ -1,0 +1,32 @@
+{
+  "id": "choosing-coefficients",
+  "title": "Choosing Coefficients",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $a$, $b$ and $c$ be three different integers chosen from the set $\\{0, 1, 2, 3, 4, 5, 6, 7\\}$. For how many ordered triples $(a, b, c)$ does the equation $ax + b = c$ have exactly one real solution $x$?",
+  "answer_format": "integer",
+  "answer_hash": "736fd5e3",
+  "hints": [
+    "Look at the coefficient $a$. Compare what the equation says when $a = 0$ with what it says when $a \\ne 0$, remembering that $b$ and $c$ are different.",
+    "The equation has exactly one solution precisely when $a \\ne 0$. Count the triples with the rule of product: choose the three numbers one at a time and multiply the numbers of choices. Start with $a$, because it is the only number with an extra restriction.",
+    "Since $a$ can't be $0$, it has $7$ possible values. Whichever value it takes, $7$ numbers remain for $b$, because $0$ is still available. After that, $6$ numbers remain for $c$."
+  ],
+  "solution": "First we find which triples work. If $a = 0$, the equation becomes $b = c$. This is false for every $x$ because $b$ and $c$ are different, so there is no solution. If $a \\ne 0$, the equation rearranges to $x = \\frac{c - b}{a}$, which is exactly one real solution. So we must count the ordered triples of different numbers from the set with $a \\ne 0$.\n\nWe use the rule of product: if a choice is made in stages, and the number of options at each stage doesn't depend on the earlier choices, then the total number of outcomes is the product of the numbers of options. We choose $a$ first because it is the only number with an extra restriction. It can be any number in the set except $0$, which gives $7$ choices.\n\nNext, $b$ can be any of the $8$ numbers except the one used for $a$. This gives $7$ choices whichever value $a$ took, and $0$ is among them. Finally, $c$ can be any number except the two already used, which gives $6$ choices.\n\nThe number of ordered triples is $7 \\cdot 7 \\cdot 6$, so the answer is $294$.\n\n<b>Why this works.</b> <code>rule-of-product</code>, <code>casework</code>: the cases on $a$ reduce the condition to $a \\ne 0$, and choosing the restricted number first keeps the number of later choices the same in every case.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-choosing-coefficients"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "a-sphere-on-a-box",
+  "title": "A Sphere on a Box",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "pythagorean-theorem",
+    "tangency",
+    "cross-section-reduction"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A rectangular box has a bottom face measuring $18$ by $24$, and its height is $25$. A sphere passes through all four vertices of the top face of the box and is tangent to the plane containing the bottom face. What is the radius of the sphere?",
+  "answer_format": "integer",
+  "answer_hash": "0af33dae",
+  "hints": [
+    "Look at the sphere's centre. Where must it lie relative to the four top vertices, given that it is the same distance from all of them?",
+    "The centre lies on the vertical line through the centre of the top face. Use Pythagoras' theorem in the right triangle formed by the sphere's centre, the centre of the top face and one top vertex. Its hypotenuse is a radius.",
+    "The diagonal of the top face is $\\sqrt{18^2 + 24^2} = 30$, so one leg of the triangle is $15$. Tangency to the bottom plane puts the centre at height $R$ above that plane, where $R$ is the radius, so the other leg is $|25 - R|$. Hence $15^2 + (25 - R)^2 = R^2$, and the $R^2$ terms cancel when you expand."
+  ],
+  "solution": "Let $O$ be the centre of the sphere, let $R$ be its radius, and let $M$ be the centre of the top face. The top face has diagonal $\\sqrt{18^2 + 24^2} = 30$, so $M$ is at distance $15$ from each top vertex. Let $F$ be the foot of the perpendicular from $O$ to the top plane. Each top vertex $V$ satisfies $FV^2 = OV^2 - OF^2 = R^2 - OF^2$, so $F$ is equidistant from all four top vertices. The only such point in the plane of a rectangle is its circumcentre, the point where the diagonals meet, so $F = M$. Thus $OM$ is perpendicular to the top plane.\n\nLet $c$ be the signed height of $O$ above the bottom plane, positive on the side containing the box. A sphere is tangent to a plane exactly when its centre is at distance equal to its radius from that plane, so $R = |c|$ and $R^2 = c^2$. The top plane is at height $25$, so $OM = |25 - c|$. Let $A$ be a top vertex. Since $OM$ is perpendicular to the top plane, Pythagoras' theorem gives $OA^2 = AM^2 + OM^2$, that is, $$c^2 = 15^2 + (25 - c)^2.$$ The $c^2$ terms cancel, leaving $0 = 850 - 50c$, so $c = 17$. Since $c$ is positive, the centre is above the bottom plane and $R = 17$. The figure shows the section through the vertical plane containing the diagonal $AC$ of the top face, where $P$ and $Q$ are the bottom vertices below $A$ and $C$, and $T$ is the point of tangency.\n\nThis configuration does occur: the centre is $25 - 17 = 8$ below the top face, and $8^2 + 15^2 = 17^2$, so the sphere passes through all four top vertices and touches the bottom plane at the centre of the bottom face. The radius of the sphere is $17$.\n\n<b>Why this works.</b> <code>pythagorean-theorem</code>, <code>tangency</code>, <code>cross-section-reduction</code>: tangency turns the radius into a height, so a section through the axis gives one right triangle whose squared unknown cancels.",
+  "solution_figures": [
+    {
+      "src": "figures/a-sphere-on-a-box-solution.svg?v=b8b05bd4",
+      "alt": "Vertical section of the box through the top-face diagonal AC, drawn as rectangle A, C, Q, P with AC = 30 and AP = 25. The circle with centre O and radius 17 passes through A and C and touches PQ at its midpoint T; M is the midpoint of AC, with AM = 15, MO = 8 and OA = OT = 17, and triangle AMO is shaded with its right angle at M.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-sphere-on-a-box"
+}

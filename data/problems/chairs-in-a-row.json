@@ -1,0 +1,32 @@
+{
+  "id": "chairs-in-a-row",
+  "title": "Chairs in a Row",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "binomial-selection"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A row contains $13$ chairs. How many unordered pairs of different chairs from this row have an odd number of chairs strictly between them?",
+  "answer_format": "integer",
+  "answer_hash": "523eabe3",
+  "hints": [
+    "Number the chairs $1$ to $13$ from left to right. If the chosen chairs are numbered $i$ and $j$ with $i<j$, how many chairs lie strictly between them?",
+    "Use parity. With the chairs numbered as above, there are $j-i-1$ chairs between chairs $i$ and $j$. Work out what this number being odd says about whether $i$ and $j$ are odd or even.",
+    "The number $j-i-1$ is odd exactly when $j-i$ is even, which happens exactly when $i$ and $j$ are both odd or both even. There are $7$ odd-numbered chairs and $6$ even-numbered chairs, so count the pairs within each group separately and add the two counts."
+  ],
+  "solution": "Number the chairs $1$ to $13$ from left to right. If the chosen chairs are numbered $i<j$, the chairs strictly between them are $i+1,\\dots,j-1$, so there are $j-i-1$ of them. This number is odd exactly when $j-i$ is even, and $j-i$ is even exactly when $i$ and $j$ have the same parity. So we must count the pairs of chairs whose numbers are both odd or both even.\n\nFrom a group of $n$ chairs, the number of unordered pairs is $\\frac{n(n-1)}{2}$: each of the $n$ chairs can be paired with $n-1$ others, and this counts every pair twice. The odd-numbered chairs are $1,3,\\dots,13$, which is $7$ chairs, giving $\\frac{7\\cdot 6}{2}=21$ pairs. The even-numbered chairs are $2,4,\\dots,12$, which is $6$ chairs, giving $\\frac{6\\cdot 5}{2}=15$ pairs. No pair is in both groups, so we add these counts.\n\nThe answer is $21+15=36$.\n\n<b>Why this works.</b> <code>parity</code>, <code>binomial-selection</code>: the condition depends only on whether the two chair numbers have the same parity, which reduces the problem to choosing two chairs from one parity class.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-chairs-in-a-row"
+}

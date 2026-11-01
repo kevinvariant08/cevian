@@ -1,0 +1,32 @@
+{
+  "id": "stacks-of-coins",
+  "title": "Stacks of Coins",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "linear-system-solving",
+    "linear-combination-of-equations"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A game starts with a single stack of $30$ coins. Each move is one of two kinds. In a split, exactly $3$ coins are taken away from one stack and the rest of that stack is divided into two non-empty stacks. In a join, two stacks are combined into one stack and exactly $1$ new coin is added to it. After some number of moves, there are exactly $6$ stacks containing $11$ coins in total. How many moves have been made?",
+  "answer_format": "integer",
+  "answer_hash": "1f1e65d2",
+  "hints": [
+    "Ignore the sizes of the individual stacks. Keep track of just two numbers: how many stacks there are and how many coins there are in total. What does each kind of move do to these two numbers?",
+    "A split always adds $1$ stack and removes $3$ coins, while a join always removes $1$ stack and adds $1$ coin. Let $s$ be the number of splits and $j$ the number of joins, then set up a pair of simultaneous equations by comparing the start and the end.",
+    "The stack count goes from $1$ to $6$, so $s - j = 5$. The coin count goes from $30$ to $11$, so $3s - j = 19$. Subtracting the first equation from the second gives $2s = 14$, so $s = 7$. Now find $j$ and work out what the question asks for."
+  ],
+  "solution": "Each kind of move changes the number of stacks and the total number of coins by a fixed amount, whichever stacks are used. A split replaces one stack by two, so the number of stacks rises by $1$, and the total number of coins falls by $3$. A join replaces two stacks by one, so the number of stacks falls by $1$, and the total number of coins rises by $1$.\n\nSuppose that $s$ splits and $j$ joins have been made, in any order. The number of stacks goes from $1$ to $6$, so $1 + s - j = 6$, which gives $s - j = 5$. The number of coins goes from $30$ to $11$, so $30 - 3s + j = 11$, which gives $3s - j = 19$.\n\nSubtracting the first equation from the second removes $j$ and leaves $2s = 14$. So $s = 7$, and then $j = s - 5 = 2$. Any game ending in this position therefore has exactly $7 + 2 = 9$ moves.\n\nSuch a game does exist. Seven splits, each cutting off a stack of $1$, take the large stack through $30, 26, 22, 18, 14, 10, 6, 2$, leaving seven stacks of $1$ and one stack of $2$. Two joins, each combining two stacks of $1$ into a stack of $3$, then leave the stacks $1, 1, 1, 2, 3, 3$. These are $6$ stacks containing $11$ coins.\n\nThe number of moves made is $9$.\n\n<b>Why this works.</b> <code>linear-system-solving</code>, <code>linear-combination-of-equations</code>: each kind of move has a fixed effect on the two totals, so the numbers of splits and joins satisfy two linear equations, and subtracting them eliminates the joins.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-stacks-of-coins"
+}

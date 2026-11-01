@@ -1,0 +1,32 @@
+{
+  "id": "balancing-act",
+  "title": "Balancing Act",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "casework",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A positive integer $N$ is called <b>balanced</b> if there exist three integers, not necessarily distinct, whose sum is $0$ and whose product is $N$. How many positive integers $N$ with $N < 100$ are balanced?",
+  "answer_format": "integer",
+  "answer_hash": "13005b15",
+  "hints": [
+    "Before looking at sizes, look at the signs of the three integers. What do a sum of $0$ and a positive product force?",
+    "The signs leave only one possible pattern, so two of the integers can be written as $-x$ and $-y$ with $x$ and $y$ positive, and the third is then determined. Express $N$ in terms of $x$ and $y$, then use casework on the smaller of $x$ and $y$.",
+    "The integers are $-x$, $-y$ and $x + y$, so $N = xy(x + y)$, and we may take $x \\le y$. If $x \\ge 4$, then $N \\ge 4 \\cdot 4 \\cdot 8 = 128$, so only $x = 1, 2, 3$ matter. List the values of $N$ below $100$ for each of these, and take care because a number may arise from more than one pair."
+  ],
+  "solution": "Suppose three integers have sum $0$ and product $N > 0$. None of them is zero, because the product is non-zero. The number of negative integers among them must be even, because the product is positive, so it is $0$ or $2$. It can't be $0$, since three positive integers have a positive sum. So exactly two are negative. Write these as $-x$ and $-y$ with $1 \\le x \\le y$. The third integer must be $x + y$, and therefore\n$$N = (-x)(-y)(x + y) = xy(x + y).$$\nConversely, for any positive integers $x$ and $y$, the integers $-x$, $-y$ and $x + y$ have sum $0$ and product $xy(x + y)$. So the balanced numbers are exactly the values of $xy(x + y)$ with $1 \\le x \\le y$.\n\nIf $x \\ge 4$, then $y \\ge 4$ as well, so $N \\ge 4 \\cdot 4 \\cdot 8 = 128$, which is too large. Hence $x \\in \\{1, 2, 3\\}$. For fixed $x$, the value of $xy(x + y)$ increases with $y$, so we can stop at the first value of $y$ that gives at least $100$.\n\nFor $x = 1$ we have $N = y(y + 1)$, which gives $2, 6, 12, 20, 30, 42, 56, 72, 90$ for $y = 1, \\dots, 9$, and $y = 10$ gives $110$. For $x = 2$ we have $N = 2y(y + 2)$ with $y \\ge 2$, which gives $16, 30, 48, 70, 96$ for $y = 2, \\dots, 6$, and $y = 7$ gives $126$. For $x = 3$ we have $N = 3y(y + 3)$ with $y \\ge 3$, which gives $54, 84$ for $y = 3, 4$, and $y = 5$ gives $120$.\n\nThese three cases produce $9 + 5 + 2 = 16$ values, and the only repeat is $30 = 1 \\cdot 5 \\cdot 6 = 2 \\cdot 3 \\cdot 5$. The distinct balanced numbers below $100$ are therefore $2, 6, 12, 16, 20, 30, 42, 48, 54, 56, 70, 72, 84, 90, 96$. The answer is $15$.\n\n<b>Why this works.</b> <code>casework</code>, <code>bounding</code>: the sign analysis reduces the problem to one formula, and a lower bound leaves only three small cases of the smaller variable to check.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-balancing-act"
+}

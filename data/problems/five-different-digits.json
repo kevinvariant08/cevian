@@ -1,0 +1,32 @@
+{
+  "id": "five-different-digits",
+  "title": "Five Different Digits",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "linear-system-solving"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A five-digit positive integer has five different digits and does not begin with $0$. Its tens digit and units digit add up to $9$, and its tens digit is $3$ more than its units digit. How many such integers are there?",
+  "answer_format": "integer",
+  "answer_hash": "78b0fec9",
+  "hints": [
+    "Look first at the last two digits. Call the tens digit $t$ and the units digit $u$, and write the two conditions as equations in $t$ and $u$.",
+    "The equations for the tens digit $t$ and units digit $u$ are simultaneous linear equations, so they fix both digits. The other three digits can then be counted with the rule of product: choose them one position at a time and multiply the numbers of choices.",
+    "The tens digit must be $6$ and the units digit must be $3$. Fill the other positions from the left. The leading digit must avoid $0$, $3$ and $6$, which leaves $7$ choices. The next digit may be $0$ and must avoid the three digits already used, which leaves $7$ choices. The hundreds digit must avoid the four digits already used, which leaves $6$ choices."
+  ],
+  "solution": "Let $t$ be the tens digit and $u$ the units digit. Then $t + u = 9$ and $t - u = 3$. Adding these equations gives $2t = 12$, so $t = 6$, and then $u = 3$. These are two different digits, so the last two digits of the integer must be $6$ and $3$, in that order.\n\nIt remains to choose the first three digits, and we do this from the left. The rule of product says that if the number of choices at each stage is the same whatever was chosen earlier, then the total count is the product of these numbers of choices.\n\nThe leading digit cannot be $0$, and it must differ from $3$ and $6$, which leaves $10 - 3 = 7$ choices. The second digit must differ from $3$, $6$ and the leading digit. These are three different digits, so there are $10 - 3 = 7$ choices, and $0$ is allowed here. The third digit must differ from $3$, $6$ and the first two digits. These are four different digits, so there are $10 - 4 = 6$ choices.\n\nThe number of such integers is therefore $7 \\cdot 7 \\cdot 6 = 294$. The answer is $294$.\n\n<b>Why this works.</b> <code>rule-of-product</code>, <code>linear-system-solving</code>: the linear system fixes the last two digits, leaving a position-by-position choice in which the number of options at each stage does not depend on the earlier picks.",
+  "provenance": {
+    "kind": "original",
+    "author": "kyuclid",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-five-different-digits"
+}

@@ -1,0 +1,46 @@
+%! alt Two equal circles with centres A and B, each passing through the other's centre, meet at E. C is the second point where line AB meets the circle centred at A, and P lies on arc CE away from B. Triangle ABE is equilateral with a 60 degree angle at E, triangle AEP is isosceles with AE = AP and apex angle theta at A, and segment EP is highlighted.
+%! after_paragraph 2
+%! scale 1
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+%! let R = 5/2
+\tkzDefPoint(0.0,0.0){A} %! A = (0, 0)
+\tkzDefPoint(2.5000000,0.0){B} %! B = polar(A, R, 0)
+\tkzDefPoint(-2.5000000,0.000000000000000000000000000000000000000000000000010837084){C} %! C = polar(A, R, 180)
+\tkzDefPoint(1.2500000,2.1650635){E} %! E = polar(A, R, 60)
+\tkzDefPoint(-1.6069690,1.9151111){P} %! P = polar(A, R, 130)
+%! fact on_circle(B, A, R)
+%! fact on_circle(A, B, R)
+%! fact on_circle(E, A, R)
+%! fact on_circle(E, B, R)
+%! fact on_circle(C, A, R)
+%! fact on_circle(P, A, R)
+%! fact on_segment(A, B, C)
+%! fact equal(dist(A, E), dist(A, P))
+%! fact angle(B, E, A) == 60
+%! fact angle(E, A, C) == 120
+%! example angle(E, A, P) <= 120
+%! example angle(B, E, P) >= 90
+\tkzFillPolygon[color=figtint](A,E,P)
+\tkzDrawCircle(A,B)
+\tkzDrawCircle(B,A)
+\tkzDrawSegment[aux](C,A)
+\tkzDrawPolygon(A,B,E)
+\tkzDrawPolygon(A,E,P)
+\tkzDrawSegment[key](E,P)
+\tkzMarkSegments[mark=|,size=2.5pt,mk](A,B A,E A,P)
+\tkzMarkAngle[size=.8,arc=l,mark=none,mk](A,E,B)
+\tkzMarkAngle[size=.6,arc=ll,mark=none,mk](P,E,A)
+\tkzMarkAngle[size=.6,arc=ll,mark=none,mk](A,P,E)
+\tkzMarkAngle[size=.7,arc=l,mark=none,mk](E,A,P)
+\tkzDrawPoints(A,B,C,E,P)
+\tkzLabelPoint[below left,lbl](A){$A$}
+\tkzLabelPoint[below right,lbl](B){$B$}
+\tkzLabelPoint[left,lbl](C){$C$}
+\tkzLabelPoint[above,lbl](E){$E$}
+\tkzLabelPoint[above left,lbl](P){$P$}
+\tkzLabelAngle[pos=1.3](A,E,B){$60^\circ$}
+\tkzLabelAngle[pos=1.1](E,A,P){$\theta$}
+\end{tikzpicture}
+\end{document}
