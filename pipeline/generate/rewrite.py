@@ -114,28 +114,39 @@ def rubric_block(p):
     return f"\n<rubric>\n{json.dumps(p['rubric'], ensure_ascii=False, indent=1)}\n</rubric>\n" if is_proof(p) else ""
 
 
-def rewrite_once(p, backend, usage, failure=""):
+def build_prompt(p, failure=""):
     figures = p.get("solution_figures") or []
     alt = "; ".join(f"figure {i + 1}: {f['alt']}" for i, f in enumerate(figures))
-    prompt = REWRITE.format(
+    return REWRITE.format(
         kyu=p["kyu"], style=prompts.SOLUTION_STYLE, length=prompts.length_guide(p["kyu"]), statement=p["statement"], old=with_markers(p), rubric=rubric_block(p),
         figure_note=" and any figure" if figures else "",
         figure_rule=f" Keep each [FIGURE n] marker on its own line, at the point in the argument it illustrates, and keep every length and point the figure labels in the text ({alt})." if figures else "",
         rubric_rule=" The rubric stays as it is, so the proof must still reach each of its milestones." if is_proof(p) else "",
         failure=f"\nAN AUDITOR REJECTED YOUR LAST VERSION\n{failure}\nFix the cause.\n" if failure else "",
         answer_format="Nothing: this is a proof." if is_proof(p) else "The final answer, as a plain value with no words.")
-    model = SONNET if p["kyu"] >= 6 else OPUS
-    r = backend.call(model, "You write up maths solutions as a strong olympiad student does. You have no tools. Think briefly. Output only what the format asks for.", prompt, "medium", CAP[p["kyu"]], role="rewrite", draft_id=p["id"])
-    usage.add(r)
-    if r.truncated:
-        raise ValueError("the reply was cut off")
-    new, answer = prompts._tag(r.text, "solution"), prompts._tag(r.text, "answer")
+
+
+REWRITE_SYSTEM = "You write up maths solutions as a strong olympiad student does. You have no tools. Think briefly. Output only what the format asks for."
+
+
+def parse_reply(p, text):
+    """Returns (solution, places) from a rewriter's reply, or raises ValueError."""
+    new, answer = prompts._tag(text, "solution"), prompts._tag(text, "answer")
     if not new:
         raise ValueError("no solution in the reply")
     solution, places = place_figures(p, drafts.tidy_latex(new))
     if not answer_ok(p, answer):
         raise ValueError(f"the stated answer {answer[:40]!r} doesn't match the stored hash")
     return solution, places
+
+
+def rewrite_once(p, backend, usage, failure=""):
+    model = SONNET if p["kyu"] >= 6 else OPUS
+    r = backend.call(model, REWRITE_SYSTEM, build_prompt(p, failure), "medium", CAP[p["kyu"]], role="rewrite", draft_id=p["id"])
+    usage.add(r)
+    if r.truncated:
+        raise ValueError("the reply was cut off")
+    return parse_reply(p, r.text)
 
 
 def audit(p, solution, backend, usage):
