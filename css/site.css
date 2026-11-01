@@ -237,6 +237,11 @@ select.sel { border: 1px solid var(--line); background: var(--bg); border-radius
 .prow-r { display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: var(--ink-faint); white-space: nowrap; }
 .prow-r .pts { font: 600 13px var(--f-mono); color: var(--ink-soft); font-variant-numeric: tabular-nums; min-width: 28px; text-align: right; }
 .prow.done .t { color: var(--ink-soft); }
+.prow-wrap { display: flex; align-items: center; }
+.prow-wrap .prow { flex: 1; min-width: 0; }
+.star { flex: 0 0 auto; width: 40px; align-self: stretch; border: 0; background: transparent; cursor: pointer; font-size: 17px; color: var(--ink-faint); }
+.star:hover { color: #E9C440; }
+.star[aria-pressed="true"] { color: #E9C440; }
 .pgroup { display: flex; align-items: center; gap: 10px; padding: 16px 16px 6px; background: var(--bg); position: relative; font-size: 12.5px; color: var(--ink-faint); flex-wrap: wrap; }
 .plist > .pgroup { border-bottom: 1px solid var(--line-soft); }
 .pgroup::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: var(--belt); box-shadow: inset 0 -1px 0 var(--belt-edge); }
@@ -387,6 +392,12 @@ tr.you td, tr.you th { background: var(--raise); font-weight: 600; }
 .log { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 7px; font-size: 13.5px; }
 .log li { display: flex; gap: 10px; justify-content: space-between; border-bottom: 1px solid var(--line-soft); padding-bottom: 7px; }
 .confirm { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 14px; margin-top: 16px; }
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-top: 10px; }
+.ach { border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 12px; opacity: .45; }
+.ach b { display: block; font-size: 13.5px; }
+.ach .faint { font-size: 12px; }
+.ach.got { opacity: 1; background: var(--raise); border-color: var(--ink-faint); }
+.ach.got b::before { content: "★ "; color: #E9C440; }
 .hm-wrap { display: grid; gap: 4px; margin-top: 8px; }
 .hm-months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; font-size: 11px; color: var(--ink-faint); }
 .hm-months span { white-space: nowrap; overflow: visible; }

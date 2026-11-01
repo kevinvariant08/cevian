@@ -1,7 +1,7 @@
 // One problem: statement, answer box or proof editor, hints, solution, rating.
 import { $, esc, renderMe, sourceLine, authorOf, fmtDate, errorPanel, loadingPanel } from "../lib/ui.js";
 import { KYU, badge, TOPICS, HINT_COST } from "../lib/ranks.js";
-import { S, save, award, logEvent, touchDay } from "../lib/store.js";
+import { S, save, award, logEvent, touchDay, toggleFavourite } from "../lib/store.js";
 import { LISTED, byId, cachedProblem, getProblem, likedPct } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
 import { tex, paras } from "../lib/tex.js";
@@ -120,6 +120,7 @@ export async function renderProblem(id, opts = {}) {
     <a href="${lastListHash()}" class="back">← All problems</a>
     <div class="pbar-r">
       <span class="faint" id="copyNote" role="status"></span>
+      <button class="btn small ghost" type="button" id="favBtn" aria-pressed="${!!S.favourites[p.id]}">${S.favourites[p.id] ? "★ Favourited" : "☆ Favourite"}</button>
       <button class="btn small ghost" type="button" id="copyLink">Copy link</button>
       <button class="btn small ghost" type="button" id="reportBtn">Report a problem</button>
     </div>
@@ -193,6 +194,7 @@ export async function renderProblem(id, opts = {}) {
     fb.className = "feedback bad"; fb.textContent = `${val.trim()} is not it. Attempt ${S.tries[p.id]}.`;
   });
   if ($("duelHere")) $("duelHere").addEventListener("click", () => { D.kyu = p.kyu; });
+  $("favBtn").addEventListener("click", () => { toggleFavourite(p.id); renderProblem(p.id, { focus: "favBtn" }); });
   if ($("proofText")) {
     const ta = $("proofText"), pv = $("proofPrev");
     let timer = null;
