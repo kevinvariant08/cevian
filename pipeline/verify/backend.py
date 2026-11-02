@@ -205,7 +205,8 @@ class ApiBackend(Backend):
         if model in ("claude-opus-5-5", "claude-sonnet-5-5"):
             kw.update(betas=["server-side-fallback-2026-07-01"], fallbacks="default")
         try:
-            m = self.client.beta.messages.create(**kw)
+            with self.client.beta.messages.stream(**kw) as stream:
+                m = stream.get_final_message()
         except self.anthropic.RateLimitError as e:
             raise PlanLimit(str(e)[:200]) from e
         except self.anthropic.APIError as e:
