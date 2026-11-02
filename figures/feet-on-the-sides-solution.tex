@@ -1,0 +1,47 @@
+%! alt Acute triangle ABC drawn for h = 30, with base BC horizontal. The altitude AD from A to BC has length 20, the altitude BE from B to CA has length 21, and the altitude CF from C to AB is shown. All three feet lie inside their sides and are marked with right angles.
+%! after_paragraph 3
+%! scale 2/9
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+%! let x0 = 1/20
+%! let y0 = 1/21
+%! let z0 = 1/30
+%! let K0 = sqrt(2*(x0**2*y0**2+y0**2*z0**2+z0**2*x0**2) - (x0**4+y0**4+z0**4))/4
+%! let k = 1/(2*K0)
+%! let a = k*x0
+%! let b = k*y0
+%! let c = k*z0
+\tkzDefPoint(0.0,0.0){B} %! B = (0, 0)
+\tkzDefPoint(7.2845971,0.0){C} %! C = (a, 0)
+\tkzDefPoint(1.9574257,4.4444444){A} %! A = ((a**2+c**2-b**2)/(2*a), 20)
+\tkzDefPoint(1.9574257,0.0){D} %! D = foot(A, B, C)
+\tkzDefPoint(2.9895652,3.5833333){E} %! E = foot(B, C, A)
+\tkzDefPoint(1.1834436,2.6870748){F} %! F = foot(C, A, B)
+%! fact dist(A, D) == 20
+%! fact dist(B, E) == 21
+%! fact on_segment(D, B, C)
+%! fact on_segment(E, C, A)
+%! fact on_segment(F, A, B)
+%! fact perp(A, D, B, C)
+%! fact perp(B, E, C, A)
+%! fact perp(C, F, A, B)
+\tkzFillPolygon[color=figtint](A,B,C)
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegment[key](A,D)
+\tkzDrawSegment[key](B,E)
+\tkzDrawSegment[aux](C,F)
+\tkzMarkRightAngle[size=.25,mk](A,D,C)
+\tkzMarkRightAngle[size=.25,mk](B,E,C)
+\tkzMarkRightAngle[size=.25,mk](C,F,B)
+\tkzDrawPoints(A,B,C,D,E,F)
+\tkzLabelPoint[above,lbl](A){$A$}
+\tkzLabelPoint[below left,lbl](B){$B$}
+\tkzLabelPoint[below right,lbl](C){$C$}
+\tkzLabelPoint[below,lbl](D){$D$}
+\tkzLabelPoint[above right,lbl](E){$E$}
+\tkzLabelPoint[left,lbl](F){$F$}
+\tkzLabelSegment[left,pos=.4,len](A,D){$20$}
+\tkzLabelSegment[below right,pos=.35,len](B,E){$21$}
+\end{tikzpicture}
+\end{document}

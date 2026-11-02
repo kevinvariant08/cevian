@@ -1,0 +1,39 @@
+%! alt Parallelogram ABCD with AB = 12 and height 5, the point E on line AB beyond B with BE = 12, and E' the reflection of E in line DC. Segments BD and CE are marked equal, and the dashed segment AE' has length 26.
+%! after_paragraph 1
+%! scale 5/16
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){A} %! A = (0, 0)
+\tkzDefPoint(3.7500000,0.0){B} %! B = (12, 0)
+\tkzDefPoint(7.5000000,0.0){E} %! E = (24, 0)
+\tkzDefPoint(1.2500000,1.5625000){D} %! D = (4, 5)
+\tkzDefPoint(5.0000000,1.5625000){C} %! C = (16, 5)
+\tkzDefPoint(7.5000000,3.1250000){F} %! F = reflect(E, D, C)
+%! fact dist(A, B) == 12
+%! fact dist(B, E) == 12
+%! fact collinear(A, B, E)
+%! fact area(A, B, C, D) == 60
+%! fact parallel(B, D, E, C)
+%! fact equal(dist(B, D), dist(C, E))
+%! fact equal(dist(C, E), dist(C, F))
+%! fact dist(A, F) == 26
+\tkzFillPolygon[color=figtint](A,B,C,D)
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegment[aux](B,E)
+\tkzDrawSegment(B,D)
+\tkzDrawSegment(A,C)
+\tkzDrawSegment(C,E)
+\tkzDrawSegment[aux](C,F)
+\tkzDrawSegment[aux](E,F)
+\tkzDrawSegment[key](A,F)
+\tkzMarkSegments[mark=||,size=2.5pt,mk](B,D C,E)
+\tkzDrawPoints(A,B,C,D,E,F)
+\tkzLabelPoint[below left,lbl](A){$A$}
+\tkzLabelPoint[below,lbl](B){$B$}
+\tkzLabelPoint[below right,lbl](E){$E$}
+\tkzLabelPoint[above left,lbl](D){$D$}
+\tkzLabelPoint[above,lbl](C){$C$}
+\tkzLabelPoint[above right,lbl](F){$E'$}
+\end{tikzpicture}
+\end{document}

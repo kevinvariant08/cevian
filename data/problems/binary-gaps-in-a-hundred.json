@@ -1,0 +1,33 @@
+{
+  "id": "binary-gaps-in-a-hundred",
+  "title": "Binary Gaps in a Hundred",
+  "kyu": 5,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "prime-factorization",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "How many $3$-element subsets $\\{a, b, c\\}$ of $\\{1, 2, 3, \\dots, 100\\}$ have the property that each of the three positive differences between two of their elements is a power of $2$? Here $1 = 2^0$ counts as a power of $2$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "594b927a",
+  "hints": [
+    "Order the elements as $a<b<c$. How is the largest difference $c-a$ related to the other two differences?",
+    "With $b-a=2^x$, $c-b=2^y$ and $c-a=2^z$, you get $2^x+2^y=2^z$. Factor out the smaller of $2^x$ and $2^y$ and use parity to compare the exponents.",
+    "The equation $2^x+2^y=2^z$ forces $x=y$. So every valid subset has the form $\\{k,\\ k+2^x,\\ k+2^{x+1}\\}$. For each $x$, count the values of $k$ that keep the subset inside $\\{1,\\dots,100\\}$, and find which $x$ give any subsets at all."
+  ],
+  "solution": "Let $a<b<c$ and write $b-a=2^x$, $c-b=2^y$, $c-a=2^z$. Then $2^x+2^y=2^z$.\n\nIf $x<y$, then $2^z=2^x\\left(1+2^{y-x}\\right)$. Here $1+2^{y-x}$ is odd and greater than $1$, so $2^z$ would have an odd factor greater than $1$, which is impossible. The case $x>y$ fails in the same way. So $x=y$ and $z=x+1$.\n\nConversely, for any $k$ and $x$, the three differences of $\\{k,\\ k+2^x,\\ k+2^{x+1}\\}$ are $2^x$, $2^x$ and $2^{x+1}$. Each subset arises from exactly one pair $(k,x)$, namely $k=a$ and $2^x=b-a$.\n\nThe conditions $1\\le k$ and $k+2^{x+1}\\le 100$ give $100-2^{x+1}$ choices of $k$. This is positive exactly when $2^{x+1}\\le 99$, that is, for $0\\le x\\le 5$. Summing over these $x$ gives\n$$98+96+92+84+68+36=474.$$\n\nThe answer is $474$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-mid-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-binary-gaps-in-a-hundred"
+}

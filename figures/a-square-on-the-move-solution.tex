@@ -1,0 +1,40 @@
+%! alt The hexagon O(0,0), A(2,0), B(9,3), C(9,5), D(7,5), E(0,2) is the swept region. It is split by F(2,2) into the starting square OAFE, the parallelogram ABCF swept by the right side, and the parallelogram EFCD swept by the top side. A dashed segment runs from O to G(7,3), the path of the lower-left corner.
+%! after_paragraph 1
+%! scale 5/6
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
+\tkzDefPoint(1.6666667,0.0){A} %! A = (2, 0)
+\tkzDefPoint(7.5000000,2.5000000){B} %! B = (9, 3)
+\tkzDefPoint(7.5000000,4.1666667){C} %! C = (9, 5)
+\tkzDefPoint(5.8333333,4.1666667){D} %! D = (7, 5)
+\tkzDefPoint(0.0,1.6666667){E} %! E = (0, 2)
+\tkzDefPoint(1.6666667,1.6666667){F} %! F = (2, 2)
+\tkzDefPoint(5.8333333,2.5000000){G} %! G = (7, 3)
+%! fact dist(A, F) == 2
+%! fact dist(E, F) == 2
+%! fact parallel(A, B, F, C)
+%! fact parallel(E, D, F, C)
+%! fact parallel(O, G, A, B)
+%! fact parallel(A, F, B, C)
+%! fact parallel(E, F, D, C)
+\tkzFillPolygon[color=figaccenttint](O,A,F,E)
+\tkzFillPolygon[color=figtint](A,B,C,F)
+\tkzFillPolygon[color=figtint](E,F,C,D)
+\tkzDrawSegment[aux](O,G)
+\tkzDrawPolygon(O,A,B,C,D,E)
+\tkzDrawSegment(A,F)
+\tkzDrawSegment(E,F)
+\tkzDrawSegment[key](F,C)
+\tkzDrawPoints(O,A,B,C,D,E,F,G)
+\tkzLabelPoint[below left,lbl](O){$O$}
+\tkzLabelPoint[below,lbl](A){$A$}
+\tkzLabelPoint[right,lbl](B){$B$}
+\tkzLabelPoint[above right,lbl](C){$C$}
+\tkzLabelPoint[above,lbl](D){$D$}
+\tkzLabelPoint[left,lbl](E){$E$}
+\tkzLabelPoint[below right,lbl](F){$F$}
+\tkzLabelPoint[below,lbl](G){$G$}
+\end{tikzpicture}
+\end{document}

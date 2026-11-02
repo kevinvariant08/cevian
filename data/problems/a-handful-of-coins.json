@@ -1,0 +1,32 @@
+{
+  "id": "a-handful-of-coins",
+  "title": "A Handful of Coins",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "bounding",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A purse contains plenty of coins of three kinds: coins worth $1$ unit, coins worth $3$ units and coins worth $5$ units. Kai takes exactly three coins from the purse, and any of the three coins may be of the same kind. How many different total values can Kai's three coins have?",
+  "answer_format": "integer",
+  "answer_hash": "b6cc055b",
+  "hints": [
+    "Find the smallest and the largest total. Can every whole number between them occur?",
+    "Use parity. Three odd values always add up to an odd number, so only odd totals from $3$ to $15$ are possible. Check that each of these can actually be made. For example, $9 = 1 + 3 + 5$."
+  ],
+  "solution": "Each coin is odd, so the total of three coins is odd. It lies between $1+1+1=3$ and $5+5+5=15$. Every odd value in this range occurs:\n$$3=1+1+1,\\quad 5=1+1+3,\\quad 7=1+1+5,\\quad 9=1+3+5,\\quad 11=1+5+5,\\quad 13=3+5+5,\\quad 15=5+5+5.$$\nSo Kai's three coins can have $7$ different total values.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-a-handful-of-coins"
+}

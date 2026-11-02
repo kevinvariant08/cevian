@@ -1,0 +1,40 @@
+{
+  "id": "feet-on-the-sides",
+  "title": "Feet on the Sides",
+  "kyu": 3,
+  "topic": "G",
+  "subtopics": [
+    "law-of-cosines",
+    "triangle-inequality",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A triangle $ABC$ has the following properties. The altitude from $A$ has length $20$ and the altitude from $B$ has length $21$. The altitude from $C$ has length $h$, where $h$ is a positive integer. For each vertex, the foot of the altitude from that vertex lies strictly between the other two vertices, on the segment joining them.\n\nFind the number of positive integers $h$ for which such a triangle exists.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "c657851c",
+  "hints": [
+    "Twice the area of the triangle equals each side times the altitude to that side. What does this say about the ratio of the three sides?",
+    "The foot of the altitude from $A$ lies strictly inside $BC$ exactly when the angles at $B$ and $C$ are both acute. So the condition says the triangle is acute. Use the law of cosines to write this as an inequality for each side.",
+    "The sides are in the ratio $\\frac{1}{20} : \\frac{1}{21} : \\frac{1}{h}$. Acuteness becomes three inequalities in $\\frac{1}{400}$, $\\frac{1}{441}$ and $\\frac{1}{h^2}$. These give $\\frac{176400}{841} < h^2 < \\frac{176400}{41}$. Show that the triangle inequality follows from them."
+  ],
+  "solution": "Let $a$, $b$, $c$ be the sides opposite $A$, $B$, $C$, and let $K$ be the area. Then $2K = 20a = 21b = hc$, so $a : b : c = \\frac{1}{20} : \\frac{1}{21} : \\frac{1}{h}$.\n\nConversely, suppose $\\frac{1}{20}$, $\\frac{1}{21}$, $\\frac{1}{h}$ satisfy the triangle inequality. Take a triangle with sides $\\frac{t}{20}$, $\\frac{t}{21}$, $\\frac{t}{h}$ and area $K$. Its altitudes are $\\frac{40K}{t}$, $\\frac{42K}{t}$, $\\frac{2hK}{t}$. These are in the ratio $20 : 21 : h$, so a suitable scaling gives altitudes $20$, $21$, $h$. The shape is therefore fixed by $h$ up to similarity, and the conditions depend only on $h$.\n\nLet $D$ be the foot of the altitude from $A$. Measure $BD = c\\cos B$ along line $BC$ from $B$ towards $C$, and $CD = b\\cos C$ from $C$ towards $B$, both signed. Then $BD + CD = a$. If $\\cos B > 0$ and $\\cos C > 0$, then $0 < BD = a - CD < a$, so $D$ lies strictly between $B$ and $C$. If $\\cos B \\le 0$, then $BD \\le 0$ and $D$ is not strictly inside, and the same holds for $C$. So all three feet lie strictly inside their sides exactly when all three angles are acute. By the law of cosines this means $a^2 < b^2 + c^2$, $b^2 < c^2 + a^2$ and $c^2 < a^2 + b^2$. These inequalities also imply the triangle inequality, since for example $a^2 < b^2 + c^2 < (b + c)^2$.\n\nPut $u = \\frac{1}{h^2}$ and use $176400 = 400 \\cdot 441$. The three conditions become\n$$\\dfrac{1}{400} < \\dfrac{1}{441} + u, \\qquad \\dfrac{1}{441} < \\dfrac{1}{400} + u, \\qquad u < \\dfrac{1}{400} + \\dfrac{1}{441}.$$\nThe second always holds. The other two give $\\frac{41}{176400} < u < \\frac{841}{176400}$, that is\n$$\\dfrac{176400}{841} < h^2 < \\dfrac{176400}{41}.$$\nHere $\\frac{176400}{841} \\approx 209.8$ lies between $14^2 = 196$ and $15^2 = 225$. Also $\\frac{176400}{41} \\approx 4302.4$ lies between $65^2 = 4225$ and $66^2 = 4356$. So the condition holds exactly for $15 \\le h \\le 65$.\n\nThe answer is $51$.",
+  "solution_figures": [
+    {
+      "src": "figures/feet-on-the-sides-solution.svg?v=1fd2cc20",
+      "alt": "Acute triangle ABC drawn for h = 30, with base BC horizontal. The altitude AD from A to BC has length 20, the altitude BE from B to CA has length 21, and the altitude CF from C to AB is shown. All three feet lie inside their sides and are marked with right angles.",
+      "after_paragraph": 3
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-mid-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-feet-on-the-sides"
+}
