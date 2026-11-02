@@ -487,8 +487,9 @@ def main():
     ap.add_argument("--seed", type=int, default=9)
     ap.add_argument("--concurrency", type=int, default=2)
     ap.add_argument("--stop-file")
+    ap.add_argument("--backend", choices=["cli", "api"], default="cli", help="cli uses the plan; api needs ANTHROPIC_API_KEY and costs money")
     a = ap.parse_args()
-    backend = make_backend("cli", 6)
+    backend = make_backend(a.backend, 6)
     index, has_corpus = originality.default_index()
     if not has_corpus:
         raise SystemExit("set CEVIAN_CORPUS")
