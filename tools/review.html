@@ -54,7 +54,7 @@
 <body>
 <div id="app"><div class="empty"><p>Loading…</p></div></div>
 <script type="module">
-import { tex, paras } from "../js/lib/tex.js";
+import { tex, paras, texParas, safeText } from "../js/lib/tex.js";
 import { solutionHtml, inlineFigures } from "../js/lib/figures.js";
 
 const app = document.getElementById("app");
@@ -147,9 +147,9 @@ function preview(d) {
   const figure = d.figure ? `<p><img src="/${esc(d.figure)}" alt="${esc(d.figure_alt)}" style="max-width:100%"></p>` : "";
   const key = d.type === "answer" ? `<section><h3>Answer</h3><div class="answer">${esc(d.answer)}</div><p class="faint">${esc(d.answer_format)}</p>
     <details><summary class="faint">Check program</summary><pre>${esc(d.check_program)}</pre></details></section>` : "";
-  const rubric = d.rubric ? `<section><h3>Rubric</h3><table>${d.rubric.map((r) => `<tr><td>${r.marks}</td><td class="tex">${r.criterion}</td></tr>`).join("")}</table></section>` : "";
-  const hints = (d.hints || []).map((h, i) => `<div class="tex"><p class="faint">Hint ${i + 1}</p>${paras(h)}</div>`).join("");
-  return `<section><h2>${esc(d.title)}</h2><p class="faint">${d.kyu} kyu · ${TOPICS[d.topic] || esc(d.topic)} · ${esc(d.type)} · <code>${esc(d.id)}</code> · ${(d.subtopics || []).map(esc).join(", ")}</p><div class="tex">${paras(d.statement)}</div>${figure}</section>
+  const rubric = d.rubric ? `<section><h3>Rubric</h3><table>${d.rubric.map((r) => `<tr><td>${r.marks}</td><td class="tex">${safeText(r.criterion)}</td></tr>`).join("")}</table></section>` : "";
+  const hints = (d.hints || []).map((h, i) => `<div class="tex"><p class="faint">Hint ${i + 1}</p>${texParas(h)}</div>`).join("");
+  return `<section><h2>${esc(d.title)}</h2><p class="faint">${d.kyu} kyu · ${TOPICS[d.topic] || esc(d.topic)} · ${esc(d.type)} · <code>${esc(d.id)}</code> · ${(d.subtopics || []).map(esc).join(", ")}</p><div class="tex">${texParas(d.statement)}</div>${figure}</section>
     ${key}<section><h3>Hints</h3>${hints}</section><section><h3>Solution</h3><div class="tex sol-figs">${solutionHtml({ ...d, solution_figures: figuresOf(d) })}</div></section>${rubric}`;
 }
 

@@ -6,6 +6,7 @@ There is no olympiad corpus, so originality rests on two known-problem checks fr
 contest text except the gate's comparison with the AMC and AIME corpus, which never reaches a report.
 """
 import argparse
+import ast
 import json
 import random
 import re
@@ -261,6 +262,23 @@ class Discard(Exception):
         self.stage, self.reason = stage, reason
 
 
+def extract_code(text):
+    """The Python in a reply that may wrap it in prose or a fence: the longest fenced block, else from the first code-like line, dropping trailing prose until it parses."""
+    fences = re.findall(r"```(?:python|py)?[ \t]*\n(.*?)```", text, re.S)
+    if fences:
+        return max(fences, key=len).strip()
+    lines = text.strip().splitlines()
+    start = next((i for i, x in enumerate(lines) if re.match(r"(import |from \w+ import |def |class |#|[A-Za-z_]\w*\s*=)", x)), 0)
+    lines = lines[start:]
+    while lines:
+        try:
+            ast.parse("\n".join(lines))
+            break
+        except SyntaxError:
+            lines.pop()
+    return "\n".join(lines).strip() or text.strip()
+
+
 class Job:
     def __init__(self, backend, index, threshold, run):
         self.backend, self.index, self.threshold, self.run = backend, index, threshold, run
@@ -274,7 +292,7 @@ class Job:
     def search(self, c, usage, topic):
         r = self.call(usage, SONNET, "You write careful search programs. You have no tools. Output only Python source.",
                       SEARCH.format(statement=c["statement"], sketch=c["sketch"][:400] if "etermine" in c["statement"] else "not needed: this is a Prove that claim", imports=", ".join(sorted(sandbox.ALLOWED_IMPORTS))), 8000, "proof_search", c["title"])
-        src = re.sub(r"^```\w*\n|\n?```\s*$", "", r.text.strip())
+        src = extract_code(r.text)
         reason, _ = sandbox.static_check(src)
         result = None if reason else sandbox.run_program(src)
         lines = [x.strip() for x in (result.stdout if result and result.ok else "").splitlines() if x.strip()]

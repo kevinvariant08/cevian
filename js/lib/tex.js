@@ -59,3 +59,11 @@ export function texWhenVisible(el) {
 
 // Blank lines separate paragraphs.
 export const paras = (s) => s.split(/\n\s*\n/).map((x) => `<p>${x}</p>`).join("");
+
+// Problem text is plain text with $...$ maths and a few tags (<b>, <i>, <code>). It is escaped first, and only those
+// tags are put back, outside maths, so "$a<b<c$" can't be read as HTML. MathJax reads the escaped maths correctly.
+const MATH = /(\$\$[\s\S]*?\$\$|\$[^$]*\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\])/;
+const escHtml = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+export const safeText = (s) => String(s ?? "").split(MATH)
+  .map((part, i) => (i % 2 ? escHtml(part) : escHtml(part).replace(/&lt;(\/?)(b|i|code)&gt;/g, "<$1$2>"))).join("");
+export const texParas = (s) => paras(safeText(s));
