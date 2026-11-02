@@ -11,13 +11,13 @@ from ..verify.sandbox import ALLOWED_IMPORTS
 from .config import STANDARD, TAXONOMY
 from .recipes import RECIPES
 
-SYSTEM = ("You write original maths contest problems for Kyuclid, a site ranked from 8 kyu (beginner) to 1 kyu (IMO). "
+SYSTEM = ("You write original maths contest problems for Cevian, a site ranked from 8 kyu (beginner) to 1 kyu (IMO). "
           "A good problem gives the solver one real moment of insight, reads naturally and is exactly right. "
           "You have no tools. Output only what the format asks for. "
           "Your thinking budget is small: stop thinking after about 1,500 words and start writing. Independent checks run on everything you write and "
           "send back anything wrong, so a good first idea written down beats a perfect one still being tested. Never test parameters or compute answers in your head.")
 
-WRITE_SYSTEM = ("You write hints and solutions for Kyuclid, a maths contest site. You have no tools. Output only what the format asks for. "
+WRITE_SYSTEM = ("You write hints and solutions for Cevian, a maths contest site. You have no tools. Output only what the format asks for. "
                 "Your thinking budget is small: stop thinking after about 1,500 words and start writing.")
 
 IDEA_FORMAT = """<candidate>
@@ -139,7 +139,7 @@ def _idea_context(inp, kyu, digest):
     parts = [
         f"Write for {kyu} kyu. Its difficulty must come from an idea, not from arithmetic.",
         STYLE,
-        f"THE KYUCLID STANDARD\n{idea_rules(kyu)}",
+        f"THE CEVIAN STANDARD\n{idea_rules(kyu)}",
         IDEA_RULES.format(imports=", ".join(sorted(ALLOWED_IMPORTS))),
         f"THE IDEA TO TEACH\n{describe_record(inp.record)}",
         ("THE SOURCE PROBLEM, for calibration only. It shows how hard the target is. Do not reuse its setting, objects, numbers or phrasing, "
@@ -177,7 +177,7 @@ def write_up(idea, kyu, key, record, earlier=None, failure=None):
     """Has no contest text in it: the source isn't needed here, so it can't be copied here."""
     parts = [
         f"A {kyu} kyu problem has been chosen. Write its hints and solution.",
-        f"THE KYUCLID STANDARD\n{write_rules()}",
+        f"THE CEVIAN STANDARD\n{write_rules()}",
         WRITE_RULES,
         FIGURE_RULES,
         f"TAXONOMY IDS, the only tags allowed\n{taxonomy_ids()}",

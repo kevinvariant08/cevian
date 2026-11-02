@@ -1,7 +1,7 @@
-# 04. Write the Kyuclid problem standard
+# 04. Write the Cevian problem standard
 
 ## Goal
-Write one document that defines a good Kyuclid problem at each kyu. The generator (06, 08, 09), the verification gate (05), the reviewers (07) and community authors (17) all follow it. The current seed problems fail it, and that is the point.
+Write one document that defines a good Cevian problem at each kyu. The generator (06, 08, 09), the verification gate (05), the reviewers (07) and community authors (17) all follow it. The current seed problems fail it, and that is the point.
 
 ## Depends on
 03, which supplies the calibration data.

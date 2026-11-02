@@ -1,8 +1,8 @@
 {
-  "name": "kyuclid",
+  "name": "cevian",
   "private": true,
   "type": "module",
-  "description": "Kyuclid: a ranked dojo for contest maths. The site is static files; these scripts manage the problem data.",
+  "description": "Cevian: a ranked dojo for contest maths. The site is static files; these scripts manage the problem data.",
   "scripts": {
     "build": "node scripts/build-index.mjs",
     "validate": "node scripts/validate.mjs",

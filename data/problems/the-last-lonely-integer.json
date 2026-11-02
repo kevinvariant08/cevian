@@ -20,7 +20,7 @@
   "solution": "Let $n$ be lonely, with unique pair $(a,b)$, where $1\\le a\\le b$ and $5a+13b=n$. Replacing $(a,b)$ by $(a+13t,\\,b-5t)$ for any integer $t$ does not change $5a+13b$, since the change is $65t-65t=0$.\n\nIf $a\\ge 14$, then $(a-13,\\,b+5)$ is a second valid pair, because $1\\le a-13\\le b+5$. So $a\\le 13$.\n\nIf $b\\ge a+18$, then $(a+13,\\,b-5)$ is a second valid pair, because $a+13\\le b-5$ and $a+13$ is positive. So $b\\le a+17$.\n\nTherefore\n$$n=5a+13b\\le 5a+13(a+17)=18a+221\\le 18\\cdot 13+221=455.$$\n\nIt remains to show that $455$ is lonely. The pair $(13,30)$ is valid, since $13\\le 30$ and $5\\cdot 13+13\\cdot 30=65+390=455$. Because $\\gcd(5,13)=1$, any integer solution $(x,y)$ of $5x+13y=455$ has $x-13$ divisible by $13$, which gives $(x,y)=(13+13t,\\,30-5t)$ for some integer $t$. If $t\\le -1$, then $x\\le 0$, which is not allowed. If $t\\ge 1$, then $x\\ge 26$ and $y\\le 25$, so $x>y$, which is not allowed. Only $t=0$ remains, so the pair is unique.\n\nThe largest lonely integer is $455$.\n\n<b>Why this works.</b> <code>linear-diophantine-solving</code>, <code>bounding</code>: all solutions differ by multiples of $(13,-5)$, so uniqueness forces upper bounds on $a$ and $b-a$ that together bound $n$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

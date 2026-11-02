@@ -1,6 +1,6 @@
 # 19. Name, brand and launch assets
 
-> **Decision, 30 Oct 2026:** the name check (`docs/name-report.md`) found a live US trade mark, MATH WARS METHOD, so Kevin renamed the site **Kyuclid**. The brief below is kept as written for the record. Its asset work now applies to Kyuclid. Kevin still has to run the UK IPO search for "Kyuclid".
+> **Decision, 30 Oct 2026:** the name check (`docs/name-report.md`) found a live US trade mark, MATH WARS METHOD, so Kevin renamed the site **Cevian**. The brief below is kept as written for the record. Its asset work now applies to Cevian. Kevin still has to run the UK IPO search for "Cevian".
 
 ## Goal
 Confirm that the name can be used, and give MathWars a complete, consistent identity for launch.

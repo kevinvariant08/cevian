@@ -1,7 +1,7 @@
 # 02. Build the private contest corpus
 
 ## Goal
-Collect the best existing competition problems, from AMC 8 up to the IMO, with official answers, solutions and difficulty data, as clean machine-readable records. This corpus is what Kyuclid learns from: task 03 analyses it, and tasks 06, 08 and 09 generate original problems inspired by it. It is for private analysis only and is never published.
+Collect the best existing competition problems, from AMC 8 up to the IMO, with official answers, solutions and difficulty data, as clean machine-readable records. This corpus is what Cevian learns from: task 03 analyses it, and tasks 06, 08 and 09 generate original problems inspired by it. It is for private analysis only and is never published.
 
 ## Depends on
 Nothing. The waves below run in order, and wave 1 is the pilot.
@@ -48,7 +48,7 @@ Collect the last **15 years** (2012–2026) unless a row says otherwise. Each ro
 Putnam and other university contests are out of scope.
 
 ## Where it lives
-- The **private** repository `kevinvariant08/mathwars-corpus`. Ask Kevin to create it if you can't. Never put corpus files in the public `kyuclid` repo.
+- The **private** repository `kevinvariant08/mathwars-corpus`. Ask Kevin to create it if you can't. Never put corpus files in the public `cevian` repo.
 - Layout:
   ```
   raw/<exam>/<year>/...          cached source pages and PDFs, each fetched once
@@ -106,7 +106,7 @@ One shared format for every exam:
 ## Acceptance criteria
 - **Wave 1:** the complete AIME set, with the checks and spot-check passing. Stop here for Kevin to review before waves 2 and 3.
 - **Waves 2 and 3:** every listed competition is either collected or has its gap explained (no clean source, terms forbid it, and so on).
-- Nothing from the corpus appears in the public `kyuclid` repo. Check with `git grep` for distinctive phrases from 10 problems.
+- Nothing from the corpus appears in the public `cevian` repo. Check with `git grep` for distinctive phrases from 10 problems.
 
 ## Out of scope
 Analysis (task 03), generation (tasks 06, 08, 09), and Kevin's own book (task 21).

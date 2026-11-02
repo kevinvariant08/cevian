@@ -19,7 +19,7 @@ class Input:
 def load_analysis(path=None):
     path = Path(path) if path else analysis_path()
     if not path:
-        raise SystemExit("set KYUCLID_ANALYSIS to the analysis records (a folder of batch_*.jsonl or one jsonl file)")
+        raise SystemExit("set CEVIAN_ANALYSIS to the analysis records (a folder of batch_*.jsonl or one jsonl file)")
     files = sorted(path.glob("batch_*.jsonl")) if path.is_dir() else [path]
     if not files:
         raise SystemExit(f"no analysis records in {path}")
@@ -29,7 +29,7 @@ def load_analysis(path=None):
 def load_statements():
     path = corpus_path()
     if not path or not path.is_dir():
-        raise SystemExit("set KYUCLID_CORPUS to the private corpus: originality means nothing without it")
+        raise SystemExit("set CEVIAN_CORPUS to the private corpus: originality means nothing without it")
     return {r["id"]: r for r in originality.load_corpus(path)}
 
 

@@ -1,4 +1,4 @@
-// This browser's progress, under the localStorage key mathwars:v1. The key predates the rename to Kyuclid and keeps its name so existing progress survives.
+// This browser's progress, under the localStorage key mathwars:v1. The key predates the rename to Cevian and keeps its name so existing progress survives.
 import { KYU, HINT_COST, MIN_HINT_SHARE, PROOF_MARKS, rankOf } from "./ranks.js";
 
 const KEY = "mathwars:v1";

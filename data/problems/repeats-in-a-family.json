@@ -21,7 +21,7 @@
   "solution": "We have $P(x)-Q(x)=-4x+28$, which vanishes at $x=7$, and $P(7)=Q(7)=30$. This suggests putting $u=x-7$, which gives\n$$P=u^2-17u+30,\\qquad Q=u^2-13u+30.$$\nTherefore\n$$P+\\lambda Q=(1+\\lambda)(u^2+30)-(17+13\\lambda)u.$$\n\nIf $\\lambda=-1$, this equals $-4u$, which has a single simple root, so there is no repeated root.\n\nIf $\\lambda\\ne -1$, the polynomial is a quadratic in $u$ whose roots have product $30$ by Vieta's formulas. A repeated root $u_0$ therefore satisfies $u_0^2=30$, so $u_0=\\sqrt{30}$ or $u_0=-\\sqrt{30}$.\n\nEach of these values does occur, and for exactly one $\\lambda$. The polynomial equals $(1+\\lambda)(u-u_0)^2$ exactly when $17+13\\lambda=2u_0(1+\\lambda)$, that is, when $(13-2u_0)\\lambda=2u_0-17$. Since $2u_0$ is irrational, $13-2u_0\\ne 0$, so this has exactly one solution $\\lambda$. That solution is not $-1$, because $\\lambda=-1$ would give $17+13\\lambda=4$ but $2u_0(1+\\lambda)=0$. Hence the two values of $\\lambda$ correspond to the two values $u_0=\\pm\\sqrt{30}$.\n\nReturning to $x=u+7$, the repeated roots are $r_1=7+\\sqrt{30}$ and $r_2=7-\\sqrt{30}$. Therefore\n$$r_1^2+r_2^2=2(7^2+30)=158.$$\nThe answer is $158$.\n\n<b>Why this works.</b> <code>pencil-of-curves</code>, <code>variable-substitution</code>, <code>vieta</code>: recentring at the root of the family's linear member gives every quadratic member the same product of roots, which forces the possible repeated roots.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

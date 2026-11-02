@@ -41,7 +41,7 @@ Nothing. Do this first.
 7. Migrate the 21 current problems to the new format with `status: "beta"`. Leave the solutions as they are: they reveal answers in the page source, but task 13 moves answers and solutions to the server.
 
 ## Spec notes
-- The site keeps working when opened from GitHub Pages under `/kyuclid/`, so use relative URLs throughout.
+- The site keeps working when opened from GitHub Pages under `/cevian/`, so use relative URLs throughout.
 - Keep the visual design identical. This is a refactor, not a redesign; task 12 does the redesign.
 - `localStorage` key `mathwars:v1` keeps working, so existing progress survives.
 - Add a short `CONTRIBUTING.md` explaining how to add a problem by hand: write the JSON, hash the answer, then run build and validate.

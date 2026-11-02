@@ -72,7 +72,7 @@ def main():
     ap.add_argument("--refit", action="store_true", help="refit from out/difficulty_fit.json with no model calls")
     args = ap.parse_args()
     if not corpus_path() and not args.refit:
-        raise SystemExit("Set KYUCLID_CORPUS to the private corpus.")
+        raise SystemExit("Set CEVIAN_CORPUS to the private corpus.")
     OUT.mkdir(exist_ok=True)
     saved = OUT / "difficulty_fit.json"
     if args.refit:

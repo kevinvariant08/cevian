@@ -10,7 +10,7 @@ import { subtopicName } from "../lib/taxonomy.js";
 import { D } from "./duel.js";
 import { lastListHash } from "./problems.js";
 
-const REPO_ISSUES = "https://github.com/kevinvariant08/kyuclid/issues/new";
+const REPO_ISSUES = "https://github.com/kevinvariant08/cevian/issues/new";
 const REPORT_REASONS = ["The answer or solution looks wrong", "The statement has a typo or is unclear", "A hint gives too much away", "The kyu feels wrong", "It duplicates another problem", "Something else"];
 const rubricLine = (r) => `${r.marks} mark${r.marks > 1 ? "s" : ""}: ${r.criterion}`;
 
@@ -71,7 +71,7 @@ export async function renderProblem(id, opts = {}) {
     catch { if (location.hash === at) v.innerHTML = errorPanel("this problem"); return; }
     if (location.hash !== at) return;
   }
-  document.title = `${p.title} · Kyuclid`;
+  document.title = `${p.title} · Cevian`;
   const solved = S.solved[p.id];
   const used = S.hints[p.id] || 0;
   const base = KYU[p.kyu].pts;

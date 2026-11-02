@@ -4,7 +4,7 @@
 Run real-time duels between two signed-in players on the same problem, started from an invite link, with rated results.
 
 ## Depends on
-13. Look at Kevinvariant's `duel.html`, its asynchronous ghost duel, and decide with Kevin whether Kyuclid duels replace or complement it.
+13. Look at Kevinvariant's `duel.html`, its asynchronous ghost duel, and decide with Kevin whether Cevian duels replace or complement it.
 
 ## Spec
 1. **Rooms.** A `mw_duels` table holds the room ID, players, kyu, the problem ID (chosen on the server from problems neither player has solved), state, start time and result. Clients sync over Supabase Realtime channels.

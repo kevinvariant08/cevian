@@ -1,4 +1,4 @@
-"""Render Kyuclid's PNG icons and Open Graph images with a headless Chromium browser.
+"""Render Cevian's PNG icons and Open Graph images with a headless Chromium browser.
 
 Usage:
     python tools/brand/render_png.py icons      # favicon-32, apple-touch-icon, icon-192/512, maskable

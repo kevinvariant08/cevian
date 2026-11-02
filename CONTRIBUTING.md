@@ -1,4 +1,4 @@
-# Contributing to Kyuclid
+# Contributing to Cevian
 
 ## Adding a problem by hand
 
@@ -70,7 +70,7 @@ The site is static files, with no build step. Serve the folder and open it:
 python -m http.server 8000
 ```
 
-Then go to http://localhost:8000. The site uses only relative URLs, so it works the same at `kevinvariant08.github.io/kyuclid/`.
+Then go to http://localhost:8000. The site uses only relative URLs, so it works the same at `kevinvariant08.github.io/cevian/`.
 
 ## How the code is laid out
 
@@ -87,8 +87,8 @@ Then go to http://localhost:8000. The site uses only relative URLs, so it works 
 
 ## Caching
 
-Kyuclid shares its origin with Kevinvariant, whose service worker (`/sw.js`) controls these pages too:
+Cevian shares its origin with Kevinvariant, whose service worker (`/sw.js`) controls these pages too:
 
 - **JS, CSS and JSON** carry no `?v=`, so the service worker fetches them network-first and a deploy shows up at once. Don't add `?v=` to one file. The service worker would cache that file forever, while the modules it imports stayed network-first, so old and new code would mix.
 - **SVG and other images** are cached forever, whatever their URL. A changed figure needs a new file name.
-- Every `localStorage` key starts with `mathwars:`. The prefix predates the rename to Kyuclid and stays, so existing progress survives.
+- Every `localStorage` key starts with `mathwars:`. The prefix predates the rename to Cevian and stays, so existing progress survives.

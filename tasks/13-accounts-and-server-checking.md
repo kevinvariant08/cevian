@@ -1,7 +1,7 @@
 # 13. Accounts and server-side answer checking
 
 ## Goal
-Give Kyuclid real accounts, shared with Kevinvariant, and move answers and solutions off the client, so that progress syncs across devices and nobody can read answers from the page source.
+Give Cevian real accounts, shared with Kevinvariant, and move answers and solutions off the client, so that progress syncs across devices and nobody can read answers from the page source.
 
 ## Depends on
 01. This task is the foundation for 14–18 and 20.
@@ -10,10 +10,10 @@ Give Kyuclid real accounts, shared with Kevinvariant, and move answers and solut
 - In the Kevinvariant repo (`kevinvariant08/kevinvariant08.github.io`):
   - `auth-config.js`: the Supabase project URL and publishable key.
   - `account.js`, `auth.html`, `setup.sql` and `attempts.sql`: how accounts, profiles and attempts work there.
-- Both sites are served from `kevinvariant08.github.io`, so they share an origin. A Supabase session created on Kevinvariant is visible to Kyuclid. Use the same Supabase project; don't create a second one.
+- Both sites are served from `kevinvariant08.github.io`, so they share an origin. A Supabase session created on Kevinvariant is visible to Cevian. Use the same Supabase project; don't create a second one.
 
 ## Spec
-1. **Schema**, as a migration file `supabase/migrations/<date>_kyuclid.sql`, with every table prefixed `mw_`:
+1. **Schema**, as a migration file `supabase/migrations/<date>_cevian.sql`, with every table prefixed `mw_`:
    - `mw_problems`: the public fields of each problem, without answer or solution.
    - `mw_answers`: `problem_id`, `answer_hash`, `solution_md` and `hints`. **There is no client read access.**
    - `mw_attempts`: user, problem, submitted value, correct, time, hints used, and source (`solo` | `duel`).
@@ -26,7 +26,7 @@ Give Kyuclid real accounts, shared with Kevinvariant, and move answers and solut
    - `mw_get_solution(problem_id)` returns the solution only if the caller has solved the problem.
 3. **Seeding.** `scripts/sync-problems.mjs` upserts `data/problems/*.json` into `mw_problems` and `mw_answers` using the service-role key, read from the environment and never committed. Run it from GitHub Actions on merge to `main`, with the key held as a repo secret.
 4. **Client:**
-   - "Sign in with your Kevinvariant account", which reuses the Kevinvariant sign-in page and returns to Kyuclid.
+   - "Sign in with your Kevinvariant account", which reuses the Kevinvariant sign-in page and returns to Cevian.
    - Signed-out users keep the current local mode (hash checking). Once answers move to the server, remove `answer_hash` and `solution` from the public JSON. Signed-out users then see "Sign in to check answers", or else keep hashes for 8–6 kyu only, which is Kevin's decision.
    - On first sign-in, offer to import `mathwars:v1` local progress (but only solves the server can re-verify, so re-check each one).
 5. **Rate limiting.** At most 30 submissions a minute per user, and a wrong-answer cooldown on the server that matches the duel rules.

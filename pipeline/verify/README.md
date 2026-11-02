@@ -14,7 +14,7 @@ It prints one line: `PASS`, `FAIL <check>: <reason>` or `INVESTIGATE <check>: <r
 - Python 3.12+ with `pip install -r pipeline/verify/requirements.txt`.
 - Node 20+ with `npm ci`. That installs `mathjax-full`, the same version the site loads, for the LaTeX dry run. Without it the gate falls back to a balance check, and the report says so.
 - The Claude Code CLI, signed in.
-- `KYUCLID_CORPUS` set to the private corpus. `MATHWARS_CORPUS` also works; if both are set, `KYUCLID_CORPUS` wins. Without either, originality compares with the bank only, and the report says so.
+- `CEVIAN_CORPUS` set to the private corpus. `MATHWARS_CORPUS` also works; if both are set, `CEVIAN_CORPUS` wins. Without either, originality compares with the bank only, and the report says so.
 
 ## A draft
 

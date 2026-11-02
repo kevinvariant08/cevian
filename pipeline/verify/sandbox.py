@@ -107,7 +107,7 @@ def _limit_posix():
 
 def run_program(source, seconds=None):
     seconds = SANDBOX_SECONDS if seconds is None else seconds
-    with tempfile.TemporaryDirectory(prefix="kyuclid-sandbox-") as cwd:
+    with tempfile.TemporaryDirectory(prefix="cevian-sandbox-") as cwd:
         prog = Path(cwd) / "check_program.py"
         prog.write_text(source, encoding="utf-8")
         env = {k: os.environ[k] for k in ("SYSTEMROOT", "PATH", "TEMP", "TMP") if k in os.environ}

@@ -3,7 +3,7 @@
 ## Goal
 Understand every corpus problem well enough to teach from it: what it is really about, every route to a solution, where solvers go wrong, and exactly how hard it is. Then find the patterns across the whole corpus. Generation (06, 08, 09) imitates the ideas recorded here, the problem standard (04) calibrates against them, and the verification gate (05) uses them to reject copies.
 
-This is the task that decides whether Kyuclid problems feel like real contest mathematics, so depth matters more than speed.
+This is the task that decides whether Cevian problems feel like real contest mathematics, so depth matters more than speed.
 
 ## Depends on
 02. Run it per wave: the AIME first as a pilot, then the answer-based contests, then the olympiads.
@@ -14,7 +14,7 @@ This is the task that decides whether Kyuclid problems feel like real contest ma
 
 ## Deliverables
 
-### 1. A controlled vocabulary: `kyuclid/data/taxonomy.json` (public, no problem text)
+### 1. A controlled vocabulary: `cevian/data/taxonomy.json` (public, no problem text)
 - Topics: `A`, `C`, `G`, `N`.
 - **Techniques**, about 120–200 of them, each with a one-line definition and its parent topic. Examples: `vieta`, `telescoping`, `roots-of-unity-filter`, `inclusion-exclusion`, `bijection`, `double-counting`, `invariant`, `monovariant`, `extremal-principle`, `expected-value-linearity`, `pigeonhole`, `power-of-a-point`, `radical-axis`, `spiral-similarity`, `harmonic-bundles`, `inversion`, `complex-bash`, `barycentric-bash`, `trig-ceva`, `lte`, `zsigmondy`, `crt`, `orders-mod-n`, `quadratic-residues`, `vieta-jumping`, `smoothing`, `sos`, `tangent-line-trick`, `functional-equation-substitution`, `cauchy-fe`.
 - **Geometry configurations** as a separate list, for example `incenter-excenter-lemma`, `mixtilinear-incircle`, `nine-point-circle`, `complete-quadrilateral`, `miquel-point`, `symmedian`, `orthocenter-reflection`.
@@ -58,7 +58,7 @@ Adjust by at most one kyu from the starting value, and give a reason. Record dis
 2. Run a second pass with a different model on 15% of records. For olympiad geometry, run it on **all** records, because configuration tagging is error-prone. Record and resolve disagreements.
 3. Have Kevin review the 30 records with the largest disagreements, plus 20 at random.
 
-### 5. Cross-corpus synthesis: `kyuclid/docs/corpus-analysis.md` (public, no problem text)
+### 5. Cross-corpus synthesis: `cevian/docs/corpus-analysis.md` (public, no problem text)
 - Topic and technique frequency by kyu band, and how it changes over the 15 years.
 - What separates adjacent kyus in concrete terms: the number of non-routine steps, how hidden the crux is, the computation load, and whether there is more than one viable path.
 - **Idea families:** clusters of problems that share a `core_idea`, with sizes and kyu spread. Generation should sample across families, not repeat the biggest ones.

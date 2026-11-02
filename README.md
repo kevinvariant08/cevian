@@ -1,4 +1,4 @@
-# Kyuclid
+# Cevian
 
 A ranked dojo for contest maths, in the spirit of Codewars. Problems are graded on a kyu ladder from 8 kyu (AMC 8) up to 1 kyu (the hardest USAMO, USEMO, Balkan MO, CMO and IMO proofs).
 
@@ -41,7 +41,7 @@ Write `data/problems/<id>.json`, hash its answer with `node scripts/hash-answer.
 npm run review
 ```
 
-This opens the review queue at http://localhost:8377/tools/review.html and serves the local site from the same address. Run `npm ci` once first. The gate needs its Python setup (`pipeline/verify/README.md`), and it uses `~/mathwars-corpus` unless `KYUCLID_CORPUS` says otherwise.
+This opens the review queue at http://localhost:8377/tools/review.html and serves the local site from the same address. Run `npm ci` once first. The gate needs its Python setup (`pipeline/verify/README.md`), and it uses `~/mathwars-corpus` unless `CEVIAN_CORPUS` says otherwise.
 
 | Key | Action |
 |---|---|

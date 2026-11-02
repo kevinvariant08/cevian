@@ -1,4 +1,4 @@
-# Kyuclid: the project, split into tasks
+# Cevian: the project, split into tasks
 
 Each file in this folder is a self-contained brief for one AI agent. To hand one off, tell the agent:
 
@@ -8,7 +8,7 @@ Every brief has the same sections: **Goal**, **Depends on**, **Read first**, **D
 
 ## Where things stand
 
-The live first draft is a single `index.html`, served at https://kevinvariant08.github.io/kyuclid/. It has 21 hand-written seed problems, answer checking against hashes in the page, progress saved in `localStorage`, ghost duels and a sample leaderboard. The problems are thin and uneven, and fixing that is the priority. Most of Phase B exists to do it.
+The live first draft is a single `index.html`, served at https://kevinvariant08.github.io/cevian/. It has 21 hand-written seed problems, answer checking against hashes in the page, progress saved in `localStorage`, ghost duels and a sample leaderboard. The problems are thin and uneven, and fixing that is the priority. Most of Phase B exists to do it.
 
 ## Phases and order
 
@@ -17,7 +17,7 @@ The live first draft is a single `index.html`, served at https://kevinvariant08.
 | 01 | [Restructure the repo and define the problem data format](01-repo-and-problem-format.md) | A. Foundations | — | M |
 | 02 | [Build the private contest corpus (AMC to IMO)](02-contest-corpus.md) | B. Content | — | L |
 | 03 | [Analyse the contest corpus thoroughly](03-corpus-analysis.md) | B. Content | 02 | L |
-| 04 | [Write the Kyuclid problem standard](04-problem-standard.md) | B. Content | 03 | S |
+| 04 | [Write the Cevian problem standard](04-problem-standard.md) | B. Content | 03 | S |
 | 05 | [Build the verification gate](05-verification-gate.md) | B. Content | 01 | L |
 | 06 | [Generate original answer problems (5–3 kyu)](06-generate-answer-originals.md) | B. Content | 03, 04, 05 | L |
 | 07 | [Build the review queue](07-review-queue.md) | B. Content | 01, 05 | M |
@@ -70,10 +70,10 @@ graph LR
 4. **Models.** Use `claude-opus-5-5` for generation and judging and `claude-sonnet-5-5` for bulk blind solves. Where a brief asks for an independent second opinion, use a different model so the errors aren't correlated. Log the model ID and the cost of every pipeline run.
 5. **Pilot, then scale.** Any task that calls a model in bulk runs a pilot of about 30 items first and stops for Kevin to look at it before the full run.
 6. **No build step for the site** unless task 01 decides otherwise. It must keep working as static files on GitHub Pages.
-7. **Same origin as Kevinvariant.** The site is served from `kevinvariant08.github.io/kyuclid/`, so it shares an origin with Kevinvariant: `localStorage` and the Supabase session are shared. Prefix every storage key with `mathwars:`. Kevinvariant's service worker (`/sw.js`, scope `/`) also controls Kyuclid pages:
+7. **Same origin as Kevinvariant.** The site is served from `kevinvariant08.github.io/cevian/`, so it shares an origin with Kevinvariant: `localStorage` and the Supabase session are shared. Prefix every storage key with `mathwars:`. Kevinvariant's service worker (`/sw.js`, scope `/`) also controls Cevian pages:
    - HTML is fetched network-first.
-   - Any URL with `?v=` and any image or font is cached forever, cache-first. So give Kyuclid JS and CSS a `?v=` and change it on every release, or leave it off so they are fetched network-first.
-   - Offline, Kyuclid falls back to Kevinvariant's `offline.html`.
+   - Any URL with `?v=` and any image or font is cached forever, cache-first. So give Cevian JS and CSS a `?v=` and change it on every release, or leave it off so they are fetched network-first.
+   - Offline, Cevian falls back to Kevinvariant's `offline.html`.
 
 ## Decisions Kevin should make before the content line scales
 

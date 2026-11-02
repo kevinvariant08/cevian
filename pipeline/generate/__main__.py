@@ -30,7 +30,7 @@ def main():
     ap.add_argument("--report", help="print the summary of a run and stop")
     ap.add_argument("--run", help="run name, which a re-run reuses to resume (default: a timestamp)")
     ap.add_argument("--profile", choices=sorted(PROFILES), default="answer-5-3")
-    ap.add_argument("--analysis", help="analysis records (default KYUCLID_ANALYSIS)")
+    ap.add_argument("--analysis", help="analysis records (default CEVIAN_ANALYSIS)")
     ap.add_argument("--digest", help="a rejection digest from task 07 to include in the prompt")
     ap.add_argument("--concurrency", type=int, default=3, help="inputs at once")
     ap.add_argument("--model-slots", type=int, default=8, help="model calls at once")

@@ -15,7 +15,7 @@ Build a bank of original olympiad proof problems for 3, 2 and 1 kyu, inspired by
 2. **Balance.** Keep the four topics roughly even at each kyu. Geometry gets extra care, because Kevin is a geometry specialist and reviews it most closely (see task 21).
 3. **Two sources of problems:**
    - **Original.** Generate with `claude-opus-5-5` from a `proof_skeleton` and a variation recipe (task 06). The output is the statement, the model solution and the rubric.
-   - **Classical, if Kevin allows it.** Famous problems, restated in Kyuclid's own words with attribution in `provenance`, such as IMO 1988 P6 or Erdős–Ginzburg–Ziv. Each needs Kevin's explicit OK.
+   - **Classical, if Kevin allows it.** Famous problems, restated in Cevian's own words with attribution in `provenance`, such as IMO 1988 P6 or Erdős–Ginzburg–Ziv. Each needs Kevin's explicit OK.
 4. **Verification.** Answers can't be checked, so the gate is different:
    - **Truth.** Three independent attempts to *disprove* the statement: a search for counterexamples with a computer where that is possible (for example, checking number-theory claims up to 10⁶), plus a model looking for a counterexample.
    - **Solvability.** Three independent blind proof attempts. At least one must be judged complete by a separate marker using the rubric. If none succeeds, either the problem is too hard or the statement is wrong, so flag it.

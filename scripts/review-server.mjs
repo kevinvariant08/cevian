@@ -33,7 +33,7 @@ const run = (cmd, args, cwd, env) => new Promise((done) => {
 function gateEnv() {
   const env = { ...process.env, PYTHONIOENCODING: "utf-8" };
   const usual = join(homedir(), "mathwars-corpus");
-  if (!env.KYUCLID_CORPUS && !env.MATHWARS_CORPUS && existsSync(usual)) env.KYUCLID_CORPUS = usual;
+  if (!env.CEVIAN_CORPUS && !env.KYUCLID_CORPUS && !env.MATHWARS_CORPUS && existsSync(usual)) env.CEVIAN_CORPUS = usual;
   return env;
 }
 
@@ -273,7 +273,7 @@ export function createReviewServer({ root = REPO, pendingDir, verify, gateRoot }
     }
     items.sort((a, b) => b.kyu - a.kyu || (a.id < b.id ? -1 : 1));
     const env = gateEnv();
-    if (!env.KYUCLID_CORPUS && !env.MATHWARS_CORPUS) warnings.push("KYUCLID_CORPUS isn't set, so re-verifying an edit compares originality with the bank only.");
+    if (!env.CEVIAN_CORPUS && !env.KYUCLID_CORPUS && !env.MATHWARS_CORPUS) warnings.push("CEVIAN_CORPUS isn't set, so re-verifying an edit compares originality with the bank only.");
     return { items, warnings, failures, approved: countJson(join(reviewDir, "approved")), rejected: countJson(join(reviewDir, "rejected")) };
   }
 

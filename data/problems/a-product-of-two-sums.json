@@ -20,7 +20,7 @@
   "solution": "Writing everything in terms of sine and cosine gives\n$$(\\sec x+\\tan x)(\\csc x+\\cot x)=\\dfrac{1+\\sin x}{\\cos x}\\cdot\\dfrac{1+\\cos x}{\\sin x}=\\dfrac{(1+\\sin x)(1+\\cos x)}{\\sin x\\cos x}.$$\n\nLet $u=\\sin x+\\cos x$. Squaring and using $\\sin^2 x+\\cos^2 x=1$ gives $u^2=1+2\\sin x\\cos x$, so $\\sin x\\cos x=\\frac{u^2-1}{2}$. Since $\\sin x\\cos x\\ne 0$, we have $u^2\\ne 1$. The numerator is\n$$(1+\\sin x)(1+\\cos x)=1+u+\\dfrac{u^2-1}{2}=\\dfrac{(u+1)^2}{2}.$$\n\nBecause $u+1\\ne 0$, the product simplifies to\n$$\\dfrac{(u+1)^2}{u^2-1}=\\dfrac{u+1}{u-1}.$$\n\nSetting this equal to $\\frac{20}{3}$ gives $3u+3=20u-20$, so $u=\\frac{23}{17}$. This value is attained: the angle $x$ with $\\sin x=\\frac{8}{17}$ and $\\cos x=\\frac{15}{17}$ has $\\sin x+\\cos x=\\frac{23}{17}$, and the product is then $\\frac{u+1}{u-1}=\\frac{40}{6}=\\frac{20}{3}$.\n\nThus $\\sin x+\\cos x=\\frac{23}{17}$, where $23$ and $17$ are coprime, so $m+n=23+17=40$. The answer is $40$.\n\n<b>Why this works.</b> <code>symmetric-expressions</code>, <code>pythagorean-trig-identity</code>: the product is symmetric in $\\sin x$ and $\\cos x$, and the Pythagorean identity turns it into a function of their sum alone, which reduces to a linear equation.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

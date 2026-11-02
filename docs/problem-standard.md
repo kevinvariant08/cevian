@@ -1,6 +1,6 @@
-# The Kyuclid problem standard
+# The Cevian problem standard
 
-This document defines a good Kyuclid problem at each kyu. The generator (tasks 06, 08 and 09), the verification gate (05), the reviewers (07) and community authors (17) all follow it.
+This document defines a good Cevian problem at each kyu. The generator (tasks 06, 08 and 09), the verification gate (05), the reviewers (07) and community authors (17) all follow it.
 
 **Status: draft for Kevin's approval.** The rules in sections 2 to 8 are ready to use. The ladder in section 1 is only partly calibrated, because task 03 has not finished: section 1.1 says what each number rests on. Decisions still open are in section 9. Every rule has an ID, and Appendix A says how each one is checked.
 
@@ -152,7 +152,7 @@ Task 21 governs bosses. Where it differs from this standard, task 21 wins:
 - **BS2.** Hints follow task 21: hint 1 names the chapter's tool, and hint 2 comes from a Remark box. Section 5's H2 and H3 do not apply.
 - **BS3.** The rubric comes from Kevin's solution, totals 7, and Kevin approves it.
 - **BS4.** The bar for a boss: the hardest problem in its chapter, or one of the 3–5 hardest in the book, in Kevin's judgement. A chapter's hardest problem may be easier than 1 kyu, because the tier follows the book and not the ladder.
-- **BS5.** Everything else here still applies to Kyuclid's own text (hints and solutions), including UK spelling. The book's title keeps its own spelling.
+- **BS5.** Everything else here still applies to Cevian's own text (hints and solutions), including UK spelling. The book's title keeps its own spelling.
 
 ## 2. Statement rules
 
