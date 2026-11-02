@@ -205,8 +205,17 @@ class ApiBackend(Backend):
         if model in ("claude-opus-5-5", "claude-sonnet-5-5"):
             kw.update(betas=["server-side-fallback-2026-07-01"], fallbacks="default")
         try:
-            with self.client.beta.messages.stream(**kw) as stream:
-                m = stream.get_final_message()
+            for attempt in range(4):
+                try:
+                    with self.client.beta.messages.stream(**kw) as stream:
+                        m = stream.get_final_message()
+                    break
+                except (self.anthropic.RateLimitError, self.anthropic.APIStatusError):
+                    raise
+                except Exception as e:  # a dropped connection mid-stream surfaces as a raw httpx error
+                    if attempt == 3:
+                        raise ModelError(f"connection failed: {type(e).__name__}") from e
+                    time.sleep(5 * (attempt + 1))
         except self.anthropic.RateLimitError as e:
             raise PlanLimit(str(e)[:200]) from e
         except self.anthropic.APIError as e:
