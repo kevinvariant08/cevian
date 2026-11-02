@@ -72,7 +72,7 @@ function today(potd) {
   return `<section class="panel today" aria-labelledby="todayH">
     <h2 class="side-h" id="todayH">Today's problem</h2>
     <div class="today-t"><a href="#p-${esc(potd.id)}">${esc(potd.title)}</a>${badge(potd.kyu, null, "solo")}</div>
-    <span class="faint">${TOPICS[potd.topic]} · ${solved ? "Solved" : `+${KYU[potd.kyu].pts} pts`}</span>
+    <span class="faint">${TOPICS[potd.topic]} · ${solved ? "Solved" : S.forfeits[potd.id] ? "Forfeited" : `+${KYU[potd.kyu].pts} pts`}</span>
   </section>`;
 }
 

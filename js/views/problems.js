@@ -151,7 +151,7 @@ export const row = (p, fav = false) => {
     ${badge(p.kyu)}
     <span class="prow-main"><span class="t">${esc(p.title)}</span>${p.type === "proof" ? ` <span class="tagword">Proof</span>` : ""}
       <span class="meta"><span>${TOPICS[p.topic]}</span>${S.solved[p.id] ? p.subtopics.slice(0, 2).map((s) => `<span>${esc(subtopicName(s))}</span>`).join("") : ""}${sourceLine(p) ? `<span>${esc(sourceLine(p))}</span>` : ""}</span></span>
-    <span class="prow-r">${statusTag(p)}${p.stats.solves ? `<span>${p.stats.solves.toLocaleString("en-GB")} solves · ${likedPct(p)} liked</span>` : ""}<span class="pts">+${KYU[p.kyu].pts}</span></span>
+    <span class="prow-r">${statusTag(p)}${p.stats.solves ? `<span>${p.stats.solves.toLocaleString("en-GB")} solves · ${likedPct(p)} liked</span>` : ""}<span class="pts">${S.forfeits[p.id] ? "0" : "+" + KYU[p.kyu].pts}</span></span>
   </a>`;
   return fav ? `<li class="prow-wrap">${star}${a}</li>` : `<li>${a}</li>`;
 };

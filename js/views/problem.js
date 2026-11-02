@@ -1,6 +1,6 @@
 // One problem: statement, answer box or proof editor, hints, solution, rating.
 import { $, esc, renderMe, sourceLine, authorOf, fmtDate, errorPanel, loadingPanel, beltFill } from "../lib/ui.js";
-import { KYU, badge, TOPICS, HINT_COST, rankOf } from "../lib/ranks.js";
+import { KYU, badge, beltSvg, TOPICS, HINT_COST, rankOf } from "../lib/ranks.js";
 import { S, save, award, points, logEvent, touchDay, toggleFavourite, forfeit } from "../lib/store.js";
 import { LISTED, byId, cachedProblem, getProblem, likedPct } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
@@ -47,7 +47,7 @@ function gainBar(gain) {
   const up = now.cur.min > was.cur.min;
   const from = up ? 0 : was.frac, pct = Math.round(now.frac * 100);
   return `<div class="gain">
-    ${up ? `<p class="rankup">${badge(now.cur.k, now.cur.label)}<b>New rank: ${now.cur.label}</b></p>` : ""}
+    ${up ? `<p class="rankup"><span class="kyu">${beltSvg(now.cur.k, parseInt(now.cur.label, 10))}</span><b>New rank: ${now.cur.label}${now.cur.k ? `, ${KYU[now.cur.k].belt.toLowerCase()} belt` : ""}</b></p>` : ""}
     <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="Progress to next rank"><i style="width:${Math.max(2, from * 100)}%;background:${beltFill(now.cur.k)}" data-to="${Math.max(2, pct)}"></i></div>
     <span class="faint">${now.next ? `${now.next.min - gain.after} pts to ${now.next.label}` : "Top rank"}</span>
   </div>`;
