@@ -1,12 +1,13 @@
 // One problem: statement, answer box or proof editor, hints, solution, rating.
-import { $, esc, renderMe, sourceLine, authorOf, fmtDate, errorPanel, loadingPanel } from "../lib/ui.js";
-import { KYU, badge, TOPICS, HINT_COST } from "../lib/ranks.js";
-import { S, save, award, logEvent, touchDay, toggleFavourite } from "../lib/store.js";
+import { $, esc, renderMe, sourceLine, authorOf, fmtDate, errorPanel, loadingPanel, beltFill } from "../lib/ui.js";
+import { KYU, badge, TOPICS, HINT_COST, rankOf } from "../lib/ranks.js";
+import { S, save, award, points, logEvent, touchDay, toggleFavourite, forfeit } from "../lib/store.js";
 import { LISTED, byId, cachedProblem, getProblem, likedPct } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
 import { tex, paras, texParas, safeText } from "../lib/tex.js";
 import { solutionHtml, inlineFigures } from "../lib/figures.js";
-import { subtopicName } from "../lib/taxonomy.js";
+import { subtopicName, subtopicDefinition, loadTaxonomy } from "../lib/taxonomy.js";
+import { GISCUS, giscusReady, mountDiscussion } from "../lib/discuss.js";
 import { D } from "./duel.js";
 import { lastListHash } from "./problems.js";
 
@@ -40,11 +41,63 @@ function hintButton(p, used) {
   return `<button class="btn small" type="button" id="hintBtn">Open hint ${used + 1} of ${p.hints.length}${p.type === "answer" ? ` (−${Math.round(HINT_COST * 100)}% pts)` : ""}</button>`;
 }
 
-function solvedBanner(p, solved) {
+// Before and after a solve, for the bar that fills on the banner. A rank-up starts the bar from empty.
+function gainBar(gain) {
+  const was = rankOf(gain.before), now = rankOf(gain.after);
+  const up = now.cur.min > was.cur.min;
+  const from = up ? 0 : was.frac, pct = Math.round(now.frac * 100);
+  return `<div class="gain">
+    ${up ? `<p class="rankup">${badge(now.cur.k, now.cur.label)}<b>New rank: ${now.cur.label}</b></p>` : ""}
+    <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="Progress to next rank"><i style="width:${Math.max(2, from * 100)}%;background:${beltFill(now.cur.k)}" data-to="${Math.max(2, pct)}"></i></div>
+    <span class="faint">${now.next ? `${now.next.min - gain.after} pts to ${now.next.label}` : "Top rank"}</span>
+  </div>`;
+}
+
+function solvedBanner(p, solved, gain) {
+  if (!solved && S.forfeits[p.id]) return `<div class="solved-banner forfeit" id="solvedBanner" tabindex="-1"><span class="qed" aria-hidden="true"></span><div><b>Forfeited</b><span class="faint">Solution and discussion unlocked ${fmtDate(S.forfeits[p.id])}. This problem no longer earns points.</span></div></div>`;
   if (!solved) return "";
   const what = solved.how === "proof" ? `Self-graded ${solved.grade}/7` : solved.how === "duel" ? "Won in a duel" : "Solved";
   const pts = solved.how === "proof" ? `+${solved.pts} provisional pts` : `+${solved.pts} pts`;
-  return `<div class="solved-banner" id="solvedBanner" tabindex="-1"><span class="qed" aria-hidden="true"></span><div><b>${what}</b><span class="faint">${pts}${solved.at ? ` · ${fmtDate(solved.at)}` : ""}</span></div></div>`;
+  return `<div class="solved-banner" id="solvedBanner" tabindex="-1"><span class="qed" aria-hidden="true"></span><div><b>${what}</b>${gain ? `<span class="pop">${pts}</span>` : `<span class="faint">${pts}${solved.at ? ` · ${fmtDate(solved.at)}` : ""}</span>`}${gain ? gainBar(gain) : ""}</div></div>`;
+}
+
+// Up to three open problems sharing the most techniques with p, same topic and nearest kyu first.
+// Their techniques stay hidden: the reader hasn't solved them.
+function similar(p) {
+  const mine = new Set(p.subtopics);
+  return LISTED.filter((x) => x.id !== p.id && !S.solved[x.id] && !S.forfeits[x.id])
+    .map((x) => ({ x, n: x.subtopics.filter((s) => mine.has(s)).length }))
+    .filter((r) => r.n > 0)
+    .sort((a, b) => b.n - a.n || (a.x.topic !== p.topic) - (b.x.topic !== p.topic) || Math.abs(a.x.kyu - p.kyu) - Math.abs(b.x.kyu - p.kyu))
+    .slice(0, 3).map((r) => r.x);
+}
+
+// The techniques, with what each one is and how many more problems use it. Definitions fill in once the taxonomy loads.
+function taughtHtml(p) {
+  if (!p.subtopics.length) return "";
+  const more = (s) => LISTED.filter((x) => x.id !== p.id && x.subtopics.includes(s)).length;
+  return `<div class="sec"><h2>What this problem taught</h2>
+    <ul class="taught">${p.subtopics.map((s) => {
+      const n = more(s);
+      return `<li><b>${esc(subtopicName(s))}</b><span class="def" data-def="${esc(s)}">${safeText(subtopicDefinition(s))}</span>${n ? `<a href="#problems?s=${encodeURIComponent(s)}">${n} more problem${n > 1 ? "s" : ""} using it →</a>` : ""}</li>`;
+    }).join("")}</ul>
+  </div>`;
+}
+
+function discussionHtml() {
+  const threads = `https://github.com/${GISCUS.repo}/discussions`;
+  return `<div class="sec" id="discussSec"><h2>Discussion</h2>
+    <p class="faint">Threads are public on <a href="${threads}" target="_blank" rel="noopener">GitHub Discussions</a>, so anyone can read them there. Hiding them until now is a courtesy against spoilers, not a secret. Posting needs a GitHub account.</p>
+    ${giscusReady() ? `<div class="giscus-box" id="giscusBox"></div>` : `<p class="locked">Discussion opens soon. Once it does, each problem gets its own thread here.</p>`}
+  </div>`;
+}
+
+function forfeitDialog() {
+  return `<dialog class="dlg" id="forfeitDlg" aria-labelledby="forfeitH">
+    <h2 class="sub" id="forfeitH">Forfeit this problem?</h2>
+    <p>The solution and discussion unlock now. <b>This is permanent:</b> this problem will never earn you points, even if you solve it later.</p>
+    <div class="cta"><button class="btn primary" type="button" id="forfeitGo">Forfeit for good</button><button class="btn" type="button" id="forfeitClose">Keep trying</button></div>
+  </dialog>`;
 }
 
 function reportDialog(p) {
@@ -73,11 +126,12 @@ export async function renderProblem(id, opts = {}) {
   }
   document.title = `${p.title} · Cevian`;
   const solved = S.solved[p.id];
+  const forfeitedHere = !!S.forfeits[p.id];
   const used = S.hints[p.id] || 0;
   const base = KYU[p.kyu].pts;
   const { prev, next } = neighbours(p);
-  const unsolvedHere = LISTED.filter((x) => x.kyu === p.kyu && x.id !== p.id && !S.solved[x.id]);
-  const upNext = unsolvedHere[0] || LISTED.find((x) => !S.solved[x.id] && x.id !== p.id);
+  const open = (x) => x.id !== p.id && !S.solved[x.id] && !S.forfeits[x.id];
+  const upNext = LISTED.find((x) => x.kyu === p.kyu && open(x)) || LISTED.find(open);
   const nextId = next ? next.id : upNext ? upNext.id : null;
   const pf = S.proofs[p.id] || { text: "", submitted: false };
   const source = sourceLine(p);
@@ -104,7 +158,8 @@ export async function renderProblem(id, opts = {}) {
         ${pf.submitted ? `<span class="status review">Submitted. In the full site this waits for two reviewers.</span>` : `<button class="btn primary" type="button" id="submitProof">Submit for review</button>`}
       </div>
       <p class="feedback" id="proofFb" role="status"></p>
-      ${pf.submitted ? `
+      ${pf.submitted && forfeitedHere && !solved ? `<p class="faint">You forfeited this one, so there's no self-grade and no points. Compare your proof with the reference below.</p>` : ""}
+      ${pf.submitted && !(forfeitedHere && !solved) ? `
       <div class="sec"><h2>Self-grade against the rubric</h2>
         <ol class="rubric">${p.rubric.map((r) => `<li>${safeText(rubricLine(r))}</li>`).join("")}</ol>
         <div class="grades" id="grades" role="group" aria-label="Your grade out of 7">${[0, 1, 2, 3, 4, 5, 6, 7].map((g) => `<button type="button" data-g="${g}" aria-pressed="${!!solved && solved.grade === g}" aria-label="Grade ${g} out of 7">${g}</button>`).join("")}</div>
@@ -113,7 +168,9 @@ export async function renderProblem(id, opts = {}) {
     </div>`;
   }
 
-  const showSolution = p.type === "answer" ? !!solved : !!pf.submitted;
+  // Solving, submitting a proof or forfeiting unlocks the solution, what it taught, similar problems and the discussion.
+  const unlocked = !!solved || !!pf.submitted || forfeitedHere;
+  const alike = unlocked ? similar(p) : [];
   const noHints = !p.hints.length ? `<p class="locked">This one has no hints.</p>` : "";
   v.innerHTML = `
   <div class="pbar">
@@ -127,7 +184,7 @@ export async function renderProblem(id, opts = {}) {
   </div>
   <div class="pgrid">
     <article class="panel belted${solved ? " is-solved" : ""}" style="--belt:${KYU[p.kyu].bg}">
-      ${solvedBanner(p, solved)}
+      ${solvedBanner(p, solved, opts.gain)}
       <div class="phead">${badge(p.kyu, null, "lg")}<h1 class="ptitle">${esc(p.title)}</h1></div>
       <div class="pmeta"><span>${TOPICS[p.topic]}</span><span>${p.type === "proof" ? "Proof, peer-reviewed" : "Single answer, auto-checked"}</span><span>${source ? "Source: " + esc(source) : "Original, by " + esc(authorOf(p))}</span></div>
       <div class="statement" id="statement">${texParas(p.statement)}</div>
@@ -137,8 +194,10 @@ export async function renderProblem(id, opts = {}) {
         ${noHints}${p.hints.length && used < p.hints.length && !solved ? hintButton(p, used) : p.hints.length && used === 0 ? `<p class="locked">Solved without hints.</p>` : ""}
       </div>
       <div class="sec"><h2>${p.type === "proof" ? "Reference proof" : "Solution"}</h2>
-        ${showSolution ? `<div class="solution">${solutionHtml(p)}</div>` : `<p class="locked">${p.type === "proof" ? "Unlocks when you submit a proof." : "Unlocks when you solve it, so nobody can peek their way up the ranks."}</p>`}
+        ${unlocked ? `<div class="solution">${solutionHtml(p)}</div>` : `<p class="locked">${p.type === "proof" ? "The reference proof and discussion unlock when you submit a proof." : "The solution and discussion unlock when you solve it, so nobody can peek their way up the ranks."}</p>
+        <p class="forfeit-row"><button class="btn small ghost" type="button" id="forfeitBtn">Forfeit and unlock</button><span class="faint">Stuck for good? You give up this problem's ${base} pts for ever.</span></p>`}
       </div>
+      ${unlocked ? taughtHtml(p) : ""}
       ${solved ? `
       <div class="sec"><h2>Rate this problem</h2>
         <div class="vote" id="votes" role="group" aria-label="How did the rank feel?">
@@ -146,6 +205,7 @@ export async function renderProblem(id, opts = {}) {
         </div>
         <p class="faint" id="voteNote" role="status">${S.votes[p.id] ? "Vote saved. Rank votes are how beta problems get their kyu." : "Rank votes are how beta problems get their kyu."}</p>
       </div>` : ""}
+      ${unlocked ? discussionHtml() : ""}
       <p class="keys faint"><kbd>Enter</kbd> submits · <kbd>h</kbd> opens the next hint · <kbd>n</kbd> goes to the next problem · <kbd>Esc</kbd> leaves the answer box</p>
     </article>
     <aside class="side" aria-label="About this problem">
@@ -155,19 +215,20 @@ export async function renderProblem(id, opts = {}) {
           <dt>Worth</dt><dd>${base} pts</dd>
           ${p.stats.solves ? `<dt>Solves</dt><dd>${p.stats.solves.toLocaleString("en-GB")}</dd>
           <dt>Liked by</dt><dd>${likedPct(p)}</dd>` : ""}
-          <dt>Your status</dt><dd>${solved ? (solved.how === "proof" ? "self-graded" : "solved") : "open"}</dd>
+          <dt>Your status</dt><dd>${solved ? (solved.how === "proof" ? "self-graded" : "solved") : forfeitedHere ? "forfeited" : "open"}</dd>
         </dl>
-        ${solved && p.subtopics.length ? `<div class="tags">${p.subtopics.map((s) => `<a class="tag" href="#problems?s=${encodeURIComponent(s)}">${esc(subtopicName(s))}</a>`).join("")}</div>` : ""}
       </div>
+      ${alike.length ? `<div class="panel"><h2 class="side-h">Similar problems</h2><p class="faint" style="margin:4px 0 8px">Open problems that share a technique with this one.</p>
+        <ul class="alike">${alike.map((x) => `<li><a href="#p-${x.id}">${esc(x.title)}</a>${badge(x.kyu, null, "solo")}</li>`).join("")}</ul></div>` : ""}
       ${p.type === "answer" ? `<div class="panel"><h2 class="side-h">Race someone on this kyu</h2><p class="faint" style="margin:4px 0 12px">A random ${p.kyu} kyu problem against the clock.</p><a class="btn" href="#duel" id="duelHere">Duel at ${p.kyu} kyu</a></div>` : ""}
-      ${upNext ? `<div class="panel"><h2 class="side-h">Next unsolved</h2><div class="side-next"><b>${esc(upNext.title)}</b>${badge(upNext.kyu, null, "solo")}</div><a class="btn small" href="#p-${upNext.id}">Open</a></div>` : ""}
+      ${upNext && !alike.length ? `<div class="panel"><h2 class="side-h">Next unsolved</h2><div class="side-next"><b>${esc(upNext.title)}</b>${badge(upNext.kyu, null, "solo")}</div><a class="btn small" href="#p-${upNext.id}">Open</a></div>` : ""}
     </aside>
   </div>
   ${prev ? `<nav class="pnav" aria-label="Other problems at ${p.kyu} kyu">
     <a class="pnav-a" rel="prev" href="#p-${prev.id}"><span class="faint">← Previous at ${p.kyu} kyu</span><b>${esc(prev.title)}</b></a>
     <a class="pnav-a right" rel="next" href="#p-${next.id}"><span class="faint">Next at ${p.kyu} kyu →</span><b>${esc(next.title)}</b></a>
   </nav>` : ""}
-  ${reportDialog(p)}`;
+  ${reportDialog(p)}${unlocked ? "" : forfeitDialog()}`;
 
   keys.next = nextId;
   function openHint() {
@@ -189,12 +250,25 @@ export async function renderProblem(id, opts = {}) {
     e.preventDefault();
     const val = $("ans").value; const r = check(p, val); const fb = $("fb");
     if (r === null) { fb.className = "feedback bad"; fb.textContent = "Enter a number, a fraction like 25/4, or a decimal."; return; }
-    if (r) { award(p, "answer"); renderMe(); renderProblem(p.id, { focus: "solvedBanner" }); return; }
+    if (r && S.forfeits[p.id]) { fb.className = "feedback ok"; fb.textContent = `${val.trim()} is right. No points, since you forfeited this one.`; return; }
+    if (r) { const before = points(); award(p, "answer"); renderMe(); renderProblem(p.id, { focus: "solvedBanner", gain: { before, after: points() } }); return; }
     S.tries[p.id] = (S.tries[p.id] || 0) + 1; touchDay(); save();
     fb.className = "feedback bad"; fb.textContent = `${val.trim()} is not it. Attempt ${S.tries[p.id]}.`;
   });
   if ($("duelHere")) $("duelHere").addEventListener("click", () => { D.kyu = p.kyu; });
-  $("favBtn").addEventListener("click", () => { toggleFavourite(p.id); renderProblem(p.id, { focus: "favBtn" }); });
+  // In place, so an open discussion thread isn't reloaded.
+  $("favBtn").addEventListener("click", (e) => {
+    toggleFavourite(p.id);
+    const on = !!S.favourites[p.id];
+    e.currentTarget.setAttribute("aria-pressed", on);
+    e.currentTarget.textContent = on ? "★ Favourited" : "☆ Favourite";
+  });
+  if ($("forfeitBtn")) {
+    const fd = $("forfeitDlg");
+    $("forfeitBtn").addEventListener("click", () => fd.showModal());
+    $("forfeitClose").addEventListener("click", () => fd.close());
+    $("forfeitGo").addEventListener("click", () => { fd.close(); forfeit(p); renderProblem(p.id, { focus: "solvedBanner" }); });
+  }
   if ($("proofText")) {
     const ta = $("proofText"), pv = $("proofPrev");
     let timer = null;
@@ -208,9 +282,10 @@ export async function renderProblem(id, opts = {}) {
     S.proofs[p.id] = { text: t, submitted: true }; logEvent(`Submitted a proof for ${p.title}`); save(); renderProblem(p.id);
   });
   if ($("grades")) $("grades").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
-    const g = +b.dataset.g; delete S.solved[p.id];
+    const g = +b.dataset.g, first = !S.solved[p.id]; delete S.solved[p.id];
+    const before = points();
     if (g > 0) award(p, "proof", g); else save();
-    renderMe(); renderProblem(p.id);
+    renderMe(); renderProblem(p.id, first && g > 0 ? { focus: "solvedBanner", gain: { before, after: points() } } : {});
   }));
   if ($("votes")) $("votes").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
     S.votes[p.id] = b.dataset.vote; save();
@@ -242,4 +317,11 @@ export async function renderProblem(id, opts = {}) {
   tex(v.querySelector("article"));
   // Only an unlocked solution has placeholders, so nothing is fetched before then.
   inlineFigures(v);
+  if (unlocked && p.subtopics.length) loadTaxonomy().then(() => {
+    v.querySelectorAll("[data-def]").forEach((el) => { if (!el.textContent) { el.innerHTML = safeText(subtopicDefinition(el.dataset.def)); tex(el); } });
+  });
+  if ($("giscusBox")) mountDiscussion($("giscusBox"), p.id);
+  // The bar starts where you were and fills to where the solve took you.
+  const bar = v.querySelector(".gain .track i");
+  if (bar) requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = bar.dataset.to + "%"; }));
 }

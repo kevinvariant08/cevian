@@ -51,7 +51,7 @@ async function startDuel() {
   if (D.starting || D.live) return;
   const pool = LISTED.filter((p) => p.type === "answer" && p.kyu === D.kyu);
   if (!pool.length) { if ($("duelNote")) $("duelNote").textContent = `There are no answer problems at ${D.kyu} kyu yet. Pick another belt.`; return; }
-  const fresh = pool.filter((p) => !S.solved[p.id]);
+  const fresh = pool.filter((p) => !S.solved[p.id] && !S.forfeits[p.id]);
   const pick = (fresh.length ? fresh : pool)[Math.floor(Math.random() * (fresh.length ? fresh.length : pool.length))];
   D.starting = true;
   let p;

@@ -23,7 +23,7 @@
 | Favourite / bookmark a kata to return to | **Missing.** There is no saved list distinct from solved/tried | (a), see below |
 | Badges or milestones beyond the rank itself | **Missing.** The rank is the only recognition; Codewars also marks streaks and completion milestones | (a), see below |
 | Kata author tools, community authoring | **Missing** | (b), task 17 |
-| Discuss tab / comments per kata | **Missing** | (b), needs accounts and moderation |
+| Discuss tab / comments per kata | **Have**, once giscus is configured. Locked until solved, submitted or forfeited; threads live in GitHub Discussions | — |
 | Solution voting and viewing others' solutions | **Missing**, and `stats.liked` is a static seed number, not a live vote | (b): a real vote needs a shared store so one person can't stuff it |
 | Peer-reviewed proof marking | **Missing.** The proof page only self-grades against the rubric, as task 16 describes | (b), task 16, depends on 13 |
 | Clans / teams | **Missing** | (b), task 15 |

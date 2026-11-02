@@ -6,7 +6,7 @@ export const $ = (id) => document.getElementById(id);
 export const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 // The bar fills in your current belt's colour. A black belt would vanish on the rail, so dan ranks use its red rank bar.
-const beltFill = (k) => (k ? KYU[k].bg : KYU[k].tape);
+export const beltFill = (k) => (k ? KYU[k].bg : KYU[k].tape);
 
 export function renderMe() {
   const pts = points(); const r = rankOf(pts);
@@ -48,6 +48,7 @@ export const statusTag = (p) => {
   const s = S.solved[p.id];
   if (s && s.how === "proof") return `<span class="status review">Self-graded ${s.grade}/7</span>`;
   if (s) return `<span class="status solved">Solved</span>`;
+  if (S.forfeits[p.id]) return `<span class="status forfeit">Forfeited</span>`;
   if (S.proofs[p.id] && S.proofs[p.id].submitted) return `<span class="status review">In review</span>`;
   return "";
 };

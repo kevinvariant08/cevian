@@ -2,7 +2,7 @@
 import { KYU, HINT_COST, MIN_HINT_SHARE, PROOF_MARKS, rankOf } from "./ranks.js";
 
 const KEY = "mathwars:v1";
-const fresh = () => ({ handle: "you", solved: {}, tries: {}, hints: {}, proofs: {}, votes: {}, favourites: {}, duel: { rating: 1200, w: 0, l: 0, d: 0 }, log: [], activity: {}, placement: null });
+const fresh = () => ({ handle: "you", solved: {}, tries: {}, hints: {}, proofs: {}, votes: {}, favourites: {}, forfeits: {}, duel: { rating: 1200, w: 0, l: 0, d: 0 }, log: [], activity: {}, placement: null });
 
 // Local calendar day, so a streak follows the solver's own midnight.
 export const dayKey = (t = Date.now()) => {
@@ -65,7 +65,7 @@ export function importJSON(text, mode = "merge") {
     for (const k of Object.keys(S)) delete S[k];
     Object.assign(S, fresh(), data);
   } else {
-    for (const k of ["solved", "tries", "hints", "proofs", "votes", "favourites"]) S[k] = { ...(data[k] || {}), ...S[k] };
+    for (const k of ["solved", "tries", "hints", "proofs", "votes", "favourites", "forfeits"]) S[k] = { ...(data[k] || {}), ...S[k] };
     for (const [d, n] of Object.entries(data.activity || {})) S.activity[d] = Math.max(S.activity[d] || 0, n);
     if (Array.isArray(data.log)) S.log = [...S.log, ...data.log].sort((a, b) => b.at - a.at).slice(0, 30);
     if (data.duel && (data.duel.w || 0) + (data.duel.l || 0) + (data.duel.d || 0) > S.duel.w + S.duel.l + S.duel.d) S.duel = data.duel;
@@ -74,9 +74,18 @@ export function importJSON(text, mode = "merge") {
   save();
 }
 
-// p needs id, kyu and title, so an index entry or a full problem both work.
+// Forfeiting unlocks the solution and discussion for good. A forfeited problem never scores, even if solved later.
+export const forfeited = (id) => !!S.forfeits[id];
+export function forfeit(p) {
+  if (S.solved[p.id] || S.forfeits[p.id]) return;
+  S.forfeits[p.id] = Date.now();
+  logEvent(`Forfeited ${p.title}`);
+  save();
+}
+
+// p needs id, kyu and title, so an index entry or a full problem both work. A forfeited problem records nothing.
 export function award(p, how, grade) {
-  if (S.solved[p.id]) return 0;
+  if (S.solved[p.id] || S.forfeits[p.id]) return 0;
   const base = KYU[p.kyu].pts;
   const usedHints = S.hints[p.id] || 0;
   let pts = Math.max(1, Math.round(base * Math.max(MIN_HINT_SHARE, 1 - HINT_COST * usedHints)));

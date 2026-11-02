@@ -142,6 +142,7 @@ export function renderProfile() {
   const topicCount = (t) => solvedList.filter((p) => p.topic === t).length;
   const topicTotal = (t) => LISTED.filter((p) => p.topic === t).length;
   const streak = currentStreak();
+  const forfeits = Object.keys(S.forfeits).length;
   $("v-profile").innerHTML = `
   <h1 class="sr-only">Your profile</h1>
   <div class="panel prof-head">
@@ -155,7 +156,7 @@ export function renderProfile() {
   </div>
   <div class="tiles">
     <div class="tile"><span class="eyebrow">Points</span><b>${pts}</b></div>
-    <div class="tile"><span class="eyebrow">Solved</span><b>${solvedList.length} <small>of ${LISTED.length}</small></b></div>
+    <div class="tile"><span class="eyebrow">Solved</span><b>${solvedList.length} <small>of ${LISTED.length}</small></b><span class="faint">${forfeits} forfeited</span></div>
     <div class="tile"><span class="eyebrow">Streak</span><b>${streak} <small>${streak === 1 ? "day" : "days"}</small></b></div>
     <div class="tile"><span class="eyebrow">Duel rating</span><b>${Math.round(S.duel.rating)}</b><span class="faint">${S.duel.w}W ${S.duel.l}L ${S.duel.d}D</span></div>
   </div>

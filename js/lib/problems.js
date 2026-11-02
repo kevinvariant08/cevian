@@ -37,12 +37,12 @@ export const likedRate = (p) => (p.stats.solves ? p.stats.liked / p.stats.solves
 
 // Every unsolved problem, nearest this kyu first and harder before easier, for the home page's queue.
 export function upNext(k = myKyu()) {
-  return LISTED.filter((p) => !S.solved[p.id]).sort((a, b) => Math.abs(a.kyu - k) - Math.abs(b.kyu - k) || a.kyu - b.kyu);
+  return LISTED.filter((p) => !S.solved[p.id] && !S.forfeits[p.id]).sort((a, b) => Math.abs(a.kyu - k) - Math.abs(b.kyu - k) || a.kyu - b.kyu);
 }
 
 // A random unsolved problem at this kyu, or at the nearest kyu that has one (harder first).
 export function randomUnsolved(k = myKyu()) {
-  const open = LISTED.filter((p) => !S.solved[p.id]);
+  const open = LISTED.filter((p) => !S.solved[p.id] && !S.forfeits[p.id]);
   for (let d = 0; d < 8; d++) {
     for (const at of [k - d, k + d]) {
       const pool = open.filter((p) => p.kyu === at);

@@ -27,6 +27,18 @@ python -m http.server 8000
 
 Then open http://localhost:8000.
 
+## Discussion threads
+
+Each problem has a discussion panel that stays hidden until you solve it, submit a proof or forfeit it. Forfeiting is permanent: the solution unlocks and that problem never scores. Threads are hosted by [giscus](https://giscus.app) on this repo's GitHub Discussions, one per problem id. Until `js/lib/discuss.js` has its two ids, the panel says discussion opens soon and loads nothing. To switch it on:
+
+1. On GitHub, open the repo's **Settings → General → Features** and tick **Discussions**.
+2. In the **Discussions** tab, create a category called `Problems` with the **Announcement** format, so that only you and giscus can start threads.
+3. Install the giscus app at https://github.com/apps/giscus and give it access to `kevinvariant08/cevian` only.
+4. At https://giscus.app, enter `kevinvariant08/cevian` as the repository, choose **Discussion title contains a specific term** for the mapping, and pick the `Problems` category.
+5. From the generated script tag, copy `data-repo-id` into `repoId` and `data-category-id` into `categoryId` in `js/lib/discuss.js`. Commit and push.
+
+The threads are public on GitHub, so the lock is a courtesy against spoilers, not secrecy.
+
 ## Not built yet
 
 Accounts, friend duels, real leaderboards, peer review of proofs and problem submission all need a backend.
