@@ -34,6 +34,20 @@
       "after_paragraph": 3
     }
   ],
+  "four-orthogonal-quadrilaterals": [
+    {
+      "src": "figures/four-orthogonal-quadrilaterals-solution.svg?v=c6d4ef25",
+      "alt": "A kite-shaped convex quadrilateral ABCD with P, Q, R, S on sides AB, BC, CD, DA. The segments PR and QS cross at O and split ABCD into four quadrilaterals, and in each the diagonal through O is perpendicular to the opposite diagonal: OA is perpendicular to PS, OB to PQ, OC to QR and OD to RS, marked with right angles. The circle through P, Q, R and S is dashed. Adapted from Beyond the Incenter, Problem 96.",
+      "after_paragraph": 0
+    }
+  ],
+  "parallels-through-k": [
+    {
+      "src": "figures/parallels-through-k-solution.svg?v=81453e8e",
+      "alt": "Triangle ABC with K on BC beyond C. Through K, KP is parallel to AB with BP = BK, and KQ is parallel to AC with CQ = CK. The circle through K, P and Q meets AK again at T. The auxiliary point D, with triangle CTD similar to triangle CQA, is joined to A, B, C and T, and the dashed segments AP, AQ, BT, CT, PT and QT show the two similar pairs used in the proof. Adapted from Beyond the Incenter, Problem 86.",
+      "after_paragraph": 1
+    }
+  ],
   "three-chords": [
     {
       "src": "figures/three-chords-solution.svg?v=1883ca08",
