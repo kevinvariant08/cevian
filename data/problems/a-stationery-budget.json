@@ -20,7 +20,7 @@
   "solution": "Let the total be $M$ and a folder cost $p$. The numbers of items are $\\frac{M}{24}$ notebooks, $\\frac{M}{24}$ pens and $\\frac{M}{4p}$ folders, and the total number of items is $\\frac{M}{10}$. Dividing by $M$,\n$$\\dfrac{1}{12}+\\dfrac{1}{4p}=\\dfrac{1}{10},$$\nso $\\frac{1}{4p}=\\frac{1}{60}$ and $p=15$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

@@ -20,7 +20,7 @@
   "solution": "The product equals\n$$\\dfrac{1+\\sin x}{\\cos x}\\cdot\\dfrac{1+\\cos x}{\\sin x}=\\dfrac{(1+\\sin x)(1+\\cos x)}{\\sin x\\cos x}.$$\n\nLet $u=\\sin x+\\cos x$. Then $\\sin x\\cos x=\\frac{u^2-1}{2}\\ne 0$, so $u\\ne\\pm1$. The numerator is\n$$1+u+\\dfrac{u^2-1}{2}=\\dfrac{(u+1)^2}{2},$$\nso the product is $\\frac{(u+1)^2}{u^2-1}=\\frac{u+1}{u-1}$.\n\nSetting $\\frac{u+1}{u-1}=\\frac{20}{3}$ gives $3u+3=20u-20$, so $u=\\frac{23}{17}$.\n\nThis value occurs: for $\\sin x=\\frac{8}{17}$, $\\cos x=\\frac{15}{17}$ we get $u=\\frac{23}{17}$, and the product is $\\frac{40/17}{6/17}=\\frac{20}{3}$.\n\nSince $\\gcd(23,17)=1$, $m+n=23+17=40$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

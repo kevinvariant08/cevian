@@ -20,7 +20,7 @@
   "solution": "Let Bag Q have $k$ odd cards. The sum is even when both cards are odd or both are even, so\n$$\\dfrac{8k+2(10-k)}{100}=\\dfrac{31}{50}.$$\nThen $6k+20=62$, so $k=7$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

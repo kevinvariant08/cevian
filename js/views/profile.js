@@ -106,7 +106,7 @@ function bindBackup() {
   $("exportBtn").addEventListener("click", () => {
     const a = Object.assign(document.createElement("a"), {
       href: URL.createObjectURL(new Blob([exportJSON()], { type: "application/json" })),
-      download: `kyuclid-progress-${dayKey()}.json`
+      download: `cevian-progress-${dayKey()}.json`
     });
     a.click();
     URL.revokeObjectURL(a.href);
@@ -129,7 +129,7 @@ function finishImport(mode) {
     importJSON(pendingImport.text, mode);
     importMsg = mode === "replace" ? "Progress replaced from the file." : "Progress merged from the file.";
   } catch (e) {
-    importMsg = e.message || "That file could not be read as Kyuclid progress.";
+    importMsg = e.message || "That file could not be read as Cevian progress.";
   }
   pendingImport = null;
   renderMe();

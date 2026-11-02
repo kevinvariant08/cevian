@@ -20,7 +20,7 @@
   "solution": "Each tile matches $(b-1)+(a-1)$ others, since the same-colour and same-symbol tiles are disjoint sets. Each pair is counted twice, so the number of matching pairs is\n$$\\dfrac{60(a+b-2)}{2}=30(a+b-2).$$\nThis is smallest when $a+b$ is smallest. The factorisations of $60$ with both factors at least $2$ are $2\\cdot30,\\ 3\\cdot20,\\ 4\\cdot15,\\ 5\\cdot12,\\ 6\\cdot10$, with sums $32,23,19,17,16$. The minimum sum is $16$, giving $30\\cdot14=420$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

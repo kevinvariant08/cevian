@@ -21,7 +21,7 @@
   "solution": "Write $a=\\sum x_i3^i$, $b=\\sum y_i3^i$ with $x_i,y_i\\in\\{0,1\\}$, and let $d_i=x_i-y_i\\in\\{-1,0,1\\}$, so $\\sum_{i=0}^9 d_i3^i=2026$. Representations of elements of $A$ are unique (this follows from the argument below with right side $0$), so pairs $(a,b)$ correspond to choices of the $x_i,y_i$.\n\nSince $-1,0,1$ are distinct mod $3$, each $d_i$ is forced in turn by the residue mod $3$ of the remaining quantity, which is then reduced by $d_i$ and divided by $3$:\n$2026\\equiv1$ gives $d_0=1$, leaving $675$;\n$675\\to d_1=0$, leaving $225$;\n$225\\to d_2=0$, leaving $75$;\n$75\\to d_3=0$, leaving $25$;\n$25\\equiv1\\to d_4=1$, leaving $8$;\n$8\\equiv-1\\to d_5=-1$, leaving $3$;\n$3\\to d_6=0$, leaving $1$;\n$1\\to d_7=1$, leaving $0$;\nthen $d_8+3d_9=0$ forces $d_8=d_9=0$.\n\nSo $2026=3^7-3^5+3^4+3^0$ is the only possibility, and it holds since $2187-243+81+1=2026$.\n\nFor $d_i=\\pm1$ (indices $0,4,5,7$) the pair $(x_i,y_i)$ is determined. For $d_i=0$ (indices $1,2,3,6,8,9$) we need $x_i=y_i$, giving $2$ choices each. The choices are independent, so the count is $2^6=64$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

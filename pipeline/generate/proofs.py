@@ -39,7 +39,7 @@ FLAWED_RANGES = {"stops_short": (1, 3), "missing_case": (4, 6)}
 TOPICS = {"A": "algebra", "C": "combinatorics", "G": "geometry", "N": "number theory"}
 _write = threading.Lock()
 
-IDEA = """Write {n} candidate olympiad proof problems in {topic}, for {kyu} kyu on Kyuclid. The target is {anchor}.
+IDEA = """Write {n} candidate olympiad proof problems in {topic}, for {kyu} kyu on Cevian. The target is {anchor}.
 
 The style is that of USAMO, USEMO, the Balkan MO, the Canadian MO and the IMO, adapted and never copied. A short natural statement that a solver wants to know the truth of, one claim, no bolted-on parts. Theme to start from: {theme}.
 
@@ -98,7 +98,7 @@ Do not list vague doubts. An empty list is a good result."""
 
 WRITE = """A {kyu} kyu olympiad proof problem has been chosen. Write its model solution, hints and rubric.
 
-THE KYUCLID STANDARD
+THE CEVIAN STANDARD
 {standard}
 
 {figure_rules}
@@ -491,7 +491,7 @@ def main():
     backend = make_backend("cli", 6)
     index, has_corpus = originality.default_index()
     if not has_corpus:
-        raise SystemExit("set KYUCLID_CORPUS")
+        raise SystemExit("set CEVIAN_CORPUS")
     job = Job(backend, index, originality.load_threshold(), a.run)
     log_path = private_dir() / "runs" / a.run / "log.jsonl"
     log_path.parent.mkdir(parents=True, exist_ok=True)

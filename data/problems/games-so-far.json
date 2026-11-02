@@ -21,7 +21,7 @@
   "solution": "Choosing the $12$ played games is the same as choosing the $3$ unplayed games, and a player has played all their games exactly when they lie in none of the unplayed games. There are $\\binom{15}{3}=455$ choices of unplayed games.\n\nThe bad choices are those where every player lies in some unplayed game. Three games contain $6$ player-slots, so each of the six players appears exactly once, and the three games form a perfect matching. The number of perfect matchings of $6$ players is $5\\cdot3\\cdot1=15$.\n\nHence the count is $455-15=440$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

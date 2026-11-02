@@ -20,7 +20,7 @@
   "solution": "The allowed values are $2,3,5,6,10,15,30$. These correspond to the nonzero vectors in $\\mathbb F_2^3$ (the parities of the exponents of $2,3,5$). The product is a square exactly when the vectors sum to $0$.\n\nLet $a_k$ be the number of $k$-tuples with square product, so $a_1=0$. Given a $k$-tuple with non-zero parity vector $v$, exactly one allowed $d$ has vector $v$, and this $d$ makes the product a square. Given a $k$-tuple with parity vector $0$, the only choice of $d$ would be vector $0$, which is not allowed. So\n$$a_{k+1}=7^k-a_k.$$\n\nThen\n$$a_2=7,\\ a_3=42,\\ a_4=301,\\ a_5=2100,\\ a_6=14707,\\ a_7=102942,$$\n$$a_8=823543-102942=720601.$$\n\nHence $N=720601$, and $N\\equiv 601 \\pmod{1000}$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

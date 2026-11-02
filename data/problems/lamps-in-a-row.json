@@ -20,7 +20,7 @@
   "solution": "The $8$ off lamps create $9$ gaps (including both ends), and each non-empty gap holds exactly one block. So we choose $3$ of the $9$ gaps to be non-empty, in $\\binom93=84$ ways, and then distribute the $6$ on lamps among them with each gap getting at least one, in $\\binom52=10$ ways. The pattern is determined by these choices, and every choice gives a valid pattern.\n\nThe total is $84\\cdot 10=840$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

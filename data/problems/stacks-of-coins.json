@@ -20,7 +20,7 @@
   "solution": "Let $s$ splits and $j$ joins be made. A split raises the number of stacks by $1$ and lowers the coin total by $3$. A join lowers the number of stacks by $1$ and raises the coin total by $1$.\n\nStacks: $1+s-j=6$, so $s-j=5$. Coins: $30-3s+j=11$, so $3s-j=19$.\n\nSubtracting gives $2s=14$, so $s=7$ and $j=2$. The number of moves is $s+j=9$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

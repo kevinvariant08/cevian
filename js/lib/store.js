@@ -1,4 +1,4 @@
-// This browser's progress, under the localStorage key mathwars:v1. The key predates the rename to Kyuclid and keeps its name so existing progress survives.
+// This browser's progress, under the localStorage key mathwars:v1. The key predates the rename to Cevian and keeps its name so existing progress survives.
 import { KYU, HINT_COST, MIN_HINT_SHARE, PROOF_MARKS, rankOf } from "./ranks.js";
 
 const KEY = "mathwars:v1";
@@ -57,10 +57,10 @@ export const toggleFavourite = (id) => { if (S.favourites[id]) delete S.favourit
 // A full backup of this browser's progress, for moving to a new device or before clearing site data.
 export const exportJSON = () => JSON.stringify(S, null, 2);
 
-// Merge keeps both sides' progress (the safe default); replace discards what's here first. Throws on a file that isn't a Kyuclid export.
+// Merge keeps both sides' progress (the safe default); replace discards what's here first. Throws on a file that isn't a Cevian export.
 export function importJSON(text, mode = "merge") {
   const data = JSON.parse(text);
-  if (!data || typeof data !== "object" || typeof data.solved !== "object") throw new Error("That file isn't a Kyuclid progress export.");
+  if (!data || typeof data !== "object" || typeof data.solved !== "object") throw new Error("That file isn't a Cevian progress export.");
   if (mode === "replace") {
     for (const k of Object.keys(S)) delete S[k];
     Object.assign(S, fresh(), data);

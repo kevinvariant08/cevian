@@ -265,11 +265,11 @@ class Corpus(unittest.TestCase):
         self.assertEqual(rows[0]["core_idea"], "Pair objects by an involution.")
         self.assertIsNone(rows[1]["core_idea"])
 
-    def test_env_vars_kyuclid_first(self):
-        with mock.patch.dict(os.environ, {"KYUCLID_CORPUS": str(self.dir.parent), "MATHWARS_CORPUS": "elsewhere"}):
+    def test_env_vars_cevian_first(self):
+        with mock.patch.dict(os.environ, {"CEVIAN_CORPUS": str(self.dir.parent), "MATHWARS_CORPUS": "elsewhere"}):
             self.assertEqual(corpus_path(), self.dir)
         with mock.patch.dict(os.environ, {"MATHWARS_CORPUS": str(self.dir)}, clear=False):
-            os.environ.pop("KYUCLID_CORPUS", None)
+            os.environ.pop("CEVIAN_CORPUS", None)
             self.assertEqual(corpus_path(), self.dir)
 
     def test_core_idea_matches_when_the_words_do_not(self):

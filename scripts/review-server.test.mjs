@@ -54,7 +54,7 @@ const published = () => join(root, "data", "problems", `${ID}.json`);
 const index = () => JSON.parse(readFileSync(join(root, "data", "index.json"), "utf8"));
 
 before(() => {
-  root = mkdtempSync(join(tmpdir(), "kyuclid-review-"));
+  root = mkdtempSync(join(tmpdir(), "cevian-review-"));
   for (const p of ["scripts", "schema", "data", "figures", "docs/problem-standard.md", "js", "tools", "index.html"]) cpSync(join(REPO, p), join(root, p), { recursive: true });
   symlinkSync(join(REPO, "node_modules"), join(root, "node_modules"), "junction");
 });

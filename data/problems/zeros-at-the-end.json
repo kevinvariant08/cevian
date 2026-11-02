@@ -20,7 +20,7 @@
   "solution": "Since $B=63A$, we have $A+B=64A=2^6A$, and $A$ is odd, so the exponent of $2$ is exactly $6$.\n\nThe odd multiples of $5$ up to $61$ are $5,15,25,35,45,55$, so $A$ has $5+2=7$ factors of $5$, and $64$ has none. The exponent of $5$ in $A+B$ is $7$.\n\nThe number of trailing zeros is $\\min(6,7)=6$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

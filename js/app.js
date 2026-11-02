@@ -9,7 +9,7 @@ import { renderProblem } from "./views/problem.js";
 import { D, stopDuel, renderDuelSetup } from "./views/duel.js";
 
 const VIEWS = ["home", "problems", "problem", "ranks", "duel", "profile", "leaderboard"];
-const TITLES = { home: "Kyuclid: contest maths, belt by belt", problems: "Problems · Kyuclid", problem: "Problem · Kyuclid", ranks: "Ranks and belts · Kyuclid", duel: "Duel · Kyuclid", profile: "Your profile · Kyuclid", leaderboard: "Leaderboard · Kyuclid" };
+const TITLES = { home: "Cevian: contest maths, belt by belt", problems: "Problems · Cevian", problem: "Problem · Cevian", ranks: "Ranks and belts · Cevian", duel: "Duel · Cevian", profile: "Your profile · Cevian", leaderboard: "Leaderboard · Cevian" };
 
 function lazy(view, load, fn) {
   const el = $("v-" + view);

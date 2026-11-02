@@ -46,7 +46,7 @@ def verify(draft, backend, keep_going=False, sandbox_seconds=None, thresholds=No
 
         record("standard", standard.run(draft))
 
-        renders = tempfile.TemporaryDirectory(prefix="kyuclid-renders-")
+        renders = tempfile.TemporaryDirectory(prefix="cevian-renders-")
         cleanup.append(renders.cleanup)
         status, reason, figure_ev = figure_check.run(draft, renders.name)
         report["checks"].append(dict(check="figure", status=status, reason=reason, evidence={k: v for k, v in figure_ev.items() if k != "renders"}))

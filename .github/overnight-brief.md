@@ -1,4 +1,4 @@
-# Kyuclid: audit run
+# Cevian: audit run
 
 Owner: Kevin Hu. This is an unattended run; never stop to ask questions.
 Read docs/problem-standard.md first. Spend cap for this run: $10 (check

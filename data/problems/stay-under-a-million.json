@@ -20,7 +20,7 @@
   "solution": "Write each $x\\le n$ uniquely as $m\\cdot2^a3^b$ with $\\gcd(m,6)=1$. The conditions say that $x$ and $2x$ (when $2x\\le n$) have the same status, and likewise $x$ and $3x$ (when $3x\\le n$). Multiplying by $2$ or $3$ preserves $m$, so the status is constant on each class of numbers with the same $m$. Conversely, any union of classes is closed.\n\nEvery class contains its $m$, since $m\\le x\\le n$, and $m$ is the only element coprime to $6$ in its class. So the number of classes is $c$, the number of integers in $[1,n]$ coprime to $6$, and there are $2^c$ closed sets.\n\nSince $2^{19}=524288\\le10^6<1048576=2^{20}$, we need $c\\le19$. The integers coprime to $6$ are $1,5,7,11,13,17,19,23,25,29,31,35,37,41,43,47,49,53,55,59,\\dots$, and the $20$th is $59$. Hence $c\\le19$ exactly when $n\\le58$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

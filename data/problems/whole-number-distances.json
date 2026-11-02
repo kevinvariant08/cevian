@@ -21,7 +21,7 @@
   "solution": "Let $h=AC$ and let $E$ be the reflection of $A$ in line $BC$. Then $B$ is the midpoint of $AE$, so $AE=180$ and $CE=h$. Since $CB$ bisects angle $ACD$, ray $CD$ is the reflection of ray $CA$, which is ray $CE$. Also $AD$ bisects angle $CAE$, so $D$ is the foot of the bisector from $A$ in triangle $ACE$.\n\nBy the angle bisector theorem $\\frac{CD}{DE}=\\frac{h}{180}$, and $CD+DE=h$, so\n$$CD=\\dfrac{h^2}{h+180}.$$\n\nSince $h^2=(h-180)(h+180)+180^2$, $CD$ is an integer exactly when $h+180$ divides $180^2=32400=2^4\\cdot3^4\\cdot5^2$.\n\nThe triangle exists exactly when $h>90$. So we count divisors $d=h+180$ of $32400$ with $d>270$. As $32400=270\\cdot120$, this is equivalent to $\\frac{32400}{d}<120$, so we count divisors of $32400$ below $120$, by power of $5$.\n\nPower $5^0$: $1,2,3,4,6,8,9,12,16,18,24,27,36,48,54,72,81,108$, which is $18$ divisors.\n\nPower $5^1$: $5,10,15,20,30,40,45,60,80,90$, which is $10$ divisors.\n\nPower $5^2$: $25,50,75,100$, which is $4$ divisors.\n\nThe total is $18+10+4=32$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

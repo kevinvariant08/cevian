@@ -89,7 +89,7 @@ def preflight():
     missing = [t for t in ("pdflatex", "dvisvgm") if not shutil.which(t)]
     if missing:
         raise ToolchainError(f"{' and '.join(missing)} not found on PATH. Install MiKTeX (or TeX Live) with tkz-euclide and dvisvgm to build figures. The site itself doesn't need them.")
-    with tempfile.TemporaryDirectory(prefix="kyuclid-fig-") as d:
+    with tempfile.TemporaryDirectory(prefix="cevian-fig-") as d:
         tiny = "\\documentclass{standalone}\\usepackage{tkz-euclide}\\begin{document}\\begin{tikzpicture}\\tkzDefPoint(0,0){A}\\tkzDefPoint(1,0){B}\\tkzDrawSegment(A,B)\\tkzLabelPoint(A){$A$}\\end{tikzpicture}\\end{document}\n"
         (Path(d) / "t.tex").write_text(tiny, encoding="utf-8")
         code, out = _run([*_latex_args(), "t.tex"], d, 60)
@@ -343,7 +343,7 @@ def build_source(name, tex, render_png=None):
     if not fig.facts:
         raise FigureError("no %! fact lines: a figure must state what it shows, so it can be checked")
     count = fig.check_facts()
-    with tempfile.TemporaryDirectory(prefix="kyuclid-fig-") as d:
+    with tempfile.TemporaryDirectory(prefix="cevian-fig-") as d:
         raw, pdf = _compile(fig, d)
         svg = theme_svg(raw, name)
         if render_png:

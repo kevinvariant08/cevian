@@ -20,7 +20,7 @@
   "solution": "Let there be $2+2a$ flavours and $2+2b$ icings, so $a$ and $b$ are the numbers of pairs of non-premium flavours and icings. The four-cake boxes give $ab=24$.\n\nThe cakes with a premium flavour or icing number $(2+2a)(2+2b)-4ab=4+4a+4b=44$, so $a+b=10$.\n\nThen $a,b$ are the roots of $t^2-10t+24=0$, so $\\{a,b\\}=\\{4,6\\}$. There are more icings than flavours, so $b=6$ and there are $2+12=14$ icings.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

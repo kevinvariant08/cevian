@@ -20,7 +20,7 @@
   "solution": "Such an integer is $n=10^a+10^b+10^c$ with $0\\le a\\le b\\le c\\le 24$, and distinct multisets $\\{a,b,c\\}$ give distinct integers, since the digit in position $k$ is the multiplicity of $k$.\n\nSince $999=27\\cdot 37$, we have $10^3\\equiv1 \\pmod{37}$, so $10^k\\equiv 1,10,26$ for $k\\equiv0,1,2\\pmod 3$ respectively (as $100\\equiv 26$).\n\nSums of three residues from $\\{1,10,26\\}$, with repetition allowed, are\n$$3,\\ 12,\\ 28,\\ 21,\\ 37,\\ 53,\\ 30,\\ 46,\\ 62,\\ 78.$$\nOnly $37=1+10+26$ is divisible by $37$. So $37\\mid n$ exactly when $a,b,c$ lie in three different classes modulo $3$.\n\nIn $\\{0,\\dots,24\\}$ the classes $0,1,2 \\pmod 3$ contain $9,8,8$ elements respectively. Choosing one exponent from each class gives $9\\cdot8\\cdot8=576$ integers.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

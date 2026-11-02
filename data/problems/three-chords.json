@@ -21,7 +21,7 @@
   "solution": "The chord through $(u,u^2)$ and $(v,v^2)$ has slope $u+v$. A line meets the parabola in at most two points, so any three points form a triangle. We count integer triples $a<b<c$ in $[-20,20]$ with $a+b<a+c<b+c$ all prime.\n\nThe sum of the three slopes is $2(a+b+c)$, which is even, so the number of odd slopes is even. The slopes are distinct and $2$ is the only even prime, so they are not all even. Hence exactly one slope is $2$, and it is the smallest: $a+b=2$, $a+c=p$, $b+c=q$ with odd primes $p<q$. Then\n$$a=\\dfrac{2+p-q}{2},\\quad b=\\dfrac{2+q-p}{2},\\quad c=\\dfrac{p+q-2}{2}.$$\nEach triple determines $(p,q)$ and conversely. For any odd primes $p<q$ these are integers, with $a<b$ since $p<q$ and $b<c$ since $p>2$.\n\nThe range condition is $c\\le 20$ and $a\\ge -20$, that is $p+q\\le 42$ and $q-p\\le 42$. The second follows from the first. So we count pairs of odd primes $p<q$ with $p+q\\le 42$.\n\nThe number of such $q$ for each $p$:\n\n<b>$p=3$:</b> $q\\in\\{5,7,11,13,17,19,23,29,31,37\\}$, so $10$.\n\n<b>$p=5$:</b> $q\\in\\{7,11,13,17,19,23,29,31,37\\}$, so $9$.\n\n<b>$p=7$:</b> $q\\in\\{11,13,17,19,23,29,31\\}$, so $7$.\n\n<b>$p=11$:</b> $q\\in\\{13,17,19,23,29,31\\}$, so $6$.\n\n<b>$p=13$:</b> $q\\in\\{17,19,23,29\\}$, so $4$.\n\n<b>$p=17$:</b> $q\\in\\{19,23\\}$, so $2$.\n\n<b>$p=19$:</b> $q=23$, so $1$.\n\nFor $p\\ge 23$ we get $p+q>46$, so there are none.\n\nThe total is $10+9+7+6+4+2+1=39$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

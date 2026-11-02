@@ -20,7 +20,7 @@
   "solution": "Write the number as $abba$ with $1\\le a\\le 9$ and $0\\le b\\le 9$. The digit sum is $2(a+b)=14$, so $a+b=7$ with $1\\le a\\le 7$, and $b=7-a$ is then a valid digit. This gives $7$ palindromes.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

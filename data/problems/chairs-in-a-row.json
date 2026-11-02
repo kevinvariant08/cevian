@@ -20,7 +20,7 @@
   "solution": "Number the chairs $1,\\dots,13$. For chairs $i<j$ there are $j-i-1$ chairs between them, which is odd exactly when $i,j$ have the same parity. There are $7$ odd and $6$ even numbers, so the count is\n$$\\binom72+\\binom62=21+15=36.$$",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

@@ -20,7 +20,7 @@
   "solution": "Adding $t+u=9$ and $t-u=3$ gives $t=6$, $u=3$.\n\nThe first digit is not $0$, $3$ or $6$, so it has $7$ choices. The second digit differs from $3$, $6$ and the first digit, so it has $10-3=7$ choices ($0$ is allowed). The third digit differs from $3$, $6$ and the first two digits, so it has $10-4=6$ choices.\n\nThe total is $7\\cdot 7\\cdot 6=294$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

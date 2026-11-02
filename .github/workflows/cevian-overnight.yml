@@ -1,4 +1,4 @@
-name: Kyuclid overnight run
+name: Cevian overnight run
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: kyuclid-overnight
+  group: cevian-overnight
   cancel-in-progress: false
 
 jobs:
@@ -55,8 +55,8 @@ jobs:
 
       - name: Configure git
         run: |
-          git config user.name "kyuclid-overnight"
-          git config user.email "kyuclid-overnight@users.noreply.github.com"
+          git config user.name "cevian-overnight"
+          git config user.email "cevian-overnight@users.noreply.github.com"
 
       - name: Run Claude
         timeout-minutes: 330

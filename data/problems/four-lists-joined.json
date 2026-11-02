@@ -20,7 +20,7 @@
   "solution": "Let each list have sum $S>0$. A list with mean $m$ has $S/m$ entries, so the long list has sum $4S$ and length\n$$S\\left(\\dfrac{1}{30}+\\dfrac{1}{40}+\\dfrac{1}{60}+\\dfrac{1}{120}\\right)=S\\cdot\\dfrac{4+3+2+1}{120}=\\dfrac{S}{12}.$$\nThe mean is $\\frac{4S}{S/12}=48$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

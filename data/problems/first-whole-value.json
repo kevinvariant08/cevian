@@ -22,7 +22,7 @@
   "solution": "Let $b_n=2^{a_n}$, so $b_1=2$ and $\\frac{b_{n+1}}{b_n}=\\frac{dn+2}{d(n-1)+2}$. This telescopes to $b_n=d(n-1)+2$, so $a_n=\\log_2(d(n-1)+2)$ is strictly increasing.\n\nFor an integer $m\\ge2$, some $a_j$ with $j\\ge2$ equals $m$ iff $d(j-1)=2^m-2$ for some positive integer $j-1$, i.e. iff $d\\mid 2^m-2$. Every $a_j$ with $j\\ge2$ exceeds $1$, so by monotonicity the condition is that $13$ is the least integer $m\\ge2$ with $d\\mid 2^m-2$.\n\nNow $2^m-2=2(2^{m-1}-1)$ with $2^{m-1}-1$ odd, so $4\\nmid d$ and $d=d'$ or $2d'$ with $d'$ odd. In both cases $d\\mid 2^m-2$ iff $d'\\mid 2^{m-1}-1$. So we need $2$ to have multiplicative order exactly $12$ modulo $d'$. Then $d'\\mid 2^{12}-1=4095=3^2\\cdot5\\cdot7\\cdot13$, and each such $d'$ gives two values of $d$.\n\nOrders of $2$: modulo $3$ it is $2$; modulo $9$ it is $6$; modulo $5$ it is $4$; modulo $7$ it is $3$; modulo $13$ it is $12$ (as $2^4\\equiv3$, $2^6\\equiv-1$ mod $13$, so the order divides neither $4$ nor $6$, but divides $12$).\n\nThe order modulo $d'$ is the lcm of the orders modulo its prime power factors. Write $d'=3^a5^b7^c13^e$ with $a\\in\\{0,1,2\\}$, $b,c,e\\in\\{0,1\\}$. All orders divide $12$, so the lcm is $12$ iff it is divisible by both $4$ and $3$.\n\nIf $e=1$, the lcm is $12$ for any other exponents, giving $3\\cdot2\\cdot2=12$ divisors.\n\nIf $e=0$, the factor $4$ forces $b=1$, and the factor $3$ forces $a=2$ or $c=1$. This gives $d'=45,35,105,315$, so $4$ divisors.\n\nHence there are $16$ values of $d'$, and $32$ values of $d$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

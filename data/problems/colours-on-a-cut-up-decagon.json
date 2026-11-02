@@ -21,7 +21,7 @@
   "solution": "Let $T_m(k)$ be the number of proper colourings (endpoints of every side and drawn diagonal differ) of a triangulated convex $m$-gon with $k\\ge3$ colours. We show $T_m(k)=k(k-1)(k-2)^{m-2}$ by induction on $m$.\n\nFor $m=3$ all three vertices are mutually adjacent, giving $k(k-1)(k-2)$.\n\nFor $m\\ge4$ there are $m-2$ triangles, and the $m$ sides each lie in exactly one of them. Since $m>m-2$, some triangle contains two sides $va$, $vb$. It fills the whole angle at $v$, so no diagonal leaves $v$, and $ab$ is a drawn diagonal because $m\\ge4$.\n\nRemoving $v$ leaves a triangulated $(m-1)$-gon with $ab$ as a side. A proper colouring of the $m$-gon restricts to a proper colouring of this $(m-1)$-gon. Conversely, $a$ and $b$ have different colours in any such colouring, so $v$ can be coloured in $k-2$ ways. Hence $T_m(k)=(k-2)T_{m-1}(k)$, which completes the induction.\n\nFor $m=10$, $T(k)=k(k-1)(k-2)^8$, and $T(1)=T(2)=0$ since a triangle needs three colours.\n\nBy inclusion-exclusion over the unused colours,\n$$N=T(5)-\\binom54T(4)+\\binom53T(3)-\\binom52T(2)+\\binom51T(1).$$\nHere $T(5)=5\\cdot4\\cdot3^8=131220$, $T(4)=4\\cdot3\\cdot2^8=3072$, $T(3)=6$. So\n$$N=131220-15360+60=115920,$$\nand the remainder modulo $1000$ is $920$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

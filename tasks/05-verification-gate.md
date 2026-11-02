@@ -10,7 +10,7 @@ Build a command-line tool that every new problem must pass before a human sees i
 - `schema/problem.schema.json`, `tasks/README.md` and `docs/problem-standard.md` (once task 04 lands).
 
 ## Deliverables
-`pipeline/verify/` in this repo. The code is public; it calls the private corpus through a path set in an environment variable, `KYUCLID_CORPUS`.
+`pipeline/verify/` in this repo. The code is public; it calls the private corpus through a path set in an environment variable, `CEVIAN_CORPUS`.
 
 ```
 python -m pipeline.verify draft.json [--report out/report.json]

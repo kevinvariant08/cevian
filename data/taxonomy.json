@@ -1,7 +1,7 @@
 {
  "version": "1.1.0",
  "status": "1.0.0 approved by Kevin on 2026-10-30 for the AIME run. 1.1.0 adds slugs that at least two analysis records asked for after synonyms were merged, for Kevin's review.",
- "description": "Controlled vocabulary for Kyuclid. status: observed = found in the 150-problem AIME taxonomy sample; seeded = expected from the task brief or later waves, not yet seen; seed-problem = used by the seed problems; pilot-proposed = asked for by the analysis passes on the pilot. run-proposed = asked for by at least two records of the full run. legacy = kept only so that seed problems validate, not for new tagging. sample_count counts sample problems.",
+ "description": "Controlled vocabulary for Cevian. status: observed = found in the 150-problem AIME taxonomy sample; seeded = expected from the task brief or later waves, not yet seen; seed-problem = used by the seed problems; pilot-proposed = asked for by the analysis passes on the pilot. run-proposed = asked for by at least two records of the full run. legacy = kept only so that seed problems validate, not for new tagging. sample_count counts sample problems.",
  "topics": {
   "A": "Algebra",
   "C": "Combinatorics and probability",

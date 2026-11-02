@@ -21,7 +21,7 @@
   "solution": "Let $n=21a+r=29c+s$ with $0\\le r\\le 20$ and $0\\le s\\le 28$. Then $a+r=n-20a$ and $c+s=n-28c$, so the condition is $20a=28c$, i.e. $5a=7c$. Hence $a=7k$, $c=5k$ for some integer $k\\ge 0$, and $r=n-147k$, $s=n-145k$.\n\nFrom $r\\ge 0$ and $s\\le 28$ we get $147k\\le n\\le 145k+28$. So $2k\\le 28$, $k\\le 14$, and $n\\le 145\\cdot 14+28=2058$.\n\nFor $n=2058$: $2058=21\\cdot 98+0=29\\cdot 70+28$, and both sums equal $98$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

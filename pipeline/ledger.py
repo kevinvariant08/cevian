@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 
 LEDGER = Path(__file__).resolve().parent / "api-ledger.jsonl"
-CAP_USD = float(os.environ.get("KYUCLID_SPEND_CAP", "40"))
+CAP_USD = float(os.environ.get("CEVIAN_SPEND_CAP", "40"))
 BATCH_DISCOUNT = 0.5
 _lock = threading.Lock()
 

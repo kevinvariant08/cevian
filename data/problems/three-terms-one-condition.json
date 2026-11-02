@@ -20,7 +20,7 @@
   "solution": "Since $9=z\\bar z$,\n$$z^2+8z-9=z(z+8-\\bar z)=z(8+2iy),$$\nwhere $y=\\operatorname{Im} z$. Hence\n$$|z^2+8z-9|=3\\sqrt{64+4y^2}\\le 3\\sqrt{64+36}=30,$$\nbecause $y^2\\le|z|^2=9$.\n\nEquality holds at $z=3i$: $z^2+8z-9=-18+24i$, which has modulus $30$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

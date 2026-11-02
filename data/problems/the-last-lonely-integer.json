@@ -20,7 +20,7 @@
   "solution": "Solutions of $5a+13b=n$ form the family $(a+13t,\\,b-5t)$, $t\\in\\mathbb Z$.\n\nLet $n$ be lonely with pair $(a,b)$, $1\\le a\\le b$.\n\nIf $a\\ge 14$, then $(a-13,b+5)$ is another valid pair, since $1\\le a-13\\le b+5$. So $a\\le 13$.\n\nIf $b\\ge a+18$, then $(a+13,b-5)$ is another valid pair, since $a+13\\le b-5$. So $b\\le a+17$.\n\nHence\n$$n=5a+13b\\le 18a+221\\le 18\\cdot 13+221=455.$$\n\nFor $n=455$, the pair $(13,30)$ works, since $65+390=455$. Every integer solution of $5x+13y=455$ is $(13+13t,\\,30-5t)$, because $13\\mid 5(x-13)$ and $\\gcd(5,13)=1$. If $t\\le -1$ then $x\\le 0$. If $t\\ge 1$ then $x\\ge 26>25\\ge y$. So only $t=0$ is valid, and $455$ is lonely.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

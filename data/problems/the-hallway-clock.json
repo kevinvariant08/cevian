@@ -20,7 +20,7 @@
   "solution": "The lead (clock minus true time) grows linearly. It rises from $6$ to $10$ minutes in $120$ true minutes, so it grows by $1$ minute every $30$ true minutes. The lead was $0$ exactly $6\\cdot 30=180$ minutes before $14:00$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

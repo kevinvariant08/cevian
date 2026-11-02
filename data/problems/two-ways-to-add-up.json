@@ -20,7 +20,7 @@
   "solution": "A sum of 4 consecutive integers starting at $a$ is $4a+6$, so $N\\equiv 2\\pmod 4$ with $N\\ge 10$. A sum of 7 consecutive integers starting at $b$ is $7(b+3)$, so $N$ is a multiple of $7$ with $N\\ge 28$.\n\nConversely, take $N=7m$ with $m\\ge 4$ and $N\\equiv 2\\pmod 4$. Since $7\\equiv -1\\pmod 4$, this means $m\\equiv 2\\pmod 4$, so $m=4k+2$ with $k\\ge 1$ and $N=28k+14$. Then $a=7k+2$ and $b=4k-1$ are positive integers with $4a+6=7b+21=N$.\n\nNow $28k+14<500$ gives $k\\le 17$, since $28\\cdot 17=476<486<504=28\\cdot 18$. So $k=1,\\dots,17$, giving $17$ numbers.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

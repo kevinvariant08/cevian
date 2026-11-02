@@ -20,7 +20,7 @@
   "solution": "Let $A=x_1+x_3+x_5$ and $B=x_2+x_4+x_6$. Then $S=AB$ and $A+B=21$, which is divisible by $7$. Since $7$ is prime, $7\\mid S$ iff $7\\mid A$ or $7\\mid B$, and as $7\\mid A+B$ each of these implies the other. So $7\\mid S$ iff $7\\mid A$.\n\nThree distinct numbers from $1,\\dots,6$ have sum between $6$ and $15$, so $A=7$ or $A=14$.\n\nIf $A=7$, the set $\\{x_1,x_3,x_5\\}$ contains $1$, since otherwise $A\\ge 2+3+4=9$. The other two numbers are distinct, exceed $1$ and sum to $6$, so they are $2$ and $4$. Thus the set is $\\{1,2,4\\}$.\n\nIf $A=14$, then $B=7$, so $\\{x_2,x_4,x_6\\}=\\{1,2,4\\}$ and $\\{x_1,x_3,x_5\\}=\\{3,5,6\\}$.\n\nSo there are two choices of set for the odd positions, each fixing the set for the even positions. Each set can be ordered in $3!$ ways, giving $2\\cdot 3!\\cdot 3!=72$ permutations.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

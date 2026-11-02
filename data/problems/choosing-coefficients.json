@@ -20,7 +20,7 @@
   "solution": "If $a=0$ the equation reads $b=c$, which is false since $b\\ne c$, so there is no solution. If $a\\ne0$ then $x=\\frac{c-b}{a}$ is the unique solution. So we count ordered triples of distinct elements with $a\\ne0$: $7$ choices for $a$, then $7$ for $b$ (any of the other elements, including $0$), then $6$ for $c$, giving $7\\cdot7\\cdot6=294$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

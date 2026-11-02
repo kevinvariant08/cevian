@@ -24,7 +24,7 @@
   "solution": "Since $BCQP$ is cyclic and convex, $\\angle APQ=180^\\circ-\\angle BPQ=\\angle ACB$. Let $T$ be on the tangent at $A$, on the opposite side of $AB$ from $C$. By the alternate segment theorem $\\angle TAB=\\angle ACB=\\angle APQ$. Since $T$ and $Q$ lie on opposite sides of $AB$, these are alternate angles, so $AT\\parallel PQ$. Hence $OA\\perp XY$, and line $OA$ meets $XY$ at its midpoint $M$.\n\nHere $XY=64+56+48=168$, so $XM=84$. With radius $\\frac{195}{2}$,\n$$OM=\\sqrt{\\left(\\dfrac{195}{2}\\right)^2-84^2}=\\dfrac{99}{2}.$$\nAs $A$ and $O$ are on opposite sides of $PQ$, $M$ lies between them, so $AM=\\frac{195}{2}-\\frac{99}{2}=48$.\n\nOn the line, $XP=64$ and $XQ=120$, so $PM=84-64=20$ and $QM=120-84=36$. Since $AM\\perp PQ$,\n$$AP=\\sqrt{48^2+20^2}=52,\\qquad AQ=\\sqrt{48^2+36^2}=60.$$\n\n$P$ and $Q$ lie inside $\\omega$, so by power of a point\n$$PA\\cdot PB=PX\\cdot PY=64\\cdot 104,\\qquad QA\\cdot QC=QX\\cdot QY=120\\cdot 48.$$\nThus $PB=\\frac{64\\cdot104}{52}=128$ and $QC=\\frac{120\\cdot48}{60}=96$, giving $AB=180$ and $AC=156$.\n\nTriangles $APQ$ and $ACB$ share the angle at $A$ and have $\\angle APQ=\\angle ACB$, so they are similar, with $PQ/CB=AP/AC$. Hence\n$$BC=56\\cdot\\dfrac{156}{52}=168.$$\n\nThe perimeter is $180+156+168=504$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

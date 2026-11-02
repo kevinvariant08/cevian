@@ -20,7 +20,7 @@
   "solution": "Let $F(x)=(x+a)(x+b)(x+c)$, a monic cubic, so $F(1)=5$, $F(2)=-3$, $F(3)=4$ and $F(0)=abc$.\n\nThe third finite difference of a monic cubic is $3!=6$, so\n$$F(3)-3F(2)+3F(1)-F(0)=6.$$\nHence $4+9+15-F(0)=6$, so $F(0)=22$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

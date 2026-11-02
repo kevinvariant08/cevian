@@ -20,7 +20,7 @@
   "solution": "Let $c=\\sqrt k$. Expanding gives\n$$\\sqrt{k}\\,x^3-(2k+720)x^2+1690\\sqrt{k}\\,x-180000=(cx-720)(x^2-2cx+250).$$\nThe roots are $p=\\frac{720}{c}>0$ and the roots of $x^2-2cx+250=0$. The discriminant is $4(k-250)$, so these are real iff $k\\ge250$. Then they are $u=c+s$ and $v=c-s$ with $s=\\sqrt{k-250}\\ge0$. Since $u+v=2c>0$ and $uv=250>0$, both are positive. So all roots are real and positive iff $k\\ge250$.\n\nFor such $k$ the triangle conditions are $p<u+v$, $u<p+v$, $v<p+u$. The last holds since $v\\le u$ and $p>0$.\n\n$p<u+v$: $\\frac{720}{c}<2c$, i.e. $k>360$.\n\n$u<p+v$: $2s<\\frac{720}{c}$, i.e. $sc<360$. Both sides are non-negative, so this is equivalent to $k(k-250)<129600$.\n\nSince $k>360$ implies $k\\ge250$, we need integers $k>360$ with $k(k-250)<129600$. For $k>250$ the product $k(k-250)$ is increasing. As $506\\cdot256=129536<129600$ and $507\\cdot257=130299>129600$, the condition is $k\\le506$.\n\nSo $k=361,\\dots,506$, which is $146$ values.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

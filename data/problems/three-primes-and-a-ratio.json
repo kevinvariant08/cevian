@@ -21,7 +21,7 @@
   "solution": "Let $N=pqr$ with primes $p<q<r$. Then\n$$\\dfrac{\\sigma(N)}{\\varphi(N)}=f(p)f(q)f(r),\\qquad f(x)=\\dfrac{x+1}{x-1}=1+\\dfrac{2}{x-1}.$$\nHere $f$ is strictly decreasing and exceeds $1$. We have $f(2)=3$, $f(3)=2$, $f(5)=\\frac{3}{2}$, $f(7)=\\frac{4}{3}$, $f(11)=\\frac{6}{5}$, $f(13)=\\frac{7}{6}$, $f(17)=\\frac{9}{8}$.\n\nLet $c=f(p)f(q)$ and let $k=c\\,f(r)$ be the integer value. Then $c<k\\le c\\,f(q')$, where $q'$ is the prime after $q$, and $f(r)=\\frac{k}{c}$ determines $r$.\n\nIf $p\\ge7$, then $1<k\\le\\frac{4}{3}\\cdot\\frac{6}{5}\\cdot\\frac{7}{6}=\\frac{28}{15}<2$, impossible.\n\n<b>Case $p=5$.</b> If $q\\ge13$, then $1<k\\le\\frac{3}{2}\\cdot\\frac{7}{6}\\cdot\\frac{9}{8}<2$, impossible. If $q=7$, then $c=2$ and $2<k\\le\\frac{12}{5}$, no integer. If $q=11$, then $c=\\frac{9}{5}$ and $k=2$, so $f(r)=\\frac{10}{9}$, $r=19$, giving $N=1045$.\n\n<b>Case $p=3$.</b> If $q\\ge11$, then $2<k\\le2\\cdot\\frac{6}{5}\\cdot\\frac{7}{6}=\\frac{14}{5}<3$, impossible. For $q=5$: $c=3$, $k=4$, $r=7$, $N=105$. For $q=7$: $c=\\frac{8}{3}$, $k=3$, $r=17$, $N=357$.\n\n<b>Case $p=2$.</b> If $q\\ge13$, then $3<k\\le3\\cdot\\frac{7}{6}\\cdot\\frac{9}{8}=\\frac{63}{16}<4$, impossible. For $q=3$: $c=6$, $6<k\\le9$, giving $N\\le78$. For $q=5$: $c=\\frac{9}{2}$, $k=5,6$, giving $r=19,7$ and $N=190,70$. For $q=7$: $c=4$, $4<k\\le\\frac{24}{5}$, no integer. For $q=11$: $c=\\frac{18}{5}$, $k=4$, $r=19$, $N=418$.\n\nThe largest value is $N=1045$, with $\\frac{\\sigma(N)}{\\varphi(N)}=\\frac{1440}{720}=2$. The remainder modulo $1000$ is $45$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

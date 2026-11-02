@@ -20,7 +20,7 @@
   "solution": "Let $x=b-a$, $y=c-b$ (positive integers) and $s=x+y=c-a$. The left side equals\n$$\\dfrac{(a-b)^2+(b-c)^2+(c-a)^2}{2}=\\dfrac{x^2+y^2+(x+y)^2}{2}=x^2+xy+y^2=s^2-xy.$$\nSo $s^2-xy=1729$.\n\nSince $xy>0$, $s^2>1729>41^2$, so $s\\ge 42$. Since $xy\\le s^2/4$, we get $3s^2/4\\le 1729$, so $s^2\\le 2305<49^2$ and $s\\le 48$.\n\nThe numbers $x,y$ are roots of $t^2-st+s^2-1729$, with $(x-y)^2=s^2-4(s^2-1729)=6916-3s^2$, which must be a perfect square. For $s=42,\\dots,48$ this gives $1624,1369,1108,841,568,289,4$. Of these, $1624$, $1108$ and $568$ lie strictly between consecutive squares ($40^2,41^2$; $33^2,34^2$; $23^2,24^2$). The others are $37^2,29^2,17^2,2^2$, giving\n$$s=43:\\{40,3\\},\\quad s=45:\\{37,8\\},\\quad s=47:\\{32,15\\},\\quad s=48:\\{25,23\\}.$$\nEach has sum $s$ and product $s^2-1729$, so it is valid. Since $x\\ne y$ in each case, each $s$ gives two ordered pairs $(x,y)$.\n\nA triple corresponds to $(a,x,y)$ via $b=a+x$, $c=a+s$. The conditions reduce to $1\\le a\\le 100-s$, giving $100-s$ choices of $a$ per ordered pair.\n\nTotal:\n$$2(57+55+53+52)=2\\cdot 217=434.$$",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

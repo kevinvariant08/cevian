@@ -20,7 +20,7 @@
   "solution": "Let $T=\\binom n2$. Then $12\\mid T$, and the third week has $\\frac{5T}{12}\\ge 20$ matches, so $T\\ge 48$.\n\nSince $T=45<48$ for $n=10$ and $T$ increases with $n$, we need $n\\ge 11$. For $n=11,\\dots,15$, $T=55,66,78,91,105$, and none is divisible by $12$. For $n=16$, $T=120=12\\cdot 10$, giving $40$, $30$ and $50$ matches in the three weeks, and $50\\ge 20$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

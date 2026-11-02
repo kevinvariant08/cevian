@@ -22,7 +22,7 @@
   "solution": "Let $D$ be the number of $A$s in odd positions minus the number in even positions. A move deletes two adjacent letters, one in an odd and one in an even position. Letters after the pair shift by $2$, so every remaining letter keeps its parity. A deleted pair of $A$s contributes $+1-1=0$ to $D$, and a pair of $B$s contributes $0$. So $D$ is invariant, and a fully deletable row has $D=0$ (the empty row has $D=0$).\n\nConversely, let $D=0$. Every row reached has even length. If a non-empty such row had no move, it would alternate $A,B$, so all its $A$s would sit in positions of one parity. As the length is even and positive, there is at least one $A$, giving $D\\ne0$, a contradiction. So a move always exists, and $D$ stays $0$. Repeating, all letters are deleted.\n\nThus we count rows with $D=0$. With $6$ $A$s, this means $3$ in the $6$ odd positions and $3$ in the $6$ even positions, giving\n$$\\binom{6}{3}^2=400.$$",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

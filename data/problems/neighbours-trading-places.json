@@ -20,7 +20,7 @@
   "solution": "Let $d_i$ be the digit at place $10^i$ and $e_i=d_i-d_{i+1}$ for $0\\le i\\le4$. Swapping positions $i,i+1$ gives $N+9\\cdot10^i e_i$. This also holds when a $0$ reaches the front, since a leading $0$ contributes nothing.\n\nModulo $7$ the five conditions read $2\\cdot3^i e_i\\equiv -N$. Multiplying by $3\\cdot5^i$ (note $6\\equiv-1$, $15\\equiv1$) gives $e_i\\equiv 3\\cdot5^i N$. So $(e_0,\\dots,e_4)\\equiv(3,1,5,4,6)N$.\n\nSince $d_i=d_5+e_i+\\dots+e_4$,\n$$N=111111\\,d_5+e_0+11e_1+111e_2+1111e_3+11111e_4.$$\nHere $7\\mid111111$, and $11,111,1111,11111\\equiv4,6,5,2$. Hence\n$$N\\equiv(3+4+30+20+12)N=69N\\equiv6N\\pmod 7,$$\nso $5N\\equiv0$, i.e. $7\\mid N$. Then every $e_i\\equiv0$, so all six digits are congruent modulo $7$.\n\nConversely, if all digits are $\\equiv r$, any swap keeps this, so the new number is $\\equiv r\\cdot111111\\equiv0\\pmod 7$. So the property holds exactly when all digits lie in one residue class modulo $7$.\n\nThe classes are $\\{0,7\\}$, $\\{1,8\\}$, $\\{2,9\\}$, and the singletons $\\{3\\},\\{4\\},\\{5\\},\\{6\\}$. Class $\\{0,7\\}$: the leading digit is $7$, giving $2^5=32$. Classes $\\{1,8\\}$ and $\\{2,9\\}$ give $2^6=64$ each. The singletons give $1$ each.\n\nTotal: $32+128+4=164$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

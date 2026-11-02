@@ -21,7 +21,7 @@
   "solution": "Since $840=8\\cdot3\\cdot5\\cdot7$, the Chinese remainder theorem lets us count attainable residues modulo each factor and multiply, provided the residue of $T_n$ modulo each factor depends only on $n$ modulo a period, and these periods are coprime.\n\nFor $p\\in\\{3,5,7\\}$, $T_{n+p}-T_n=p\\left(n+\\frac{p+1}{2}\\right)\\equiv0\\pmod p$, so $T_n \\bmod p$ depends only on $n \\bmod p$. Also $T_{n+16}-T_n=16n+8\\cdot17\\equiv0\\pmod 8$, so $T_n \\bmod 8$ depends only on $n \\bmod 16$. Since $16,3,5,7$ are pairwise coprime, any attainable residues modulo $8,3,5,7$ are attained simultaneously by a single $n$. Hence the number of remainders is the product of the numbers of attainable residues modulo $8,3,5,7$.\n\n<b>Odd $p$.</b> We have $8T_n+1=(2n+1)^2$. As $n$ varies, $2n+1$ takes every residue modulo $p$, and $t\\mapsto 8t+1$ is a bijection modulo $p$. So the attainable residues correspond to the squares modulo $p$, which number $2,3,4$ for $p=3,5,7$ (squares $\\{0,1\\}$, $\\{0,1,4\\}$, $\\{0,1,2,4\\}$).\n\n<b>Modulo 8.</b> $T_1,\\dots,T_7=1,3,6,10,15,21,28$ give residues $1,3,6,2,7,5,4$, and $T_{15}=120\\equiv0$. All $8$ residues occur.\n\nThe number of remainders is $8\\cdot2\\cdot3\\cdot4=192$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

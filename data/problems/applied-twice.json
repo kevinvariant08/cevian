@@ -20,7 +20,7 @@
   "solution": "A nonempty $S$ with $\\pi^2(S)=S$ contains, with each $s$, the whole $\\pi^2$-cycle of $s$, so it is a union of cycles of $\\pi^2$. Conversely, each cycle of $\\pi^2$ is such a set. Hence the condition holds exactly when every cycle of $\\pi^2$ has length at least $4$.\n\nTake an $l$-cycle of $\\pi$ and label it by $\\mathbb{Z}_l$, so that $\\pi^2$ is $x\\mapsto x+2$. For odd $l$ this is a single $l$-cycle. For even $l$ it splits into two cycles of length $\\frac{l}{2}$. So the allowed lengths $l$ are the odd $l\\ge 5$ and the even $l\\ge 8$, that is $5,7,8,9,10,11,12$.\n\nThe lengths sum to $12$ and each is at least $5$, so there are at most two cycles. One cycle gives a $12$-cycle. Two cycles have lengths $5+7$ or $6+6$, and $6$ is not allowed, so only $5+7$ remains.\n\nThe number of $12$-cycles is $11!$, a proportion $\\frac{1}{12}$. The number of permutations of type $5+7$ is\n$$\\binom{12}{5}\\cdot 4!\\cdot 6!=\\dfrac{12!}{5!\\,7!}\\cdot 4!\\cdot 6!=\\dfrac{12!}{35},$$\na proportion $\\frac{1}{35}$. The two types are disjoint, so the probability is\n$$\\dfrac{1}{12}+\\dfrac{1}{35}=\\dfrac{47}{420}.$$\n\nSince $47$ is prime and does not divide $420$, the fraction is in lowest terms. Thus $m+n=47+420=467$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

@@ -21,7 +21,7 @@
   "solution": "Write a point of $E$ as $r(\\cos t,\\sin t)$ with $r>0$ and put $s=\\sin t\\cos t=\\frac{1}{2}\\sin 2t$, so $|s|\\le \\frac{1}{2}$. The equation of $E$ becomes $r^2(1+s)=360$, so $OP^2=\\frac{360}{1+s}$ for the unique point of $E$ in that direction.\n\nIf $OA$ has direction $(\\cos t,\\sin t)$, then $OB$ has direction $\\pm(-\\sin t,\\cos t)$, whose coordinate product is $-s$. Hence\n$$OA^2=\\dfrac{360}{1+s},\\qquad OB^2=\\dfrac{360}{1-s}.$$\n\nAs $t$ varies, $s$ takes every value in $[-\\frac{1}{2},\\frac{1}{2}]$. So $k=OA^2$ ranges over exactly $240\\le k\\le 720$. With $m=OB^2$,\n$$\\dfrac{1}{k}+\\dfrac{1}{m}=\\dfrac{2}{360}=\\dfrac{1}{180},$$\nso $(k-180)(m-180)=180^2=32400$.\n\nSince $k-180\\ge 60>0$, $m$ is an integer exactly when $d=k-180$ divides $32400=2^4\\cdot3^4\\cdot5^2$. So we count divisors $d$ with $60\\le d\\le 540$.\n\nWrite $d=5^c e$ with $e=2^a3^b$, $0\\le a,b\\le4$.\n\n$c=0$: $60\\le e\\le 540$ gives $e=72,81,108,144,162,216,324,432$, which is $8$ values.\n\n$c=1$: $12\\le e\\le108$ gives $e=12,16,18,24,27,36,48,54,72,81,108$, which is $11$ values.\n\n$c=2$: $\\frac{12}{5}\\le e\\le\\frac{108}{5}$ gives $e=3,4,6,8,9,12,16,18$, which is $8$ values.\n\nThe total is $8+11+8=27$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

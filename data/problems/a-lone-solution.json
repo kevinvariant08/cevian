@@ -21,7 +21,7 @@
   "solution": "Let $A=k$ and $B=k+6+8i$, so $|AB|=10$. By the triangle inequality, the second equation holds exactly when $z$ lies on segment $AB$, that is, $z=k+s(6+8i)$ with a unique $s\\in[0,1]$.\n\nThe first equation is the circle with centre $3-8i$ and radius $20$. Substituting gives $f(s)=0$, where\n$$f(s)=100s^2+(12k+92)s+(k-3)^2-336,$$\nwith $f(0)=(k-3)^2-336$, $f(1)=(k+3)^2-144$ and discriminant $256(34-k)(k+16)$.\n\n<b>$-14\\le k\\le 8$</b> (e.g. $k=0$): $f(0),f(1)<0$, so by convexity $f<0$ on $[0,1]$ and the segment lies inside the circle. No solution.\n\n<b>$k=-15$ or $k=9$</b>: $f(0)<0=f(1)$, so $s=1$ is the only root in $[0,1]$ and the far end lies on the circle. This gives $2$ values.\n\n<b>$10\\le k\\le 21$</b> (e.g. $k=15$): $f(0)<0<f(1)$, so $f$ has one root in $[0,1]$. This gives $12$ values.\n\n<b>$k\\ge 22$</b>: all coefficients are positive, so $f>0$ on $[0,1]$. No solution.\n\n<b>$k=-16$</b>: $f(s)=25(2s-1)^2$, so $s=\\frac{1}{2}$ and the segment touches the circle at its midpoint. This gives $1$ value.\n\n<b>$k\\le -17$</b>: the discriminant is negative. No solution.\n\nThe total is $2+12+1=15$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

@@ -20,7 +20,7 @@
   "solution": "With $n$ colours and $n$ sizes, the T-shirts that are neither red nor small number $(n-1)^2=121$, so $n-1=11$ and $n=12$. The shop has $12^2=144$ T-shirts, so $144-121=23$ are red, small or both.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

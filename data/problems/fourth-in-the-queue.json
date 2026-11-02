@@ -20,7 +20,7 @@
   "solution": "Every prime factor of a listed number is at least $23$, so the smallest listed numbers are products of two primes from $23, 29, 31, 37, \\dots$\n\nThe products with at most $31$ in each factor are $23^2=529$, $23\\cdot29=667$, $23\\cdot31=713$, $29^2=841$, $29\\cdot31=899$, $31^2=961$.\n\nAny product involving a prime $\\ge 37$ is at least $23\\cdot37=851$. Any product of three or more primes is at least $23^3>851$. Hence the only listed numbers below $851$ are $529, 667, 713, 841$, and the fourth is $841$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

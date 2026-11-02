@@ -20,7 +20,7 @@
   "solution": "Each complete block of $6$ people adds $5+2=7$, and $500=71\\cdot 7+3$. After $71$ blocks, $426$ people have passed and the counter shows $497$. The next three people (the $427$th, $428$th, $429$th) are not multiples of $6$, so each adds $1$, and the counter reaches $500$ after $426+3=429$ people. The counter strictly increases, so this is the only such number.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

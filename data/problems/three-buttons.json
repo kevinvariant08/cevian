@@ -20,7 +20,7 @@
   "solution": "Since $180=2^2\\cdot3^2\\cdot5$, every valid sequence uses the $2$-button twice, the $3$-button twice and the $5$-button once. The number increases with each press, so $180$ is reached only on the last press.\n\nThe first number shown is the first button's value, so the first press must be $2$. After that the number is even and stays even under multiplication, so the parity condition affects only the first press.\n\nThe remaining presses are one $2$, two $3$s and one $5$ in any order, giving $\\frac{4!}{2!}=12$ sequences.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

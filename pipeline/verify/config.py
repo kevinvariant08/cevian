@@ -29,7 +29,7 @@ ROLES = {
     "abstract": (HAIKU, "low", 600),
 }
 
-SANDBOX_SECONDS = float(os.environ.get("KYUCLID_SANDBOX_SECONDS", "60"))
+SANDBOX_SECONDS = float(os.environ.get("CEVIAN_SANDBOX_SECONDS") or os.environ.get("KYUCLID_SANDBOX_SECONDS") or "60")
 SANDBOX_MEMORY_MB = 2048
 MODEL_TIMEOUT = 600
 
@@ -38,8 +38,8 @@ GATE_FIELDS = ("answer", "check_program", "inspired_by", "core_idea", "variation
 
 
 def corpus_path():
-    """The private corpus. The brief names KYUCLID_CORPUS; MATHWARS_CORPUS is the older name."""
-    raw = os.environ.get("KYUCLID_CORPUS") or os.environ.get("MATHWARS_CORPUS")
+    """The private corpus. CEVIAN_CORPUS, then the older KYUCLID_CORPUS and MATHWARS_CORPUS."""
+    raw = os.environ.get("CEVIAN_CORPUS") or os.environ.get("KYUCLID_CORPUS") or os.environ.get("MATHWARS_CORPUS")
     if not raw:
         return None
     p = Path(raw)

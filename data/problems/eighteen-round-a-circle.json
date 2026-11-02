@@ -21,7 +21,7 @@
   "solution": "Work modulo $3$ with the cyclic shift $S$, where $(Sx)_i=x_{i+1}$ and $S^{18}=1$. One step is $T=S^{-1}+1+S$. Since the operators commute and the other multinomial coefficients in the cube are divisible by $3$, we have $(A+B+C)^3\\equiv A^3+B^3+C^3$. Applying this twice gives\n$$T^9\\equiv S^{-9}+1+S^9=1+2S^9\\equiv 1-S^9,$$\nusing $S^{-9}=S^9$. So after $9$ steps $x$ becomes $y$ with $y_i\\equiv x_i-x_{i+9}$.\n\nIf $x_{i+9}\\equiv x_i$ for all $i$, then $y\\equiv0$ and all terms are multiples of $3$ after $9$ steps.\n\nOtherwise $y\\not\\equiv0$. Then $y_{i+9}\\equiv x_{i+9}-x_i\\equiv -y_i$, so $S^9y\\equiv -y$, and $T^9y\\equiv y-S^9y\\equiv 2y\\equiv -y$. By induction $T^{9m}x\\equiv\\pm y\\not\\equiv0$ for all $m\\ge1$. If $T^kx\\equiv0$ for some $k$, then by linearity $T^jx\\equiv0$ for all $j\\ge k$, contradicting this for $9m\\ge k$. So such $x$ never works.\n\nHence the condition is exactly $x_{i+9}\\equiv x_i$, which for values in $\\{0,1,2\\}$ means $x_{i+9}=x_i$. Such sequences are determined by $x_1,\\dots,x_9$, so $N=3^9=19683$, with remainder $683$ on division by $1000$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

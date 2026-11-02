@@ -21,7 +21,7 @@
   "solution": "<b>Formula.</b> We show $w(a,b)=a+b+\\gcd(a,b)$ by strong induction on $a+b$. If $a=b$, then $w(a,a)=3a$. If $a>b$, then\n$$w(a,b)=w(a-b,b)+b=(a-b)+b+\\gcd(a-b,b)+b=a+b+\\gcd(a,b).$$\nIf $a<b$, then $w(a,b)=w(a,b-a)+a$, and the same computation applies since $\\gcd(a,b-a)=\\gcd(a,b)$.\n\n<b>Counting.</b> Let $d=\\gcd(a,b)$, $a=dx$, $b=dy$ with $\\gcd(x,y)=1$. Then $(a,b)\\leftrightarrow(d,x,y)$ is a bijection and $w=d(x+y+1)=60$.\n\nSo $e=x+y+1$ is a divisor of $60$ with $e\\ge3$, and $d=60/e$ is then determined. With $n=e-1\\ge2$ we need ordered coprime pairs $(x,y)$ with $x+y=n$. Since $\\gcd(x,n-x)=\\gcd(x,n)$, these correspond to $1\\le x\\le n-1$ coprime to $n$, and $x=n$ is excluded automatically as $n\\ge2$. So there are $\\varphi(n)$ pairs.\n\nThe divisors $e\\ge 3$ are $3,4,5,6,10,12,15,20,30,60$, giving $n=2,3,4,5,9,11,14,19,29,59$. The total is\n$$1+2+2+4+6+10+6+18+28+58=135.$$",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

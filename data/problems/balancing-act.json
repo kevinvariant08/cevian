@@ -20,7 +20,7 @@
   "solution": "No integer is $0$ since $N>0$, and the number of negative integers is even. It is not $0$, since the sum is $0$. So exactly two are negative, say $-x,-y$ with $1\\le x\\le y$, and the third is $x+y$. Hence $N=xy(x+y)$, and conversely any such $x,y$ give a balanced $N$.\n\nIf $x\\ge4$ then $N\\ge 4\\cdot4\\cdot8=128$, so $x\\in\\{1,2,3\\}$.\n\n$x=1$: $y(y+1)=2,6,12,20,30,42,56,72,90$ (and $110$ for $y=10$).\n\n$x=2$: $2y(y+2)=16,30,48,70,96$ for $y=2,\\dots,6$ (and $126$ for $y=7$).\n\n$x=3$: $3y(y+3)=54,84$ for $y=3,4$ (and $120$ for $y=5$).\n\nThis gives $9+5+2=16$ values, with the only repeat $30$. So there are $15$ balanced numbers.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

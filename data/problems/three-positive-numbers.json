@@ -20,7 +20,7 @@
   "solution": "Let $a=\\log_2 x$, $b=\\log_2 y$, $c=\\log_2 z$. Then $a+b=7$, $b+c=11$ and $|a+c-6|=4$, so $a+c=10$ or $a+c=2$.\n\nAdding the three equations gives $2(a+b+c)=18+(a+c)$, so $a+b+c=14$ or $10$.\n\nBoth cases occur. For $a+b+c=14$: $(a,b,c)=(3,4,7)$. For $a+b+c=10$: $(a,b,c)=(-1,8,3)$. Both satisfy the three equations, and $x,y,z=2^a,2^b,2^c$ are positive.\n\nSo $xyz\\in\\{2^{14},2^{10}\\}$, with product $2^{24}=16777216$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

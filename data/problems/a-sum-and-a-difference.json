@@ -21,7 +21,7 @@
   "solution": "Since $x+y\\equiv -1$ modulo $4$, $5$ and $6$, we get $60\\mid x+y+1$. As $x+y+1\\le 100$, this gives $x+y=59$.\n\nSimilarly $y-x\\equiv -2$ modulo $3$ and $7$, so $21\\mid y-x+2$. Since $0<y-x<59$, we have $y-x\\in\\{19,40\\}$. Now $y-x$ has the same parity as $x+y=59$, so $y-x=19$.\n\nHence $x=20$, $y=39$, and these satisfy all the conditions. So $xy=20\\cdot 39=780$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

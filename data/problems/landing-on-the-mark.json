@@ -21,7 +21,7 @@
   "solution": "A run ending at $30$ has $a$ heads and $b$ tails with $3a+5b=30$. Then $3\\mid b$ and $5b\\le 30$, so $(a,b)=(10,0),(5,3),(0,6)$. Every order of these tosses works, since the counter strictly increases and so is below $30$ before the last toss. A run of $n$ tosses has probability $2^{-n}$, and the lengths are $10,8,6$.\n\n$$P(\\text{end at }30)=\\dfrac{1}{2^{10}}+\\dfrac{\\binom85}{2^8}+\\dfrac{1}{2^6}=\\dfrac{1+224+16}{2^{10}}=\\dfrac{241}{2^{10}}.$$\n\nRuns starting with a head: $(10,0)$ gives $1$ run, $(5,3)$ gives $\\binom74=35$ runs, and $(0,6)$ gives none.\n\n$$P(\\text{head first and end at }30)=\\dfrac{1}{2^{10}}+\\dfrac{35}{2^8}=\\dfrac{141}{2^{10}}.$$\n\nThe conditional probability is $\\frac{141}{241}$. Since $241$ is prime, the fraction is in lowest terms.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

@@ -1,4 +1,4 @@
-"""Build the Kyuclid logo SVGs in assets/ from the brand font.
+"""Build the Cevian logo SVGs in assets/ from the brand font.
 
 The mark comes from Euclid's Elements, Book I, Proposition 1: on a segment AB draw the circle centred A through B and
 the circle centred B through A. They cross at C, and ABC is equilateral. Two solid discs have their overlap cut out,
@@ -28,7 +28,7 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "assets"
 
-NAME = "kyuclid"
+NAME = "cevian"
 TRACKING_EM = -0.012  # matches .wordmark in css/site.css
 
 # Colours: see docs/brand.md. Light theme first, dark theme second.
@@ -114,13 +114,13 @@ def main(font_path):
         body = mark(1, base + mid, r, ink, red) + (
             f'<path transform="translate({1 + 3 * r + gap:.2f} {base:.2f})" fill="{ink}" d="{d}"/>'
         )
-        write(f"logo/kyuclid-horizontal{suffix}.svg", svg(round(w, 1), round(h, 1), body, "Kyuclid"))
+        write(f"logo/cevian-horizontal{suffix}.svg", svg(round(w, 1), round(h, 1), body, "Cevian"))
 
     # Wordmark alone.
     for suffix, ink, _, _ in themes:
-        write(f"logo/kyuclid-wordmark{suffix}.svg",
+        write(f"logo/cevian-wordmark{suffix}.svg",
               svg(round(wm_w + 2, 1), round(bottom - top + 2, 1),
-                  f'<path transform="translate(1 {1 - top:.2f})" fill="{ink}" d="{d}"/>', "Kyuclid"))
+                  f'<path transform="translate(1 {1 - top:.2f})" fill="{ink}" d="{d}"/>', "Cevian"))
 
     # Square lockup (avatars, link cards): the mark over the wordmark on a solid tile.
     S = 512
@@ -133,16 +133,16 @@ def main(font_path):
         body = mark((S - 3 * r_sq) / 2, y + r_sq, r_sq, ink, red) + (
             f'<path transform="translate({(S - wm_sq) / 2:.2f} {y + 2 * r_sq + gap_sq - top_sq:.2f})" fill="{ink}" d="{d_sq}"/>'
         )
-        write(f"logo/kyuclid-square{suffix}.svg", svg(S, S, body, "Kyuclid", bg))
+        write(f"logo/cevian-square{suffix}.svg", svg(S, S, body, "Cevian", bg))
 
     # The mark on its own (transparent).
     for suffix, ink, red, _ in themes:
-        write(f"logo/kyuclid-mark{suffix}.svg", svg(92, 62, mark(1, 31, 30, ink, red), "Kyuclid"))
+        write(f"logo/cevian-mark{suffix}.svg", svg(92, 62, mark(1, 31, 30, ink, red), "Cevian"))
 
     # Favicon: on a dark tile, because a browser tab can be light or dark and a bare mark would vanish on one of them.
-    write("favicon.svg", svg(64, 64, mark(4, 32, 56 / 3, INK_DARK, SHU_DARK), "Kyuclid", BG_DARK, 14))
+    write("favicon.svg", svg(64, 64, mark(4, 32, 56 / 3, INK_DARK, SHU_DARK), "Cevian", BG_DARK, 14))
     # App icon artwork: the mark inside the maskable safe zone, full bleed on the dark theme's indigo.
-    write("icons/app-icon.svg", svg(512, 512, mark(91, 256, 110, INK_DARK, SHU_DARK), "Kyuclid", BG_DARK))
+    write("icons/app-icon.svg", svg(512, 512, mark(91, 256, 110, INK_DARK, SHU_DARK), "Cevian", BG_DARK))
 
 
 if __name__ == "__main__":

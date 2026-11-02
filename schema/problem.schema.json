@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://kevinvariant08.github.io/kyuclid/schema/problem.schema.json",
-  "title": "Kyuclid problem",
+  "$id": "https://kevinvariant08.github.io/cevian/schema/problem.schema.json",
+  "title": "Cevian problem",
   "description": "One problem, stored as data/problems/<id>.json. Text fields are Markdown with $…$ and $$…$$ LaTeX; the site currently renders blank-line-separated paragraphs and passes inline HTML through.",
   "type": "object",
   "additionalProperties": false,

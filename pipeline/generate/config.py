@@ -12,7 +12,7 @@ TAXONOMY = ROOT / "data" / "taxonomy.json"
 
 REPAIRS = 2
 GATE_ERROR_RETRIES = 1
-AUTHOR = "kyuclid"
+AUTHOR = "cevian"
 
 
 @dataclass(frozen=True)
@@ -37,11 +37,11 @@ PROFILES = {p.name: p for p in (ANSWER_5_3, ANSWER_8_6)}
 
 def analysis_path():
     """Analysis records: a folder of batch_*.jsonl, or one jsonl file. Required, and always private."""
-    raw = os.environ.get("KYUCLID_ANALYSIS")
+    raw = (os.environ.get("CEVIAN_ANALYSIS") or os.environ.get("KYUCLID_ANALYSIS"))
     return Path(raw) if raw else None
 
 
 def private_dir():
     """Where the private mapping and run logs go: a checkout of the private corpus, or gitignored out/."""
-    raw = os.environ.get("KYUCLID_GENERATED")
+    raw = (os.environ.get("CEVIAN_GENERATED") or os.environ.get("KYUCLID_GENERATED"))
     return Path(raw) if raw else OUT / "generate"

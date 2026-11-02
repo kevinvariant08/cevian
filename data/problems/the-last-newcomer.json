@@ -20,7 +20,7 @@
   "solution": "After $k$ presses the display is $7k \\bmod 101$. Since $101$ is prime and $101\\nmid 7$, the values for $k=0,1,\\dots,100$ are distinct: $7k\\equiv 7j$ forces $101\\mid k-j$, impossible for $1\\le k-j\\le 100$. So these $101$ values cover $0,\\dots,100$, and the machine stops after exactly $100$ presses, since after $k<100$ presses only $k+1<101$ distinct values have appeared.\n\nThe final display is $700 \\bmod 101$, and $700=6\\cdot101+94$, giving $94$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

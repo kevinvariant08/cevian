@@ -20,7 +20,7 @@
   "solution": "Let Robin win $r$ rounds and Sasha win $s$ rounds. Then $5r+2s=51$ and $2r+5s=33$. Adding gives $7(r+s)=84$, so $r+s=12$. Subtracting gives $3(r-s)=18$, so $r-s=6$. Hence $r=9$ and $s=3$. Check: $45+6=51$ and $18+15=33$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

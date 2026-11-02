@@ -20,7 +20,7 @@
   "solution": "For $p^k \\| n$ the exponent of $p$ in $\\frac{a}{b}$ lies in $[-k,k]$. Conversely, any choice of exponents $e_p\\in[-k,k]$ gives $\\prod p^{e_p}=\\frac{a}{b}$ with $a=\\prod_{e_p>0}p^{e_p}$ and $b=\\prod_{e_p<0}p^{-e_p}$, both divisors of $n$. Elements of $R(n)$ correspond bijectively to such exponent choices, so\n$$S(n)=\\prod_{p^k\\|n}\\sum_{e=-k}^{k}p^e=\\dfrac{A(n)}{n},\\qquad A(n)=\\prod_{p^k\\|n}(1+p+\\dots+p^{2k}).$$\nThus $S(n)$ is an integer iff $n\\mid A(n)$.\n\nIf $n$ is even, every factor of $A(n)$ is odd (for $p=2$ it is $1$ plus an even number, for odd $p$ it is a sum of $2k+1$ odd terms), so $A(n)$ is odd and $n\\nmid A(n)$.\n\nIf $n=p^k$, then $A(n)\\equiv1\\pmod p$, so $n\\nmid A(n)$.\n\nThe odd non-prime-powers below $39$ are $15,21,33,35$, each equal to $pq$ with $A=(p^2+p+1)(q^2+q+1)$:\n\n<b>15:</b> $A=13\\cdot31=403$, digit sum $7$, not divisible by $3$.\n\n<b>21:</b> $A=13\\cdot57=741=7\\cdot105+6$, not divisible by $7$.\n\n<b>33:</b> $A=13\\cdot133=1729$, digit sum $19$, not divisible by $3$.\n\n<b>35:</b> $A=31\\cdot57=1767$, not divisible by $5$.\n\nFor $n=39$: $A=13\\cdot183=2379=39\\cdot61$, so $S(39)=61$ is an integer.\n\nHence the smallest such $n$ is $39$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

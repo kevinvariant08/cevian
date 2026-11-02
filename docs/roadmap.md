@@ -1,6 +1,6 @@
-# Kyuclid versus Codewars: a roadmap
+# Cevian versus Codewars: a roadmap
 
-**Status: for Kevin.** Written during the November 2026 API-credit session, by comparing Kyuclid's current frontend (`js/`, `index.html`) against Codewars' feature set from memory of using it. No Codewars page was scraped or copied; this is a feature comparison, not a design copy.
+**Status: for Kevin.** Written during the November 2026 API-credit session, by comparing Cevian's current frontend (`js/`, `index.html`) against Codewars' feature set from memory of using it. No Codewars page was scraped or copied; this is a feature comparison, not a design copy.
 
 ## How to read the table
 
@@ -8,7 +8,7 @@
 - **(a) Static** means it can be built now, in the current no-build vanilla ES module site, with no account and no server.
 - **(b) Needs accounts** means it needs task 13 (accounts and server-side answer checking) first, because it requires data shared across browsers or devices: a real leaderboard, peer review, community authoring, live duels.
 
-| Codewars feature | Kyuclid today | Where it would land |
+| Codewars feature | Cevian today | Where it would land |
 |---|---|---|
 | Difficulty ranks (kyu/dan) | **Have.** `js/lib/ranks.js`, belts on every row and the profile | — |
 | Browse, filter and search kata by rank, tag, status | **Have.** `js/views/problems.js`: kyu, topic, subtopic, type, status chips, free-text search, four sort orders, pagination | — |
@@ -27,7 +27,7 @@
 | Solution voting and viewing others' solutions | **Missing**, and `stats.liked` is a static seed number, not a live vote | (b): a real vote needs a shared store so one person can't stuff it |
 | Peer-reviewed proof marking | **Missing.** The proof page only self-grades against the rubric, as task 16 describes | (b), task 16, depends on 13 |
 | Clans / teams | **Missing** | (b), task 15 |
-| Multi-language code kata | Not applicable. Kyuclid is answer and proof maths, not code | — |
+| Multi-language code kata | Not applicable. Cevian is answer and proof maths, not code | — |
 
 ## What this adds to the three phase-C product tasks
 
@@ -49,6 +49,6 @@ Other static ideas considered and set aside for now, with why:
 
 All three live entirely in `js/lib/store.js` (state) plus the views that already read `S`, so none of them add a route, a dependency or a build step.
 
-1. **Export/import**: a button on the profile page downloads `S` as `kyuclid-progress-<date>.json` (`Blob` + an `<a download>`, no server). Import reads a chosen file, validates it loosely (an object with a `solved` map) and either replaces or merges with the current state, then saves and re-renders. Because `S` already holds every feature below, exporting it also backs up favourites and anything else added to the same object.
+1. **Export/import**: a button on the profile page downloads `S` as `cevian-progress-<date>.json` (`Blob` + an `<a download>`, no server). Import reads a chosen file, validates it loosely (an object with a `solved` map) and either replaces or merges with the current state, then saves and re-renders. Because `S` already holds every feature below, exporting it also backs up favourites and anything else added to the same object.
 2. **Favourites**: `S.favourites: {}`, a star toggle on the problem row and the problem page next to "Report a problem", and a `favourites` status option in the problems list filter alongside `open`/`tried`/`solved`.
 3. **Achievements**: a fixed list of definitions (streak lengths, kyu sweeps, first proof, first duel win, total solved milestones), each a pure function of `S`, evaluated and rendered on the profile page under the existing heatmap section. No new storage: an achievement is "earned" the moment its condition is true, so nothing needs to be migrated for solvers who already have progress.

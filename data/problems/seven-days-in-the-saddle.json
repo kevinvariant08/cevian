@@ -20,7 +20,7 @@
   "solution": "Days $1$ to $4$ total $4\\cdot10=40$ km, days $4$ to $7$ total $4\\cdot16=64$ km, and all seven days total $7\\cdot12=84$ km. Adding the first two totals counts day $4$ twice and every other day once, so the distance on day $4$ is $40+64-84=20$ km.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

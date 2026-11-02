@@ -20,7 +20,7 @@
   "solution": "Since $z>0$, a negative product needs $xy<0$. If $x<0<y$ then $|xy|\\le 6\\cdot 3=18$. If $y<0<x$ then $|xy|\\le 2\\cdot 5=10$. So $xyz\\ge -18\\cdot 4=-72$ whenever the product is negative, and this bound holds trivially otherwise. Equality holds at $x=-6$, $y=3$, $z=4$, so the minimum is $-72$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

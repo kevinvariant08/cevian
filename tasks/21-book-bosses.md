@@ -1,7 +1,7 @@
 # 21. Final bosses from *Beyond the Incenter*
 
 ## Goal
-Turn the hardest geometry problems in Kevin's book, *Beyond the Incenter: A Collection of 100 Geometry Problems for Mathematical Olympiads* (2026 edition), into Kyuclid' **boss fights**: a gated tier above 1 kyu that strong players work towards. The rest of the book's problems become high-quality 3–1 kyu geometry and inspirations for generated problems.
+Turn the hardest geometry problems in Kevin's book, *Beyond the Incenter: A Collection of 100 Geometry Problems for Mathematical Olympiads* (2026 edition), into Cevian' **boss fights**: a gated tier above 1 kyu that strong players work towards. The rest of the book's problems become high-quality 3–1 kyu geometry and inspirations for generated problems.
 
 ## Depends on
 01 (problem format) and 10 (figures). Players are marked by self-grading until 16 (proof review) lands. Use 03's analysis method for tagging.
@@ -53,4 +53,4 @@ Turn the hardest geometry problems in Kevin's book, *Beyond the Incenter: A Coll
 - Every boss shows both its competition source and its book credit.
 
 ## Out of scope
-Selling the book on Kyuclid, and any change to the book itself.
+Selling the book on Cevian, and any change to the book itself.

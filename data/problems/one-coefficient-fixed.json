@@ -20,7 +20,7 @@
   "solution": "Let $c$ be the coefficient of $x^{10}$ in $Q(x)$.\n\nIf $a\\ne b$, then $(a-b)Q(x)=(x+a)^{13}-(x+b)^{13}$. The coefficient of $x^{10}$ in $(x+a)^{13}$ is $\\binom{13}{3}a^3=286a^3$, so $(a-b)c=286(a^3-b^3)$ and $c=286(a^2+ab+b^2)$.\n\nIf $a=b$, then $Q(x)=13(x+a)^{12}$, so $c=13\\binom{12}{2}a^2=858a^2=286(a^2+a\\cdot a+a^2)$. The formula holds in this case too.\n\nSince $8580000=286\\cdot 30000$, the condition is $a^2+ab+b^2=30000$. With $a+b=s$ we have $a^2+ab+b^2=s^2-ab$, so the condition becomes $ab=s^2-30000$.\n\nReal $a,b$ with sum $s$ and product $s^2-30000$ exist exactly when $t^2-st+s^2-30000=0$ has real roots. The discriminant is $s^2-4(s^2-30000)=120000-3s^2$, which is non-negative iff $s^2\\le 40000$, i.e. $-200\\le s\\le 200$.\n\nThis gives $401$ integers.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

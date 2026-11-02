@@ -21,7 +21,7 @@
   "solution": "The condition rearranges to $(x_{n+1}+y_n)^2+(y_{n+1}-x_n)^2=0$, so $x_{n+1}=-y_n$ and $y_{n+1}=x_n$.\n\nThen $x_{n+2}=-y_{n+1}=-x_n$, so $x_n$ runs $3,-7,-3,7$ with period $4$.\n\nEach block $n=4k+1,\\dots,4k+4$ contributes\n$$3(4k+1)-7(4k+2)-3(4k+3)+7(4k+4)=-6+14=8.$$\nSince $2026=4\\cdot506+2$, the $506$ blocks give $4048$. The remaining terms are $2025\\cdot3-2026\\cdot7=-8107$.\n\nThe sum is $4048-8107=-4059$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "low-1"
   },
   "stats": {

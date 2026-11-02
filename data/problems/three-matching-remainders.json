@@ -21,7 +21,7 @@
   "solution": "The differences of the three expressions factorise:\n$$(xy+6z)-(yz+6x)=(y-6)(x-z),\\quad (yz+6x)-(zx+6y)=(z-6)(y-x),$$\n$$(zx+6y)-(xy+6z)=(x-6)(z-y).$$\nThe three sum to $0$, so the system is equivalent to all three products being $0$ modulo $35$. By the Chinese remainder theorem, triples modulo $35$ correspond bijectively to pairs of triples modulo $5$ and modulo $7$, so the count is the product of the counts modulo $5$ and modulo $7$.\n\nLet $p\\in\\{5,7\\}$ and work modulo $p$, where a product vanishes only if a factor does.\n\n<b>Case 1: $x\\equiv y\\equiv z$.</b> All products vanish, giving $p$ solutions.\n\n<b>Case 2: not all equal.</b> At least two of $x-z$, $y-x$, $z-y$ are nonzero, since two zero differences force the third to be zero. Each nonzero difference forces the other factor in its product to vanish, so at least two of $x,y,z$ are $\\equiv 6$. As they are not all equal, exactly two are $6$ and the third is not.\n\nConversely, take such a triple. In each product, either the single variable is $6$, or it is the odd one and the other two are both $6$, so the difference is $0$. Hence every such triple is a solution. There are $3$ positions for the odd coordinate and $p-1$ values, giving $3(p-1)$ solutions.\n\nThe total modulo $p$ is $p+3(p-1)=4p-3$, which is $17$ for $p=5$ and $25$ for $p=7$.\n\nThe number of triples is $17\\cdot 25=425$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "pilot-1"
   },
   "stats": {

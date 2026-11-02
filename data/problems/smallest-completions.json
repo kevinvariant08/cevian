@@ -21,7 +21,7 @@
   "solution": "Divisors are $d=2^a3^b5^c$ with $0\\le a,b,c\\le4$. The smallest $t$ with $dt$ a square is the product of the primes having odd exponent in $d$: each such prime must divide $t$, and multiplying by this product makes all exponents even.\n\nHence $s(d)=f_2(a)f_3(b)f_5(c)$, where $f_p(e)=1$ for even $e$ and $f_p(e)=p$ for odd $e$. So the sum factorises as\n$$\\left(\\sum_{a=0}^4 f_2(a)\\right)\\left(\\sum_{b=0}^4 f_3(b)\\right)\\left(\\sum_{c=0}^4 f_5(c)\\right).$$\n\nAmong $0,\\dots,4$ there are three even and two odd exponents, so each bracket equals $3+2p$, giving $7$, $9$, $13$. The sum is $7\\cdot9\\cdot13=819$.",
   "provenance": {
     "kind": "original",
-    "author": "kyuclid",
+    "author": "cevian",
     "pipeline_run": "full-1"
   },
   "stats": {

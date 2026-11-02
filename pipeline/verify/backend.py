@@ -138,7 +138,7 @@ class CliBackend(Backend):
         args = [self.exe, "-p", "--model", model, "--effort", effort, "--system-prompt", system, "--max-budget-usd", f"{budget:.4f}", *flags]
         last = None
         for attempt in range(3):
-            with tempfile.TemporaryDirectory(prefix="kyuclid-call-") as cwd:
+            with tempfile.TemporaryDirectory(prefix="cevian-call-") as cwd:
                 for i, image in enumerate(images or []):
                     shutil.copy(image, Path(cwd) / f"figure-{i + 1}.png")
                 try:

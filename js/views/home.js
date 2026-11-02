@@ -93,7 +93,7 @@ function numbers(pts) {
 
 function notes(placed) {
   return `<details class="note"${placed ? "" : " open"}>
-      <summary>How Kyuclid works</summary>
+      <summary>How Cevian works</summary>
       <p><b>Solve.</b> From 8 to 4 kyu every problem has one numerical answer, checked the moment you submit. 3 kyu mixes answers and proofs. Solutions unlock once you have it right.</p>
       <p><b>Prove.</b> At 2 and 1 kyu you write proofs. They'll go to two reviewers ranked above the problem, who mark out of 7. For now you self-grade against the rubric.</p>
       <p><b>Duel.</b> One problem, one clock. First correct answer wins, and a wrong answer locks you out for 15 seconds. Today you race a timed ghost.</p>

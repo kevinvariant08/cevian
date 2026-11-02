@@ -18,9 +18,9 @@ As for the gate (`pipeline/verify/README.md`), plus these environment variables:
 
 | Variable | Meaning |
 |---|---|
-| `KYUCLID_CORPUS` | The private corpus. Required: originality means nothing without it. |
-| `KYUCLID_ANALYSIS` | Analysis records: a folder of `batch_*.jsonl`, or one jsonl file. Required. |
-| `KYUCLID_GENERATED` | A checkout of the private repo's `generated-map` branch. Holds `generated_map.jsonl` and `runs/<run>/log.jsonl`. Without it they go to gitignored `out/generate/`. |
+| `CEVIAN_CORPUS` | The private corpus. Required: originality means nothing without it. |
+| `CEVIAN_ANALYSIS` | Analysis records: a folder of `batch_*.jsonl`, or one jsonl file. Required. |
+| `CEVIAN_GENERATED` | A checkout of the private repo's `generated-map` branch. Holds `generated_map.jsonl` and `runs/<run>/log.jsonl`. Without it they go to gitignored `out/generate/`. |
 
 ## How one problem is made
 
