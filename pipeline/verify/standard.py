@@ -2,7 +2,7 @@
 
 Rules that need judgement are in the critics' prompts instead. M3 stays a warning, because a key like 25/4 can
 appear as $\\dfrac{25}{4}$. The literal check in H4 skips one-digit answers, which turn up innocently in hints;
-the solution audit judges those. M5 and the ID half of M4 run only where data/taxonomy.json exists.
+the solution audit judges those. M5 runs only where data/taxonomy.json exists.
 """
 import json
 import re
@@ -24,7 +24,8 @@ CONTESTS = r"\b(AIME|AMC|USAMO|USAJMO|UKMT|BMO|IMO|ISL|EGMO|CGMO|APMO|RMM|HMMT|A
 THEOREMS = ["am-gm", "am-hm", "apollonius", "bezout", "brahmagupta", "burnside", "catalan", "cauchy", "ceva", "chinese remainder", "crt", "euler", "fermat", "fibonacci", "heron",
             "inclusion-exclusion", "jensen", "lagrange", "legendre", "lucas", "menelaus", "muirhead", "nesbitt", "pascal", "pick", "pigeonhole", "power of a point", "ptolemy",
             "pythagoras", "pythagorean", "schur", "stewart", "vieta", "wilson"]
-WHY_LINE = re.compile(r"^<b>Why this works\.</b> <code>[a-z0-9-]+</code>(, <code>[a-z0-9-]+</code>)*: \S.*$", re.S)
+# Kevin's list of phrases that make a solution read as AI. M8.
+BANNED_STYLE = re.compile(r"why this works|key idea|key insight|\bcrux\b|\belegant|\bbeautiful|the trick\b|the heart of|\bdelicate|we only need|\bnote that\b|\bit remains\b|therefore each|\u2014", re.I)
 
 
 def load_taxonomy(path=TAXONOMY):
@@ -171,19 +172,13 @@ def run(draft, taxonomy=None):
                 fails.append(f'S13: the {name} gives away the technique "{found[0]}"')
     if d.get("inspired_by") and any(d["inspired_by"] in t for _, t in public):
         fails.append("O5: the public text mentions its private inspired_by ID")
-    if d.get("provenance", {}).get("pipeline_run") and not d.get("inspired_by"):
+    if d["type"] == "answer" and d.get("provenance", {}).get("pipeline_run") and not d.get("inspired_by"):
         fails.append("O4: a generated draft must set inspired_by")
 
-    last = re.split(r"\n\s*\n", d["solution"].strip())[-1].strip()
-    if not WHY_LINE.match(last):
-        fails.append('M4: the solution\'s last paragraph must be the "Why this works" line')
-    else:
-        ids = re.findall(r"<code>([a-z0-9-]+)</code>", last.split(":", 1)[0])
-        for i in ids:
-            if i not in d["subtopics"]:
-                fails.append(f"M4: {i} is in the Why this works line but not in subtopics")
-            if taxonomy is not None and i not in taxonomy:
-                fails.append(f"M4: {i} isn't in data/taxonomy.json")
+    for name, text in [("solution", d["solution"]), *((f"hint {i + 1}", h) for i, h in enumerate(d.get("hints") or [])), *((f"rubric line {i + 1}", r["criterion"]) for i, r in enumerate(d.get("rubric") or []))]:
+        found = BANNED_STYLE.search(text)
+        if found:
+            fails.append(f'M8: the {name} uses "{found.group()}", which reads as AI')
     if taxonomy is not None:
         for s in d["subtopics"]:
             if s not in taxonomy:

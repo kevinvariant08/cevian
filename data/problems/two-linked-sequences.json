@@ -1,0 +1,33 @@
+{
+  "id": "two-linked-sequences",
+  "title": "Two Linked Sequences",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "sos",
+    "periodicity",
+    "block-grouping-of-sums"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Sequences of real numbers $x_1, x_2, x_3, \\dots$ and $y_1, y_2, y_3, \\dots$ satisfy $x_1 = 3$, $y_1 = 7$ and, for every positive integer $n$,\n$$x_{n+1}^2 + y_{n+1}^2 + x_n^2 + y_n^2 = 2x_n y_{n+1} - 2x_{n+1} y_n.$$\nFind the value of $$\\sum_{n=1}^{2026} n \\cdot x_n.$$",
+  "answer_format": "integer",
+  "answer_hash": "481e4adf",
+  "hints": [
+    "Move every term of the relation to one side. Then look at how the terms pair up: $x_{n+1}^2$, $y_n^2$ and $2x_{n+1}y_n$ belong together, and so do $y_{n+1}^2$, $x_n^2$ and $-2x_n y_{n+1}$.",
+    "Use a sum of squares. The rearranged relation says that two perfect squares add up to $0$, and for real numbers this forces each square to be $0$. This gives simple formulas for $x_{n+1}$ and $y_{n+1}$ in terms of $x_n$ and $y_n$.",
+    "The relation becomes $(x_{n+1} + y_n)^2 + (y_{n+1} - x_n)^2 = 0$, so $x_{n+1} = -y_n$ and $y_{n+1} = x_n$. The $x_n$ therefore repeat as $3, -7, -3, 7, \\dots$. Each block of four consecutive terms of the sum, starting from $n = 1$, equals $8$, and $2026 = 4 \\cdot 506 + 2$, so two terms are left over."
+  ],
+  "solution": "The condition rearranges to $(x_{n+1}+y_n)^2+(y_{n+1}-x_n)^2=0$, so $x_{n+1}=-y_n$ and $y_{n+1}=x_n$.\n\nThen $x_{n+2}=-y_{n+1}=-x_n$, so $x_n$ runs $3,-7,-3,7$ with period $4$.\n\nEach block $n=4k+1,\\dots,4k+4$ contributes\n$$3(4k+1)-7(4k+2)-3(4k+3)+7(4k+4)=-6+14=8.$$\nSince $2026=4\\cdot506+2$, the $506$ blocks give $4048$. The remaining terms are $2025\\cdot3-2026\\cdot7=-8107$.\n\nThe sum is $4048-8107=-4059$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-two-linked-sequences"
+}

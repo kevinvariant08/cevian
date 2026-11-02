@@ -1,0 +1,32 @@
+{
+  "id": "two-keys",
+  "title": "Two Keys",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "recursion",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A calculator display shows $1$. The calculator has exactly two keys: one adds $1$ to the displayed number, and the other multiplies the displayed number by $3$. How many different sequences of key presses change the display from $1$ to $30$?",
+  "answer_format": "integer",
+  "answer_hash": "b1fc85e6",
+  "hints": [
+    "Think about the final key press of a sequence that ends on a number $n$. What could the display have shown just before that press?",
+    "Use recursion. Let $f(n)$ be the number of sequences taking the display from $1$ to $n$, then express $f(n)$ using the values of $f$ at the smaller numbers from which $n$ can be reached in one press. These are $n-1$ and, when $3$ divides $n$, also $\\frac{n}{3}$.",
+    "With $f(n)$ as the number of sequences from $1$ to $n$, we have $f(1)=1$, and for $n \\ge 2$ we have $f(n)=f(n-1)$ when $3$ does not divide $n$, and $f(n)=f(n-1)+f\\left(\\frac{n}{3}\\right)$ when $3$ divides $n$. So $f$ changes only at multiples of $3$. Building the table gives $f(9)=5$ and $f(27)=23$, and just one more multiple of $3$ remains."
+  ],
+  "solution": "Let $f(n)$ be the number of sequences from $1$ to $n$. Every key press strictly increases the display, so $f(1)=1$. For $n\\ge2$, split by the last press: \"add $1$\" contributes $f(n-1)$, and \"multiply by $3$\" contributes $f(n/3)$ when $3\\mid n$. Hence $f(n)=f(n-1)$ if $3\\nmid n$, and $f(n)=f(n-1)+f(n/3)$ if $3\\mid n$.\n\nSo $f(2)=1$, and\n$$f(3)=1+1=2,\\ f(6)=2+f(2)=3,\\ f(9)=3+f(3)=5,\\ f(12)=5+f(4)=5+2=7,\\ f(15)=7+f(5)=9,$$\n$$f(18)=9+f(6)=12,\\ f(21)=12+f(7)=12+3=15,\\ f(24)=15+f(8)=18,\\ f(27)=18+f(9)=23,\\ f(30)=23+f(10)=23+5=28.$$\n\nHere $f(4)=f(5)=f(3)$, $f(7)=f(8)=f(6)$ and $f(10)=f(9)$ were used.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-two-keys"
+}

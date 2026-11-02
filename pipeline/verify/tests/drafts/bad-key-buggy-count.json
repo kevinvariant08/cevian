@@ -15,7 +15,7 @@
     "What happens to the sum if every digit is lowered by one?",
     "Use casework on how many of the lowered digits equal $2$."
   ],
-  "solution": "Subtract $1$ from each digit: we want four values from $\\{0,1,2\\}$ with sum $4$. Two $2$s and two $0$s: $\\binom42 = 6$ ways. One $2$, two $1$s and one $0$: $4\\cdot 3 = 12$ ways. The total is $6 + 12 = 18$.\n\n<b>Why this works.</b> <code>casework</code>: after the shift, the number of largest digits splits the count into simple cases.",
+  "solution": "Subtract $1$ from each digit: we want four values from $\\{0,1,2\\}$ with sum $4$. Two $2$s and two $0$s: $\\binom42 = 6$ ways. One $2$, two $1$s and one $0$: $4\\cdot 3 = 12$ ways. The total is $6 + 12 = 18$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

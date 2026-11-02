@@ -1,0 +1,32 @@
+{
+  "id": "exactly-twice-on-the-list",
+  "title": "Exactly Twice on the List",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "modular-arithmetic",
+    "prime-factorization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Consider the $30$ numbers $2^1 + 1, 2^2 + 1, 2^3 + 1, \\dots, 2^{30} + 1$. Find the sum of all primes $p$ that divide exactly two of these $30$ numbers.",
+  "answer_format": "integer",
+  "answer_hash": "9e1531d2",
+  "hints": [
+    "Fix a prime $p$ that divides at least one of the numbers, and look at the smallest exponent $k$ for which $p \\mid 2^k + 1$. Try $p = 5$: which exponents $n$ give $5 \\mid 2^n + 1$?",
+    "Use modular arithmetic. Let $k$ be the smallest positive exponent with $2^k \\equiv -1 \\pmod p$. Divide a general exponent $n$ by $k$ with remainder to show that $p \\mid 2^n + 1$ exactly when $n$ is an odd multiple of $k$.",
+    "Since $p \\mid 2^n + 1$ exactly when $n$ is an odd multiple of the smallest exponent $k$, the prime $p$ divides exactly two of the numbers when $3k \\le 30 < 5k$, that is, when $7 \\le k \\le 10$. Factorise $2^k + 1$ for these four values of $k$, and discard any prime that already divides $2^j + 1$ for some smaller $j$."
+  ],
+  "solution": "Every number $2^n + 1$ is odd, so any prime $p$ dividing one of them is odd, and therefore $1 \\not\\equiv -1 \\pmod p$. For such a prime, let $k$ be the smallest positive integer with $2^k \\equiv -1 \\pmod p$. We claim that for positive $n$, $p \\mid 2^n + 1$ exactly when $n$ is an odd multiple of $k$.\n\nFirst, no $r$ with $0 < r < k$ has $2^r \\equiv 1 \\pmod p$. Suppose one did, and write $k = ar + s$ with $0 \\le s < r$. Then $2^k \\equiv 2^s \\pmod p$, so $2^s \\equiv -1 \\pmod p$. If $s = 0$ this says $1 \\equiv -1 \\pmod p$, which is false. If $s > 0$ it contradicts the minimality of $k$, since $s < k$.\n\nNow suppose $2^n \\equiv -1 \\pmod p$, and write $n = qk + r$ with $0 \\le r < k$. Then $2^n \\equiv (-1)^q \\cdot 2^r \\pmod p$, so $2^r \\equiv (-1)^{q+1} \\equiv \\pm 1 \\pmod p$. If $r > 0$, then $2^r \\equiv -1$ contradicts the minimality of $k$, and $2^r \\equiv 1$ contradicts the previous paragraph. Hence $r = 0$, which gives $(-1)^q \\equiv -1 \\pmod p$, so $q$ is odd. Conversely, if $n = qk$ with $q$ odd, then $2^n \\equiv (-1)^q = -1 \\pmod p$. This proves the claim.\n\nSo the exponents $n \\le 30$ with $p \\mid 2^n + 1$ are the odd multiples $k, 3k, 5k, \\dots$ that do not exceed $30$. There are exactly two of them when $3k \\le 30 < 5k$, which means $7 \\le k \\le 10$. We therefore need the primes whose smallest exponent $k$ is $7$, $8$, $9$ or $10$. Each such prime divides the corresponding number below:\n$$2^7 + 1 = 3 \\cdot 43, \\quad 2^8 + 1 = 257, \\quad 2^9 + 1 = 3^3 \\cdot 19, \\quad 2^{10} + 1 = 5^2 \\cdot 41.$$\nHere $257$ is prime, as none of $2, 3, 5, 7, 11, 13$ divides it.\n\nIt remains to find the smallest exponent of each prime. By the claim, this smallest exponent $k$ must make the listed exponent an odd multiple of $k$. The prime $3$ divides $2^1 + 1$, so its smallest exponent is $1$, and the prime $5$ divides $2^2 + 1$, so its smallest exponent is $2$. Both are rejected. For $43$, the only smaller candidate is $k = 1$, and $43 \\nmid 3$, so its smallest exponent is $7$. For $257$, the only odd multiple relation is $8 = 1 \\cdot 8$, so its smallest exponent is $8$. For $19$, the smaller candidates are $k = 1$ and $k = 3$, and $19$ divides neither $3$ nor $9$, so its smallest exponent is $9$. For $41$, the only smaller candidate is $k = 2$, and $41 \\nmid 5$, so its smallest exponent is $10$.\n\nThe primes dividing exactly two of the numbers are therefore $43$, $257$, $19$ and $41$, and their sum is $43 + 257 + 19 + 41 = 360$. The answer is $360$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-exactly-twice-on-the-list"
+}

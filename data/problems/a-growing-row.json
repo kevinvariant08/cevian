@@ -1,0 +1,32 @@
+{
+  "id": "a-growing-row",
+  "title": "A Growing Row",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "linear-combination-of-equations",
+    "telescoping"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A row contains $41$ numbers. The first number plus the second is $3$, the second plus the third is $6$, and the third plus the fourth is $9$. This pattern continues, with each sum of two neighbouring numbers being $3$ more than the sum before it, up to the sum of the $40$th and $41$st numbers. What is the value of the $41$st number minus the $1$st number?",
+  "answer_format": "integer",
+  "answer_hash": "25de8195",
+  "hints": [
+    "Write the first number, the second number and the third number as $a$, $b$ and $c$, so that $a + b = 3$ and $b + c = 6$. Which number appears in both sums?",
+    "Subtract one neighbouring sum from the next. The number the two sums share cancels, which leaves a difference between two numbers that are two places apart in the row.",
+    "Subtracting any neighbouring sum from the next shows that moving two places along the row always adds exactly $3$. Now count how many moves of two places take you from position $1$ to position $41$."
+  ],
+  "solution": "With $a_k+a_{k+1}=3k$ for $1\\le k\\le 40$, subtracting consecutive equations gives $a_{k+2}-a_k=3$ for $1\\le k\\le 39$. Hence\n$$a_{41}-a_1=\\sum_{j=0}^{19}(a_{2j+3}-a_{2j+1})=20\\cdot 3=60.$$",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-growing-row"
+}

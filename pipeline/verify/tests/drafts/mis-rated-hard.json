@@ -15,7 +15,7 @@
     "Encode a subset as a binary string.",
     "Scan left to right, remembering the last five positions."
   ],
-  "solution": "Scan the numbers from $1$ to $16$ in order, remembering which of the last five were chosen. A transfer over these $32$ states gives $1324$ subsets, which is $324$ modulo $1000$.\n\n<b>Why this works.</b> <code>recursion</code>: a scan with a short memory turns the count into a transfer between states.",
+  "solution": "Scan the numbers from $1$ to $16$ in order, remembering which of the last five were chosen. A transfer over these $32$ states gives $1324$ subsets, which is $324$ modulo $1000$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

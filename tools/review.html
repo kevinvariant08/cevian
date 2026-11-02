@@ -54,7 +54,7 @@
 <body>
 <div id="app"><div class="empty"><p>Loading…</p></div></div>
 <script type="module">
-import { tex, paras } from "../js/lib/tex.js";
+import { tex, paras, texParas, safeText } from "../js/lib/tex.js";
 import { solutionHtml, inlineFigures } from "../js/lib/figures.js";
 
 const app = document.getElementById("app");
@@ -122,10 +122,15 @@ function summary(report) {
     ["Cost", u ? `$${u.api_equivalent_usd} API-equivalent, ${u.calls} calls` : "unknown"],
   ];
   const checks = report.checks.map((c) => `<tr><td class="${esc(c.status)}">${esc(c.status)}</td><td>${esc(c.check)}</td><td>${esc(c.reason)}</td></tr>`).join("");
+  const scripts = report.checks.filter((c) => c.evidence?.attempts?.length).map((c) => `<details><summary>${esc(c.check)}: ${esc(c.reason)}</summary>${c.evidence.attempts.map((a, i) => `<h4>${esc(a.kind || `Attempt ${i + 1}`)} · ${esc(a.model || "")} · ${a.mark ? `${a.mark.total}/7${a.mark.complete ? ", marked complete" : ""}` : "not marked"}${a.expected ? ` · expected ${a.expected[0]} to ${a.expected[1]}` : ""}</h4>${(a.mark?.errors || []).map((e) => `<p class="faint">${esc(e)}</p>`).join("")}${(a.mark?.lines || []).map((l) => `<p class="faint">Line ${esc(l.line)}: ${esc(l.awarded)}. ${esc(l.why)}</p>`).join("")}<div class="tex" style="white-space:pre-wrap">${esc(a.script)}</div>`).join("")}</details>`).join("");
+  const search = check(report, "counterexample_search")?.evidence;
+  const searchHtml = search?.program ? `<details><summary>Counterexample search: ${esc(search.last_line || "")}</summary><pre style="white-space:pre-wrap">${esc(search.program)}</pre></details>` : "";
+  const known = check(report, "known_problem")?.evidence;
+  const knownHtml = known?.answers ? `<details open><summary>Closest known problems (from memory, no olympiad corpus)</summary>${known.answers.map((a) => `<p class="faint">${esc(a.model)}: ${(a.closest || []).map((c) => `${esc(c.source)} (${esc(c.how_close)}): ${esc(c.note)}`).join("; ")}</p>`).join("")}</details>` : "";
   const notes = (report.notes || []).map((n) => `<p class="faint">${esc(n)}</p>`).join("");
   return `<section><h3>Verification</h3><p><span class="pill ${word}">${word}</span></p>${word === "PASS" ? "" : `<p>${esc(report.verdict)}</p>`}
     <dl class="stats">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>${notes}
-    <details><summary class="faint">All checks</summary><table>${checks}</table></details></section>`;
+    <details><summary class="faint">All checks</summary><table>${checks}</table></details>${knownHtml}${searchHtml}${scripts}</section>`;
 }
 
 // A draft carries its figures once attached. Until then a backfilled one is found by ID in figures/index.json.
@@ -142,9 +147,9 @@ function preview(d) {
   const figure = d.figure ? `<p><img src="/${esc(d.figure)}" alt="${esc(d.figure_alt)}" style="max-width:100%"></p>` : "";
   const key = d.type === "answer" ? `<section><h3>Answer</h3><div class="answer">${esc(d.answer)}</div><p class="faint">${esc(d.answer_format)}</p>
     <details><summary class="faint">Check program</summary><pre>${esc(d.check_program)}</pre></details></section>` : "";
-  const rubric = d.rubric ? `<section><h3>Rubric</h3><table>${d.rubric.map((r) => `<tr><td>${r.marks}</td><td class="tex">${r.criterion}</td></tr>`).join("")}</table></section>` : "";
-  const hints = (d.hints || []).map((h, i) => `<div class="tex"><p class="faint">Hint ${i + 1}</p>${paras(h)}</div>`).join("");
-  return `<section><h2>${esc(d.title)}</h2><p class="faint">${d.kyu} kyu · ${TOPICS[d.topic] || esc(d.topic)} · ${esc(d.type)} · <code>${esc(d.id)}</code> · ${(d.subtopics || []).map(esc).join(", ")}</p><div class="tex">${paras(d.statement)}</div>${figure}</section>
+  const rubric = d.rubric ? `<section><h3>Rubric</h3><table>${d.rubric.map((r) => `<tr><td>${r.marks}</td><td class="tex">${safeText(r.criterion)}</td></tr>`).join("")}</table></section>` : "";
+  const hints = (d.hints || []).map((h, i) => `<div class="tex"><p class="faint">Hint ${i + 1}</p>${texParas(h)}</div>`).join("");
+  return `<section><h2>${esc(d.title)}</h2><p class="faint">${d.kyu} kyu · ${TOPICS[d.topic] || esc(d.topic)} · ${esc(d.type)} · <code>${esc(d.id)}</code> · ${(d.subtopics || []).map(esc).join(", ")}</p><div class="tex">${texParas(d.statement)}</div>${figure}</section>
     ${key}<section><h3>Hints</h3>${hints}</section><section><h3>Solution</h3><div class="tex sol-figs">${solutionHtml({ ...d, solution_figures: figuresOf(d) })}</div></section>${rubric}`;
 }
 

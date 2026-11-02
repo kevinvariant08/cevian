@@ -1,0 +1,30 @@
+{
+  "id": "near-copy-of-bank-triples",
+  "title": "Near copy of bank triples",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "place-value-representation"
+  ],
+  "type": "answer",
+  "status": "draft",
+  "statement": "How many triples of integers $(a,b,c)$ satisfy $1 \\le a < b < c \\le 80$ and $$a^2+b^2+c^2-ab-bc-ca=1027?$$",
+  "answer_format": "integer_0_999",
+  "answer_hash": "8a52002b",
+  "hints": [
+    "Name the units digit, since the tens digit depends on it.",
+    "Use the place value of each digit to list the options: the tens digit is at most $9$, which limits the units digit."
+  ],
+  "solution": "With $x = b - a$ and $y = c - b$ the condition is $x^2 + xy + y^2 = 1027$. Counting the positive solutions, each weighted by the room left for $a$, gives the answer.",
+  "provenance": {
+    "kind": "original",
+    "author": "task-05-tests"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "answer": "180",
+  "check_program": "print(sum(1 for a in range(1, 81) for b in range(a + 1, 81) for c in range(b + 1, 81) if a * a + b * b + c * c - a * b - b * c - c * a == 1027))"
+}

@@ -2,7 +2,7 @@
 // contain "-" themselves. #problems-k54-AN-answer-open?s=vieta-jumping&q=sum&sort=hard&page=2
 // Keep this module free of browser globals so it can be tested in Node.
 export const SORTS = ["easy", "hard", "popular", "loved"];
-export const blankFilters = () => ({ kyu: [], topic: [], type: "all", status: "all", sub: "", q: "", sort: "easy", page: 1 });
+export const blankFilters = () => ({ kyu: [], topic: [], type: "all", status: "all", fav: false, sub: "", q: "", sort: "easy", page: 1 });
 
 export const isListHash = (h) => /^#?problems([-?]|$)/.test(h);
 
@@ -16,6 +16,7 @@ export function parseFilters(hash) {
     else if (/^[ACGN]+$/.test(tok)) F.topic = [...new Set(tok.split(""))].sort();
     else if (tok === "answer" || tok === "proof") F.type = tok;
     else if (tok === "open" || tok === "tried" || tok === "solved") F.status = tok;
+    else if (tok === "fav") F.fav = true;
   }
   const q = new URLSearchParams(at < 0 ? "" : raw.slice(at + 1));
   F.sub = q.get("s") || "";
@@ -32,6 +33,7 @@ export function filtersToHash(F) {
   if (F.topic.length) toks.push([...F.topic].sort().join(""));
   if (F.type !== "all") toks.push(F.type);
   if (F.status !== "all") toks.push(F.status);
+  if (F.fav) toks.push("fav");
   const q = new URLSearchParams();
   if (F.sub) q.set("s", F.sub);
   if (F.q) q.set("q", F.q);

@@ -1,0 +1,33 @@
+{
+  "id": "three-of-each-gently-falling",
+  "title": "Three of Each, Gently Falling",
+  "kyu": 4,
+  "topic": "C",
+  "subtopics": [
+    "stars-and-bars",
+    "bijection",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Consider sequences $a_1, a_2, \\dots, a_9$ of integers in which each of the integers $1$, $2$ and $3$ appears exactly three times, and no other integer appears. How many such sequences satisfy $a_k \\le a_{k+1} + 1$ for every integer $k$ with $1 \\le k \\le 8$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "516135ad",
+  "hints": [
+    "Since every term is $1$, $2$ or $3$, list the adjacent pairs $(a_k, a_{k+1})$ that break $a_k \\le a_{k+1} + 1$.",
+    "The only forbidden pair is a $3$ immediately followed by a $1$. Delete the three $3$'s. The six remaining terms can be arranged in any way. Then ask where blocks of $3$'s can be put back. This is a stars and bars count.",
+    "Each maximal block of consecutive $3$'s must be immediately followed by a $2$ or end the sequence. So the $3$'s are shared among four slots: just before each of the three $2$'s, or at the end. Count the arrangements of $1,1,1,2,2,2$ and the ways to share three identical $3$'s among four slots, then multiply."
+  ],
+  "solution": "For values in $\\{1,2,3\\}$ the inequality $a_k \\le a_{k+1}+1$ fails only when $a_k = 3$ and $a_{k+1} = 1$. So we count arrangements of $1,1,1,2,2,2,3,3,3$ in which no $3$ is immediately followed by a $1$.\n\nDelete the $3$'s. This leaves an arrangement $w$ of $1,1,1,2,2,2$, and there are $\\binom{6}{3} = 20$ such arrangements. In the full sequence, each maximal block of $3$'s is followed either by nothing or by a $2$ or $1$ of $w$. The forbidden case is a $1$. So the blocks of $3$'s occupy some of four slots: immediately before one of the three $2$'s of $w$, or at the end.\n\nConversely, take any $w$ and distribute three $3$'s among these four slots. Every $3$ is then followed by a $3$, a $2$ or nothing, so the result is valid. Distinct distributions give distinct sequences. By stars and bars there are $\\binom{6}{3} = 20$ distributions.\n\nHence the number of sequences is $20 \\cdot 20 = 400$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-mid-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-three-of-each-gently-falling"
+}

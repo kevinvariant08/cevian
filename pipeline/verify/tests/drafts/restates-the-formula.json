@@ -15,7 +15,7 @@
     "Compare $n$ with $n + 30$: what is $n^2 + 300$ close to?",
     "Reduce modulo $n + 30$: the remainder is a constant, so $n + 30$ must be one of its divisors above $30$."
   ],
-  "solution": "Since $n \\equiv -30 \\pmod{n+30}$, we have $n^2 + 300 \\equiv 900 + 300 = 1200 \\pmod{n+30}$. So the condition is that $n + 30$ divides $1200$, with $n + 30 > 30$. The number $1200 = 2^4\\cdot 3\\cdot 5^2$ has $5\\cdot 2\\cdot 3 = 30$ divisors. They pair up as $d \\cdot (1200/d)$. Those at most $30$ are $1,2,3,4,5,6,8,10,12,15,16,20,24,25,30$, which is $15$ divisors, leaving $15$ above $30$. So there are $15$ values of $n$.\n\n<b>Why this works.</b> <code>divisor-counting</code>: reducing modulo the divisor leaves a constant, whose divisors can be counted.",
+  "solution": "Since $n \\equiv -30 \\pmod{n+30}$, we have $n^2 + 300 \\equiv 900 + 300 = 1200 \\pmod{n+30}$. So the condition is that $n + 30$ divides $1200$, with $n + 30 > 30$. The number $1200 = 2^4\\cdot 3\\cdot 5^2$ has $5\\cdot 2\\cdot 3 = 30$ divisors. They pair up as $d \\cdot (1200/d)$. Those at most $30$ are $1,2,3,4,5,6,8,10,12,15,16,20,24,25,30$, which is $15$ divisors, leaving $15$ above $30$. So there are $15$ values of $n$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

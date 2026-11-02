@@ -5,7 +5,7 @@ import { KYU, LADDER, TOPICS, badge, beltSvg, rankOf, HINT_COST } from "../lib/r
 import { S, save, award, points, myKyu, touchDay, currentStreak } from "../lib/store.js";
 import { LISTED, getProblem, upNext } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
-import { tex, paras } from "../lib/tex.js";
+import { tex, paras, texParas, safeText } from "../lib/tex.js";
 import { renderQuiz } from "./quiz.js";
 import { row } from "./problems.js";
 
@@ -150,7 +150,7 @@ async function fillNext(entry) {
   try { p = await getProblem(entry.id); }
   catch { if ($("nextBox") === box) box.innerHTML = errorPanel("this problem"); return; }
   if ($("nextBox") !== box) return;
-  box.innerHTML = paras(p.statement);
+  box.innerHTML = texParas(p.statement);
   box.removeAttribute("role");
   tex(box);
   const form = $("nextForm");

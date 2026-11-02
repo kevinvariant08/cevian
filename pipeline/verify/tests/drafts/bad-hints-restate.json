@@ -15,7 +15,7 @@
     "Find the smallest positive integer meeting the three conditions.",
     "Remember that it must be a multiple of $4$ and meet the other two conditions."
   ],
-  "solution": "The numbers leaving remainder $3$ on division by $7$ and remainder $2$ on division by $5$ start at $17$ and repeat every $35$, since $17 = 2\\cdot 7 + 3 = 3\\cdot 5 + 2$ and $\\gcd(5,7)=1$. So the candidates are $17, 52, 87, \\dots$. The number $17$ is odd and $52 = 4\\cdot 13$, so the smallest is $52$.\n\n<b>Why this works.</b> <code>crt</code>: conditions with coprime moduli combine into one residue class.",
+  "solution": "The numbers leaving remainder $3$ on division by $7$ and remainder $2$ on division by $5$ start at $17$ and repeat every $35$, since $17 = 2\\cdot 7 + 3 = 3\\cdot 5 + 2$ and $\\gcd(5,7)=1$. So the candidates are $17, 52, 87, \\dots$. The number $17$ is odd and $52 = 4\\cdot 13$, so the smallest is $52$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

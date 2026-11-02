@@ -1,0 +1,32 @@
+{
+  "id": "the-stockroom-count",
+  "title": "The Stockroom Count",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "complementary-counting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A shop stocks exactly one T-shirt for each combination of a colour and a size, and it offers the same number of colours as sizes. One of the colours is red and one of the sizes is small. Exactly $121$ of the T-shirts are neither red nor small. How many of the T-shirts are red, small or both?",
+  "answer_format": "integer",
+  "answer_hash": "e00cf5d5",
+  "hints": [
+    "Look at the $121$ T-shirts that are neither red nor small. Which colours and which sizes can they have?",
+    "Use the rule of product. If there are $n$ colours and $n$ sizes, a T-shirt that is neither red nor small has one of $n - 1$ colours and one of $n - 1$ sizes. This gives an equation for $n$. The T-shirts you want can then be counted by complementary counting: subtract the unwanted ones from the total.",
+    "The equation $(n - 1)^2 = 121$, where $n$ is the number of colours and also the number of sizes, gives $n = 12$. So the shop has $12 \\cdot 12 = 144$ T-shirts altogether, and the $121$ that are neither red nor small are exactly the ones not asked for."
+  ],
+  "solution": "With $n$ colours and $n$ sizes, the T-shirts that are neither red nor small number $(n-1)^2=121$, so $n-1=11$ and $n=12$. The shop has $12^2=144$ T-shirts, so $144-121=23$ are red, small or both.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-the-stockroom-count"
+}

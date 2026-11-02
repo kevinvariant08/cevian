@@ -15,7 +15,7 @@
     "What does an all-blue column do to the rows?",
     "Use complementary counting: start from colourings with no all-red row and remove those with an all-blue column."
   ],
-  "solution": "A column that is all blue already gives every row a blue cell. So the colourings with no all-red row number $(2^3 - 1)^3 = 343$, and we must remove those with some all-blue column. Colourings with no all-blue column also number $343$ by symmetry, so $512 - 343 = 169$ colourings have an all-blue column, and every one of them has no all-red row. The answer is $343 - 169 = 174$.\n\n<b>Why this works.</b> <code>complementary-counting</code>: the bad colourings are easier to count than the good ones.",
+  "solution": "A column that is all blue already gives every row a blue cell. So the colourings with no all-red row number $(2^3 - 1)^3 = 343$, and we must remove those with some all-blue column. Colourings with no all-blue column also number $343$ by symmetry, so $512 - 343 = 169$ colourings have an all-blue column, and every one of them has no all-red row. The answer is $343 - 169 = 174$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

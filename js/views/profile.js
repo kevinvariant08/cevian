@@ -1,13 +1,16 @@
-// Your profile: rank, streak, 12-week heatmap, subtopic strengths, topic and kyu bars, recent activity.
+// Your profile: rank, streak, 12-week heatmap, achievements, subtopic strengths, topic and kyu bars, recent activity, backup.
 import { $, esc, renderMe, rankBar } from "../lib/ui.js";
 import { KYU, LADDER, badge, rankOf, TOPICS } from "../lib/ranks.js";
-import { S, save, points, resetState, dayKey, currentStreak } from "../lib/store.js";
+import { S, save, points, resetState, dayKey, currentStreak, exportJSON, importJSON } from "../lib/store.js";
 import { LISTED, byId } from "../lib/problems.js";
 import { subtopicName } from "../lib/taxonomy.js";
+import { ACHIEVEMENTS, earnedAchievements } from "../lib/achievements.js";
 
 const WEEKS = 12;
 const SUB_ROWS = 12;
 let confirmReset = false;
+let pendingImport = null; // { name, text }, while asking merge or replace
+let importMsg = "";
 let allSubs = false;
 
 const level = (n) => (n === 0 ? 0 : n === 1 ? 1 : n <= 3 ? 2 : n <= 6 ? 3 : 4);
@@ -72,6 +75,67 @@ function subtopicTable() {
 
 const barWidth = (c, tot) => (tot ? (c / tot) * 100 : 0);
 
+function achievementsBox(streak) {
+  const earned = new Set(earnedAchievements(S, LISTED, streak).map((a) => a.id));
+  return `
+    <section class="panel" aria-labelledby="achH">
+      <h2 class="sub" id="achH">Achievements <span class="faint">${earned.size}/${ACHIEVEMENTS.length}</span></h2>
+      <div class="ach-grid">${ACHIEVEMENTS.map((a) => `<div class="ach${earned.has(a.id) ? " got" : ""}"><b>${esc(a.title)}</b><span class="faint">${esc(a.note)}</span></div>`).join("")}</div>
+    </section>`;
+}
+
+function backupBox() {
+  return `
+    <section class="panel" aria-labelledby="backupH">
+      <h2 class="sub" id="backupH">Back up your progress</h2>
+      <p class="faint" style="margin:0 0 12px">Progress lives in this browser only. Export a copy before clearing site data or moving to a new device, and import it back here or anywhere else.</p>
+      <div class="cta">
+        <button class="btn small" type="button" id="exportBtn">Export progress</button>
+        <label class="btn small ghost" for="importFile" style="cursor:pointer">Import progress</label>
+        <input type="file" id="importFile" accept="application/json" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">
+      </div>
+      ${importMsg ? `<p class="feedback${/not/.test(importMsg) ? " bad" : ""}" role="status" style="margin-top:10px">${esc(importMsg)}</p>` : ""}
+      ${pendingImport ? `<div class="confirm"><span>Add <code>${esc(pendingImport.name)}</code> to your progress here, or replace what's here with it?</span>
+        <button class="btn small primary" type="button" id="importMerge">Merge</button>
+        <button class="btn small" type="button" id="importReplace">Replace</button>
+        <button class="btn small ghost" type="button" id="importCancel">Cancel</button></div>` : ""}
+    </section>`;
+}
+
+function bindBackup() {
+  $("exportBtn").addEventListener("click", () => {
+    const a = Object.assign(document.createElement("a"), {
+      href: URL.createObjectURL(new Blob([exportJSON()], { type: "application/json" })),
+      download: `cevian-progress-${dayKey()}.json`
+    });
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  $("importFile").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    pendingImport = { name: file.name, text: await file.text() };
+    importMsg = "";
+    renderProfile();
+  });
+  if ($("importMerge")) $("importMerge").addEventListener("click", () => finishImport("merge"));
+  if ($("importReplace")) $("importReplace").addEventListener("click", () => finishImport("replace"));
+  if ($("importCancel")) $("importCancel").addEventListener("click", () => { pendingImport = null; renderProfile(); });
+}
+
+function finishImport(mode) {
+  try {
+    importJSON(pendingImport.text, mode);
+    importMsg = mode === "replace" ? "Progress replaced from the file." : "Progress merged from the file.";
+  } catch (e) {
+    importMsg = e.message || "That file could not be read as Cevian progress.";
+  }
+  pendingImport = null;
+  renderMe();
+  renderProfile();
+}
+
 export function renderProfile() {
   const pts = points(); const r = rankOf(pts);
   const solvedList = Object.keys(S.solved).map((id) => byId[id]).filter(Boolean);
@@ -109,7 +173,9 @@ export function renderProfile() {
       <div class="bars">${Object.entries(TOPICS).map(([t, n]) => `<div class="bar"><span>${n}</span><span class="track"><i style="width:${barWidth(topicCount(t), topicTotal(t))}%"></i></span><span class="n">${topicCount(t)}/${topicTotal(t)}</span></div>`).join("")}</div>
     </div>
   </div>
+  ${achievementsBox(streak)}
   <section class="panel"><h2 class="sub" id="subH">Strengths by subtopic</h2><div id="subBox">${subtopicTable()}</div></section>
+  ${backupBox()}
   <div class="confirm" id="resetBox">
     ${confirmReset ? `<span>Erase all progress in this browser?</span><button class="btn small primary" type="button" id="resetYes">Erase</button><button class="btn small" type="button" id="resetNo">Keep it</button>` : `<button class="btn small ghost" type="button" id="resetBtn">Reset progress</button>`}
   </div>`;
@@ -118,6 +184,7 @@ export function renderProfile() {
   if ($("resetNo")) $("resetNo").addEventListener("click", () => { confirmReset = false; renderProfile(); });
   if ($("resetYes")) $("resetYes").addEventListener("click", () => { resetState(); confirmReset = false; renderMe(); renderProfile(); });
   bindSubs();
+  bindBackup();
 }
 
 function bindSubs() {

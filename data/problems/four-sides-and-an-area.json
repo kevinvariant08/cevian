@@ -1,0 +1,40 @@
+{
+  "id": "four-sides-and-an-area",
+  "title": "Four Sides and an Area",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "bounding",
+    "area-by-decomposition",
+    "pythagorean-theorem"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A convex quadrilateral $ABCD$ has $AB = 2$, $BC = 9$, $CD = 6$, $DA = 7$, and its area is $30$. What is the value of $AC^2$?",
+  "answer_format": "integer",
+  "answer_hash": "8b7beac5",
+  "hints": [
+    "Draw the diagonal $AC$. It cuts the quadrilateral into triangle $ABC$, with known sides $2$ and $9$, and triangle $ACD$, with known sides $6$ and $7$. How large could each triangle's area be?",
+    "Bound the area of each triangle formed by the diagonal $AC$. If a triangle has two sides $p$ and $q$, take $p$ as the base. The height is then at most $q$, so the area is at most $\\frac{1}{2} \\cdot p \\cdot q$, with equality only when the two sides are perpendicular.",
+    "The bound gives $[ABC] \\le 9$ and $[ACD] \\le 21$. These add up to exactly the given area, $30$, so both bounds must be attained. This forces right angles at $B$ and $D$, making $AC$ the hypotenuse of two right-angled triangles."
+  ],
+  "solution": "Since $ABCD$ is convex, $AC$ splits it into triangles $ABC$ and $ACD$, so $[ABC]+[ACD]=30$.\n\nThe height from $A$ to line $BC$ is at most $AB$, so $[ABC]\\le \\frac{1}{2}\\cdot 2\\cdot 9=9$, with equality iff $AB\\perp BC$. Similarly the height from $A$ to line $CD$ is at most $DA$, so $[ACD]\\le \\frac{1}{2}\\cdot 6\\cdot 7=21$, with equality iff $DA\\perp CD$. Since $9+21=30$, both bounds are attained, so the angles at $B$ and $D$ are right angles.\n\nHence $AC^2=AB^2+BC^2=2^2+9^2=85$, which agrees with $CD^2+DA^2=36+49=85$.",
+  "solution_figures": [
+    {
+      "src": "figures/four-sides-and-an-area-solution.svg?v=fe8d0521",
+      "alt": "Convex quadrilateral ABCD with AB = 2, BC = 9, CD = 6 and DA = 7. The diagonal AC is highlighted, and right angles are marked at B and D, so AC is the hypotenuse of both triangles ABC and ACD.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-four-sides-and-an-area"
+}

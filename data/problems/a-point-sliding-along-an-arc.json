@@ -1,0 +1,39 @@
+{
+  "id": "a-point-sliding-along-an-arc",
+  "title": "A Point Sliding Along an Arc",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "angle-chasing",
+    "two-intersecting-circles"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Two circles of equal radius have centres $A$ and $B$. The circle centred at $A$ passes through $B$, and the circle centred at $B$ passes through $A$. Let $E$ be one of the two points where the circles intersect. The line $AB$ meets the circle centred at $A$ at $B$ and at a second point $C$. A point $P$ moves along the arc $CE$ of the circle centred at $A$ that does not contain $B$, and $P$ is never equal to $C$ or $E$. How many different integer values can the degree measure of $\\angle BEP$ take?",
+  "answer_format": "integer",
+  "answer_hash": "164a2c5d",
+  "hints": [
+    "Draw the radii $AE$ and $AP$. What kind of triangle is $ABE$, and what kind is $AEP$?",
+    "Use angle chasing. Triangle $ABE$ has three sides equal to the common radius, and triangle $AEP$ is isosceles because $AE = AP$. Split $\\angle BEP$ along the ray $EA$ into $\\angle BEA$ and $\\angle AEP$.",
+    "Let $\\theta = \\angle EAP$. Then $\\theta$ can be any value strictly between $0^\\circ$ and $120^\\circ$, and $\\angle AEP = 90^\\circ - \\frac{\\theta}{2}$. Adding $\\angle BEA = 60^\\circ$ shows that $\\angle BEP$ takes every value strictly between $90^\\circ$ and $150^\\circ$. Now count the integers in this range."
+  ],
+  "solution": "Triangle $ABE$ is equilateral, so $\\angle BEA=\\angle BAE=60^\\circ$ and $\\angle EAC=120^\\circ$. Hence $\\theta=\\angle EAP$ takes every value in $(0^\\circ,120^\\circ)$.\n\nSince $AE=AP$, $\\angle AEP=90^\\circ-\\frac{\\theta}{2}$.\n\nPoints $B$ and $C$ lie on opposite sides of line $AE$, and the arc $EC$ (central angle less than $180^\\circ$) lies on $C$'s side, so $P$ and $B$ are on opposite sides of $AE$. As $60^\\circ+90^\\circ-\\frac{\\theta}{2}<180^\\circ$, ray $EA$ lies inside $\\angle BEP$, so\n$$\\angle BEP=60^\\circ+90^\\circ-\\dfrac{\\theta}{2}=150^\\circ-\\dfrac{\\theta}{2},$$\nwhich takes every value in $(90^\\circ,150^\\circ)$. The integers are $91,\\dots,149$, giving $59$ values.",
+  "solution_figures": [
+    {
+      "src": "figures/a-point-sliding-along-an-arc-solution.svg?v=5b976e16",
+      "alt": "Two equal circles with centres A and B, each passing through the other's centre, meet at E. C is the second point where line AB meets the circle centred at A, and P lies on arc CE away from B. Triangle ABE is equilateral with a 60 degree angle at E, triangle AEP is isosceles with AE = AP and apex angle theta at A, and segment EP is highlighted.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-point-sliding-along-an-arc"
+}

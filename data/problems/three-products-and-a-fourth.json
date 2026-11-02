@@ -1,0 +1,32 @@
+{
+  "id": "three-products-and-a-fourth",
+  "title": "Three Products and a Fourth",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "finite-differences",
+    "factored-form-of-polynomial"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Real numbers $a$, $b$ and $c$ satisfy\n$$(a+1)(b+1)(c+1)=5,\\qquad (a+2)(b+2)(c+2)=-3,\\qquad (a+3)(b+3)(c+3)=4.$$\nFind the value of $abc$.",
+  "answer_format": "integer",
+  "answer_hash": "62668b85",
+  "hints": [
+    "Don't try to find $a$, $b$ and $c$ individually. Look at the single function $F(x)=(x+a)(x+b)(x+c)$. The three conditions give its values at $x=1,2,3$, and $abc$ is its value at $x=0$.",
+    "Use finite differences on the values of $F(x)=(x+a)(x+b)(x+c)$ at $x=0,1,2,3$. This polynomial is a cubic with leading coefficient $1$, and the third difference of such a cubic is the same constant whatever its other coefficients are.",
+    "Write $F(x)=x^3+px^2+qx+r$ and check the combination $F(3)-3F(2)+3F(1)-F(0)$ term by term: the terms in $p$, $q$ and $r$ all cancel, and the $x^3$ terms leave $27-3\\cdot 8+3\\cdot 1-0=6$. Now put in the known values of $F(1)$, $F(2)$ and $F(3)$."
+  ],
+  "solution": "Let $F(x)=(x+a)(x+b)(x+c)$, a monic cubic, so $F(1)=5$, $F(2)=-3$, $F(3)=4$ and $F(0)=abc$.\n\nThe third finite difference of a monic cubic is $3!=6$, so\n$$F(3)-3F(2)+3F(1)-F(0)=6.$$\nHence $4+9+15-F(0)=6$, so $F(0)=22$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-products-and-a-fourth"
+}

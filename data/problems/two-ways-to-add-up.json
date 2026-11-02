@@ -1,0 +1,32 @@
+{
+  "id": "two-ways-to-add-up",
+  "title": "Two Ways to Add Up",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "modular-arithmetic",
+    "arithmetic-series-sum"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "How many positive integers less than $500$ can be written as a sum of $4$ consecutive positive integers and can also be written as a sum of $7$ consecutive positive integers? The two lists of consecutive integers need not be related to each other.",
+  "answer_format": "integer",
+  "answer_hash": "61e668d6",
+  "hints": [
+    "Call the first number in each list $a$ or $b$, and write each sum as a simple expression in that letter. Also note the smallest value each sum can take.",
+    "Use remainders. The sum of four consecutive integers starting at $a$ is $4a + 6$, which always leaves remainder $2$ on division by $4$. The sum of seven consecutive integers starting at $b$ is $7b + 21$, which is always a multiple of $7$.",
+    "Test the multiples of $7$ by their remainders on division by $4$: the numbers that are multiples of $7$ and leave remainder $2$ on division by $4$ are exactly those of the form $14 + 28k$. A sum of seven consecutive positive integers is at least $1 + 2 + \\dots + 7 = 28$, so $14$ is too small. Now count the allowed values below $500$."
+  ],
+  "solution": "A sum of 4 consecutive integers starting at $a$ is $4a+6$, so $N\\equiv 2\\pmod 4$ with $N\\ge 10$. A sum of 7 consecutive integers starting at $b$ is $7(b+3)$, so $N$ is a multiple of $7$ with $N\\ge 28$.\n\nConversely, take $N=7m$ with $m\\ge 4$ and $N\\equiv 2\\pmod 4$. Since $7\\equiv -1\\pmod 4$, this means $m\\equiv 2\\pmod 4$, so $m=4k+2$ with $k\\ge 1$ and $N=28k+14$. Then $a=7k+2$ and $b=4k-1$ are positive integers with $4a+6=7b+21=N$.\n\nNow $28k+14<500$ gives $k\\le 17$, since $28\\cdot 17=476<486<504=28\\cdot 18$. So $k=1,\\dots,17$, giving $17$ numbers.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-two-ways-to-add-up"
+}

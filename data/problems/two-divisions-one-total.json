@@ -1,0 +1,33 @@
+{
+  "id": "two-divisions-one-total",
+  "title": "Two Divisions, One Total",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "linear-diophantine-solving",
+    "coprime-divisibility",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For positive integers $n$ and $d$, there are unique integers $q \\ge 0$ and $r$ with $n = dq + r$ and $0 \\le r < d$; these are the quotient and remainder when $n$ is divided by $d$. Find the largest positive integer $n$ such that the sum of the quotient and remainder when $n$ is divided by $21$ equals the sum of the quotient and remainder when $n$ is divided by $29$.",
+  "answer_format": "integer",
+  "answer_hash": "6c220399",
+  "hints": [
+    "Call the two quotients $a$ and $c$. The remainder on division by $21$ is $n - 21a$, so try writing each sum of quotient and remainder using only $n$ and the quotient.",
+    "The two sums are $n - 20a$ and $n - 28c$, so $n$ cancels from the condition. This leaves a linear Diophantine equation in the quotients $a$ and $c$. Solve it using the coprimality of the coefficients once they are reduced.",
+    "The equation $5a = 7c$ forces $a = 7k$ and $c = 5k$ for an integer $k \\ge 0$. The remainders are then $n - 147k$ and $n - 145k$, and these must satisfy $n - 147k \\ge 0$ and $n - 145k \\le 28$. Combine these two inequalities to bound $k$, then use the bound to find the largest possible $n$."
+  ],
+  "solution": "Let $n=21a+r=29c+s$ with $0\\le r\\le 20$ and $0\\le s\\le 28$. Then $a+r=n-20a$ and $c+s=n-28c$, so the condition is $20a=28c$, i.e. $5a=7c$. Hence $a=7k$, $c=5k$ for some integer $k\\ge 0$, and $r=n-147k$, $s=n-145k$.\n\nFrom $r\\ge 0$ and $s\\le 28$ we get $147k\\le n\\le 145k+28$. So $2k\\le 28$, $k\\le 14$, and $n\\le 145\\cdot 14+28=2058$.\n\nFor $n=2058$: $2058=21\\cdot 98+0=29\\cdot 70+28$, and both sums equal $98$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-two-divisions-one-total"
+}

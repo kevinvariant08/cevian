@@ -1,0 +1,32 @@
+{
+  "id": "four-lists-joined",
+  "title": "Four Lists Joined",
+  "kyu": 7,
+  "topic": "A",
+  "subtopics": [
+    "harmonic-mean",
+    "rate-and-mixture-modeling"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Four non-empty lists of positive numbers all have the same sum. The means of the four lists are $30$, $40$, $60$ and $120$. The lists are joined to form one long list, with every entry of every list kept, including repeated values. What is the mean of the long list?",
+  "answer_format": "integer",
+  "answer_hash": "50a99027",
+  "hints": [
+    "Give the common sum of the four lists a name, say $S$. How many entries does the list with mean $30$ have, in terms of $S$?",
+    "Do not simply average the four means, because the lists have different lengths. Find the total of the long list and its length separately, each in terms of the common sum $S$, as is done when calculating a harmonic mean. A list with sum $S$ and mean $m$ has $\\frac{S}{m}$ entries.",
+    "Let the common sum be $S$. The long list has sum $4S$ and length $\\frac{S}{30} + \\frac{S}{40} + \\frac{S}{60} + \\frac{S}{120}$. Over the common denominator $120$, this length simplifies to $\\frac{S}{12}$. Now divide the sum by the length."
+  ],
+  "solution": "Let each list have sum $S>0$. A list with mean $m$ has $S/m$ entries, so the long list has sum $4S$ and length\n$$S\\left(\\dfrac{1}{30}+\\dfrac{1}{40}+\\dfrac{1}{60}+\\dfrac{1}{120}\\right)=S\\cdot\\dfrac{4+3+2+1}{120}=\\dfrac{S}{12}.$$\nThe mean is $\\frac{4S}{S/12}=48$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-four-lists-joined"
+}

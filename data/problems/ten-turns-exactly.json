@@ -1,0 +1,33 @@
+{
+  "id": "ten-turns-exactly",
+  "title": "Ten Turns Exactly",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "base-representation",
+    "monovariant",
+    "binomial-selection"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A score starts at $1$. On each turn, the score is either increased by $1$ or doubled. For a positive integer $n$, let $f(n)$ be the smallest number of turns needed to make the score exactly $n$, so that $f(1)=0$. How many integers $n$ with $1 \\le n \\le 255$ satisfy $f(n)=10$?",
+  "answer_format": "integer",
+  "answer_hash": "138187f6",
+  "hints": [
+    "Work out $f(n)$ for small values of $n$, say up to $16$, and notice which values are cheap to reach and which are expensive. For example, $f(8) = 3$ but $f(7) = 4$, so a larger number can need fewer turns.",
+    "Write $n$ in base $2$. Doubling a number appends a $0$ to its binary form, and adding $1$ to a number ending in $0$ changes that $0$ to a $1$. So $f(n)$ should depend only on how many binary digits $n$ has and how many of them are $1$s.",
+    "Suppose that $n$ has $a$ binary digits after its leading $1$, and that $b$ of these are $1$s. Then $f(n) = a + b$, which you can prove by showing that no turn raises $a + b$ by more than $1$. Since $255 = 11111111_2$, we need $a \\le 7$, and also $b \\le a$. So $a + b = 10$ leaves only $(a, b) = (5, 5), (6, 4), (7, 3)$. Now count the possible digit strings for each pair."
+  ],
+  "solution": "For $n$ with binary length $a+1$ and $b$ ones after the leading digit, let $g(n)=a+b$. Then $f(n)=g(n)$.\n\nBuilding $n$ from $1$ by reading the digits left to right (double, then add $1$ if the digit is $1$) uses $a+b$ turns, so $f\\le g$.\n\nConversely, $g(1)=0$ and one turn raises $g$ by at most $1$. Doubling gives $g(2m)=g(m)+1$. For $m+1$, let $m$ contain a $0$ and let $k$ be the number of trailing $1$s. Then the length is unchanged and the number of $1$s changes by $1-k$, so $g$ changes by $1-k\\le 1$. If $m$ is all ones ($k\\ge1$ of them), $m+1$ is $1$ followed by $k$ zeros. The length rises by $1$ and the number of $1$s drops from $k$ to $1$, so $g$ changes by $2-k\\le 1$. Hence $f\\ge g$.\n\nFor $n\\le255$ we have $a\\le7$. Also $b\\le a$, so $a+b=10$ forces $a\\ge5$. The possible pairs are $(a,b)=(5,5),(6,4),(7,3)$, giving $\\binom55+\\binom64+\\binom73=1+15+35=51$ values of $n$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-ten-turns-exactly"
+}

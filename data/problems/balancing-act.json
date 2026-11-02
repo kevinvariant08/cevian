@@ -1,0 +1,32 @@
+{
+  "id": "balancing-act",
+  "title": "Balancing Act",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "casework",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A positive integer $N$ is called <b>balanced</b> if there exist three integers, not necessarily distinct, whose sum is $0$ and whose product is $N$. How many positive integers $N$ with $N < 100$ are balanced?",
+  "answer_format": "integer",
+  "answer_hash": "13005b15",
+  "hints": [
+    "Before looking at sizes, look at the signs of the three integers. What do a sum of $0$ and a positive product force?",
+    "The signs leave only one possible pattern, so two of the integers can be written as $-x$ and $-y$ with $x$ and $y$ positive, and the third is then determined. Express $N$ in terms of $x$ and $y$, then use casework on the smaller of $x$ and $y$.",
+    "The integers are $-x$, $-y$ and $x + y$, so $N = xy(x + y)$, and we may take $x \\le y$. If $x \\ge 4$, then $N \\ge 4 \\cdot 4 \\cdot 8 = 128$, so only $x = 1, 2, 3$ matter. List the values of $N$ below $100$ for each of these, and take care because a number may arise from more than one pair."
+  ],
+  "solution": "No integer is $0$ since $N>0$, and the number of negative integers is even. It is not $0$, since the sum is $0$. So exactly two are negative, say $-x,-y$ with $1\\le x\\le y$, and the third is $x+y$. Hence $N=xy(x+y)$, and conversely any such $x,y$ give a balanced $N$.\n\nIf $x\\ge4$ then $N\\ge 4\\cdot4\\cdot8=128$, so $x\\in\\{1,2,3\\}$.\n\n$x=1$: $y(y+1)=2,6,12,20,30,42,56,72,90$ (and $110$ for $y=10$).\n\n$x=2$: $2y(y+2)=16,30,48,70,96$ for $y=2,\\dots,6$ (and $126$ for $y=7$).\n\n$x=3$: $3y(y+3)=54,84$ for $y=3,4$ (and $120$ for $y=5$).\n\nThis gives $9+5+2=16$ values, with the only repeat $30$. So there are $15$ balanced numbers.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-balancing-act"
+}

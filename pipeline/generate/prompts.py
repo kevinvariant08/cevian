@@ -35,17 +35,34 @@ WRITE_FORMAT = """<subtopics>Taxonomy IDs separated by commas, the one the crux 
 <hint>Hint 1.</hint>
 <hint>Hint 2.</hint>
 <hint>Hint 3 (optional).</hint>
-<solution>The solution, ending with the "Why this works" paragraph.</solution>
+<solution>The solution.</solution>
 <figure>A tkz-euclide figure, as described above. Repeat the block for a second figure, only if the argument has two separate pictures.</figure>
 <no_figure>Only if this isn't topic G and the argument doesn't use a picture: one sentence saying why.</no_figure>"""
 
 STYLE = """THE STYLE TO AIM FOR
 The problem should read and feel like a real AIME problem: a short, clean statement, no contrived story, one satisfying crux, and an integer answer from 0 to 999, encoded as $m + n$ or similar where the AIME would do that. Use the same kinds of ideas and the same difficulty curve. Sharing an idea family with AIME problems is the goal. Copying is not: never reuse a specific problem's setting, numbers or phrasing, and never write a reskin."""
 
+LOW_STYLE = """THE STYLE TO AIM FOR
+The problem should read and feel like a real problem from the early or middle part of an AMC paper: one or two short, clean sentences, a real small idea, and a single checkable answer. It is free response: there are no answer options, and it must not depend on elimination. Short does not mean trivial. A bare calculation, a formula applied once, a one-step word problem or schoolbook arithmetic is not acceptable at any kyu here: the reviewer removed the bank's old easy problems for being "too easy and poor quality". Never reuse a specific problem's setting, numbers or phrasing, and never write a reskin."""
+
+TOPICS = {"A": "algebra", "C": "combinatorics or probability", "G": "geometry", "N": "number theory"}
+
+# Kevin's ladder, as in js/lib/ranks.js on main.
+ANCHORS = {8: "the first three quarters of an AMC 8 paper", 7: "the end of an AMC 8 paper and AMC 10 problems 1 to 10", 6: "the middle of an AMC 10 or AMC 12 paper", 5: "late AMC 12 and AIME 1 to 5", 4: "AIME 6 to 10", 3: "AIME 11 to 15 and olympiad openers"}
+
+# Pilot evidence: of 10 drafts aimed at 5 kyu, the ruler put 6 at 3 kyu and 1 at 2 kyu, and the reviewer moved one down to 4 kyu.
+LOW_NOTE = """The reviewer's calibration so far: a problem whose whole difficulty is one divisibility or perfect-square observation was moved from 5 kyu down to 6 kyu. A problem was rejected for being loose about the form of its answer (say exactly what form is wanted), for being a slog with no idea, and for being ambiguous."""
+
+CALIBRATION = {8: """CALIBRATING 8 KYU
+This is an AMC 8 opener: one or two direct steps that most entrants get right quickly, in about a minute or two. Drafts aimed here have been coming out several kyu too hard, so aim lower than feels natural. No multi-case counting, no extremal or bounding argument, no search over possibilities, no algebra beyond one simple equation. It should still reward looking before calculating, such as a neat grouping, a small deduction or a short pattern, so it isn't bare arithmetic. """ + LOW_NOTE, 7: """CALIBRATING 7 KYU
+This is the end of an AMC 8 paper or AMC 10 problems 1 to 10: two to four minutes. Drafts aimed here have been coming out too hard, so aim lower than feels natural. At most one choice for the solver to make, such as how to split a count, what to name, or working backwards, and it should be nearly forced. At most two short cases, and no extremal argument that needs a proof. Below AMC 10 middle in difficulty. """ + LOW_NOTE, 6: """CALIBRATING 6 KYU
+Three to six minutes. One real idea, found by the first sensible attempt, then short routine work. Harder than an opener, easier than the last five problems of an AMC 10 paper. """ + LOW_NOTE, 5: """CALIBRATING 5 KYU
+Drafts aimed at 5 kyu have been coming out about two kyu too hard, so aim lower than feels natural. One crux, found by the first sensible attempt, then routine work. A strong solver finishes in 6 to 12 minutes, and the solution fits in a short paragraph or two. Do not stack a second idea, and do not make the solver run an idea backwards through a further counting or divisibility step. If a candidate needs two non-routine steps, take one out, even if it is less impressive. For the combine recipe, the second technique must be the routine part."""}
+
 IDEA_RULES = """How your work is checked. Every point here has rejected real drafts.
 - Do not work out the answer by hand. A sandbox runs your program and its output becomes the key, so spend your thought on the idea and on making the statement exact. Keep your reasoning short.
-- The key must be an integer from 2 to 999 and must not appear as a number in the statement. Choose the statement's parameters, or ask for a remainder modulo $1000$ or an encoding such as $m + n$ (rule A4), so that this holds. Do not make the encoding the hard part.
-- check_program computes the actual quantity from the problem's own definitions: enumerate, search or do exact symbolic work, using exact coordinates for geometry. A judge rejects a program that evaluates a closed formula from the solution, searches a smaller case and then applies a formula, or contains the answer. It must finish within 30 seconds and print only the key on its last line, as a plain integer.
+- {key_rule}
+- check_program computes the actual quantity from the problem's own definitions: enumerate, search or do exact symbolic work, using exact coordinates for geometry. A judge rejects a program that evaluates a closed formula from the solution, searches a smaller case and then applies a formula, or contains the answer. It must finish within 30 seconds and print only the key on its last line, {key_form}.
 - check_program may import only: {imports}. Never use random, files or the network.
 - A strict critic reads the statement for anything a competent solver could read two ways. Define every object, say whether integers are positive, whether pairs are ordered, whether a set may be empty, and whether points lie on sides or on lines. Avoid informal shorthand such as "uses the letters A, B and C"; state exactly what is meant.
 - Seven models then solve it blind from the statement alone. Do not rely on a figure: describe every point and condition in words.
@@ -53,11 +70,23 @@ IDEA_RULES = """How your work is checked. Every point here has rejected real dra
 - All text uses UK spelling. Use $...$ and $$...$$ for maths, with no custom macros."""
 
 WRITE_RULES = """How your work is checked.
-- A strict auditor reads the solution. Justify every non-routine step and every case. Routine algebra may be skipped. It must state the key in the second-last paragraph, and the "Why this works" paragraph follows it as the last paragraph.
+- A strict auditor reads the solution. Justify every non-routine step and every case. Routine algebra may be skipped. It must state the key in its last paragraph.
 - The key comes from a program, so a solution that reaches any other number is wrong. Work it out honestly. If you find the key or the statement is wrong, reply with only <disagree>one sentence on what is wrong</disagree> instead of bending the argument.
 - No hint may state the key. Each hint adds something, and the last stops one routine step short.
 - All text uses UK spelling. Use $...$ and $$...$$ for maths: \\dfrac in display maths and \\frac inline, always with braces, \\cdot for products and never *, \\le and \\ge. Use only <b> and <code> as markup, and write cases as prose, never as a list.
-- The solution's last paragraph is exactly: <b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause on why the idea fits. Each ID must also be in subtopics."""
+- Never argue from a picture, and never refer to a figure or diagram, unless the problem is geometry."""
+
+SOLUTION_STYLE = """THE STYLE OF THE SOLUTION
+Write as a strong olympiad student writes up a solution: direct and concise, with no narration, no restating the problem and no signposting. Never use these or anything like them: "we only need", "note that", "it remains", "therefore each", "key idea", "key insight", "crux", "elegant", "beautiful", "the trick", "the heart of", "delicate", "why this works". No em dashes. Do not end with a summary or a comment on the idea. Use the labels Lemma, Claim, Remark or Theorem only where they actually help, usually at 3 kyu and on proofs. Rigour stays: every non-routine step and every case is justified, only shorter. State the final answer.
+
+An example of the right voice, for an easy problem about four-digit palindromes with digit sum 14: "Write the number as $abba$. Then $2(a+b)=14$, so $a+b=7$ with $1\\le a\\le 7$, giving $7$ palindromes." """
+
+LENGTHS = {8: "1 to 4 lines, often one sentence plus the arithmetic", 7: "1 to 4 lines, often one sentence plus the arithmetic", 6: "at most about 80 words",
+           5: "at most about 150 words", 4: "at most about 150 words", 3: "as long as rigour needs and no longer", 2: "as long as rigour needs and no longer", 1: "as long as rigour needs and no longer"}
+
+
+def length_guide(kyu):
+    return f"LENGTH\nThis is {kyu} kyu, so: {LENGTHS[kyu]}. Length follows difficulty. An easy problem has a short solution, and not every problem needs a long paragraph."
 
 
 FIGURE_RULES = r"""THE FIGURE
@@ -98,7 +127,7 @@ Rules. Each one is enforced by a program that rejects the draft.
 - %! scale turns the problem's units into centimetres. Make the drawing about 7.5 cm across. It must fit in 9.5 cm by 10.5 cm with its labels.
 - Colours: draw only with the preamble's styles aux (dashed construction lines), key (the one object the argument turns on), mk (marks), lbl (point labels) and len (lengths), and the fills figtint and figaccenttint. Mark equal lengths, right angles and tangency where they help the reader.
 - No label may touch another label, a line or a point. Choose each label's side so it sits in empty space.
-- after_paragraph is how many solution paragraphs come above the figure, and it comes before the "Why this works" paragraph."""
+- after_paragraph is how many solution paragraphs come above the figure."""
 
 
 def _section(text, start, end):
@@ -135,12 +164,30 @@ def describe_record(record):
             f"Solution routes:\n{paths}\nTraps: {'; '.join(record.get('traps') or [])}\nNote on using it: {record.get('generation_note') or 'none'}")
 
 
+def _topic_rules(topic):
+    """The bank needs every topic at every kyu, and left alone the model drifts into number theory."""
+    rule = f"THE TOPIC\nEvery candidate must be {TOPICS[topic]}, whatever the recipe says: the main work of solving it must belong to that topic. Set <topic> to {topic}."
+    if topic != "G":
+        rule += " Any model you use must not be geometric, and the solution must never argue from a picture."
+    return [rule]
+
+
+def _key_rules(kyu):
+    if kyu >= 6:
+        return dict(key_rule="The key must be an integer of absolute value below $10^9$, or a fraction with at most three digits above and below, and must not be 0 or 1 or appear as a number in the statement. If it is a fraction the statement must end: Give your answer as a fraction in lowest terms. Prefer an integer. There is no encoding: ask for the quantity itself.",
+                    key_form="as a plain integer or as a/b in lowest terms")
+    return dict(key_rule="The key must be an integer from 2 to 999 and must not appear as a number in the statement. Choose the statement's parameters, or ask for a remainder modulo $1000$ or an encoding such as $m + n$ (rule A4), so that this holds. Do not make the encoding the hard part.",
+                key_form="as a plain integer")
+
+
 def _idea_context(inp, kyu, digest):
     parts = [
-        f"Write for {kyu} kyu. Its difficulty must come from an idea, not from arithmetic.",
-        STYLE,
+        f"Write for {kyu} kyu, in the style and at the level of {ANCHORS[kyu]}. Its difficulty must come from an idea, not from arithmetic.",
+        LOW_STYLE if kyu >= 6 else STYLE,
+        *_topic_rules(inp.record["topic"]),
+        *([CALIBRATION[kyu]] if kyu in CALIBRATION else []),
         f"THE CEVIAN STANDARD\n{idea_rules(kyu)}",
-        IDEA_RULES.format(imports=", ".join(sorted(ALLOWED_IMPORTS))),
+        IDEA_RULES.format(imports=", ".join(sorted(ALLOWED_IMPORTS)), **_key_rules(kyu)),
         f"THE IDEA TO TEACH\n{describe_record(inp.record)}",
         ("THE SOURCE PROBLEM, for calibration only. It shows how hard the target is. Do not reuse its setting, objects, numbers or phrasing, "
          f"and never mention it.\n<<<\n{inp.statement}\n>>>"),
@@ -179,6 +226,8 @@ def write_up(idea, kyu, key, record, earlier=None, failure=None):
         f"A {kyu} kyu problem has been chosen. Write its hints and solution.",
         f"THE CEVIAN STANDARD\n{write_rules()}",
         WRITE_RULES,
+        SOLUTION_STYLE,
+        length_guide(kyu),
         FIGURE_RULES,
         f"TAXONOMY IDS, the only tags allowed\n{taxonomy_ids()}",
         f"THE PROBLEM\n{idea['statement']}\n\nTHE KEY, computed by a program: {key}\n\nTHE PROGRAM\n{idea['check_program']}\n\nTHE AUTHOR'S SKETCH\n{idea.get('sketch', '')}",

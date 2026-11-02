@@ -1,0 +1,100 @@
+{
+  "id": "a-distinct-collection",
+  "title": "A Distinct Collection",
+  "kyu": 3,
+  "topic": "A",
+  "subtopics": [
+    "extremal-principle",
+    "mathematical-induction",
+    "bounding"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $n$ be a positive integer and let $a_1,a_2,\\ldots,a_n$ be distinct positive integers. Prove that\n$$3\\sum_{i=1}^n a_i^5+\\sum_{i=1}^n a_i^3\\ge 4\\left(\\sum_{i=1}^n a_i\\right)^3.$$",
+  "hints": [
+    "Look at the largest of the numbers, $a$, and at the sum $A$ of all the others. Because the numbers are distinct positive integers, how large can $A$ be in terms of $a$?",
+    "Use induction on $n$, removing the largest term $a$ and applying the hypothesis to the remaining terms, whose sum is $A$. It is then enough to prove that $3a^5+a^3\\ge 4(A+a)^3-4A^3$.",
+    "Let $a$ be the largest term and $A$ the sum of the others. Expanding and dividing by $3a$ turns the inequality needed for the induction step, $3a^5+a^3\\ge 4(A+a)^3-4A^3$, into $a^4-a^2\\ge 4A^2+4Aa$. The other terms are distinct positive integers less than $a$, so $A\\le\\frac{a(a-1)}{2}$. Now see what this bound does to the right side."
+  ],
+  "solution": "Induction on $n$, over all collections of $n$ distinct positive integers. For $n=0$ (the empty collection) both sides are $0$.\n\nLet $n\\ge1$ and assume the claim for $n-1$ numbers. Let $a$ be the largest of the $a_i$ and let $A\\ge0$ be the sum of the other $n-1$ numbers, with $A=0$ if $n=1$. By the induction hypothesis the other numbers contribute at least $4A^3$ to the left side. So the left side is at least $4A^3+3a^5+a^3$, and it suffices to show\n$$3a^5+a^3\\ge 4(A+a)^3-4A^3=12A^2a+12Aa^2+4a^3.$$\nSubtracting $a^3$ and dividing by $3a>0$, this is equivalent to\n$$a^4-a^2\\ge 4A^2+4Aa.$$\n\nThe other numbers are distinct elements of $\\{1,\\dots,a-1\\}$, so\n$$0\\le A\\le 1+2+\\cdots+(a-1)=\\dfrac{a(a-1)}{2}.$$\nFor $a>0$ the function $A\\mapsto 4A^2+4Aa$ is increasing on $A\\ge0$. Hence\n$$4A^2+4Aa\\le a^2(a-1)^2+2a^2(a-1)=a^2(a-1)(a-1+2)=a^2(a-1)(a+1)=a^4-a^2.$$\nThis is the required inequality, which completes the induction.",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Sets up an induction on $n$ with a valid base case, removes one term $a$ and applies the hypothesis to the rest, reducing the claim to $3a^5+a^3\\ge 4(A+a)^3-4A^3$, where $A$ is the sum of the other terms, or an equivalent reduction. Deduct 1 if the base case is missing."
+    },
+    {
+      "marks": 3,
+      "criterion": "Chooses $a$ to be the largest term and uses distinctness to prove $A\\le\\frac{a(a-1)}{2}$ for the sum $A$ of the other terms, and applies this bound to the inequality that remains to be shown, or achieves an equivalent use of distinctness that controls the sum of the terms."
+    },
+    {
+      "marks": 2,
+      "criterion": "Completes the proof by showing that the bound on $A$ gives the required inequality, for example by showing $4A^2+4Aa\\le a^2(a-1)^2+2a^2(a-1)=a^4-a^2$, or an equivalent. Deduct 1 if the upper bound for $A$ is substituted with no remark that the expression increases with $A$ for $A\\ge 0$. A complete proof by another route earns all marks."
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "proofs-4"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Sets up an induction on $n$ with a valid base case, removes one term $a$ and applies the hypothesis to the rest, reducing the claim to $3a^5+a^3\\ge 4(A+a)^3-4A^3$, where $A$ is the sum of the other terms, or an equivalent reduction. Deduct 1 if the base case is missing."
+      },
+      {
+        "id": "m2",
+        "marks": 3,
+        "criterion": "Chooses $a$ to be the largest term and uses distinctness to prove $A\\le\\frac{a(a-1)}{2}$ for the sum $A$ of the other terms, and applies this bound to the inequality that remains to be shown, or achieves an equivalent use of distinctness that controls the sum of the terms."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Completes the proof by showing that the bound on $A$ gives the required inequality, for example by showing $4A^2+4Aa\\le a^2(a-1)^2+2a^2(a-1)=a^4-a^2$, or an equivalent. Deduct 1 if the upper bound for $A$ is substituted with no remark that the expression increases with $A$ for $A\\ge 0$. A complete proof by another route earns all marks."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Integral over disjoint intervals",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 3,
+            "criterion": "States and verifies that $3k^5+k^3=4(T_k^3-T_{k-1}^3)$ for every positive integer $k$, where $T_k=\\frac{k(k+1)}{2}$, or an equivalent telescoping identity."
+          },
+          {
+            "id": "a2",
+            "marks": 1,
+            "criterion": "Uses distinctness to show that the intervals $(T_{a_i-1},T_{a_i}]$ are disjoint with total length $S=\\sum_{i=1}^n a_i$, and writes the left side as $4\\int_U 3t^2\\,dt$ over their union $U$, or an equivalent discrete formulation."
+          },
+          {
+            "id": "a3",
+            "marks": 3,
+            "criterion": "Proves that $\\int_U 3t^2\\,dt\\ge S^3$ by comparing $U$ with $[0,S]$, using that $3t^2$ is increasing, or an equivalent argument, and concludes the inequality. Deduct 1 if the equality of the lengths of $U\\setminus[0,S]$ and $[0,S]\\setminus U$ is used without justification."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "The argument never validly uses that the $a_i$ are distinct, although the inequality is false without this condition: for $1,1$ the left side is $8$ and the right side is $32$.",
+        "cap": 1
+      },
+      {
+        "error": "Assumes without proof that $\\{1,2,\\ldots,n\\}$ is the extremal case, or replaces the $a_i$ by $1,2,\\ldots,n$ and compares the results, although this replacement can decrease both sides.",
+        "cap": 1
+      },
+      {
+        "error": "Removes an arbitrary term $a$, not the largest, and still claims that the sum of the other terms is at most $\\frac{a(a-1)}{2}$.",
+        "cap": 3
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-distinct-collection"
+}

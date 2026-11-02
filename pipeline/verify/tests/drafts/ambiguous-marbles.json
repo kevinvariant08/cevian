@@ -15,7 +15,7 @@
     "Count pairs of marbles.",
     "Add the all-red and the all-blue pairs."
   ],
-  "solution": "There are $\\binom82 = 28$ pairs of marbles, of which $\\binom32 + \\binom52 = 3 + 10 = 13$ are the same colour, so the probability is $\\tfrac{13}{28}$.\n\n<b>Why this works.</b> <code>favorable-over-total</code>: the probability is a ratio of two pair counts.",
+  "solution": "There are $\\binom82 = 28$ pairs of marbles, of which $\\binom32 + \\binom52 = 3 + 10 = 13$ are the same colour, so the probability is $\\tfrac{13}{28}$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

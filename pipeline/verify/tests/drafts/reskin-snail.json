@@ -15,7 +15,7 @@
     "Where is the hiker each morning?",
     "Bound the daily peak: it is the morning position plus $5$, and the final day has no slide back."
   ],
-  "solution": "Each full day and night gains $1$ km. After $21$ days and nights the hiker is at $21$ km, and on day $22$ the hiker climbs $5$ km to reach $26$ km. Before that the daily peak is at most $25$ km, so day $22$ is the first time.\n\n<b>Why this works.</b> <code>bounding</code>: the daily peak bounds the first day the mark can be reached.",
+  "solution": "Each full day and night gains $1$ km. After $21$ days and nights the hiker is at $21$ km, and on day $22$ the hiker climbs $5$ km to reach $26$ km. Before that the daily peak is at most $25$ km, so day $22$ is the first time.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

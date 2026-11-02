@@ -15,7 +15,7 @@
     "Sort the squares by side length.",
     "A square of side $s$ has $5 - s$ positions in each direction."
   ],
-  "solution": "A square of side $s$ can be placed in $(5-s)^2$ ways, so the total is $16 + 9 + 4 + 1 = 30$.\n\n<b>Why this works.</b> <code>casework</code>: sorting the squares by side length splits the count into simple cases.",
+  "solution": "A square of side $s$ can be placed in $(5-s)^2$ ways, so the total is $16 + 9 + 4 + 1 = 30$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

@@ -1,0 +1,32 @@
+{
+  "id": "three-buttons",
+  "title": "Three Buttons",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "permutations-with-repetition",
+    "prime-factorization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A calculator shows the number $1$ and has exactly three buttons: one multiplies the number shown by $2$, one multiplies it by $3$, and one multiplies it by $5$. A student presses the buttons one at a time until the calculator shows $180$. Every number shown after a press must be even. How many different sequences of button presses are possible?",
+  "answer_format": "integer",
+  "answer_hash": "533359e2",
+  "hints": [
+    "Write $180$ as a product of primes. What does this tell you about how many times each button must be pressed?",
+    "Since $180 = 2 \\cdot 2 \\cdot 3 \\cdot 3 \\cdot 5$, the buttons used are fixed and only their order can vary. Counting orders in which some items are identical is a problem of permutations with repetition, but first you must work out which orders the evenness rule allows.",
+    "The first press shows $2$, $3$ or $5$, so it must be the $2$-button. An even number stays even when multiplied by any whole number, so the rule places no restriction on later presses. Now count the orders of the four presses $2, 3, 3, 5$, where swapping the two $3$-presses gives the same sequence."
+  ],
+  "solution": "Since $180=2^2\\cdot3^2\\cdot5$, every valid sequence uses the $2$-button twice, the $3$-button twice and the $5$-button once. The number increases with each press, so $180$ is reached only on the last press.\n\nThe first number shown is the first button's value, so the first press must be $2$. After that the number is even and stays even under multiplication, so the parity condition affects only the first press.\n\nThe remaining presses are one $2$, two $3$s and one $5$ in any order, giving $\\frac{4!}{2!}=12$ sequences.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-buttons"
+}

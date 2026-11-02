@@ -15,7 +15,7 @@
     "Factor out the common multiplier.",
     "Then use the sum of the first $100$ integers."
   ],
-  "solution": "The sum is $3(1 + 2 + \\dots + 100) = 3 \\cdot 5050 = 15150$.\n\n<b>Why this works.</b> <code>arithmetic-series-sum</code>: factoring out the common multiple leaves a standard series.",
+  "solution": "The sum is $3(1 + 2 + \\dots + 100) = 3 \\cdot 5050 = 15150$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

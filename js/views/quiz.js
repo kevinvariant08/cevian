@@ -5,7 +5,7 @@ import { badge } from "../lib/ranks.js";
 import { S, save, award, points } from "../lib/store.js";
 import { LISTED, getProblem } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
-import { tex, paras } from "../lib/tex.js";
+import { tex, paras, texParas, safeText } from "../lib/tex.js";
 
 const LADDER = [8, 7, 6, 5, 4];
 const START = 6;
@@ -93,7 +93,7 @@ function draw() {
   const p = Q.p;
   host.innerHTML = `
     <div class="quiz-head"><h2 class="sub" id="quizH" tabindex="-1">Question ${n}</h2>${badge(p.kyu)}</div>
-    <div class="statement quiz-q" id="quizQ">${paras(p.statement)}</div>
+    <div class="statement quiz-q" id="quizQ">${texParas(p.statement)}</div>
     <form class="answer" id="quizForm" autocomplete="off">
       <input id="quizAns" inputmode="text" autocapitalize="off" spellcheck="false" placeholder="e.g. 42, 25/4 or 6.25" aria-label="Your answer to question ${n}">
       <button class="btn primary" type="submit">Submit</button>

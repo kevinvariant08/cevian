@@ -1,0 +1,30 @@
+{
+  "id": "near-copy-of-bank-digit-weight",
+  "title": "Near copy of bank digit weight",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "place-value-representation"
+  ],
+  "type": "answer",
+  "status": "draft",
+  "statement": "How many positive integers less than $10^{18}$ have decimal digits that sum to $3$ and are divisible by $37$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "94b4d002",
+  "hints": [
+    "Name the units digit, since the tens digit depends on it.",
+    "Use the place value of each digit to list the options: the tens digit is at most $9$, which limits the units digit."
+  ],
+  "solution": "Powers of $10$ have residues $1$, $10$ and $26$ modulo $37$ in turn, and a sum of three powers is divisible by $37$ exactly when the three positions are distinct modulo $3$. With $6$ positions in each class there are $6^3 = 216$ such numbers.",
+  "provenance": {
+    "kind": "original",
+    "author": "task-05-tests"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "answer": "216",
+  "check_program": "from itertools import combinations_with_replacement as c\nprint(len({sum(10 ** i for i in p) for p in c(range(18), 3) if sum(10 ** i for i in p) % 37 == 0}))"
+}

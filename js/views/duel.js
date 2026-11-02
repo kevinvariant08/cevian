@@ -4,7 +4,7 @@ import { KYU, badge, rankOf } from "../lib/ranks.js";
 import { S, save, award, logEvent, points } from "../lib/store.js";
 import { LISTED, getProblem } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
-import { tex, paras } from "../lib/tex.js";
+import { tex, paras, texParas, safeText } from "../lib/tex.js";
 
 const GHOST = { 8: { t: 45, r: 900 }, 7: { t: 70, r: 1050 }, 6: { t: 110, r: 1200 }, 5: { t: 170, r: 1350 }, 4: { t: 260, r: 1500 }, 3: { t: 420, r: 1700 } };
 // The problem page sets D.kyu for its "Duel at N kyu" button.
@@ -71,7 +71,7 @@ async function startDuel() {
   </div>
   <div class="panel belted duel-q" style="--belt:${KYU[p.kyu].bg}">
     ${badge(p.kyu)} <span class="faint">Time limit ${fmt(D.live.limit)}</span>
-    <div class="statement">${paras(p.statement)}</div>
+    <div class="statement">${texParas(p.statement)}</div>
     <form class="answer" id="duelForm" autocomplete="off">
       <input id="duelAns" inputmode="text" autocapitalize="off" spellcheck="false" placeholder="Your answer" aria-label="Your answer">
       <button class="btn primary" type="submit" id="duelSubmit">Submit</button>

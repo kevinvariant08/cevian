@@ -1,0 +1,48 @@
+%! alt Vertical section of the box through the top-face diagonal AC, drawn as rectangle A, C, Q, P with AC = 30 and AP = 25. The circle with centre O and radius 17 passes through A and C and touches PQ at its midpoint T; M is the midpoint of AC, with AM = 15, MO = 8 and OA = OT = 17, and triangle AMO is shaded with its right angle at M.
+%! after_paragraph 2
+%! scale 2/9
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+%! let R = 17
+\tkzDefPoint(0.0,0.0){P} %! P = (0, 0)
+\tkzDefPoint(6.6666667,0.0){Q} %! Q = (30, 0)
+\tkzDefPoint(0.0,5.5555556){A} %! A = (0, 25)
+\tkzDefPoint(6.6666667,5.5555556){C} %! C = (30, 25)
+\tkzDefPoint(3.3333333,5.5555556){M} %! M = mid(A, C)
+\tkzDefPoint(3.3333333,0.0){T} %! T = mid(P, Q)
+\tkzDefPoint(3.3333333,3.7777778){O} %! O = (15, R)
+%! fact on_circle(A, O, R)
+%! fact on_circle(C, O, R)
+%! fact tangent(O, R, P, Q)
+%! fact midpoint(M, A, C)
+%! fact midpoint(T, P, Q)
+%! fact perp(A, C, O, M)
+%! fact collinear(O, M, T)
+%! fact dist(A, C) == 30
+%! fact dist(A, P) == 25
+%! fact dist(A, M) == 15
+%! fact dist(O, M) == 8
+%! fact dist(O, A) == 17
+%! fact dist(O, T) == 17
+\tkzFillPolygon[color=figtint](A,M,O)
+\tkzDrawCircle(O,A)
+\tkzDrawPolygon(A,C,Q,P)
+\tkzDrawSegment[aux](M,T)
+\tkzDrawSegment[key](O,A)
+\tkzMarkRightAngle[size=.2,mk](A,M,O)
+\tkzMarkRightAngle[size=.2,mk](Q,T,O)
+\tkzDrawPoints(A,C,P,Q,M,T,O)
+\tkzLabelPoint[above left,lbl](A){$A$}
+\tkzLabelPoint[above right,lbl](C){$C$}
+\tkzLabelPoint[below left,lbl](P){$P$}
+\tkzLabelPoint[below right,lbl](Q){$Q$}
+\tkzLabelPoint[above right,lbl](M){$M$}
+\tkzLabelPoint[below,lbl](T){$T$}
+\tkzLabelPoint[right,lbl](O){$O$}
+\tkzLabelSegment[above,pos=.5,len](A,M){$15$}
+\tkzLabelSegment[right,pos=.5,len](M,O){$8$}
+\tkzLabelSegment[right,pos=.5,len](O,T){$17$}
+\tkzLabelSegment[below left,pos=.5,len](O,A){$17$}
+\end{tikzpicture}
+\end{document}

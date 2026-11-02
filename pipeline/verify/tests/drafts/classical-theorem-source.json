@@ -15,7 +15,7 @@
     "Name the units digit, since the tens digit depends on it.",
     "Use the place value of each digit to list the options: the tens digit is at most $9$, which limits the units digit."
   ],
-  "solution": "Let the units digit be $u$, with $u \\ge 1$. The tens digit is $3u$, which must be at most $9$, so $u \\in \\{1, 2, 3\\}$. This gives $31$, $62$ and $93$, so there are $3$ such numbers.\n\n<b>Why this works.</b> <code>place-value-representation</code>: the tens digit is at most nine, which limits the units digit.",
+  "solution": "Let the units digit be $u$, with $u \\ge 1$. The tens digit is $3u$, which must be at most $9$, so $u \\in \\{1, 2, 3\\}$. This gives $31$, $62$ and $93$, so there are $3$ such numbers.",
   "provenance": {
     "kind": "classical",
     "author": "task-05-tests",

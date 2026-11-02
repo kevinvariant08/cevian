@@ -1,0 +1,34 @@
+{
+  "id": "vanishing-rows",
+  "title": "Vanishing Rows",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "invariant",
+    "parity",
+    "binomial-selection",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A row of $12$ letters contains exactly $6$ copies of $A$ and exactly $6$ copies of $B$, in some order. A move consists of choosing two adjacent letters that are identical and deleting both of them, after which the remaining letters close up to form a single row with their order unchanged. For how many of the possible rows is there a sequence of moves that deletes all $12$ letters?",
+  "answer_format": "integer",
+  "answer_hash": "6ceb91d4",
+  "hints": [
+    "Number the positions $1$ to $12$ and label each letter by whether its position is odd or even. What happens to these labels when a move is made? Look at both the two deleted letters and the letters that remain.",
+    "Look for an invariant. Adjacent letters have positions of opposite parity, and closing up moves later letters by exactly $2$ places, so each remaining letter keeps its parity. Track the number of $A$s in odd positions minus the number of $A$s in even positions.",
+    "The difference from hint 2 never changes and is $0$ for the empty row, so it must start at $0$. Conversely, if the row is non-empty and the difference is $0$, the row can't be alternating, so a move exists. Thus a row can be fully deleted exactly when its $6$ $A$s are split evenly, with $3$ in odd positions and $3$ in even positions. Now count such rows."
+  ],
+  "solution": "Let $D$ be the number of $A$s in odd positions minus the number in even positions. A move deletes two adjacent letters, one in an odd and one in an even position. Letters after the pair shift by $2$, so every remaining letter keeps its parity. A deleted pair of $A$s contributes $+1-1=0$ to $D$, and a pair of $B$s contributes $0$. So $D$ is invariant, and a fully deletable row has $D=0$ (the empty row has $D=0$).\n\nConversely, let $D=0$. Every row reached has even length. If a non-empty such row had no move, it would alternate $A,B$, so all its $A$s would sit in positions of one parity. As the length is even and positive, there is at least one $A$, giving $D\\ne0$, a contradiction. So a move always exists, and $D$ stays $0$. Repeating, all letters are deleted.\n\nThus we count rows with $D=0$. With $6$ $A$s, this means $3$ in the $6$ odd positions and $3$ in the $6$ even positions, giving\n$$\\binom{6}{3}^2=400.$$",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-vanishing-rows"
+}

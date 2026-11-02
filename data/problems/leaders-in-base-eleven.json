@@ -1,0 +1,35 @@
+{
+  "id": "leaders-in-base-eleven",
+  "title": "Leaders in Base Eleven",
+  "kyu": 3,
+  "topic": "N",
+  "subtopics": [
+    "lte",
+    "p-adic-valuation",
+    "orders-mod-n",
+    "place-value-representation",
+    "prime-factorization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Write every positive integer in base $11$, using digits with values $0, 1, 2, \\dots, 10$. The leading digit of a positive integer is its leftmost digit in this representation, so it is never $0$.\n\nFor a positive integer $n$, let\n$$L_n = \\sum_{m=1}^{11^n - 1} \\dfrac{1}{\\ell(m)},$$\nwhere $\\ell(m)$ denotes the value of the leading digit of $m$ in base $11$.\n\nFind the smallest positive integer $n$ for which $L_n$ is an integer.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "8c1842b7",
+  "hints": [
+    "Hint 1. Group the integers below $11^n$ by their number of base-$11$ digits $k$ and by their leading digit $d$. How many have $k$ digits and leading digit $d$?",
+    "Hint 2. Each such group has $11^{k-1}$ members, so $L_n = \\left(1+\\frac{1}{2}+\\dots+\\frac{1}{10}\\right)\\cdot\\frac{11^n-1}{10}$. The numerator of the harmonic sum is coprime to its denominator, so the problem becomes a divisibility condition on $11^n-1$. Handle each prime power with lifting the exponent or with the order of $11$.",
+    "Hint 3. The condition is $2^4\\cdot 3^2\\cdot 5^2\\cdot 7 \\mid 11^n-1$. For odd $n$ the powers of $2$ and $3$ fail. For even $n$, write $11^n-1=121^{n/2}-1$ with $121-1=120$, and lifting the exponent gives $v_2(11^n-1)=2+v_2(n)$ and $v_3(11^n-1)=1+v_3(n)$. Also $v_5(11^n-1)=1+v_5(n)$, and $11$ has order $3$ modulo $7$."
+  ],
+  "solution": "The base-$11$ integers with exactly $k$ digits and leading digit $d$ are those in $[d\\cdot 11^{k-1},\\,(d+1)\\cdot 11^{k-1})$, so there are $11^{k-1}$ of them. The integers $1,\\dots,11^n-1$ are exactly those with $1$ to $n$ digits. Hence\n$$L_n=\\sum_{k=1}^{n}\\sum_{d=1}^{10}\\dfrac{11^{k-1}}{d}=H\\cdot\\dfrac{11^n-1}{10},\\qquad H=\\sum_{d=1}^{10}\\dfrac{1}{d}=\\dfrac{7381}{2520}.$$\nHere $7381=11^2\\cdot 61$ is coprime to $2520=2^3\\cdot3^2\\cdot5\\cdot7$. So $L_n=\\frac{7381\\,(11^n-1)}{25200}$ is an integer exactly when $25200=2^4\\cdot3^2\\cdot5^2\\cdot7$ divides $11^n-1$.\n\n<b>Prime $2$.</b> If $n$ is odd, then $11^n\\equiv 3^n\\equiv 3\\pmod 4$, so $v_2(11^n-1)=1$. If $n=2m$, then $11^n-1=121^m-1$ with $4\\mid 121-1=120$. Lifting the exponent gives $v_2=v_2(120)+v_2(m)=3+v_2(n)-1=2+v_2(n)$. The condition $v_2\\ge 4$ therefore holds exactly when $4\\mid n$.\n\n<b>Prime $3$.</b> If $n$ is odd, then $11^n\\equiv 2^n\\equiv 2\\pmod 3$, which fails. If $n=2m$, lifting the exponent with $3\\mid 120$ gives $v_3(121^m-1)=1+v_3(m)=1+v_3(n)$. The condition $v_3\\ge 2$ therefore holds exactly when $n$ is even and $3\\mid n$.\n\n<b>Prime $5$.</b> Since $5\\mid 11-1$, lifting the exponent gives $v_5(11^n-1)=v_5(10)+v_5(n)=1+v_5(n)$. The condition $v_5\\ge 2$ holds exactly when $5\\mid n$.\n\n<b>Prime $7$.</b> We have $11\\equiv 4\\pmod 7$ with $4^3=64\\equiv1$ and $4\\not\\equiv 1$, so $11$ has order $3$ modulo $7$. Hence $7\\mid 11^n-1$ exactly when $3\\mid n$.\n\nTogether, $25200\\mid 11^n-1$ holds exactly when $4\\mid n$, $3\\mid n$ and $5\\mid n$, that is, when $60\\mid n$. The smallest such $n$ is $60$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-mid-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-leaders-in-base-eleven"
+}

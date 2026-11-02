@@ -1,0 +1,33 @@
+{
+  "id": "games-so-far",
+  "title": "Games So Far",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "complementary-counting",
+    "binomial-selection",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Six players, each with a different name, enter a tournament in which each pair of players is scheduled to play exactly one game, making $15$ scheduled games. So far, exactly $12$ of these games have been played. How many different sets of $12$ played games are possible for which at least one player has played all of their scheduled games?",
+  "answer_format": "integer",
+  "answer_hash": "e04e16d5",
+  "hints": [
+    "Instead of looking at the $12$ games that have been played, look at the $3$ games that have not. What does it mean, in terms of these $3$ games, for a player to have played all of their scheduled games?",
+    "A player has played all of their games exactly when they appear in none of the $3$ unplayed games. Use complementary counting: count the choices of $3$ unplayed games in which every player appears in at least one of them.",
+    "The $3$ unplayed games have only $3 \\cdot 2 = 6$ player places, so if all six players appear, each appears exactly once. The unplayed games must then split the players into $3$ pairs, and there are $5 \\cdot 3 \\cdot 1$ such splits. Compare this with the total number of ways to choose $3$ games from $15$."
+  ],
+  "solution": "Choosing the $12$ played games is the same as choosing the $3$ unplayed games, and a player has played all their games exactly when they lie in none of the unplayed games. There are $\\binom{15}{3}=455$ choices of unplayed games.\n\nThe bad choices are those where every player lies in some unplayed game. Three games contain $6$ player-slots, so each of the six players appears exactly once, and the three games form a perfect matching. The number of perfect matchings of $6$ players is $5\\cdot3\\cdot1=15$.\n\nHence the count is $455-15=440$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-games-so-far"
+}

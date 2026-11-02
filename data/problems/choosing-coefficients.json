@@ -1,0 +1,32 @@
+{
+  "id": "choosing-coefficients",
+  "title": "Choosing Coefficients",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $a$, $b$ and $c$ be three different integers chosen from the set $\\{0, 1, 2, 3, 4, 5, 6, 7\\}$. For how many ordered triples $(a, b, c)$ does the equation $ax + b = c$ have exactly one real solution $x$?",
+  "answer_format": "integer",
+  "answer_hash": "736fd5e3",
+  "hints": [
+    "Look at the coefficient $a$. Compare what the equation says when $a = 0$ with what it says when $a \\ne 0$, remembering that $b$ and $c$ are different.",
+    "The equation has exactly one solution precisely when $a \\ne 0$. Count the triples with the rule of product: choose the three numbers one at a time and multiply the numbers of choices. Start with $a$, because it is the only number with an extra restriction.",
+    "Since $a$ can't be $0$, it has $7$ possible values. Whichever value it takes, $7$ numbers remain for $b$, because $0$ is still available. After that, $6$ numbers remain for $c$."
+  ],
+  "solution": "If $a=0$ the equation reads $b=c$, which is false since $b\\ne c$, so there is no solution. If $a\\ne0$ then $x=\\frac{c-b}{a}$ is the unique solution. So we count ordered triples of distinct elements with $a\\ne0$: $7$ choices for $a$, then $7$ for $b$ (any of the other elements, including $0$), then $6$ for $c$, giving $7\\cdot7\\cdot6=294$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-choosing-coefficients"
+}

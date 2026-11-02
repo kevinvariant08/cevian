@@ -1,0 +1,109 @@
+{
+  "id": "polite-swaps",
+  "title": "Polite Swaps",
+  "kyu": 3,
+  "topic": "C",
+  "subtopics": [
+    "extremal-principle",
+    "invariant",
+    "monovariant"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $n \\ge 3$ be an integer. The numbers $1, 2, \\dots, n$ are written in a row in some order. A move consists of choosing two adjacent numbers such that the left one exceeds the right one by at least $2$, and swapping them. Determine, in terms of $n$, the largest possible number of moves in a sequence of moves, taken over all initial orders and all sequences of moves.",
+  "hints": [
+    "Take two numbers $a > b$. How many times can they be swapped with each other during a whole sequence of moves, and can they be swapped at all if $a = b + 1$? Count the pairs of numbers that could ever be swapped.",
+    "Use an extremal choice. Call a pair live if its larger number is on the left and the two numbers differ by at least $2$. In a row that still has a live pair, choose a live pair standing as close together as possible, and ask which numbers could stand between them.",
+    "If the closest live pair is not adjacent, then the row contains $k+2$, $k+1$, $k$ in this left-to-right order for some $k$. Two consecutive numbers never swap, so their relative order is fixed from the start. Look for a starting row in which every pair differing by at least $2$ is live and in which $k+1$ is left of $k$ never holds for two consecutive values of $k$."
+  ],
+  "solution": "<b>Answer.</b> $\\binom{n-1}{2}=\\frac{(n-1)(n-2)}{2}$.\n\nCall a pair of numbers wide if they differ by at least $2$. Exactly $n-1$ of the $\\binom n2$ pairs differ by $1$, so there are $\\binom n2-(n-1)=\\binom{n-1}{2}$ wide pairs. In a given row, call a wide pair live if its larger number is to the left of its smaller number. Let $L$ be the number of live pairs.\n\n<b>Upper bound.</b> A move swaps two adjacent numbers, so it changes the relative order of exactly that pair. The swapped pair is a live wide pair before the move and is not live after it, and every other pair keeps its status. So each move lowers $L$ by exactly $1$. Since $0\\le L\\le\\binom{n-1}{2}$ always, there are at most $\\binom{n-1}{2}$ moves. In particular a swapped pair can never be swapped back, because it is no longer live.\n\n<b>Starting row.</b> Split $1,\\dots,n$ into blocks $\\{1,2\\},\\{3,4\\},\\dots$, with a final block $\\{n\\}$ if $n$ is odd. Write the blocks in decreasing order, each block increasing internally. For example, $n=5$ gives $5,3,4,1,2$ and $n=6$ gives $5,6,3,4,1,2$. The two numbers of a wide pair lie in different blocks, and the larger one is in the block further left. So every wide pair is live and $L=\\binom{n-1}{2}$ initially.\n\nFor consecutive numbers $k,k+1$: if $k$ is odd they share a block with $k$ on the left. If $k$ is even they are in different blocks with $k+1$ on the left. So initially $k+1$ is left of $k$ exactly when $k$ is even.\n\n<b>Forbidden pattern.</b> Consecutive numbers are never swapped, since a move needs a difference of at least $2$. So in every reachable row, $k+1$ is left of $k$ exactly when $k$ is even. Suppose $k+2,k+1,k$ appeared in this left-to-right order. Then $k+1$ left of $k$ forces $k$ even, and $k+2$ left of $k+1$ forces $k+1$ even, which is impossible. So this pattern never occurs.\n\n<b>Claim.</b> In every reachable row with $L>0$, a move is available.\n\n<i></i>Proof. Among the live pairs choose one whose members have the fewest numbers between them. Let it be $a$ on the left and $b$ on the right, with $a\\ge b+2$. Suppose some $c$ lies between them.\n\nIf $c>a$, then $c\\ge b+3$, so $(c,b)$ is a live pair with fewer numbers between its members, a contradiction.\n\nIf $c\\le a-2$, then $(a,c)$ is a live pair with fewer numbers between its members, a contradiction.\n\nSo $c=a-1$, and then $c\\ge b+1$. If $c\\ge b+2$, then $(c,b)$ is live and closer, a contradiction. So $c=b+1$ and $a=b+2$. Then $b+2,b+1,b$ appear in this order, which is the forbidden pattern. Hence nothing lies between $a$ and $b$. They are adjacent with $a\\ge b+2$, so they can be swapped. $\\square$\n\n<b>Conclusion.</b> From the starting row make moves as long as possible. By the Claim the process stops only when $L=0$. Since $L$ starts at $\\binom{n-1}{2}$ and drops by exactly $1$ per move, exactly $\\binom{n-1}{2}$ moves are made. With the upper bound, the largest possible number of moves is $\\binom{n-1}{2}$.",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Proves that no sequence has more than $\\binom{n-1}{2}$ moves, by showing that pairs differing by $1$ never swap and that each pair differing by at least $2$ swaps at most once, or an equivalent. Deduct 1 if the script does not justify why a swapped pair can never be swapped back."
+    },
+    {
+      "marks": 1,
+      "criterion": "Gives a starting order, valid for every $n \\ge 3$, in which the larger number of every pair differing by at least $2$ is on the left, and verifies this property, or an equivalent. Deduct 1 if only one parity of $n$ is handled."
+    },
+    {
+      "marks": 1,
+      "criterion": "Proves that the relative order of $k$ and $k+1$ never changes and deduces that $k+2$, $k+1$, $k$ never appear in this left-to-right order from the chosen start, or an equivalent property that is used to keep moves available."
+    },
+    {
+      "marks": 3,
+      "criterion": "Proves that from the chosen start, moves remain available until all $\\binom{n-1}{2}$ pairs differing by at least $2$ have been swapped, for example by showing that a closest pair with the larger number on the left and difference at least $2$ must be adjacent, and concludes that exactly $\\binom{n-1}{2}$ moves are made, or an equivalent. Deduct 1 if one case for the number between the pair is missing, such as a number larger than both. A complete proof by another route earns all marks."
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "proofs-4"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Proves that no sequence has more than $\\binom{n-1}{2}$ moves, by showing that pairs differing by $1$ never swap and that each pair differing by at least $2$ swaps at most once, or an equivalent. Deduct 1 if the script does not justify why a swapped pair can never be swapped back."
+      },
+      {
+        "id": "m2",
+        "marks": 1,
+        "criterion": "Gives a starting order, valid for every $n \\ge 3$, in which the larger number of every pair differing by at least $2$ is on the left, and verifies this property, or an equivalent. Deduct 1 if only one parity of $n$ is handled."
+      },
+      {
+        "id": "m3",
+        "marks": 1,
+        "criterion": "Proves that the relative order of $k$ and $k+1$ never changes and deduces that $k+2$, $k+1$, $k$ never appear in this left-to-right order from the chosen start, or an equivalent property that is used to keep moves available."
+      },
+      {
+        "id": "m4",
+        "marks": 3,
+        "criterion": "Proves that from the chosen start, moves remain available until all $\\binom{n-1}{2}$ pairs differing by at least $2$ have been swapped, for example by showing that a closest pair with the larger number on the left and difference at least $2$ must be adjacent, and concludes that exactly $\\binom{n-1}{2}$ moves are made, or an equivalent. Deduct 1 if one case for the number between the pair is missing, such as a number larger than both. A complete proof by another route earns all marks."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Explicit sequence by induction",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 2,
+            "criterion": "Proves that no sequence has more than $\\binom{n-1}{2}$ moves, by showing that pairs differing by $1$ never swap and that each pair differing by at least $2$ swaps at most once. Deduct 1 if the script does not justify why a swapped pair can never be swapped back."
+          },
+          {
+            "id": "a2",
+            "marks": 2,
+            "criterion": "Specifies, for every $n \\ge 3$ of both parities, the block starting order or an equivalent one, together with an explicit inductive description of the moves that names the row reached at each stage, such as $1, 3, 2, 5, 4, \\dots, m-1, m-2, m$ for even $m$."
+          },
+          {
+            "id": "a3",
+            "marks": 3,
+            "criterion": "Verifies that every move in the explicit sequence is legal, including that $m+1$ stops before $m$ and that $n$ stops before $n-1$ when $n$ is odd, and verifies that the total number of moves is $\\binom{n-1}{2}$ for both parities. Deduct 1 if the odd case is missing."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Asserts without proof that the moves from the chosen start can always continue until every pair differing by at least $2$ has been swapped.",
+        "cap": 4
+      },
+      {
+        "error": "Claims that the bound is attained from the decreasing row $n, n-1, \\dots, 1$, or from another start that gets stuck early, such as $3, 2, 1$ for $n = 3$, where no move is possible.",
+        "cap": 2
+      },
+      {
+        "error": "Establishes the lower bound only by checking small values of $n$ and extrapolating a pattern, with no argument valid for all $n$.",
+        "cap": 2
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-polite-swaps"
+}

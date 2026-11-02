@@ -1,0 +1,32 @@
+{
+  "id": "three-ranges",
+  "title": "Three Ranges",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "casework",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "The integers $x$, $y$ and $z$ satisfy $-6 \\le x \\le 2$, $-5 \\le y \\le 3$ and $1 \\le z \\le 4$. What is the smallest possible value of the product $x \\cdot y \\cdot z$?",
+  "answer_format": "integer",
+  "answer_hash": "62ab26a6",
+  "hints": [
+    "Since $z$ is always positive, look at the sign of $x \\cdot y$. Which signs must $x$ and $y$ have for the whole product to be negative? Notice that taking the largest sizes, $x = -6$ and $y = -5$, gives a positive product.",
+    "Use casework on the signs. For a negative product, $x$ and $y$ must have opposite signs, so either $x < 0 < y$ or $y < 0 < x$. In each case, find the largest possible size of $x \\cdot y$.",
+    "If $x < 0 < y$, the most negative value of $x \\cdot y$ is $(-6) \\cdot 3 = -18$. If $y < 0 < x$, it is $2 \\cdot (-5) = -10$. Since $z$ is positive, a larger $z$ makes a negative product more negative, so now choose $z$."
+  ],
+  "solution": "Since $z>0$, a negative product needs $xy<0$. If $x<0<y$ then $|xy|\\le 6\\cdot 3=18$. If $y<0<x$ then $|xy|\\le 2\\cdot 5=10$. So $xyz\\ge -18\\cdot 4=-72$ whenever the product is negative, and this bound holds trivially otherwise. Equality holds at $x=-6$, $y=3$, $z=4$, so the minimum is $-72$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-ranges"
+}

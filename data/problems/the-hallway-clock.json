@@ -1,0 +1,32 @@
+{
+  "id": "the-hallway-clock",
+  "title": "The Hallway Clock",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "rate-and-mixture-modeling",
+    "reverse-the-process"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A hallway clock gains time at a constant rate. Earlier in the day, it showed exactly the correct time. When the correct time was $14:00$, the clock showed $14:06$. When the correct time was $16:00$, the clock showed $16:10$. How many minutes before the correct time of $14:00$ did the clock show exactly the correct time?",
+  "answer_format": "integer",
+  "answer_hash": "a8ab257f",
+  "hints": [
+    "Don't track the clock's readings themselves. Instead, work out how many minutes ahead of the correct time the clock is at $14:00$ and at $16:00$.",
+    "Treat the clock's lead as a quantity that changes at a constant rate. The clock is $6$ minutes ahead at $14:00$ and $10$ minutes ahead at $16:00$, so find how many true minutes it takes to gain $1$ minute.",
+    "The lead grows by $4$ minutes during the $120$ true minutes from $14:00$ to $16:00$, so the clock gains $1$ minute every $30$ true minutes. Now work backwards from $14:00$ to the moment when the lead was $0$."
+  ],
+  "solution": "The lead (clock minus true time) grows linearly. It rises from $6$ to $10$ minutes in $120$ true minutes, so it grows by $1$ minute every $30$ true minutes. The lead was $0$ exactly $6\\cdot 30=180$ minutes before $14:00$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-the-hallway-clock"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "halfway-between-two-frames",
+  "title": "Halfway Between Two Frames",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "casework",
+    "area-by-decomposition"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In the coordinate plane, let $A$ be the rectangle with vertices $(0,0)$, $(10,0)$, $(10,6)$ and $(0,6)$, and let $B$ be the rectangle with vertices $(20,10)$, $(24,10)$, $(24,12)$ and $(20,12)$. Let $M$ be the set of all midpoints of segments $PQ$, where $P$ is any point on the perimeter of $A$ and $Q$ is any point on the perimeter of $B$. Find the area of $M$.",
+  "answer_format": "integer",
+  "answer_hash": "a130a7f2",
+  "hints": [
+    "Take one edge of $A$ and one edge of $B$, and ask what shape the midpoints form as $P$ and $Q$ move along just those two edges. Try a horizontal edge of $A$ with a vertical edge of $B$.",
+    "Use casework on the pair of edges containing $P$ and $Q$. Each rectangle has four edges, so there are $16$ pairs. If the two edges are parallel, the midpoints form a segment, which has no area. If they are perpendicular, the two midpoint coordinates vary independently, so the midpoints fill a solid rectangle.",
+    "Each midpoint coordinate is the average of a coordinate of $P$ and one of $Q$. Applying this to the perpendicular pairs, the rectangles of midpoints combine into four strips: $5 \\le y \\le 6$ and $8 \\le y \\le 9$ with $10 \\le x \\le 17$, and $10 \\le x \\le 12$ and $15 \\le x \\le 17$ with $5 \\le y \\le 9$. Together they form a frame with a hole in the middle, so find its area by subtracting the hole from the outer rectangle."
+  ],
+  "solution": "Midpoints from parallel edges lie on segments, which have zero area. For perpendicular edges, one midpoint coordinate depends only on $P$ and the other only on $Q$, so the midpoints fill a rectangle.\n\n<b>Horizontal edge of $A$, vertical edge of $B$.</b> Take $P=(t,a)$ with $0\\le t\\le10$, $a\\in\\{0,6\\}$, and $Q=(b,s)$ with $b\\in\\{20,24\\}$, $10\\le s\\le12$. The midpoint is $\\left(\\frac{t+b}{2},\\frac{a+s}{2}\\right)$. Then $x\\in[10,15]\\cup[12,17]=[10,17]$, and $y\\in[5,6]$ or $[8,9]$. This gives the strips $10\\le x\\le17$ with $5\\le y\\le6$ or $8\\le y\\le9$.\n\n<b>Vertical edge of $A$, horizontal edge of $B$.</b> Take $P=(a,t)$ with $a\\in\\{0,10\\}$, $0\\le t\\le6$, and $Q=(s,b)$ with $20\\le s\\le24$, $b\\in\\{10,12\\}$. Then $x\\in[10,12]$ or $[15,17]$, and $y\\in[5,8]\\cup[6,9]=[5,9]$. This gives the strips $5\\le y\\le9$ with $10\\le x\\le12$ or $15\\le x\\le17$.\n\nA point of $10\\le x\\le17,\\ 5\\le y\\le9$ lies in one of the four strips exactly when $y\\le6$, $y\\ge8$, $x\\le12$ or $x\\ge15$. So, up to zero-area segments, $M$ is the $7\\times4$ rectangle with $R=(10,5)$ and $T=(17,9)$, with the open $3\\times2$ rectangle $EFGH$ removed, where $E=(12,6)$ and $G=(15,8)$.\n\nThe area is $28-6=22$.",
+  "solution_figures": [
+    {
+      "src": "figures/halfway-between-two-frames-solution.svg?v=7645ffe9",
+      "alt": "The set of midpoints drawn as a shaded rectangular frame. The outer rectangle RSTU measures 7 by 4, with R at (10, 5) and T at (17, 9), and the unshaded inner rectangle EFGH measures 3 by 2, with E at (12, 6) and G at (15, 8).",
+      "after_paragraph": 3
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-halfway-between-two-frames"
+}

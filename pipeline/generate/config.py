@@ -31,7 +31,8 @@ class Profile:
 
 
 ANSWER_5_3 = Profile(name="answer-5-3", kyus=(5, 4, 3), type="answer", answer_format="integer_0_999")
-PROFILES = {ANSWER_5_3.name: ANSWER_5_3}
+ANSWER_8_6 = Profile(name="answer-8-6", kyus=(8, 7, 6), type="answer", answer_format="integer", idea_max_tokens=12000, write_max_tokens=16000, candidates=2)
+PROFILES = {p.name: p for p in (ANSWER_5_3, ANSWER_8_6)}
 
 
 def analysis_path():

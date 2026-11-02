@@ -1,0 +1,33 @@
+{
+  "id": "a-sum-and-a-difference",
+  "title": "A Sum and a Difference",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "lcm-gcd-reasoning",
+    "parity",
+    "linear-system-solving"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Positive integers $x$ and $y$ satisfy $x < y$ and $x + y < 100$. The sum $x + y$ leaves remainders of $3$, $4$ and $5$ when divided by $4$, $5$ and $6$ respectively. The difference $y - x$ leaves remainders of $1$ and $5$ when divided by $3$ and $7$ respectively. Find the product $xy$.",
+  "answer_format": "integer",
+  "answer_hash": "757086c5",
+  "hints": [
+    "Compare each remainder with its divisor: $3$ with $4$, $4$ with $5$, and $5$ with $6$. What small number could you add to $x + y$ to make all three divisions exact? Try the same idea on $y - x$, where the remainders are $1$ modulo $3$ and $5$ modulo $7$.",
+    "Adding $1$ to $x + y$ gives a common multiple of $4$, $5$ and $6$, and adding $2$ to $y - x$ gives a common multiple of $3$ and $7$. Use least common multiples to turn these facts into short lists of possible values.",
+    "Since $x + y + 1$ is a multiple of $60$ and $x + y < 100$, we get $x + y = 59$. Since $y - x + 2$ is a multiple of $21$ and $y - x < x + y$, the difference is $19$ or $40$. Now use the fact that $x + y$ and $y - x$ differ by the even number $2x$, so they have the same parity."
+  ],
+  "solution": "Since $x+y\\equiv -1$ modulo $4$, $5$ and $6$, we get $60\\mid x+y+1$. As $x+y+1\\le 100$, this gives $x+y=59$.\n\nSimilarly $y-x\\equiv -2$ modulo $3$ and $7$, so $21\\mid y-x+2$. Since $0<y-x<59$, we have $y-x\\in\\{19,40\\}$. Now $y-x$ has the same parity as $x+y=59$, so $y-x=19$.\n\nHence $x=20$, $y=39$, and these satisfy all the conditions. So $xy=20\\cdot 39=780$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-sum-and-a-difference"
+}

@@ -1,0 +1,41 @@
+%! alt The set of midpoints drawn as a shaded rectangular frame. The outer rectangle RSTU measures 7 by 4, with R at (10, 5) and T at (17, 9), and the unshaded inner rectangle EFGH measures 3 by 2, with E at (12, 6) and G at (15, 8).
+%! after_paragraph 3
+%! scale 15/14
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(10.714286,5.3571429){R} %! R = (10, 5)
+\tkzDefPoint(18.214286,5.3571429){S} %! S = (17, 5)
+\tkzDefPoint(18.214286,9.6428571){T} %! T = (17, 9)
+\tkzDefPoint(10.714286,9.6428571){U} %! U = (10, 9)
+\tkzDefPoint(12.857143,6.4285714){E} %! E = (12, 6)
+\tkzDefPoint(16.071429,6.4285714){F} %! F = (15, 6)
+\tkzDefPoint(16.071429,8.5714286){G} %! G = (15, 8)
+\tkzDefPoint(12.857143,8.5714286){H} %! H = (12, 8)
+%! fact dist(R, S) == 7
+%! fact dist(S, T) == 4
+%! fact dist(E, F) == 3
+%! fact dist(F, G) == 2
+%! fact perp(R, S, S, T)
+%! fact perp(E, F, F, G)
+\tkzFillPolygon[color=figtint](R,S,F,E)
+\tkzFillPolygon[color=figtint](S,T,G,F)
+\tkzFillPolygon[color=figtint](T,U,H,G)
+\tkzFillPolygon[color=figtint](U,R,E,H)
+\tkzDrawPolygon(R,S,T,U)
+\tkzDrawPolygon[key](E,F,G,H)
+\tkzDrawPoints(R,S,T,U,E,F,G,H)
+\tkzLabelPoint[below left,lbl](R){$R$}
+\tkzLabelPoint[below right,lbl](S){$S$}
+\tkzLabelPoint[above right,lbl](T){$T$}
+\tkzLabelPoint[above left,lbl](U){$U$}
+\tkzLabelPoint[below left,lbl](E){$E$}
+\tkzLabelPoint[below right,lbl](F){$F$}
+\tkzLabelPoint[above right,lbl](G){$G$}
+\tkzLabelPoint[above left,lbl](H){$H$}
+\tkzLabelSegment[below,pos=.5,len](R,S){$7$}
+\tkzLabelSegment[left,pos=.5,len](U,R){$4$}
+\tkzLabelSegment[above,pos=.5,len](E,F){$3$}
+\tkzLabelSegment[left,pos=.5,len](F,G){$2$}
+\end{tikzpicture}
+\end{document}

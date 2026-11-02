@@ -1,0 +1,40 @@
+{
+  "id": "a-sphere-on-a-box",
+  "title": "A Sphere on a Box",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "pythagorean-theorem",
+    "tangency",
+    "cross-section-reduction"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A rectangular box has a bottom face measuring $18$ by $24$, and its height is $25$. A sphere passes through all four vertices of the top face of the box and is tangent to the plane containing the bottom face. What is the radius of the sphere?",
+  "answer_format": "integer",
+  "answer_hash": "0af33dae",
+  "hints": [
+    "Look at the sphere's centre. Where must it lie relative to the four top vertices, given that it is the same distance from all of them?",
+    "The centre lies on the vertical line through the centre of the top face. Use Pythagoras' theorem in the right triangle formed by the sphere's centre, the centre of the top face and one top vertex. Its hypotenuse is a radius.",
+    "The diagonal of the top face is $\\sqrt{18^2 + 24^2} = 30$, so one leg of the triangle is $15$. Tangency to the bottom plane puts the centre at height $R$ above that plane, where $R$ is the radius, so the other leg is $|25 - R|$. Hence $15^2 + (25 - R)^2 = R^2$, and the $R^2$ terms cancel when you expand."
+  ],
+  "solution": "The top face has diagonal $\\sqrt{18^2+24^2}=30$, so its centre $M$ is at distance $15$ from each top vertex. The centre $O$ of the sphere is equidistant from the four top vertices, so its projection onto the top plane is equidistant from them. The only such point is the circumcentre $M$ of the rectangle, so $OM$ is perpendicular to the top face.\n\nLet $R$ be the radius. Tangency puts $O$ at distance $R$ from the bottom plane; if $O$ were below it, then $R^2=15^2+(25+R)^2$, which has no solution, so $O$ is at height $R$ above it. Then $OM=25-R$, and for a top vertex $A$,\n$$R^2=15^2+(25-R)^2,$$\nso $0=850-50R$ and $R=17$. Then $OM=8$ and $8^2+15^2=17^2$, consistent.\n\nIn the section through the diagonal $AC$, triangle $AMO$ has a right angle at $M$ with $AM=15$, $MO=8$, $OA=OT=17$, where $T$ is the tangency point on $PQ$.\n\nThe radius is $17$.",
+  "solution_figures": [
+    {
+      "src": "figures/a-sphere-on-a-box-solution.svg?v=b8b05bd4",
+      "alt": "Vertical section of the box through the top-face diagonal AC, drawn as rectangle A, C, Q, P with AC = 30 and AP = 25. The circle with centre O and radius 17 passes through A and C and touches PQ at its midpoint T; M is the midpoint of AC, with AM = 15, MO = 8 and OA = OT = 17, and triangle AMO is shaded with its right angle at M.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-sphere-on-a-box"
+}

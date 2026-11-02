@@ -1,0 +1,32 @@
+{
+  "id": "two-players-two-scores",
+  "title": "Two Players, Two Scores",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "linear-combination-of-equations",
+    "linear-system-solving"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Robin and Sasha play a game in rounds, and both start with $0$ points. Every round has exactly one winner and one loser, with no draws. The winner of a round gains $5$ points and the loser of that round gains $2$ points. At the end of the game, Robin has $51$ points and Sasha has $33$ points. How many rounds did Robin win?",
+  "answer_format": "integer",
+  "answer_hash": "31384db4",
+  "hints": [
+    "Look at the total number of points the two players receive together in a single round. Does that total depend on who wins the round?",
+    "Use algebra: let Robin win $r$ rounds and Sasha win $s$ rounds, and write one equation for each player's final score. Adding the two equations is useful because $r$ and $s$ then have the same coefficient, which gives the total number of rounds.",
+    "The two final scores add up to $84$, and each round contributes $7$ points to this total, so there were $12$ rounds. Robin gains at least $2$ points in every round and gains $3$ extra in each round Robin wins. Compare this with Robin's $51$ points."
+  ],
+  "solution": "Let Robin win $r$ rounds and Sasha win $s$ rounds. Then $5r+2s=51$ and $2r+5s=33$. Adding gives $7(r+s)=84$, so $r+s=12$. Subtracting gives $3(r-s)=18$, so $r-s=6$. Hence $r=9$ and $s=3$. Check: $45+6=51$ and $18+15=33$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-two-players-two-scores"
+}

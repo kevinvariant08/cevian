@@ -1,0 +1,32 @@
+{
+  "id": "lamps-in-a-row",
+  "title": "Lamps in a Row",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "run-decomposition",
+    "stars-and-bars"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A row of $14$ lamps, in fixed positions, has exactly $6$ lamps switched on and the other $8$ switched off. A block is a set of one or more consecutive lamps that are all on, such that any lamp immediately to the left or right of the set is off. How many different patterns of on and off lamps have exactly $3$ blocks? Two patterns are different if at least one position has a lamp that is on in one pattern and off in the other; a pattern and its mirror image count as different unless they are identical.",
+  "answer_format": "integer",
+  "answer_hash": "6af1ee07",
+  "hints": [
+    "Instead of tracking the on lamps directly, consider the $8$ off lamps. Where, relative to these, can the on lamps be, and how many such places are there?",
+    "Two different blocks must have at least one off lamp between them. Use this to split the count into two independent choices: which places hold a block, and how large each block is. The block sizes can then be counted with stars and bars.",
+    "The $8$ off lamps create $9$ gaps, counting both ends of the row, and each non-empty gap holds exactly one block. So choose $3$ of the $9$ gaps, then count the positive integer solutions of $a + b + c = 6$, where $a, b, c$ are the block sizes from left to right."
+  ],
+  "solution": "The $8$ off lamps create $9$ gaps (including both ends), and each non-empty gap holds exactly one block. So we choose $3$ of the $9$ gaps to be non-empty, in $\\binom93=84$ ways, and then distribute the $6$ on lamps among them with each gap getting at least one, in $\\binom52=10$ ways. The pattern is determined by these choices, and every choice gives a valid pattern.\n\nThe total is $84\\cdot 10=840$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-lamps-in-a-row"
+}

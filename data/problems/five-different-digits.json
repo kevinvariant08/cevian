@@ -1,0 +1,32 @@
+{
+  "id": "five-different-digits",
+  "title": "Five Different Digits",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "linear-system-solving"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A five-digit positive integer has five different digits and does not begin with $0$. Its tens digit and units digit add up to $9$, and its tens digit is $3$ more than its units digit. How many such integers are there?",
+  "answer_format": "integer",
+  "answer_hash": "78b0fec9",
+  "hints": [
+    "Look first at the last two digits. Call the tens digit $t$ and the units digit $u$, and write the two conditions as equations in $t$ and $u$.",
+    "The equations for the tens digit $t$ and units digit $u$ are simultaneous linear equations, so they fix both digits. The other three digits can then be counted with the rule of product: choose them one position at a time and multiply the numbers of choices.",
+    "The tens digit must be $6$ and the units digit must be $3$. Fill the other positions from the left. The leading digit must avoid $0$, $3$ and $6$, which leaves $7$ choices. The next digit may be $0$ and must avoid the three digits already used, which leaves $7$ choices. The hundreds digit must avoid the four digits already used, which leaves $6$ choices."
+  ],
+  "solution": "Adding $t+u=9$ and $t-u=3$ gives $t=6$, $u=3$.\n\nThe first digit is not $0$, $3$ or $6$, so it has $7$ choices. The second digit differs from $3$, $6$ and the first digit, so it has $10-3=7$ choices ($0$ is allowed). The third digit differs from $3$, $6$ and the first two digits, so it has $10-4=6$ choices.\n\nThe total is $7\\cdot 7\\cdot 6=294$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-five-different-digits"
+}

@@ -42,6 +42,12 @@ def classify(report):
     return "accept", report["verdict"]
 
 
+def far_too_hard(report, kyu):
+    """At 8 and 7 kyu a draft the ruler puts 3 or more kyus harder doesn't join the queue. Kevin asked for this after seeing AIME-rated 8 kyu drafts."""
+    estimate = next((c["evidence"].get("estimated_kyu") for c in report["checks"] if c["check"] == "difficulty"), None)
+    return kyu >= 7 and estimate is not None and kyu - estimate >= 3
+
+
 def _save(d, report, folder):
     folder.mkdir(parents=True, exist_ok=True)
     (folder / f"{d['id']}.json").write_text(json.dumps(dict(draft=d, report=report), indent=2, ensure_ascii=False), encoding="utf-8")
@@ -103,10 +109,10 @@ def make_one(inp, ctx, seed):
     """One input: at most one generation and REPAIRS repairs. Raises PlanLimit so the batch can stop cleanly."""
     profile, run_name = ctx["profile"], ctx["run"]
     kyu = inp.record["kyu"]
-    rng = random.Random(f"{seed}:{inp.id}")
+    rng = random.Random(f"{seed}:{inp.key}")
     chosen_recipes = recipes.pick(inp.record, rng, profile.candidates)
     partner = recipes.rare_partner(inp.record, ctx["records"], rng) if "combine" in chosen_recipes else None
-    log = dict(input=inp.id, kyu=kyu, topic=inp.record["topic"], recipes_offered=chosen_recipes, partner=partner, attempts=[], outcome=None, model=profile.model, effort=profile.effort)
+    log = dict(input=inp.key, source=inp.id, kyu=kyu, topic=inp.record["topic"], recipes_offered=chosen_recipes, partner=partner, attempts=[], outcome=None, model=profile.model, effort=profile.effort)
     usage = Usage()
     idea, key, failure, earlier_write = None, None, None, None
 
@@ -161,6 +167,9 @@ def make_one(inp, ctx, seed):
         if decision == "error":
             log["outcome"], log["reason"] = "error", reason
             break
+        if decision == "accept" and far_too_hard(report, kyu):
+            log["outcome"], log["reason"] = "discard", f"too hard for {kyu} kyu: {report['verdict'][:120]}"
+            break
         if decision in ("accept", "hold"):
             _save(d, report, PENDING if decision == "accept" else HELD)
             _record_map(d, inp, run_name, decision)
@@ -200,9 +209,9 @@ def run_inputs(items, ctx, seed, concurrency, stop_file=None):
             row = make_one(item, ctx, seed)
         except PlanLimit as e:
             stopped.append(str(e))
-            row = dict(input=item.id, outcome="plan_limit", reason=str(e)[:200])
+            row = dict(input=item.key, outcome="plan_limit", reason=str(e)[:200])
         except ModelError as e:
-            row = dict(input=item.id, outcome="error", reason=str(e)[:200])
+            row = dict(input=item.key, outcome="error", reason=str(e)[:200])
         _append(log_path, row)
         print(f"{row['input']}: {row['outcome']} {row.get('id', '')} {row.get('verdict', row.get('reason', ''))[:160]} usd={row.get('usd', 0)}", flush=True)
         return row

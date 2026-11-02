@@ -1,0 +1,33 @@
+{
+  "id": "a-close-approximation",
+  "title": "A Close Approximation",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "modular-inverse",
+    "bounding",
+    "modular-arithmetic"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Consider all fractions $\\frac{p}{q}$ with $p$ and $q$ positive integers, $q \\le 200$ and $\\frac{p}{q} \\ne \\frac{7}{19}$. Among the values of these fractions, exactly one is closest to $\\frac{7}{19}$. Write this value as $\\frac{a}{b}$ in lowest terms, with $a$ and $b$ positive integers. Find $a+b$.",
+  "answer_format": "integer",
+  "answer_hash": "2fc5e80d",
+  "hints": [
+    "Put $\\frac{p}{q} - \\frac{7}{19}$ over a common denominator. Look at what values the numerator can take and how the size of $q$ affects the difference.",
+    "The difference has size $\\frac{|19p-7q|}{19q}$, where the numerator is a positive integer. Use modular arithmetic: reduce modulo $19$ to find which $q$ allow the numerator to equal $1$. The inverse of $7$ modulo $19$ will help.",
+    "Since $7 \\cdot 11 \\equiv 1 \\pmod{19}$, a numerator of $1$ requires $q \\equiv 8$ or $11 \\pmod{19}$. Find the largest such $q \\le 200$ and its $p$. A numerator of at least $2$ gives a distance of at least $\\frac{2}{19 \\cdot 200}$, so compare this with what you found."
+  ],
+  "solution": "The distance from $\\frac{p}{q}$ to $\\frac{7}{19}$ is $\\frac{N}{19q}$, where $N=|19p-7q|\\ge 1$.\n\nIf $N=1$ then $7q\\equiv\\pm1\\pmod{19}$. Since $7\\cdot 11\\equiv 1$, this gives $q\\equiv 11$ or $q\\equiv 8\\pmod{19}$. The largest such $q\\le 200$ are $182$ and $198$. For $q=198$, $19p=7\\cdot198+1=1387$, so $p=73$, with distance $\\frac{1}{19\\cdot 198}$.\n\nAny other fraction has either $N=1$ and $q<198$, with distance $\\frac{1}{19q}>\\frac{1}{19\\cdot198}$, or $N\\ge 2$, with distance at least $\\frac{2}{19\\cdot 200}=\\frac{1}{19\\cdot 100}>\\frac{1}{19\\cdot198}$.\n\nSo the closest value is $\\frac{73}{198}$. It is in lowest terms, since a common divisor of $73$ and $198$ divides $19\\cdot73-7\\cdot198=1$. Hence $a+b=73+198=271$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-close-approximation"
+}

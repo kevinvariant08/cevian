@@ -1,0 +1,32 @@
+{
+  "id": "the-hidden-bag",
+  "title": "The Hidden Bag",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "favorable-over-total"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Bag P and Bag Q each contain $10$ cards, and each card shows one positive integer. In Bag P, exactly $8$ of the cards show odd numbers. One card is drawn at random from each bag, with all cards in a bag equally likely. The probability that the sum of the two numbers drawn is even is $\\frac{31}{50}$. How many cards in Bag Q show odd numbers?",
+  "answer_format": "integer",
+  "answer_hash": "dbc927dd",
+  "hints": [
+    "Only one feature of each number matters here. For each possible draw, ask whether each card is odd or even, and see what that says about the sum.",
+    "Use parity: a sum of two integers is even exactly when both are odd or both are even. Let $k$ be the number of odd cards in Bag Q, and count the pairs of cards, one from each bag, that have an even sum.",
+    "Bag Q has $k$ odd cards and $10 - k$ even cards, and Bag P has $8$ odd cards and $2$ even cards. Of the $100$ equally likely pairs, $8k$ are both odd and $2(10 - k)$ are both even. Since $\\frac{31}{50}$ of $100$ is $62$, these two counts must add up to $62$."
+  ],
+  "solution": "Let Bag Q have $k$ odd cards. The sum is even when both cards are odd or both are even, so\n$$\\dfrac{8k+2(10-k)}{100}=\\dfrac{31}{50}.$$\nThen $6k+20=62$, so $k=7$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-the-hidden-bag"
+}

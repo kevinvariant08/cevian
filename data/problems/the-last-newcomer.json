@@ -1,0 +1,32 @@
+{
+  "id": "the-last-newcomer",
+  "title": "The Last Newcomer",
+  "kyu": 8,
+  "topic": "N",
+  "subtopics": [
+    "modular-arithmetic",
+    "coprime-divisibility"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A machine displays a whole number from $0$ to $100$, and it starts by displaying $0$. Each time its button is pressed, the displayed number $n$ is replaced by the remainder when $n+7$ is divided by $101$. The button is pressed repeatedly, stopping as soon as every whole number from $0$ to $100$ has been displayed at least once, with the starting $0$ counting as displayed. Which number appears on the display after the final press?",
+  "answer_format": "integer",
+  "answer_hash": "d5a16687",
+  "hints": [
+    "Don't list the numbers one by one. Instead, try to describe the display after $k$ presses directly in terms of $k$.",
+    "Use modular arithmetic: the display after $k$ presses is the remainder when $7k$ is divided by $101$. Ask when the displays after $j$ presses and after $k$ presses can be equal, which requires $101$ to divide $7(k-j)$.",
+    "Since $101$ is prime and does not divide $7$, two displays can match only if their press counts differ by a multiple of $101$. So the displays after $0, 1, \\ldots, 100$ presses are all different, and the machine stops at press number $100$. The next press would bring the display back to $0$, so ask which number becomes $0$ on the next press."
+  ],
+  "solution": "After $k$ presses the display is $7k \\bmod 101$. Since $101$ is prime and $101\\nmid 7$, the values for $k=0,1,\\dots,100$ are distinct: $7k\\equiv 7j$ forces $101\\mid k-j$, impossible for $1\\le k-j\\le 100$. So these $101$ values cover $0,\\dots,100$, and the machine stops after exactly $100$ presses, since after $k<100$ presses only $k+1<101$ distinct values have appeared.\n\nThe final display is $700 \\bmod 101$, and $700=6\\cdot101+94$, giving $94$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-the-last-newcomer"
+}

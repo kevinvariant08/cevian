@@ -15,7 +15,7 @@
     "Work modulo $7$.",
     "The count comes to $29$."
   ],
-  "solution": "Divisibility by $7$ depends only on $n$ modulo $7$. Testing $n \\equiv 0, 1, \\dots, 6$ gives $n^2 + n + 1 \\equiv 1, 3, 0, 6, 0, 3, 1$, so we need $n \\equiv 2$ or $4 \\pmod 7$. Among $1, \\dots, 98$ there are $14$ numbers in each class, giving $28$. Of the last two, $99 \\equiv 1$ fails and $100 \\equiv 2$ works. The total is $29$.\n\n<b>Why this works.</b> <code>modular-arithmetic</code>: the condition depends only on a residue, so a short table settles it.",
+  "solution": "Divisibility by $7$ depends only on $n$ modulo $7$. Testing $n \\equiv 0, 1, \\dots, 6$ gives $n^2 + n + 1 \\equiv 1, 3, 0, 6, 0, 3, 1$, so we need $n \\equiv 2$ or $4 \\pmod 7$. Among $1, \\dots, 98$ there are $14$ numbers in each class, giving $28$. Of the last two, $99 \\equiv 1$ fails and $100 \\equiv 2$ works. The total is $29$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

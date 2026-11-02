@@ -3,7 +3,7 @@
 // fire hashchange, so typing in the search box never re-renders the view or loses focus.
 import { $, esc, statusTag, sourceLine } from "../lib/ui.js";
 import { KYU, badge, TOPICS, LADDER } from "../lib/ranks.js";
-import { S, myKyu } from "../lib/store.js";
+import { S, myKyu, toggleFavourite } from "../lib/store.js";
 import { LISTED, likedPct, likedRate, randomUnsolved } from "../lib/problems.js";
 import { parseFilters, filtersToHash, blankFilters } from "../lib/hash.js";
 import { subtopicName } from "../lib/taxonomy.js";
@@ -30,7 +30,7 @@ function filtered() {
   const ps = LISTED.filter((p) =>
     (!F.kyu.length || F.kyu.includes(p.kyu)) && (!F.topic.length || F.topic.includes(p.topic)) &&
     (!F.sub || p.subtopics.includes(F.sub)) && (F.type === "all" || p.type === F.type) &&
-    matchesStatus(p) && words.every((w) => haystack(p).includes(w)));
+    (!F.fav || S.favourites[p.id]) && matchesStatus(p) && words.every((w) => haystack(p).includes(w)));
   const sorts = {
     easy: (a, b) => b.kyu - a.kyu || b.stats.solves - a.stats.solves,
     hard: (a, b) => a.kyu - b.kyu || a.stats.solves - b.stats.solves,
@@ -49,7 +49,7 @@ function subtopicOptions() {
   return `<option value="">All subtopics</option>` + opts.map(([s, name, n]) => `<option value="${esc(s)}">${esc(name)} (${n})</option>`).join("");
 }
 
-const activeCount = () => F.kyu.length + F.topic.length + (F.type !== "all") + (F.status !== "all") + (F.sub ? 1 : 0);
+const activeCount = () => F.kyu.length + F.topic.length + (F.type !== "all") + (F.status !== "all") + (F.fav ? 1 : 0) + (F.sub ? 1 : 0);
 
 export function renderProblems() {
   F = parseFilters(location.hash);
@@ -73,7 +73,8 @@ export function renderProblems() {
         <div class="frow" role="group" aria-labelledby="lblT"><span class="lbl" id="lblT">Topic</span>${Object.entries(TOPICS).map(([t, n]) => `<button type="button" class="chip" data-t="${t}" aria-pressed="${F.topic.includes(t)}">${n}</button>`).join("")}
           <select id="psub" class="sel sel-sub" aria-label="Subtopic">${subtopicOptions()}</select></div>
         <div class="frow" role="group" aria-labelledby="lblY"><span class="lbl" id="lblY">Type</span>${[["all", "All types"], ["answer", "Answer"], ["proof", "Proof"]].map(([x, n]) => `<button type="button" class="chip" data-type="${x}" aria-pressed="${F.type === x}">${n}</button>`).join("")}</div>
-        <div class="frow" role="group" aria-labelledby="lblS"><span class="lbl" id="lblS">Status</span>${[["all", "Any status"], ["open", "Unsolved"], ["tried", "Tried"], ["solved", "Solved"]].map(([x, n]) => `<button type="button" class="chip" data-st="${x}" aria-pressed="${F.status === x}">${n}</button>`).join("")}</div>
+        <div class="frow" role="group" aria-labelledby="lblS"><span class="lbl" id="lblS">Status</span>${[["all", "Any status"], ["open", "Unsolved"], ["tried", "Tried"], ["solved", "Solved"]].map(([x, n]) => `<button type="button" class="chip" data-st="${x}" aria-pressed="${F.status === x}">${n}</button>`).join("")}
+          <button type="button" class="chip" id="favChip" aria-pressed="${F.fav}">★ Favourites only</button></div>
       </div>
     </details>
   </div>
@@ -89,6 +90,14 @@ export function renderProblems() {
   v.querySelectorAll("[data-t]").forEach((b) => b.addEventListener("click", () => edit(() => { F.topic = toggle(F.topic, b.dataset.t); $("psub").innerHTML = subtopicOptions(); $("psub").value = F.sub; })));
   v.querySelectorAll("[data-type]").forEach((b) => b.addEventListener("click", () => edit(() => { F.type = b.dataset.type; })));
   v.querySelectorAll("[data-st]").forEach((b) => b.addEventListener("click", () => edit(() => { F.status = b.dataset.st; })));
+  $("favChip").addEventListener("click", () => edit(() => { F.fav = !F.fav; }));
+  $("plist").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-fav]");
+    if (!b) return;
+    e.preventDefault();
+    toggleFavourite(b.dataset.fav);
+    renderList();
+  });
   $("psub").addEventListener("change", (e) => edit(() => { F.sub = e.target.value; }));
   $("psort").addEventListener("change", (e) => edit(() => { F.sort = e.target.value; }));
   let typing = null;
@@ -128,28 +137,34 @@ function syncControls() {
   v.querySelectorAll("[data-t]").forEach((b) => b.setAttribute("aria-pressed", F.topic.includes(b.dataset.t)));
   v.querySelectorAll("[data-type]").forEach((b) => b.setAttribute("aria-pressed", F.type === b.dataset.type));
   v.querySelectorAll("[data-st]").forEach((b) => b.setAttribute("aria-pressed", F.status === b.dataset.st));
+  $("favChip").setAttribute("aria-pressed", F.fav);
   const n = activeCount();
   $("fcount").textContent = n ? ` (${n})` : "";
   $("pclear").hidden = n === 0;
 }
 
 // Solve counts stay out of the row until there are some to show: a column of zeros says nothing.
-export const row = (p) => `<li><a class="prow${S.solved[p.id] ? " done" : ""}" href="#p-${esc(p.id)}">
+// fav adds a star toggle beside the row, outside the link so starring a problem never navigates to it.
+export const row = (p, fav = false) => {
+  const star = fav ? `<button type="button" class="star" data-fav="${esc(p.id)}" aria-pressed="${!!S.favourites[p.id]}" aria-label="${S.favourites[p.id] ? "Remove" : "Add"} ${esc(p.title)} ${S.favourites[p.id] ? "from" : "to"} favourites">★</button>` : "";
+  const a = `<a class="prow${S.solved[p.id] ? " done" : ""}" href="#p-${esc(p.id)}">
     ${badge(p.kyu)}
     <span class="prow-main"><span class="t">${esc(p.title)}</span>${p.type === "proof" ? ` <span class="tagword">Proof</span>` : ""}
       <span class="meta"><span>${TOPICS[p.topic]}</span>${S.solved[p.id] ? p.subtopics.slice(0, 2).map((s) => `<span>${esc(subtopicName(s))}</span>`).join("") : ""}${sourceLine(p) ? `<span>${esc(sourceLine(p))}</span>` : ""}</span></span>
     <span class="prow-r">${statusTag(p)}${p.stats.solves ? `<span>${p.stats.solves.toLocaleString("en-GB")} solves · ${likedPct(p)} liked</span>` : ""}<span class="pts">+${KYU[p.kyu].pts}</span></span>
-  </a></li>`;
+  </a>`;
+  return fav ? `<li class="prow-wrap">${star}${a}</li>` : `<li>${a}</li>`;
+};
 
 // When the list runs in belt order, each belt gets a header: the belt itself runs across the list as the divider.
 const groupHead = (k, n) => `<li class="pgroup" style="--belt:${KYU[k].bg}"><b>${k} kyu · ${KYU[k].belt}</b><span class="anchor">${KYU[k].anchor}</span><span class="mono">+${KYU[k].pts} pts each · ${n} here</span></li>`;
 
 function rowsWithGroups(ps, shown) {
-  if (F.sort !== "easy" && F.sort !== "hard") return shown.map(row).join("");
+  if (F.sort !== "easy" && F.sort !== "hard") return shown.map((p) => row(p, true)).join("");
   let last = null, out = "";
   for (const p of shown) {
     if (p.kyu !== last) { out += groupHead(p.kyu, ps.filter((x) => x.kyu === p.kyu).length); last = p.kyu; }
-    out += row(p);
+    out += row(p, true);
   }
   return out;
 }

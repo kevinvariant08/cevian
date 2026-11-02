@@ -1,0 +1,39 @@
+{
+  "id": "a-square-on-the-move",
+  "title": "A Square on the Move",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "area-by-decomposition",
+    "geometric-interpretation"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In the coordinate plane, a square with side length $2$ has its sides parallel to the coordinate axes. At first its lower-left corner is at $(0,0)$. The square then slides without rotating, and its lower-left corner moves along the straight segment from $(0,0)$ to $(7,3)$. Find the area of the region of the plane covered by the square at some moment during this motion. The region includes the starting and final positions.",
+  "answer_format": "integer",
+  "answer_hash": "283d3010",
+  "hints": [
+    "Every position of the square is the starting square moved by some point of the segment. Look at where the four corners of the square start and where they finish.",
+    "The covered region is convex, so it is the convex hull of the eight corner positions. Find this polygon, then cut it into the starting square and the regions swept out by single sides.",
+    "The region is the hexagon with vertices $(0,0)$, $(2,0)$, $(9,3)$, $(9,5)$, $(7,5)$, $(0,2)$. The right side of the square sweeps a parallelogram whose vertical side has length $2$ and whose horizontal width is $7$. The top side sweeps a parallelogram whose horizontal side has length $2$ and whose height is $3$."
+  ],
+  "solution": "A point is covered exactly when it equals $(x+u,\\,y+v)$ for some $(x,y)$ on the segment and some $0\\le u,v\\le 2$. This set is a sum of two convex sets, so it is convex. It is therefore the convex hull of the eight corner positions, which is the hexagon $O(0,0)$, $A(2,0)$, $B(9,3)$, $C(9,5)$, $D(7,5)$, $E(0,2)$. Let $F=(2,2)$. The hexagon splits into three pieces. The square $OAFE$ has area $4$. The parallelogram $ABCF$ has vertical side $2$ and horizontal width $7$, so its area is $14$. The parallelogram $EFCD$ has horizontal side $2$ and height $3$, so its area is $6$. The area of the region is $4+14+6=24$.",
+  "solution_figures": [
+    {
+      "src": "figures/a-square-on-the-move-solution.svg?v=4bf90ec9",
+      "alt": "The hexagon O(0,0), A(2,0), B(9,3), C(9,5), D(7,5), E(0,2) is the swept region. It is split by F(2,2) into the starting square OAFE, the parallelogram ABCF swept by the right side, and the parallelogram EFCD swept by the top side. A dashed segment runs from O to G(7,3), the path of the lower-left corner.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-a-square-on-the-move"
+}

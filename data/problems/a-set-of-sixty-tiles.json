@@ -1,0 +1,32 @@
+{
+  "id": "a-set-of-sixty-tiles",
+  "title": "A Set of Sixty Tiles",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "double-counting",
+    "factor-pair-enumeration"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A set of $60$ tiles is made using $a$ colours and $b$ symbols, where $a$ and $b$ are integers with $a \\ge 2$ and $b \\ge 2$. Each tile has one colour and one symbol, and each of the $a \\cdot b = 60$ possible colour-symbol combinations appears on exactly one tile. An unordered pair of two different tiles is called matching if the two tiles have the same colour or the same symbol. Over all possible choices of $a$ and $b$, what is the smallest possible number of matching pairs?",
+  "answer_format": "integer",
+  "answer_hash": "8ba73e41",
+  "hints": [
+    "Fix one tile and count how many other tiles match it, in terms of $a$ and $b$.",
+    "Use double counting: add up, over all $60$ tiles, the number of tiles that each one matches. Every matching pair contributes to this sum from both of its tiles, so the sum is twice the number of pairs.",
+    "Each tile matches $b-1$ tiles of the same colour and $a-1$ tiles with the same symbol, and no tile is in both groups. So the number of matching pairs is $30(a+b-2)$. Now you need the smallest value of $a+b$ among factorisations $a \\cdot b = 60$ with $a, b \\ge 2$, so list them."
+  ],
+  "solution": "Each tile matches $(b-1)+(a-1)$ others, since the same-colour and same-symbol tiles are disjoint sets. Each pair is counted twice, so the number of matching pairs is\n$$\\dfrac{60(a+b-2)}{2}=30(a+b-2).$$\nThis is smallest when $a+b$ is smallest. The factorisations of $60$ with both factors at least $2$ are $2\\cdot30,\\ 3\\cdot20,\\ 4\\cdot15,\\ 5\\cdot12,\\ 6\\cdot10$, with sums $32,23,19,17,16$. The minimum sum is $16$, giving $30\\cdot14=420$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-set-of-sixty-tiles"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "three-positive-numbers",
+  "title": "Three Positive Numbers",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "linear-combination-of-equations",
+    "log-properties"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Positive real numbers $x$, $y$ and $z$ satisfy $$\\log_{2}(xy)=7,\\qquad \\log_{2}(yz)=11,\\qquad \\left|\\log_{2}(zx)-6\\right|=4.$$ What is the product of all possible values of $xyz$?",
+  "answer_format": "integer",
+  "answer_hash": "ab8ec5c5",
+  "hints": [
+    "Give names to $\\log_{2} x$, $\\log_{2} y$ and $\\log_{2} z$. Which combination of these three numbers tells you the value of $xyz$?",
+    "Use the logarithm law $\\log_{2}(uv)=\\log_{2}u+\\log_{2}v$. With $a=\\log_{2}x$, $b=\\log_{2}y$ and $c=\\log_{2}z$, the conditions become linear equations such as $a+b=7$ and $b+c=11$. Since $\\log_{2}(xyz)=a+b+c$, try combining the equations to reach this sum directly, without finding $a$, $b$ and $c$ one by one.",
+    "With $a$, $b$ and $c$ as the base-$2$ logarithms of $x$, $y$ and $z$, the absolute value condition says that $a+c$ is $10$ or $2$. Adding this to $a+b=7$ and $b+c=11$ gives $2(a+b+c)=28$ or $2(a+b+c)=20$. So $xyz$ is either $2^{14}$ or $2^{10}$, provided each case really occurs. Check that it does, then combine the two values as the question asks."
+  ],
+  "solution": "Let $a=\\log_2 x$, $b=\\log_2 y$, $c=\\log_2 z$. Then $a+b=7$, $b+c=11$ and $|a+c-6|=4$, so $a+c=10$ or $a+c=2$.\n\nAdding the three equations gives $2(a+b+c)=18+(a+c)$, so $a+b+c=14$ or $10$.\n\nBoth cases occur. For $a+b+c=14$: $(a,b,c)=(3,4,7)$. For $a+b+c=10$: $(a,b,c)=(-1,8,3)$. Both satisfy the three equations, and $x,y,z=2^a,2^b,2^c$ are positive.\n\nSo $xyz\\in\\{2^{14},2^{10}\\}$, with product $2^{24}=16777216$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-positive-numbers"
+}

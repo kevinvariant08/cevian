@@ -1,0 +1,33 @@
+{
+  "id": "strings-that-repeat",
+  "title": "Strings That Repeat",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "periodicity",
+    "inclusion-exclusion",
+    "euclidean-algorithm"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A binary string is a sequence $a_1a_2\\dots a_{30}$ in which each $a_i$ is $0$ or $1$. For a positive integer $d < 30$, the string is said to have repeat length $d$ if $a_{i+d} = a_i$ for every integer $i$ with $1 \\le i \\le 30 - d$. How many binary strings of length $30$ have at least one of the repeat lengths $6$ and $10$, but do not have repeat length $15$?",
+  "answer_format": "integer",
+  "answer_hash": "cab9da36",
+  "hints": [
+    "Start with a single repeat length $d$: which entries of the string can be chosen freely, and which are then forced? Next, suppose a string has repeat lengths $6$ and $10$, and compare $a_i$ with $a_{i+4}$ by going through a suitable third entry.",
+    "Write $R_d$ for the set of strings with repeat length $d$. Use inclusion-exclusion: $|A \\cup B| = |A| + |B| - |A \\cap B|$. Apply it once to $R_6 \\cup R_{10}$, then again to the part of that union lying in $R_{15}$, which is the part to remove. The overlaps can be found by a subtractive Euclidean algorithm on repeat lengths.",
+    "If a string has repeat lengths $d < e$ with $d + e \\le 30$, it also has repeat length $e - d$. This is checked by stepping through $a_{i+e}$ when that entry exists and through $a_{i-d}$ otherwise. Repeating this step gives $R_6 \\cap R_{10} = R_2$, $R_6 \\cap R_{15} = R_3$, $R_{10} \\cap R_{15} = R_5$ and $R_3 \\cap R_5 = R_1$. Since $|R_d| = 2^d$, now compute $|R_6 \\cup R_{10}|$ and $|R_3 \\cup R_5|$ and subtract."
+  ],
+  "solution": "Let $R_d$ be the set of strings with repeat length $d$. Then $|R_d|=2^d$, since $a_1,\\dots,a_d$ are free and determine the rest. If a string has period $d$ and $d\\mid e$, then it has period $e$, so $R_d\\subseteq R_e$.\n\nIf a string has repeat lengths $d<e$ with $d+e\\le 30$, then it has repeat length $e-d$. Indeed, for $i\\le 30-(e-d)$: if $i+e\\le30$, then $a_{i+e-d}=a_{i+e}=a_i$. Otherwise $i>30-e\\ge d$, so $a_{i+e-d}=a_{i-d}=a_i$, using $e$ then $d$.\n\nHence $R_6\\cap R_{10}$ gives repeat length $4$, then $2$, so $R_6\\cap R_{10}=R_2$. Similarly $R_6\\cap R_{15}$ gives $9$, then $3$, so it equals $R_3$ (as $R_3\\subseteq R_6,R_{15}$). Also $R_{10}\\cap R_{15}$ gives $5$, so it equals $R_5$. Finally $R_3\\cap R_5$ gives $2$, then $1$, so it equals $R_1$. All sums used are at most $30$.\n\nThen\n$$|R_6\\cup R_{10}|=2^6+2^{10}-2^2=1084.$$\nThe strings to remove are\n$$(R_6\\cup R_{10})\\cap R_{15}=R_3\\cup R_5,$$\nof size $2^3+2^5-2^1=38$.\n\nThe count is $1084-38=1046$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-strings-that-repeat"
+}

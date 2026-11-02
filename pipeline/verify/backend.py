@@ -15,6 +15,7 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from .. import ledger
 from .config import MODEL_TIMEOUT, OUT, PRICES
 
 
@@ -197,13 +198,24 @@ class ApiBackend(Backend):
         return self._send(model, system, [*pictures, {"type": "text", "text": prompt}], effort, max_tokens, role, draft_id, salt)
 
     def _send(self, model, system, prompt, effort, max_tokens, role, draft_id, salt):
+        ledger.check_cap()
         kw = dict(model=model, max_tokens=max_tokens, system=system, output_config={"effort": effort},
                   messages=[{"role": "user", "content": prompt}])
         # Haiku has no server-side refusal fallback.
         if model in ("claude-opus-5-5", "claude-sonnet-5-5"):
             kw.update(betas=["server-side-fallback-2026-07-01"], fallbacks="default")
         try:
-            m = self.client.beta.messages.create(**kw)
+            for attempt in range(4):
+                try:
+                    with self.client.beta.messages.stream(**kw) as stream:
+                        m = stream.get_final_message()
+                    break
+                except (self.anthropic.RateLimitError, self.anthropic.APIStatusError):
+                    raise
+                except Exception as e:  # a dropped connection mid-stream surfaces as a raw httpx error
+                    if attempt == 3:
+                        raise ModelError(f"connection failed: {type(e).__name__}") from e
+                    time.sleep(5 * (attempt + 1))
         except self.anthropic.RateLimitError as e:
             raise PlanLimit(str(e)[:200]) from e
         except self.anthropic.APIError as e:
@@ -213,6 +225,7 @@ class ApiBackend(Backend):
                       cache_write=getattr(u, "cache_creation_input_tokens", 0) or 0, output=u.output_tokens)
         price = PRICES.get(model, PRICES["claude-opus-5-5"])
         usd = (tokens["input"] * price[0] + tokens["cache_read"] * price[1] + tokens["cache_write"] * price[2] + tokens["output"] * price[3]) / 1e6
+        ledger.record(f"gate:{role or 'call'}", model, tokens["input"], tokens["output"], tokens["cache_read"], tokens["cache_write"])
         text = "".join(b.text for b in m.content if b.type == "text")
         details = getattr(u, "output_tokens_details", None)
         return Reply(text=text, model=m.model, usd=usd, thinking=getattr(details, "thinking_tokens", 0) or 0,

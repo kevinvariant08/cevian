@@ -1,0 +1,32 @@
+{
+  "id": "eleven-exactly",
+  "title": "Eleven Exactly",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "factor-pair-enumeration",
+    "divisor-counting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For a positive integer $N$, call a pair of positive integers $(a,b)$ with $a<b$ a <b>run</b> for $N$ if $a+(a+1)+\\dots+b=N$. Find the smallest positive multiple of $100$ that has exactly $11$ runs.",
+  "answer_format": "integer",
+  "answer_hash": "8e1b96de",
+  "hints": [
+    "Let $k=b-a+1$ be the number of terms in the run. Write the sum in terms of $k$ and $a$, clear the fraction, and see what form $2N$ takes.",
+    "A run with $k$ terms starting at $a$ gives the factorisation $2N=k(2a+k-1)$. Enumerate factor pairs of $2N$: the difference of these two factors is $2a-1$, which is odd, so one factor is odd and the other even. Count such pairs using the odd divisors of $N$.",
+    "Each odd divisor of $N$ gives one opposite-parity factor pair of $2N$, and only the pair containing $1$ fails to give a run, so the number of runs is the number of odd divisors of $N$ minus $1$. Write $N=2^e m$ with $m$ odd. You need $e\\ge 2$, $25\\mid m$ and $m$ to have exactly $12$ divisors, so compare the exponent patterns $(2,1,1)$, $(3,2)$, $(5,1)$ and $(11)$, keeping the exponent of $5$ at least $2$."
+  ],
+  "solution": "Write $N=2^e m$ with $m$ odd. We first show that the number of runs for $N$ is one less than the number of divisors of $m$. A run with first term $a$ and $k=b-a+1\\ge 2$ terms has sum $\\frac{k(2a+k-1)}{2}$, so it is a run for $N$ exactly when $2N=k(2a+k-1)$. Put $x=k$ and $y=2a+k-1$. Then $y-x=2a-1$ is odd and positive, so $x$ and $y$ have opposite parity and $2\\le x<y$. Conversely, suppose $2N=xy$ with $x$ and $y$ of opposite parity and $2\\le x<y$. Then $k=x$ and $a=\\frac{y-x+1}{2}$ are integers with $k\\ge 2$ and $a\\ge 1$, and they give a run. So runs correspond exactly to factorisations of $2N$ into two factors of opposite parity whose smaller factor is at least $2$.\n\nSince $2N=2^{e+1}m$, the odd factor in such a factorisation is a divisor $d$ of $m$, and the even factor is then $\\frac{2N}{d}$. Each divisor $d$ of $m$ therefore gives exactly one opposite-parity factorisation, and different divisors give different factorisations. The two factors are never equal, so each factorisation has a well-defined smaller factor. That smaller factor is $1$ only for $d=1$, which is the pair $\\{1,2N\\}$. Hence the number of runs is the number of divisors of $m$ minus $1$.\n\nSo we need $m$ to have exactly $12$ divisors. If $m=p_1^{e_1}\\cdots p_r^{e_r}$, a divisor is formed by choosing each prime's exponent independently, so $m$ has $(e_1+1)\\cdots(e_r+1)$ divisors. As $12=12=6\\cdot 2=4\\cdot 3=3\\cdot 2\\cdot 2$ are the only ways of writing $12$ as a product of integers greater than $1$, the exponent pattern of $m$ is $(11)$, $(5,1)$, $(3,2)$ or $(2,1,1)$.\n\nNow $N$ is a multiple of $100$ exactly when $e\\ge 2$ and $25\\mid m$. Thus $N\\ge 4m$, with equality when $e=2$, and it suffices to find the least odd $m$ with $25\\mid m$ and exactly $12$ divisors. The exponent of $5$ in $m$ must be at least $2$, and all other primes are odd and different from $5$, so they are at least $3$.\n\nFor the pattern $(11)$, we have $m=5^{11}$, which is far larger than $525$. For the pattern $(5,1)$, the exponent of $5$ must be $5$, so $m=5^5\\cdot p\\ge 3125\\cdot 3=9375$. For the pattern $(3,2)$, either $m=5^3\\cdot p^2\\ge 125\\cdot 9=1125$ or $m=5^2\\cdot p^3\\ge 25\\cdot 27=675$. For the pattern $(2,1,1)$, the exponent of $5$ must be $2$, so $m=5^2\\cdot p\\cdot q$ with $p$ and $q$ distinct primes from $3,7,11,\\dots$, which gives $m\\ge 25\\cdot 3\\cdot 7=525$. The least possible value is therefore $m=525=3\\cdot 5^2\\cdot 7$.\n\nEvery multiple of $100$ with exactly $11$ runs thus satisfies $N\\ge 4\\cdot 525=2100$. Also, $2100=2^2\\cdot 525$ is a multiple of $100$ whose odd part has $2\\cdot 3\\cdot 2=12$ divisors, so it has exactly $11$ runs. The answer is $2100$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-eleven-exactly"
+}

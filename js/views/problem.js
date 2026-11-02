@@ -1,10 +1,10 @@
 // One problem: statement, answer box or proof editor, hints, solution, rating.
 import { $, esc, renderMe, sourceLine, authorOf, fmtDate, errorPanel, loadingPanel } from "../lib/ui.js";
 import { KYU, badge, TOPICS, HINT_COST } from "../lib/ranks.js";
-import { S, save, award, logEvent, touchDay } from "../lib/store.js";
+import { S, save, award, logEvent, touchDay, toggleFavourite } from "../lib/store.js";
 import { LISTED, byId, cachedProblem, getProblem, likedPct } from "../lib/problems.js";
 import { check } from "../lib/answers.js";
-import { tex, paras } from "../lib/tex.js";
+import { tex, paras, texParas, safeText } from "../lib/tex.js";
 import { solutionHtml, inlineFigures } from "../lib/figures.js";
 import { subtopicName } from "../lib/taxonomy.js";
 import { D } from "./duel.js";
@@ -34,7 +34,7 @@ function neighbours(p) {
   return { prev: same[(i - 1 + same.length) % same.length], next: same[(i + 1) % same.length] };
 }
 
-function hintHtml(p, i) { return `<div class="hint" id="hint${i}" tabindex="-1"><b class="faint">Hint ${i + 1}.</b> ${p.hints[i]}</div>`; }
+function hintHtml(p, i) { return `<div class="hint" id="hint${i}" tabindex="-1"><b class="faint">Hint ${i + 1}.</b> ${safeText(p.hints[i])}</div>`; }
 
 function hintButton(p, used) {
   return `<button class="btn small" type="button" id="hintBtn">Open hint ${used + 1} of ${p.hints.length}${p.type === "answer" ? ` (−${Math.round(HINT_COST * 100)}% pts)` : ""}</button>`;
@@ -106,7 +106,7 @@ export async function renderProblem(id, opts = {}) {
       <p class="feedback" id="proofFb" role="status"></p>
       ${pf.submitted ? `
       <div class="sec"><h2>Self-grade against the rubric</h2>
-        <ol class="rubric">${p.rubric.map((r) => `<li>${esc(rubricLine(r))}</li>`).join("")}</ol>
+        <ol class="rubric">${p.rubric.map((r) => `<li>${safeText(rubricLine(r))}</li>`).join("")}</ol>
         <div class="grades" id="grades" role="group" aria-label="Your grade out of 7">${[0, 1, 2, 3, 4, 5, 6, 7].map((g) => `<button type="button" data-g="${g}" aria-pressed="${!!solved && solved.grade === g}" aria-label="Grade ${g} out of 7">${g}</button>`).join("")}</div>
         <p class="faint">${solved ? `Recorded ${solved.grade}/7: +${solved.pts} provisional pts until review.` : `Points are provisional: ${base} × grade ÷ 7.`}</p>
       </div>` : ""}
@@ -120,6 +120,7 @@ export async function renderProblem(id, opts = {}) {
     <a href="${lastListHash()}" class="back">← All problems</a>
     <div class="pbar-r">
       <span class="faint" id="copyNote" role="status"></span>
+      <button class="btn small ghost" type="button" id="favBtn" aria-pressed="${!!S.favourites[p.id]}">${S.favourites[p.id] ? "★ Favourited" : "☆ Favourite"}</button>
       <button class="btn small ghost" type="button" id="copyLink">Copy link</button>
       <button class="btn small ghost" type="button" id="reportBtn">Report a problem</button>
     </div>
@@ -129,7 +130,7 @@ export async function renderProblem(id, opts = {}) {
       ${solvedBanner(p, solved)}
       <div class="phead">${badge(p.kyu, null, "lg")}<h1 class="ptitle">${esc(p.title)}</h1></div>
       <div class="pmeta"><span>${TOPICS[p.topic]}</span><span>${p.type === "proof" ? "Proof, peer-reviewed" : "Single answer, auto-checked"}</span><span>${source ? "Source: " + esc(source) : "Original, by " + esc(authorOf(p))}</span></div>
-      <div class="statement" id="statement">${paras(p.statement)}</div>
+      <div class="statement" id="statement">${texParas(p.statement)}</div>
       ${work}
       <div class="sec"><h2>Hints</h2>
         <div id="hints">${p.hints.slice(0, used).map((_, i) => hintHtml(p, i)).join("")}</div>
@@ -193,6 +194,7 @@ export async function renderProblem(id, opts = {}) {
     fb.className = "feedback bad"; fb.textContent = `${val.trim()} is not it. Attempt ${S.tries[p.id]}.`;
   });
   if ($("duelHere")) $("duelHere").addEventListener("click", () => { D.kyu = p.kyu; });
+  $("favBtn").addEventListener("click", () => { toggleFavourite(p.id); renderProblem(p.id, { focus: "favBtn" }); });
   if ($("proofText")) {
     const ta = $("proofText"), pv = $("proofPrev");
     let timer = null;

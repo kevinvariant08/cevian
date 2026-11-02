@@ -1,7 +1,7 @@
 // Ranks: kyu belts, points grow like Fibonacci.
 export const KYU = {
-  8: { belt: "White",  bg: "#F4F4F1", ink: "#1B1E33", tape: "#15161C", pts: 2,  anchor: "<b>AMC 8</b> openers" },
-  7: { belt: "Yellow", bg: "#E9C440", ink: "#1B1E33", tape: "#15161C", pts: 3,  anchor: "<b>AMC 8</b> finishers, AMC 10 openers" },
+  8: { belt: "White",  bg: "#F4F4F1", ink: "#1B1E33", tape: "#15161C", pts: 2,  anchor: "<b>AMC 8</b>" },
+  7: { belt: "Yellow", bg: "#E9C440", ink: "#1B1E33", tape: "#15161C", pts: 3,  anchor: "<b>AMC 8</b> late, AMC 10 P1–10" },
   6: { belt: "Orange", bg: "#E5832A", ink: "#1B1E33", tape: "#15161C", pts: 5,  anchor: "<b>AMC 10/12</b> middle" },
   5: { belt: "Green",  bg: "#2B864B", ink: "#FFFFFF", tape: "#15161C", pts: 8,  anchor: "<b>AMC 12</b> late, AIME 1–5" },
   4: { belt: "Blue",   bg: "#2A64C8", ink: "#FFFFFF", tape: "#15161C", pts: 13, anchor: "<b>AIME 6–10</b>" },

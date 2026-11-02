@@ -1,0 +1,33 @@
+{
+  "id": "landing-on-the-mark",
+  "title": "Landing on the Mark",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "conditional-probability",
+    "binomial-selection",
+    "linear-diophantine-solving"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A counter starts at $0$. A fair coin is tossed repeatedly, and the tosses are independent: each head adds $3$ to the counter and each tail adds $5$. The tossing stops as soon as the counter is at least $30$. Given that the counter finishes at exactly $30$, what is the probability that the first toss was a head? Give your answer as a fraction in lowest terms.",
+  "answer_format": "rational",
+  "answer_hash": "a1756678",
+  "hints": [
+    "Look at the runs that finish at exactly $30$. If such a run has $a$ heads and $b$ tails, what equation must $a$ and $b$ satisfy, and which pairs $(a, b)$ are possible?",
+    "Use conditional probability: divide the probability of \"first toss a head and finish at $30$\" by the probability of \"finish at $30$\". The runs have different lengths, so they aren't equally likely. A particular run of $n$ tosses has probability $2^{-n}$, so you can't just count runs.",
+    "The equation $3a + 5b = 30$ gives $(a, b) = (10, 0)$, $(5, 3)$ or $(0, 6)$. Each pair gives $\\binom{a+b}{a}$ runs that finish at $30$, and $\\binom{a+b-1}{a-1}$ of them start with a head when $a \\ge 1$. Give each of these runs the weight $2^{-(a+b)}$, then add up the weights for the numerator and the denominator."
+  ],
+  "solution": "A run ending at $30$ has $a$ heads and $b$ tails with $3a+5b=30$. Then $3\\mid b$ and $5b\\le 30$, so $(a,b)=(10,0),(5,3),(0,6)$. Every order of these tosses works, since the counter strictly increases and so is below $30$ before the last toss. A run of $n$ tosses has probability $2^{-n}$, and the lengths are $10,8,6$.\n\n$$P(\\text{end at }30)=\\dfrac{1}{2^{10}}+\\dfrac{\\binom85}{2^8}+\\dfrac{1}{2^6}=\\dfrac{1+224+16}{2^{10}}=\\dfrac{241}{2^{10}}.$$\n\nRuns starting with a head: $(10,0)$ gives $1$ run, $(5,3)$ gives $\\binom74=35$ runs, and $(0,6)$ gives none.\n\n$$P(\\text{head first and end at }30)=\\dfrac{1}{2^{10}}+\\dfrac{35}{2^8}=\\dfrac{141}{2^{10}}.$$\n\nThe conditional probability is $\\frac{141}{241}$. Since $241$ is prime, the fraction is in lowest terms.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-landing-on-the-mark"
+}

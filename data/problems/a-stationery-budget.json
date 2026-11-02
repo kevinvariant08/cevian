@@ -1,0 +1,32 @@
+{
+  "id": "a-stationery-budget",
+  "title": "A Stationery Budget",
+  "kyu": 7,
+  "topic": "A",
+  "subtopics": [
+    "rate-and-mixture-modeling",
+    "harmonic-mean"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Robin spends a sum of money, all of it, on three kinds of item. Half of the money buys notebooks costing $12$ tokens each, a quarter of the money buys pens costing $6$ tokens each, and the remaining quarter buys folders, which all have the same price. The total amount spent divided by the total number of items bought is exactly $10$ tokens. What is the price, in tokens, of one folder?",
+  "answer_format": "integer",
+  "answer_hash": "2468ec69",
+  "hints": [
+    "Give the sum of money a name, say $M$, and look at how many items each share of it buys. The answer does not come from averaging the three prices directly.",
+    "Set up an equation by counting items, just as time is found from distance and speed: the number of items bought with a share is the share divided by the price. Since the mean price is total money divided by total items, the total number of items must be $\\frac{M}{10}$.",
+    "Let a folder cost $p$ tokens. The notebooks number $\\frac{M/2}{12}$, the pens $\\frac{M/4}{6}$ and the folders $\\frac{M/4}{p}$, and these must add up to $\\frac{M}{10}$. Divide through by $M$ to get $\\frac{1}{24} + \\frac{1}{24} + \\frac{1}{4p} = \\frac{1}{10}$, an equation that is linear in $\\frac{1}{p}$."
+  ],
+  "solution": "Let the total be $M$ and a folder cost $p$. The numbers of items are $\\frac{M}{24}$ notebooks, $\\frac{M}{24}$ pens and $\\frac{M}{4p}$ folders, and the total number of items is $\\frac{M}{10}$. Dividing by $M$,\n$$\\dfrac{1}{12}+\\dfrac{1}{4p}=\\dfrac{1}{10},$$\nso $\\frac{1}{4p}=\\frac{1}{60}$ and $p=15$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-a-stationery-budget"
+}

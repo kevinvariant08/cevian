@@ -1,0 +1,32 @@
+{
+  "id": "chairs-in-a-row",
+  "title": "Chairs in a Row",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "binomial-selection"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A row contains $13$ chairs. How many unordered pairs of different chairs from this row have an odd number of chairs strictly between them?",
+  "answer_format": "integer",
+  "answer_hash": "523eabe3",
+  "hints": [
+    "Number the chairs $1$ to $13$ from left to right. If the chosen chairs are numbered $i$ and $j$ with $i<j$, how many chairs lie strictly between them?",
+    "Use parity. With the chairs numbered as above, there are $j-i-1$ chairs between chairs $i$ and $j$. Work out what this number being odd says about whether $i$ and $j$ are odd or even.",
+    "The number $j-i-1$ is odd exactly when $j-i$ is even, which happens exactly when $i$ and $j$ are both odd or both even. There are $7$ odd-numbered chairs and $6$ even-numbered chairs, so count the pairs within each group separately and add the two counts."
+  ],
+  "solution": "Number the chairs $1,\\dots,13$. For chairs $i<j$ there are $j-i-1$ chairs between them, which is odd exactly when $i,j$ have the same parity. There are $7$ odd and $6$ even numbers, so the count is\n$$\\binom72+\\binom62=21+15=36.$$",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-chairs-in-a-row"
+}

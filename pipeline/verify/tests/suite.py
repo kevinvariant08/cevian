@@ -12,7 +12,7 @@ from ..answers import answer_hash
 
 HERE = Path(__file__).resolve().parent
 ALL = {}
-# id: (taxonomy slug, the clause for its Why this works line). A variant uses its base's entry.
+# id: (taxonomy slug, a note on why it fits). A variant uses its base's entry.
 WHY = {
     "ok-digit-product": ("place-value-representation", "the tens digit is at most nine, which limits the units digit."),
     "ok-seat-row": ("rule-of-product", "converting both positions to one numbering makes the gap a direct count."),
@@ -190,10 +190,10 @@ draft("reskin-snail", 7, "A", "A hiker on a $26$ km mountain trail gains $5$ km 
       "pos, day = 0, 0\nwhile True:\n    day += 1\n    pos += 5\n    if pos >= 26:\n        print(day)\n        break\n    pos -= 4",
       "Each full day and night gains $1$ km. After $21$ days and nights the hiker is at $21$ km, and on day $22$ the hiker climbs $5$ km to reach $26$ km. Before that the daily peak is at most $25$ km, so day $22$ is the first time.",
       ["Where is the hiker each morning?", "Bound the daily peak: it is the morning position plus $5$, and the final day has no slide back."], expect=["FAIL"], checks=["originality"], sim=RESKIN)
-variant("ok-digit-product", "near-copy-of-bank-divisors", ["FAIL"], ["originality_lexical", "originality"], sim=RESKIN, kyu=8, statement="How many positive divisors does $720$ have?", answer="30",
-        check_program="print(sum(1 for d in range(1, 721) if 720 % d == 0))", solution="Since $720 = 2^4\\cdot 3^2\\cdot 5$, there are $5\\cdot 3\\cdot 2 = 30$ divisors.")
-variant("ok-digit-product", "near-copy-of-bank-zeros", ["FAIL"], ["originality_lexical", "originality"], sim=RESKIN, kyu=6, statement="How many zeros does $3025!$ end with?", answer="754",
-        check_program="from math import factorial\ns = str(factorial(3025))\nprint(len(s) - len(s.rstrip('0')))", solution="The power of $5$ in $3025!$ is $605 + 121 + 24 + 4 = 754$, and there are more $2$s than $5$s, so there are $754$ zeros.")
+variant("ok-digit-product", "near-copy-of-bank-digit-weight", ["FAIL"], ["originality_lexical", "originality"], sim=RESKIN, kyu=6, statement="How many positive integers less than $10^{18}$ have decimal digits that sum to $3$ and are divisible by $37$?", answer="216",
+        check_program="from itertools import combinations_with_replacement as c\nprint(len({sum(10 ** i for i in p) for p in c(range(18), 3) if sum(10 ** i for i in p) % 37 == 0}))", solution="Powers of $10$ have residues $1$, $10$ and $26$ modulo $37$ in turn, and a sum of three powers is divisible by $37$ exactly when the three positions are distinct modulo $3$. With $6$ positions in each class there are $6^3 = 216$ such numbers.")
+variant("ok-digit-product", "near-copy-of-bank-triples", ["FAIL"], ["originality_lexical", "originality"], sim=RESKIN, kyu=6, statement="How many triples of integers $(a,b,c)$ satisfy $1 \le a < b < c \le 80$ and $$a^2+b^2+c^2-ab-bc-ca=1027?$$", answer="180",
+        check_program="print(sum(1 for a in range(1, 81) for b in range(a + 1, 81) for c in range(b + 1, 81) if a * a + b * b + c * c - a * b - b * c - c * a == 1027))", solution="With $x = b - a$ and $y = c - b$ the condition is $x^2 + xy + y^2 = 1027$. Counting the positive solutions, each weighted by the room left for $a$, gives the answer.")
 
 # ---- Right answers with wrong reasoning.
 variant("ok-shifted-divisor", "flawed-solution-unjustified", ["FAIL"], ["solution_audit"], sim=dict(audit={"reaches_answer": True, "issues": [{"severity": "material", "issue": "the count is asserted with no argument"}]}),
@@ -240,10 +240,8 @@ def main():
         old.unlink()
     for pid, e in ALL.items():
         d = e["draft"]
-        slug, clause = WHY.get(pid) or WHY.get(e.get("base")) or ("casework", "splitting into cases makes each part simple to count.")
+        slug = (WHY.get(pid) or WHY.get(e.get("base")) or ("casework",))[0]
         d["subtopics"] = [slug]
-        if "solution" in d:
-            d["solution"] += f"\n\n<b>Why this works.</b> <code>{slug}</code>: {clause}"
         (out / f"{pid}.json").write_text(json.dumps(e["draft"], indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     expected = {pid: dict(e["expected"], sim=e["sim"]) for pid, e in ALL.items()}
     (HERE / "expected.json").write_text(json.dumps(expected, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")

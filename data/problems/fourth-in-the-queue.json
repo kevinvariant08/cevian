@@ -1,0 +1,32 @@
+{
+  "id": "fourth-in-the-queue",
+  "title": "Fourth in the Queue",
+  "kyu": 8,
+  "topic": "N",
+  "subtopics": [
+    "prime-factorization",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Consider all composite positive integers that have no prime factor less than $20$. When these integers are listed in increasing order, what is the fourth integer in the list?",
+  "answer_format": "integer",
+  "answer_hash": "0b070ce8",
+  "hints": [
+    "Write down the primes greater than $20$, starting with the smallest. Every prime factor of a number in the list must come from these primes.",
+    "Use prime factorisation: a composite number is a product of at least two primes, counted with repetition. So each number in the list is a product of at least two primes from $23, 29, 31, 37, \\dots$, and the smallest numbers will be products of exactly two of them.",
+    "The three products $23 \\cdot 23$, $23 \\cdot 29$ and $23 \\cdot 31$ are in the list. To find the next number, don't assume that it is another multiple of $23$. Compare the next product that uses $23$ with the smallest product that doesn't use $23$."
+  ],
+  "solution": "Every prime factor of a listed number is at least $23$, so the smallest listed numbers are products of two primes from $23, 29, 31, 37, \\dots$\n\nThe products with at most $31$ in each factor are $23^2=529$, $23\\cdot29=667$, $23\\cdot31=713$, $29^2=841$, $29\\cdot31=899$, $31^2=961$.\n\nAny product involving a prime $\\ge 37$ is at least $23\\cdot37=851$. Any product of three or more primes is at least $23^3>851$. Hence the only listed numbers below $851$ are $529, 667, 713, 841$, and the fourth is $841$. The answer is $841$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-fourth-in-the-queue"
+}

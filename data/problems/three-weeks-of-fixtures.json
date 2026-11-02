@@ -1,0 +1,32 @@
+{
+  "id": "three-weeks-of-fixtures",
+  "title": "Three Weeks of Fixtures",
+  "kyu": 8,
+  "topic": "N",
+  "subtopics": [
+    "coprime-divisibility",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In a league of $n$ teams, where $n$ is a positive integer, every two teams play each other exactly once. Exactly one third of all the matches are played in the first week, exactly one quarter of all the matches are played in the second week, and all the other matches are played in the third week. At least $20$ matches are played in the third week. What is the smallest possible value of $n$?",
+  "answer_format": "integer",
+  "answer_hash": "7644f3eb",
+  "hints": [
+    "Start by counting all the matches. Write the total number of matches $T$ in terms of $n$, using the fact that each match is a pair of teams.",
+    "The total is $T = \\frac{n(n-1)}{2}$. The numbers of matches in the first two weeks, $\\frac{T}{3}$ and $\\frac{T}{4}$, must be whole numbers, so use divisibility: $T$ is divisible by both $3$ and $4$. Since $3$ and $4$ are coprime, what must $T$ be a multiple of?",
+    "The total $T = \\frac{n(n-1)}{2}$ must be a multiple of $12$. The third week has the remaining $1 - \\frac{1}{3} - \\frac{1}{4} = \\frac{5}{12}$ of the matches, so the condition on that week gives $T \\ge 48$. Now list the values of $T$ for $n = 11, 12, 13, \\ldots$, since these are the first values with $T \\ge 48$, and look for the first multiple of $12$."
+  ],
+  "solution": "Let $T=\\binom n2$. Then $12\\mid T$, and the third week has $\\frac{5T}{12}\\ge 20$ matches, so $T\\ge 48$.\n\nSince $T=45<48$ for $n=10$ and $T$ increases with $n$, we need $n\\ge 11$. For $n=11,\\dots,15$, $T=55,66,78,91,105$, and none is divisible by $12$. For $n=16$, $T=120=12\\cdot 10$, giving $40$, $30$ and $50$ matches in the three weeks, and $50\\ge 20$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-weeks-of-fixtures"
+}

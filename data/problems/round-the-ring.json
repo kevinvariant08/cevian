@@ -1,0 +1,32 @@
+{
+  "id": "round-the-ring",
+  "title": "Round the Ring",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "linear-combination-of-equations",
+    "linear-system-solving"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Five numbers $a$, $b$, $c$, $d$ and $e$ satisfy the following: the average of $a$ and $b$ is $8$, the average of $b$ and $c$ is $15$, the average of $c$ and $d$ is $17$, the average of $d$ and $e$ is $13$, and the average of $e$ and $a$ is $10$. What is the value of $a$?",
+  "answer_format": "integer",
+  "answer_hash": "a24484a3",
+  "hints": [
+    "Rewrite each average as a sum of two of the numbers. How many of these five sums does each number appear in?",
+    "Add all five pair sums. Each of $a$, $b$, $c$, $d$, $e$ appears in exactly two of them, so the result is $2(a+b+c+d+e)$.",
+    "The pair sums are $16, 30, 34, 26, 20$, which add up to $126$, so $a+b+c+d+e=63$. The two sums $b+c$ and $d+e$ together contain every number except $a$."
+  ],
+  "solution": "The conditions say $a+b=16$, $b+c=30$, $c+d=34$, $d+e=26$ and $e+a=20$. Each number appears in exactly two of these sums. Adding all five gives $2(a+b+c+d+e)=126$, so $a+b+c+d+e=63$. Then $a=63-(b+c)-(d+e)=63-30-26=7$.\n\nThe answer is $7$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-round-the-ring"
+}

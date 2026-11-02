@@ -15,7 +15,7 @@
     "Where are the other crates when the largest one moves?",
     "Use recursion on the number of crates, moving the smaller stack twice."
   ],
-  "solution": "Let $m_n$ be the least number of moves for $n$ crates. When the largest crate first leaves bay $X$, the other $n - 1$ must all be stacked on a single other bay, which takes at least $m_{n-1}$ moves. When it last arrives at bay $Z$, the others are again stacked on one bay, and at least $m_{n-1}$ more moves bring them to $Z$. With at least one move of the largest crate, $m_n \\ge 2m_{n-1} + 1$, and moving the stack, the largest crate, then the stack achieves this. Since $m_1 = 1$, we get $m_n = 2^n - 1$ and $m_7 = 127$.\n\n<b>Why this works.</b> <code>recursion</code>: the moment the largest crate moves gives a recurrence.",
+  "solution": "Let $m_n$ be the least number of moves for $n$ crates. When the largest crate first leaves bay $X$, the other $n - 1$ must all be stacked on a single other bay, which takes at least $m_{n-1}$ moves. When it last arrives at bay $Z$, the others are again stacked on one bay, and at least $m_{n-1}$ more moves bring them to $Z$. With at least one move of the largest crate, $m_n \\ge 2m_{n-1} + 1$, and moving the stack, the largest crate, then the stack achieves this. Since $m_1 = 1$, we get $m_n = 2^n - 1$ and $m_7 = 127$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

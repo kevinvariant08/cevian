@@ -10,6 +10,7 @@ from ..verify import answers, figure_check, originality, sandbox, schema_check, 
 from ..verify.config import BANK_DIR
 from .config import AUTHOR, HELD, PENDING, TAXONOMY
 
+PICTURE = re.compile(r"\b(diagram|picture|the figure|sketch)\b", re.I)
 LEAK_WORDS = 8
 LEAK_REAL_WORDS = 4
 _taken = set()
@@ -47,8 +48,8 @@ def build(idea, write, key, inp, kyu, profile, run):
     pid = allocate_id(idea["title"], inp.id)
     write = {**write, "solution": tidy_latex(write["solution"]), "hints": [tidy_latex(h) for h in write["hints"]]}
     return dict(
-        id=pid, title=idea["title"], kyu=kyu, topic=idea["topic"] if idea["topic"] in tuple("ACGN") else inp.record["topic"], subtopics=write["subtopics"],
-        type=profile.type, status="draft", statement=idea["statement"], answer_format=profile.answer_format,
+        id=pid, title=idea["title"], kyu=kyu, topic=inp.record["topic"], subtopics=write["subtopics"],
+        type=profile.type, status="draft", statement=idea["statement"], answer_format="rational" if "/" in key else profile.answer_format,
         answer_hash=answers.answer_hash(pid, key), hints=write["hints"], solution=write["solution"],
         provenance=dict(kind="original", author=AUTHOR, pipeline_run=run), stats=dict(solves=0, attempts=0, liked=0),
         answer=key, check_program=idea["check_program"], inspired_by=inp.id, variation_recipe=idea["recipe"],
@@ -87,9 +88,6 @@ def taxonomy_ids():
     return {x["id"] for x in t["techniques"] + t["configurations"] if x.get("status") != "legacy"}
 
 
-WHY = re.compile(r"^<b>Why this works\.</b> <code>[a-z0-9-]+</code>(, <code>[a-z0-9-]+</code>)*: .+$", re.S)
-
-
 def _lint_text(text):
     if re.search(r"\*\*|`|^\s*[-*] ", text, re.M):
         return "Markdown isn't rendered: use <b> and <code>, and no lists (S10)"
@@ -111,13 +109,20 @@ def lint_idea(idea):
     return None
 
 
-def lint_key(idea, key):
-    """A1 and A6, on what the program printed."""
+def lint_key(idea, key, kyu=5):
+    """A1 and A3 to A6, on what the program printed. 8-6 kyu are free response, so any integer or simple fraction will do."""
+    low = kyu >= 6
+    if low and re.fullmatch(r"-?\d{1,3}/\d{1,3}", key):
+        if "lowest terms" not in idea["statement"]:
+            return f"the key {key} is a fraction, so the statement must say to give it as a fraction in lowest terms (S3)"
+        return None
     try:
         value = int(key)
     except ValueError:
-        return f"the key must be a plain integer from 2 to 999 (A1), but the program printed {key or 'nothing'}"
-    if not 0 <= value <= 999:
+        return f"the key must be a plain integer{'' if low else ' from 2 to 999'} (A1), but the program printed {key or 'nothing'}"
+    if low and abs(value) >= 10 ** 9:
+        return f"the key must be below $10^9$ (A1), but the program printed {value}"
+    if not low and not 0 <= value <= 999:
         return f"the key must be from 2 to 999 (A1), but the program printed {value}: change the parameters or ask for a remainder modulo $1000$"
     if value in (0, 1):
         return f"a key of {value} is guessable (A6)"
@@ -133,13 +138,8 @@ def lint(d):
     if bad:
         return f"subtopics not in the taxonomy (M5): {', '.join(bad[:4])}"
     paras = [p.strip() for p in d["solution"].split("\n\n") if p.strip()]
-    if not WHY.match(paras[-1]):
-        return 'the last paragraph must be exactly the "Why this works" line (M4): <b>Why this works.</b> <code>id-one</code>, <code>id-two</code>: one clause'
-    missing = [u for u in re.findall(r"<code>([a-z0-9-]+)</code>", paras[-1]) if u not in d["subtopics"]]
-    if missing:
-        return f"the Why this works line uses IDs not in subtopics (M4): {', '.join(missing)}"
-    if not re.search(rf"(?<![\d.]){re.escape(d['answer'])}(?![\d.])", "\n\n".join(paras[-3:-1])):
-        return "the solution must state the final answer just before the Why this works line (M3)"
+    if d["type"] == "answer" and not re.search(rf"(?<![\d.]){re.escape(d['answer'])}(?![\d.])", "\n\n".join(paras[-2:])):
+        return "the solution must state the final answer at the end (M3)"
     for text in [d["solution"], *d["hints"]]:
         problem = _lint_text(text)
         if problem:
@@ -196,6 +196,8 @@ def run_program(src):
 
 def idea_checks(idea, inp, index, threshold):
     """Everything free about an idea, so a bad one costs nothing. Returns (step, reason, key)."""
+    if idea["topic"] != inp.record["topic"]:
+        return "topic", f"the problem must be topic {inp.record['topic']}, and this one is labelled {idea['topic']}", None
     problem = lint_idea(idea)
     if problem:
         return "idea_lint", problem, None
@@ -208,7 +210,7 @@ def idea_checks(idea, inp, index, threshold):
     key, reason = run_program(idea["check_program"])
     if reason:
         return "program", reason, None
-    problem = lint_key(idea, key)
+    problem = lint_key(idea, key, inp.record["kyu"])
     if problem:
         return "key", problem, key
     if inp.answer and answers.canon(inp.answer) == answers.canon(key):
@@ -219,6 +221,20 @@ def idea_checks(idea, inp, index, threshold):
 def blames_the_idea(reason):
     """A standard failure in the statement or title can't be fixed by rewriting the solution."""
     return bool(re.search(r"\b(statement|title)\b", reason))
+
+
+def write_checks_proof(d):
+    """The free checks on a proof draft. There is no source problem, so there is nothing to leak."""
+    for check in (schema_check.run, standard.run):
+        status, reason, _ = check(d)
+        if status == "fail":
+            return check.__module__.rsplit(".", 1)[-1], reason
+    problem = lint_idea(d)
+    if problem:
+        return "lint", problem
+    if d["topic"] != "G" and PICTURE.search(standard._prose(d["solution"] + " " + " ".join(d["hints"]))):
+        return "lint", "the solution argues from a picture or refers to a figure, which this problem must not do"
+    return None
 
 
 def write_checks(d, inp):
@@ -232,6 +248,8 @@ def write_checks(d, inp):
     problem = lint(d)
     if problem:
         return "lint", problem
+    if d["topic"] != "G" and PICTURE.search(standard._prose(d["solution"] + " " + " ".join(d["hints"]))):
+        return "lint", "the solution argues from a picture or refers to a figure, which this problem must not do"
     problem = leak(d, inp)
     if problem:
         return "leak", problem

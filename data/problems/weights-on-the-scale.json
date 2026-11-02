@@ -1,0 +1,32 @@
+{
+  "id": "weights-on-the-scale",
+  "title": "Weights on the Scale",
+  "kyu": 8,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "correct-for-overcounting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A box contains seven weights: three of mass $1$ g, two of mass $5$ g and two of mass $10$ g. Sam places one or more of these weights on a scale, and the scale shows their total mass. How many different total masses can the scale show?",
+  "answer_format": "integer",
+  "answer_hash": "be44774c",
+  "hints": [
+    "Set the $1$ g weights aside for a moment. Which totals can the $5$ g and $10$ g weights make by themselves? Beware that different selections can give the same total.",
+    "Split each total into two parts: the mass from the $5$ g and $10$ g weights, and the mass from the $1$ g weights. Count the possible values of each part, then use the rule of product, which says that independent choices multiply. To use it safely, check that different pairs of values can't give the same total.",
+    "The $5$ g and $10$ g weights make exactly the multiples of $5$ from $0$ to $30$, and the $1$ g weights add $0$, $1$, $2$ or $3$. This added part is less than $5$, so it is the remainder when the total is divided by $5$, and each total comes from just one pair of values. Multiply the numbers of values, remembering that Sam must place at least one weight."
+  ],
+  "solution": "The 5 g and 10 g weights give every multiple of $5$ from $0$ to $30$: $0,5,10=10,15=5+10,20=10+10,25=5+10+10,30=5+5+10+10$, which is $7$ values. The 1 g weights give $0,1,2,3$, which is $4$ values.\n\nSince the second part is less than $5$, it is the remainder of the total on division by $5$. So distinct pairs give distinct totals, and there are $7\\cdot4=28$ totals including $0$. Sam must place at least one weight, so $0$ is excluded and the others are all attainable, leaving $27$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-weights-on-the-scale"
+}

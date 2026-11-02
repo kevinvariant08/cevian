@@ -1,0 +1,32 @@
+{
+  "id": "extra-clicks-at-the-gate",
+  "title": "Extra Clicks at the Gate",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "block-grouping-of-sums",
+    "periodicity"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A counter at a gate starts at $0$. People pass through the gate one at a time. Each person adds $1$ to the counter, except that every sixth person (the $6$th, $12$th, $18$th and so on) adds $2$ instead. After the last person has passed through, the counter shows $500$. How many people passed through the gate?",
+  "answer_format": "integer",
+  "answer_hash": "22520064",
+  "hints": [
+    "Work out what the first six people do to the counter altogether. Then do the same for the next six people.",
+    "Use block grouping: split the people into consecutive blocks of $6$. Every complete block contains exactly one person who adds $2$, so each block adds the same amount, $7$, to the counter. Now divide $500$ by $7$ to see how many complete blocks fit.",
+    "Since $500 = 71 \\cdot 7 + 3$, the counter shows $497$ after $71$ complete blocks of $6$ people. The people in the next block each add $1$, until that block's sixth person. Work out how many more people are needed to add the remaining $3$, then include them in the total number of people."
+  ],
+  "solution": "Each complete block of $6$ people adds $5+2=7$, and $500=71\\cdot 7+3$. After $71$ blocks, $426$ people have passed and the counter shows $497$. The next three people (the $427$th, $428$th, $429$th) are not multiples of $6$, so each adds $1$, and the counter reaches $500$ after $426+3=429$ people. The counter strictly increases, so this is the only such number.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-extra-clicks-at-the-gate"
+}

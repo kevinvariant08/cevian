@@ -15,7 +15,7 @@
     "Work out each square.",
     "Then subtract."
   ],
-  "solution": "We have $49 - 9 = 40$.\n\n<b>Why this works.</b> <code>difference-of-squares</code>: the two squares can be subtracted directly or through the factorisation.",
+  "solution": "We have $49 - 9 = 40$.",
   "provenance": {
     "kind": "original",
     "author": "task-05-tests"

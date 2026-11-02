@@ -1,0 +1,40 @@
+{
+  "id": "diagonals-of-a-leaning-parallelogram",
+  "title": "Diagonals of a Leaning Parallelogram",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "reflection-across-line",
+    "triangle-inequality",
+    "pythagorean-theorem"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Parallelogram $ABCD$ has $AB = 12$ and area $60$. The other two sides, $BC$ and $AD$, may have any length. What is the smallest possible value of $AC + BD$?",
+  "answer_format": "integer",
+  "answer_hash": "eaa72742",
+  "hints": [
+    "Move the diagonal $BD$ without changing its length so that it starts at $C$. Extend $AB$ beyond $B$ to the point $E$ with $BE = 12$, and compare $CE$ with $BD$.",
+    "$C$ lies on a fixed line $\\ell$ parallel to $AB$, at distance $\\frac{60}{12} = 5$ from it, and $AC + CE$ is a path from $A$ to $E$ through a point of $\\ell$. Minimise it by reflecting $E$ in $\\ell$.",
+    "Let $E'$ be the reflection of $E$ in $\\ell$. Then $AC + BD = AC + CE' \\ge AE'$, and $E'$ is $24$ along and $10$ up from $A$."
+  ],
+  "solution": "Let $E$ lie on ray $AB$ with $AE = 24$. Then $\\vec{BE} = \\vec{AB} = \\vec{DC}$, so $BECD$ is a parallelogram and $CE = BD$. The height on $AB$ is $\\frac{60}{12} = 5$, so $C$ lies on the line $\\ell$ parallel to $AB$ at distance $5$. Let $E'$ be the reflection of $E$ in $\\ell$. Then $AC + BD = AC + CE' \\ge AE' = \\sqrt{24^2 + 10^2} = 26$.\n\nEquality holds for the rectangle with $BC = 5$, where $AC = BD = 13$. The smallest value is $26$.",
+  "solution_figures": [
+    {
+      "src": "figures/diagonals-of-a-leaning-parallelogram-solution.svg?v=3fd4158c",
+      "alt": "Parallelogram ABCD with AB = 12 and height 5, the point E on line AB beyond B with BE = 12, and E' the reflection of E in line DC. Segments BD and CE are marked equal, and the dashed segment AE' has length 26.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "cevian-low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-diagonals-of-a-leaning-parallelogram"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "three-terms-one-condition",
+  "title": "Three Terms, One Condition",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "conjugate-modulus-identity",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Among all complex numbers $z$ with $|z|=3$, find the largest possible value of $\\left|z^{2}+8z-9\\right|$.",
+  "answer_format": "integer",
+  "answer_hash": "04af1f2f",
+  "hints": [
+    "The condition $|z|=3$ and the constant term $-9$ in the expression are linked. Look for another way to write the number $9$ using $z$.",
+    "Use the conjugate identity $z\\bar z=|z|^2$. Here it gives $9=z\\bar z$, and after this substitution every term of $z^2+8z-9$ has a factor of $z$.",
+    "Substituting $9=z\\bar z$ gives $z^2+8z-9=z(8+z-\\bar z)$. Write $z=x+yi$ with $x,y$ real, so that $z-\\bar z=2iy$. Then the modulus is $3\\sqrt{64+4y^2}$, and now find how large $y^2$ can be when $|z|=3$."
+  ],
+  "solution": "Since $9=z\\bar z$,\n$$z^2+8z-9=z(z+8-\\bar z)=z(8+2iy),$$\nwhere $y=\\operatorname{Im} z$. Hence\n$$|z^2+8z-9|=3\\sqrt{64+4y^2}\\le 3\\sqrt{64+36}=30,$$\nbecause $y^2\\le|z|^2=9$.\n\nEquality holds at $z=3i$: $z^2+8z-9=-18+24i$, which has modulus $30$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian",
+    "pipeline_run": "low-1"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-01-three-terms-one-condition"
+}
