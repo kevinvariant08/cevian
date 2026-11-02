@@ -66,7 +66,7 @@ draft = {
     "provenance": {
         "kind": "classical",
         "author": "Kevin Hu",
-        "source": "China MO 2023 P5",
+        "source": "CMO 2023 P5 (China)",
         "book": "Beyond the Incenter, Kevin Hu (2026), Chapter 6 (Geometric Transformations), Problem 86"
     },
     "marking": {"milestones": milestones, "alternative_routes": alternative_routes, "fatal_errors": fatal_errors},
