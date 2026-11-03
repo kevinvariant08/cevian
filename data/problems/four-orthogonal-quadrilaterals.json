@@ -1,0 +1,118 @@
+{
+  "id": "four-orthogonal-quadrilaterals",
+  "title": "Four Orthogonal Quadrilaterals",
+  "kyu": 1,
+  "topic": "G",
+  "subtopics": [
+    "sine-area-formula",
+    "law-of-sines",
+    "power-of-a-point",
+    "cyclic-quadrilateral"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $ABCD$ be a convex quadrilateral, and let $P,Q,R,S$ be points on the segments $AB,BC,CD,DA$ respectively. The segments $PR$ and $QS$ dissect $ABCD$ into four convex quadrilaterals. Suppose that each of these four smaller quadrilaterals has perpendicular diagonals. Prove that $P,Q,R,S$ are concyclic.",
+  "hints": [
+    "Let $O=PR\\cap QS$. The four conditions say $OA\\perp PS$, $OB\\perp PQ$, $OC\\perp QR$ and $OD\\perp RS$. So $A,B,C,D$ lie on four fixed lines through $O$, each determined by $PQRS$ alone.",
+    "First prove a converse-type lemma: if $PQRS$ is cyclic and you start from any point $A$ on the line through $O$ perpendicular to $PS$, then go $A\\to B=AP\\cap\\ell_B\\to C=BQ\\cap\\ell_C\\to D=CR\\cap\\ell_D\\to A'=DS\\cap\\ell_A$, you return to $A'=A$. The ratio lemma $\\frac{\\sin\\angle AOB}{OP}=\\frac{\\sin\\angle AOP}{OB}+\\frac{\\sin\\angle POB}{OA}$ for $P$ on segment $AB$ turns $OA=OA'$ into a statement about $OP,OQ,OR,OS$ only.",
+    "In the lemma, the angles at $O$ pair up: $\\angle AOP=\\angle COQ$, $\\angle BOP=\\angle DOS$, $\\angle BOQ=\\angle DOR$, $\\angle COR=\\angle AOS$. Adding two of the four ratio identities and subtracting the other two, $OA=OA'$ becomes $\\frac{QS\\cdot PR}{OP\\cdot OR}=\\frac{QS\\cdot PR}{OQ\\cdot OS}$, which is the intersecting chords theorem. For the problem, if $OQ\\cdot OS\\ne OP\\cdot OR$, move $S$ along ray $OS$ to the point $S'$ that makes $PQRS'$ cyclic, run the lemma, and reach a contradiction from where the chain must close."
+  ],
+  "solution": "Let $O=PR\\cap QS$. Since $APOS$, $BQOP$, $CROQ$, $DSOR$ have perpendicular diagonals, $OA\\perp PS$, $OB\\perp PQ$, $OC\\perp QR$, $OD\\perp RS$.\n\n**Ratio lemma.** If $P$ lies on segment $AB$ and $O\\notin AB$, then $\\dfrac{\\sin\\angle AOB}{OP}=\\dfrac{\\sin\\angle AOP}{OB}+\\dfrac{\\sin\\angle POB}{OA}$. (Write $[AOB]=[AOP]+[POB]$ with $[XOY]=\\tfrac12\\,OX\\cdot OY\\sin\\angle XOY$ and divide by $\\tfrac12\\,OA\\cdot OB\\cdot OP$.)\n\n**Lemma.** Let $PQRS$ be cyclic with $O=PR\\cap QS$, and let $\\ell_A,\\ell_B,\\ell_C,\\ell_D$ be the lines through $O$ perpendicular to $PS,PQ,QR,RS$. Take $A\\in\\ell_A$, let $B=AP\\cap\\ell_B$, $C=BQ\\cap\\ell_C$, $D=CR\\cap\\ell_D$, $A'=DS\\cap\\ell_A$, in the configuration where $P,Q,R,S$ lie on segments $AB,BC,CD,DA'$. Then $A'=A$.\n\n*Proof.* $A$ and $A'$ lie on the same ray of $\\ell_A$, so it suffices to show $OA=OA'$. The ratio lemma on the four segments gives\n$$\\frac{\\sin\\angle AOP}{OB}+\\frac{\\sin\\angle BOP}{OA}=\\frac{\\sin\\angle AOB}{OP},\\qquad \\frac{\\sin\\angle BOQ}{OC}+\\frac{\\sin\\angle COQ}{OB}=\\frac{\\sin\\angle BOC}{OQ},$$\n$$\\frac{\\sin\\angle COR}{OD}+\\frac{\\sin\\angle ROD}{OC}=\\frac{\\sin\\angle COD}{OR},\\qquad \\frac{\\sin\\angle DOS}{OA'}+\\frac{\\sin\\angle SOA'}{OD}=\\frac{\\sin\\angle DOA'}{OS}.$$\nSince $OA\\perp PS$ and $OC\\perp QR$, $\\angle AOP=90^\\circ-\\angle OPS=90^\\circ-\\angle RQS=\\angle COQ$, using $\\angle RPS=\\angle RQS$. In the same way $\\angle BOP=\\angle DOS$, $\\angle BOQ=\\angle DOR$ and $\\angle COR=\\angle AOS$. So adding the first and third identities and subtracting the other two, the terms over $OB,OC,OD$ cancel and\n$$OA=OA'\\iff\\frac{\\sin\\angle AOB}{OP}+\\frac{\\sin\\angle COD}{OR}=\\frac{\\sin\\angle BOC}{OQ}+\\frac{\\sin\\angle DOA}{OS}.$$\nNow $\\angle AOB=180^\\circ-\\angle SPQ$ and $\\angle COD=180^\\circ-\\angle SRQ$, so with $d$ the diameter of $(PQRS)$, $\\sin\\angle AOB=\\sin\\angle COD=\\frac{QS}{d}$; likewise $\\sin\\angle BOC=\\sin\\angle DOA=\\frac{PR}{d}$. Using $OP+OR=PR$ and $OQ+OS=QS$, the condition becomes\n$$\\frac{QS\\cdot PR}{OP\\cdot OR}=\\frac{QS\\cdot PR}{OQ\\cdot OS},$$\nwhich is the intersecting chords theorem $OP\\cdot OR=OQ\\cdot OS$. $\\square$\n\n**The problem.** Suppose $PQRS$ is not cyclic; by symmetry (relabel $ABCD\\to BCDA$) assume $OS\\cdot OQ<OP\\cdot OR$. Let $S'$ on ray $OS$ satisfy $OS'\\cdot OQ=OP\\cdot OR$, so $PQRS'$ is cyclic and $OS'>OS$. Let the line through $O$ perpendicular to $PS'$ meet $AB$ at $A_1$, and the line through $O$ perpendicular to $RS'$ meet $CD$ at $D_1$.\n\nSince $OS'>OS$, $\\angle OPS'>\\angle OPS$, so $\\angle A_1OP=90^\\circ-\\angle OPS'<\\angle AOP$ and $A_1$ lies strictly inside segment $AP$; similarly $D_1$ lies strictly inside segment $DR$. Apply the lemma to the cyclic $PQRS'$ starting from $A_1$: the line $A_1P$ is $AB$, so the chain passes through the same $B$ and $C$, and then through $D_1$; the lemma gives that $A_1,D_1,S'$ are collinear.\n\nBut $A_1$ lies inside angle $\\angle SOP$ and $D_1$ inside angle $\\angle ROS$, both strictly on $O$'s side of line $AD$ by convexity. So segment $A_1D_1$ meets ray $OS$ at a point strictly between $O$ and $S$, and the line $A_1D_1$ meets line $OS$ only there. It cannot pass through $S'$, which lies beyond $S$. This contradiction shows $OP\\cdot OR=OQ\\cdot OS$, so $P,Q,R,S$ are concyclic. $\\blacksquare$",
+  "solution_figures": [
+    {
+      "src": "figures/four-orthogonal-quadrilaterals-solution.svg?v=c6d4ef25",
+      "alt": "A kite-shaped convex quadrilateral ABCD with P, Q, R, S on sides AB, BC, CD, DA. The segments PR and QS cross at O and split ABCD into four quadrilaterals, and in each the diagonal through O is perpendicular to the opposite diagonal: OA is perpendicular to PS, OB to PQ, OC to QR and OD to RS, marked with right angles. The circle through P, Q, R and S is dashed. Adapted from Beyond the Incenter, Problem 96.",
+      "after_paragraph": 0
+    }
+  ],
+  "rubric": [
+    {
+      "marks": 1,
+      "criterion": "Translates the four conditions into $OA\\perp PS$, $OB\\perp PQ$, $OC\\perp QR$, $OD\\perp RS$ with $O=PR\\cap QS$, and reduces the goal to $OP\\cdot OR=OQ\\cdot OS$, or an equivalent reformulation."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves the lemma's angle pairing $\\angle AOP=\\angle COQ$, $\\angle BOP=\\angle DOS$, $\\angle BOQ=\\angle DOR$, $\\angle COR=\\angle AOS$ for cyclic $PQRS$ (or for the actual configuration under the cyclic assumption), and states a correct ratio identity, such as the ratio lemma for a point on a segment, that links the lengths $OA,OB,OP$. Award 1 for the angle pairing alone."
+    },
+    {
+      "marks": 2,
+      "criterion": "Completes the lemma: shows that for cyclic $PQRS$ the chain $A\\to B\\to C\\to D\\to A'$ closes ($OA=OA'$), by combining the four identities and reducing to the intersecting chords theorem, or an equivalent statement that for cyclic $PQRS$ a quadrilateral with the four perpendicularity conditions exists through any admissible starting point."
+    },
+    {
+      "marks": 2,
+      "criterion": "Finishes by a perturbation or monotonicity argument: replaces $S$ by the point $S'$ on ray $OS$ that makes $PQRS'$ cyclic, applies the lemma, and derives a contradiction with a justified configuration argument (where $A_1$ and $D_1$ lie, and why $A_1D_1$ cannot pass through $S'$). Deduct 1 if the side and betweenness claims are asserted without any reason."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "Kevin Hu",
+    "source": "RMM 2017 P6",
+    "book": "Beyond the Incenter, Kevin Hu (2026), Chapter 7 (Trigonometric Methods), Problem 96"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 1,
+        "criterion": "Translates the four conditions into $OA\\perp PS$, $OB\\perp PQ$, $OC\\perp QR$, $OD\\perp RS$ with $O=PR\\cap QS$, and reduces the goal to $OP\\cdot OR=OQ\\cdot OS$, or an equivalent reformulation."
+      },
+      {
+        "id": "m2",
+        "marks": 2,
+        "criterion": "Proves the lemma's angle pairing $\\angle AOP=\\angle COQ$, $\\angle BOP=\\angle DOS$, $\\angle BOQ=\\angle DOR$, $\\angle COR=\\angle AOS$ for cyclic $PQRS$ (or for the actual configuration under the cyclic assumption), and states a correct ratio identity, such as the ratio lemma for a point on a segment, that links the lengths $OA,OB,OP$. Award 1 for the angle pairing alone."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Completes the lemma: shows that for cyclic $PQRS$ the chain $A\\to B\\to C\\to D\\to A'$ closes ($OA=OA'$), by combining the four identities and reducing to the intersecting chords theorem, or an equivalent statement that for cyclic $PQRS$ a quadrilateral with the four perpendicularity conditions exists through any admissible starting point."
+      },
+      {
+        "id": "m4",
+        "marks": 2,
+        "criterion": "Finishes by a perturbation or monotonicity argument: replaces $S$ by the point $S'$ on ray $OS$ that makes $PQRS'$ cyclic, applies the lemma, and derives a contradiction with a justified configuration argument (where $A_1$ and $D_1$ lie, and why $A_1D_1$ cannot pass through $S'$). Deduct 1 if the side and betweenness claims are asserted without any reason."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Trigonometric or length computation with a monotone parameter",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 2,
+            "criterion": "Sets up the configuration from $O$ with the four perpendicularity conditions and expresses $OA,OB,OC,OD$ (or the closing condition of the chain) in terms of $OP,OQ,OR,OS$ and the angles at $O$."
+          },
+          {
+            "id": "a2",
+            "marks": 3,
+            "criterion": "Shows that the chain closes if and only if $OP\\cdot OR=OQ\\cdot OS$, for example by proving that the closing condition is strictly monotone in $OS$ with all other data fixed, and checks the cyclic case."
+          },
+          {
+            "id": "a3",
+            "marks": 2,
+            "criterion": "Concludes that $P,Q,R,S$ are concyclic, with the monotonicity or uniqueness justified rather than assumed."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Proves only that cyclic $PQRS$ admits such a quadrilateral $ABCD$ (the converse direction) and treats this as the required statement.",
+        "cap": 4
+      },
+      {
+        "error": "Assumes $ABCD$ is cyclic, a kite, or otherwise special, or assumes $O$ is the intersection of $AC$ and $BD$, without proof.",
+        "cap": 1
+      },
+      {
+        "error": "Uses the ratio lemma or other unsigned length identities in a configuration where the point is not between the endpoints, so that an identity used is false.",
+        "cap": 4
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-four-orthogonal-quadrilaterals"
+}

@@ -1,0 +1,118 @@
+{
+  "id": "parallels-through-k",
+  "title": "Parallels Through K",
+  "kyu": 2,
+  "topic": "G",
+  "subtopics": [
+    "spiral-similarity",
+    "similar-triangles",
+    "angle-chasing",
+    "law-of-sines"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $ABC$ be an acute triangle and let $K$ be a point on the extension of $BC$ beyond $C$. The line through $K$ parallel to $AB$ contains a point $P\\ne K$ with $BP=BK$, and the line through $K$ parallel to $AC$ contains a point $Q\\ne K$ with $CQ=CK$. The circumcircle of triangle $KPQ$ meets line $AK$ again at $T$. Prove that\n1. $\\angle BTC+\\angle APB=\\angle CQA$;\n2. $AP\\cdot BT\\cdot CQ=AQ\\cdot CT\\cdot BP$.",
+  "hints": [
+    "Both parts come from two similarities that share the vertex $B$ or $C$. Build a point $D$ with $\\triangle CTD\\sim\\triangle CQA$, so that $\\angle CQA=\\angle CTD$. What does part 1 then say about the angle $\\angle BTD$?",
+    "Part 1 follows from $\\triangle BTD\\sim\\triangle BPA$, and spiral similarities come in pairs, so it is enough to prove $\\triangle BTP\\sim\\triangle BDA$ (and you already have $\\triangle CTQ\\sim\\triangle CDA$). Prove it by SAS: one angle and one ratio.",
+    "For the angle, chase $\\angle BAD=\\angle CAD-\\angle CAB$ using $\\angle CAD=\\angle CQT$, the isosceles triangles $BKP$ and $CKQ$, the cyclic $KPQT$ and the parallels, to reach $\\angle BPT$. For the ratio $\\frac{PT}{PB}=\\frac{AD}{AB}$, use $AD=TQ\\cdot\\frac{AC}{QC}$, $PB=KB$, $QC=KC$, then the law of sines in $PQT$ and the ratio lemma $\\frac{KC}{KB}\\cdot\\frac{AB}{AC}=\\frac{\\sin\\angle KAC}{\\sin\\angle KAB}$. Part 2 is then the product of the ratios from the two similarities."
+  ],
+  "solution": "Let $D$ be the point with $\\triangle CTD$ directly similar to $\\triangle CQA$. Then $C$ is the centre of a spiral similarity taking $T\\mapsto D$, $Q\\mapsto A$, so also $\\triangle CTQ\\sim\\triangle CDA$.\n\n**Part 1.** Since $\\angle CQA=\\angle CTD$, the claim is $\\angle CTD-\\angle BTC=\\angle APB$, that is, $\\angle BTD=\\angle APB$. This follows from $\\triangle BTD\\sim\\triangle BPA$, which by the same pairing is equivalent to $\\triangle BTP\\sim\\triangle BDA$. We prove the latter by SAS.\n\n*Angle.* Using $\\angle CAD=\\angle CQT$ (from $\\triangle CDA\\sim\\triangle CTQ$), $\\angle KQC=\\angle CKQ$ (as $CK=CQ$), $\\angle KQT=180^\\circ-\\angle KPT$ (cyclic $KPQT$), $\\angle CAB=180^\\circ-\\angle PKQ$ (as $KP\\parallel AB$, $KQ\\parallel AC$) and $\\angle PKB=\\angle BPK$ (as $BK=BP$):\n$$\\angle BAD=\\angle CAD-\\angle CAB=\\angle KQT-\\angle KQC-\\angle CAB=\\angle PKQ-\\angle CKQ-\\angle KPT=\\angle PKB-\\angle KPT=\\angle BPK-\\angle KPT=\\angle BPT.$$\n\n*Ratio.* We need $\\frac{PT}{PB}=\\frac{AD}{AB}$. From $\\triangle CDA\\sim\\triangle CTQ$, $AD=TQ\\cdot\\frac{AC}{QC}$; also $PB=KB$ and $QC=KC$. So the ratio condition is\n$$\\frac{PT}{QT}\\cdot\\frac{KC}{KB}\\cdot\\frac{AB}{AC}=1.$$\nBy the law of sines in $PQT$, $\\frac{PT}{QT}=\\frac{\\sin\\angle PQT}{\\sin\\angle QPT}$, and comparing areas of $AKC$ and $AKB$, $\\frac{KC}{KB}\\cdot\\frac{AB}{AC}=\\frac{\\sin\\angle KAC}{\\sin\\angle KAB}$. Since $KP\\parallel AB$, $\\angle PQT=\\angle PKT=180^\\circ-\\angle KAB$; since $KQ\\parallel AC$, $\\angle QPT=\\angle QKT=\\angle KAC$. The product is therefore $\\frac{\\sin\\angle KAB}{\\sin\\angle KAC}\\cdot\\frac{\\sin\\angle KAC}{\\sin\\angle KAB}=1$.\n\nHence $\\triangle BTP\\sim\\triangle BDA$, so $\\triangle BTD\\sim\\triangle BPA$, which proves part 1.\n\n**Part 2.** From $\\triangle BTD\\sim\\triangle BPA$, $\\frac{AP}{BP}=\\frac{DT}{BT}$; from $\\triangle CTD\\sim\\triangle CQA$, $\\frac{CQ}{AQ}=\\frac{CT}{DT}$. Therefore\n$$\\frac{AP}{BP}\\cdot\\frac{BT}{CT}\\cdot\\frac{CQ}{AQ}=\\frac{DT}{BT}\\cdot\\frac{BT}{CT}\\cdot\\frac{CT}{DT}=1,$$\nthat is, $AP\\cdot BT\\cdot CQ=AQ\\cdot CT\\cdot BP$. $\\blacksquare$",
+  "solution_figures": [
+    {
+      "src": "figures/parallels-through-k-solution.svg?v=81453e8e",
+      "alt": "Triangle ABC with K on BC beyond C. Through K, KP is parallel to AB with BP = BK, and KQ is parallel to AC with CQ = CK. The circle through K, P and Q meets AK again at T. The auxiliary point D, with triangle CTD similar to triangle CQA, is joined to A, B, C and T, and the dashed segments AP, AQ, BT, CT, PT and QT show the two similar pairs used in the proof. Adapted from Beyond the Incenter, Problem 86.",
+      "after_paragraph": 1
+    }
+  ],
+  "rubric": [
+    {
+      "marks": 1,
+      "criterion": "Introduces the auxiliary point $D$ with $\\triangle CTD\\sim\\triangle CQA$ (directly similar), notes the paired similarity $\\triangle CTQ\\sim\\triangle CDA$, and reduces part 1 to $\\angle BTD=\\angle APB$, or to $\\triangle BTD\\sim\\triangle BPA$, or an equivalent reduction."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves the angle equality $\\angle BAD=\\angle BPT$ (or the corresponding angle for an equivalent similarity) by a correct chase using the isosceles triangles $BKP$, $CKQ$, the cyclic quadrilateral $KPQT$ and the parallels."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves the ratio condition $\\frac{PT}{PB}=\\frac{AD}{AB}$, for example by reducing it to $\\frac{PT}{QT}\\cdot\\frac{KC}{KB}\\cdot\\frac{AB}{AC}=1$ and evaluating with the law of sines and the ratio lemma, and concludes $\\triangle BTP\\sim\\triangle BDA$, hence part 1. Award 1 for a correct reduction without the evaluation."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves part 2, for example by multiplying the length ratios from $\\triangle BTD\\sim\\triangle BPA$ and $\\triangle CTD\\sim\\triangle CQA$. Part 2 proved on its own by any valid method earns these 2 marks."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "Kevin Hu",
+    "source": "CMO 2023 P5 (China)",
+    "book": "Beyond the Incenter, Kevin Hu (2026), Chapter 6 (Geometric Transformations), Problem 86"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 1,
+        "criterion": "Introduces the auxiliary point $D$ with $\\triangle CTD\\sim\\triangle CQA$ (directly similar), notes the paired similarity $\\triangle CTQ\\sim\\triangle CDA$, and reduces part 1 to $\\angle BTD=\\angle APB$, or to $\\triangle BTD\\sim\\triangle BPA$, or an equivalent reduction."
+      },
+      {
+        "id": "m2",
+        "marks": 2,
+        "criterion": "Proves the angle equality $\\angle BAD=\\angle BPT$ (or the corresponding angle for an equivalent similarity) by a correct chase using the isosceles triangles $BKP$, $CKQ$, the cyclic quadrilateral $KPQT$ and the parallels."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Proves the ratio condition $\\frac{PT}{PB}=\\frac{AD}{AB}$, for example by reducing it to $\\frac{PT}{QT}\\cdot\\frac{KC}{KB}\\cdot\\frac{AB}{AC}=1$ and evaluating with the law of sines and the ratio lemma, and concludes $\\triangle BTP\\sim\\triangle BDA$, hence part 1. Award 1 for a correct reduction without the evaluation."
+      },
+      {
+        "id": "m4",
+        "marks": 2,
+        "criterion": "Proves part 2, for example by multiplying the length ratios from $\\triangle BTD\\sim\\triangle BPA$ and $\\triangle CTD\\sim\\triangle CQA$. Part 2 proved on its own by any valid method earns these 2 marks."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Trigonometric or complex computation",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 2,
+            "criterion": "Parametrises the configuration (for example by the angles of $ABC$ and $BK$, or complex coordinates) and locates $P$, $Q$ and $T$ explicitly, including a correct description of $T$ on line $AK$."
+          },
+          {
+            "id": "a2",
+            "marks": 3,
+            "criterion": "Proves part 1 by computing the three angles, or their tangents or directions, and verifying the identity."
+          },
+          {
+            "id": "a3",
+            "marks": 2,
+            "criterion": "Proves part 2 by computing the six lengths or their ratios and verifying the identity."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Takes $D$ with $\\triangle CTD$ oppositely similar to $\\triangle CQA$, or otherwise uses the paired similarity $\\triangle CTQ\\sim\\triangle CDA$ without a spiral similarity that justifies it.",
+        "cap": 3
+      },
+      {
+        "error": "Proves part 1 only for a special position of $K$ or a special triangle (for example isosceles $ABC$), or checks it numerically.",
+        "cap": 1
+      },
+      {
+        "error": "Assumes $T$ is the second intersection of $AK$ with a different circle, or treats $P$ or $Q$ as $K$ itself.",
+        "cap": 1
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-02-parallels-through-k"
+}
