@@ -132,12 +132,13 @@
   },
   "report": {
     "id": "residue-polynomials",
-    "verdict": "UNVERIFIED: Kevin's solution, checked by hand; independent audit result in notes",
+    "verdict": "UNVERIFIED: Kevin's solution, checked by hand; independently audited",
     "checks": [],
     "notes": [
       "Source: Iran Mathematical Olympiad 2011-2012. The kevinvariant marking file (marking/problems/iran-2012-residue-polynomials.md) does not give the round or problem number; please add it before publishing.",
       "Solution: Kevin's second solution (counting with an indicator), checked line by line and correct; the lemma uses the 'multiply by g' form from his marked full-marks example instead of the geometric-series form, which avoids dividing by g^k - 1. Kevin's first solution (Newton's identities) is also correct and is kept as the alternative route in the rubric.",
       "Rubric: the 10-mark kevinvariant scheme rescaled to 7. Route B conclusion marks (2+2+2 there) became 1+1+1; the two-mark Route A conclusion folded into a4. Caps and fatal errors follow the kevinvariant file.",
+      "Independent audit (Opus, medium): solution and rubric CORRECT, no issues.",
       "Kyu 2: the counting finish is short once seen, but the reduction to power sums and the e_p trap in the Newton route put it above 3 kyu. Not run through the gate."
     ]
   }

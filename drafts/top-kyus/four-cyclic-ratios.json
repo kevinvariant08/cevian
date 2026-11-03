@@ -54,7 +54,7 @@
             {
               "id": "a2",
               "marks": 3,
-              "criterion": "Proves by AM-GM, with correct weights, $4a\\le\\frac{2a}{d}+\\frac ab+\\frac ab+\\frac dc$-type bounds whose cyclic sum gives $4S\\le3Y+X$ (or $S\\le\\frac34Y+\\frac14X$)."
+              "criterion": "Proves by AM-GM bounds such as $4a\\le2\\cdot\\frac ad+\\frac dc+\\frac ab$ (from $a=\\sqrt[4]{(a/d)^2(d/c)(a/b)}$) whose cyclic sum gives $4S\\le3Y+X$; the mirror bound $4S\\le3X+Y$ also works."
             },
             {
               "id": "a3",
@@ -101,12 +101,13 @@
   },
   "report": {
     "id": "four-cyclic-ratios",
-    "verdict": "UNVERIFIED: Kevin's solution, checked by hand; independent audit result in notes",
+    "verdict": "UNVERIFIED: Kevin's solution, checked by hand; independently audited",
     "checks": [],
     "notes": [
       "Source: IMO Shortlist 2008 A5, as Problem 3 in Kevin's 'Inequalities in Mathematical Olympiads' (2026 edition, Section 1.4, p. 8-10).",
       "Solution: Kevin's Solution 1, checked line by line and correct. The document's '2(a+b+c+d) <= sum_sym a/b' is written here as X + Y >= 2S, and the step 'RHS >= LHS_max' is written as an explicit AM-GM bound. The official homogenisation solution (his Solution 2) is in the rubric as the alternative route.",
       "Kyu 2 per Kevin. The document has only four problems with content (chapters 2-12 are empty headings); Problems 1 (abc = 1, sum 1/(a+b+1) <= 1), 2 (sum 1/(1+2a) >= 1) and 4 (unsourced, M sum i a_i) are 5-3 kyu, so none was added at 2-1 kyu.",
+      "Independent audit (Opus, medium): solution CORRECT. It caught a false sample bound in alternative-route milestone a2, now fixed to 4a <= 2(a/d) + d/c + a/b.",
       "Note for Kevin: Problem 2 in the document says a, b, c in R; it needs a, b, c > 0 (a = b = -1, c = 1 breaks it)."
     ]
   }

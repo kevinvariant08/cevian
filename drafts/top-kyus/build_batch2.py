@@ -82,9 +82,10 @@ iran_notes = [
     "Source: Iran Mathematical Olympiad 2011-2012. The kevinvariant marking file (marking/problems/iran-2012-residue-polynomials.md) does not give the round or problem number; please add it before publishing.",
     "Solution: Kevin's second solution (counting with an indicator), checked line by line and correct; the lemma uses the 'multiply by g' form from his marked full-marks example instead of the geometric-series form, which avoids dividing by g^k - 1. Kevin's first solution (Newton's identities) is also correct and is kept as the alternative route in the rubric.",
     "Rubric: the 10-mark kevinvariant scheme rescaled to 7. Route B conclusion marks (2+2+2 there) became 1+1+1; the two-mark Route A conclusion folded into a4. Caps and fatal errors follow the kevinvariant file.",
+    "Independent audit (Opus, medium): solution and rubric CORRECT, no issues.",
     "Kyu 2: the counting finish is short once seen, but the reduction to power sums and the e_p trap in the Newton route put it above 3 kyu. Not run through the gate.",
 ]
-emit(iran, iran_notes, "UNVERIFIED: Kevin's solution, checked by hand; independent audit result in notes")
+emit(iran, iran_notes, "UNVERIFIED: Kevin's solution, checked by hand; independently audited")
 
 # ---------------------------------------------------------------- ISL 2008 A5
 isl = {
@@ -129,7 +130,7 @@ Hence $X+Y\ge2S$, and the result follows. $\blacksquare$""",
         "alternative_routes": [
             {"name": "Weighted AM-GM (official)", "milestones": [
                 {"id": "a1", "marks": 2, "criterion": r"""Uses $abcd=1$ to write $a=\sqrt[4]{\frac{a^3}{bcd}}$ (and cyclically), so that both sides of a target inequality have degree $0$."""},
-                {"id": "a2", "marks": 3, "criterion": r"""Proves by AM-GM, with correct weights, $4a\le\frac{2a}{d}+\frac ab+\frac ab+\frac dc$-type bounds whose cyclic sum gives $4S\le3Y+X$ (or $S\le\frac34Y+\frac14X$)."""},
+                {"id": "a2", "marks": 3, "criterion": r"""Proves by AM-GM bounds such as $4a\le2\cdot\frac ad+\frac dc+\frac ab$ (from $a=\sqrt[4]{(a/d)^2(d/c)(a/b)}$) whose cyclic sum gives $4S\le3Y+X$; the mirror bound $4S\le3X+Y$ also works."""},
                 {"id": "a3", "marks": 2, "criterion": r"""Combines $4S\le3Y+X$ with $S>X$ to conclude $S<Y$."""}
             ]}
         ],
@@ -146,6 +147,7 @@ isl_notes = [
     "Source: IMO Shortlist 2008 A5, as Problem 3 in Kevin's 'Inequalities in Mathematical Olympiads' (2026 edition, Section 1.4, p. 8-10).",
     "Solution: Kevin's Solution 1, checked line by line and correct. The document's '2(a+b+c+d) <= sum_sym a/b' is written here as X + Y >= 2S, and the step 'RHS >= LHS_max' is written as an explicit AM-GM bound. The official homogenisation solution (his Solution 2) is in the rubric as the alternative route.",
     "Kyu 2 per Kevin. The document has only four problems with content (chapters 2-12 are empty headings); Problems 1 (abc = 1, sum 1/(a+b+1) <= 1), 2 (sum 1/(1+2a) >= 1) and 4 (unsourced, M sum i a_i) are 5-3 kyu, so none was added at 2-1 kyu.",
+    "Independent audit (Opus, medium): solution CORRECT. It caught a false sample bound in alternative-route milestone a2, now fixed to 4a <= 2(a/d) + d/c + a/b.",
     "Note for Kevin: Problem 2 in the document says a, b, c in R; it needs a, b, c > 0 (a = b = -1, c = 1 breaks it).",
 ]
-emit(isl, isl_notes, "UNVERIFIED: Kevin's solution, checked by hand; independent audit result in notes")
+emit(isl, isl_notes, "UNVERIFIED: Kevin's solution, checked by hand; independently audited")
