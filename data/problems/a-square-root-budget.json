@@ -1,0 +1,87 @@
+{
+  "id": "a-square-root-budget",
+  "title": "A Square-Root Budget",
+  "kyu": 3,
+  "topic": "A",
+  "subtopics": [
+    "cauchy-schwarz",
+    "am-gm",
+    "bounding"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $x,y,z$ be positive real numbers with $\\sqrt x+\\sqrt y+\\sqrt z=1$. Prove that\n$$\\frac{x^2+yz}{\\sqrt{2x^2(y+z)}}+\\frac{y^2+zx}{\\sqrt{2y^2(z+x)}}+\\frac{z^2+xy}{\\sqrt{2z^2(x+y)}}\\ge1.$$",
+  "hints": [
+    "Split each numerator: $\\frac{x^2+yz}{\\sqrt{2x^2(y+z)}}=\\frac{x^2}{\\sqrt{2x^2(y+z)}}+\\frac{yz}{\\sqrt{2x^2(y+z)}}$, and apply Cauchy-Schwarz to each sum against $\\sum\\sqrt{2(y+z)}$.",
+    "After both applications it is enough to show $2\\sum\\sqrt{\\frac{yz}{x}}\\ge\\sum\\sqrt{2(y+z)}$. Note $\\sqrt{\\frac{yz}{x}}\\cdot\\sqrt{\\frac{zx}{y}}=z$."
+  ],
+  "solution": "Write $T=\\sqrt{\\frac{yz}{x}}+\\sqrt{\\frac{zx}{y}}+\\sqrt{\\frac{xy}{z}}$ and $R=\\sqrt{2(y+z)}+\\sqrt{2(z+x)}+\\sqrt{2(x+y)}$, and let $L$ be the left-hand side.\n\nBy Cauchy-Schwarz,\n$$\\left(\\sum\\frac{x^2}{\\sqrt{2x^2(y+z)}}\\right)R\\ge\\left(\\sqrt x+\\sqrt y+\\sqrt z\\right)^2=1$$\nand\n$$\\left(\\sum\\frac{yz}{\\sqrt{2x^2(y+z)}}\\right)R\\ge T^2.$$\nAdding,\n$$L\\cdot R\\ge1+T^2\\ge2T.$$\nSo it suffices to prove $2T\\ge R$.\n\nBy AM-GM,\n$$\\left[\\sqrt{\\frac{yz}{x}}+\\left(\\frac12\\sqrt{\\frac{zx}{y}}+\\frac12\\sqrt{\\frac{xy}{z}}\\right)\\right]^2\\ge4\\sqrt{\\frac{yz}{x}}\\left(\\frac12\\sqrt{\\frac{zx}{y}}+\\frac12\\sqrt{\\frac{xy}{z}}\\right)=2(y+z),$$\nthat is,\n$$\\sqrt{\\frac{yz}{x}}+\\frac12\\sqrt{\\frac{zx}{y}}+\\frac12\\sqrt{\\frac{xy}{z}}\\ge\\sqrt{2(y+z)}.$$\nSimilarly\n$$\\sqrt{\\frac{zx}{y}}+\\frac12\\sqrt{\\frac{yz}{x}}+\\frac12\\sqrt{\\frac{xy}{z}}\\ge\\sqrt{2(z+x)},\\qquad \\sqrt{\\frac{xy}{z}}+\\frac12\\sqrt{\\frac{yz}{x}}+\\frac12\\sqrt{\\frac{zx}{y}}\\ge\\sqrt{2(x+y)}.$$\nAdding the three gives $2T\\ge R$, so $L\\ge1$. $\\blacksquare$",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Applies Cauchy-Schwarz to get $\\left(\\sum\\frac{x^2}{\\sqrt{2x^2(y+z)}}\\right)\\sum\\sqrt{2(y+z)}\\ge(\\sqrt x+\\sqrt y+\\sqrt z)^2=1$, or an equivalent bound that uses the condition."
+    },
+    {
+      "marks": 2,
+      "criterion": "Applies Cauchy-Schwarz to the $yz$ parts and combines, reducing the problem to $2\\sum\\sqrt{\\frac{yz}{x}}\\ge\\sum\\sqrt{2(y+z)}$ (for example via $1+T^2\\ge2T$), or an equivalent reduction. Award 1 for the second Cauchy-Schwarz alone."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves $\\sqrt{\\frac{yz}{x}}+\\frac12\\sqrt{\\frac{zx}{y}}+\\frac12\\sqrt{\\frac{xy}{z}}\\ge\\sqrt{2(y+z)}$ (for example by AM-GM), or an equivalent estimate for one term."
+    },
+    {
+      "marks": 1,
+      "criterion": "Adds the three cyclic estimates to obtain $2T\\ge R$ and concludes. A complete proof by another route earns all marks."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "Kevin Hu",
+    "source": "Chinese olympiad problem book (contest source not identified)"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Applies Cauchy-Schwarz to get $\\left(\\sum\\frac{x^2}{\\sqrt{2x^2(y+z)}}\\right)\\sum\\sqrt{2(y+z)}\\ge(\\sqrt x+\\sqrt y+\\sqrt z)^2=1$, or an equivalent bound that uses the condition."
+      },
+      {
+        "id": "m2",
+        "marks": 2,
+        "criterion": "Applies Cauchy-Schwarz to the $yz$ parts and combines, reducing the problem to $2\\sum\\sqrt{\\frac{yz}{x}}\\ge\\sum\\sqrt{2(y+z)}$ (for example via $1+T^2\\ge2T$), or an equivalent reduction. Award 1 for the second Cauchy-Schwarz alone."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Proves $\\sqrt{\\frac{yz}{x}}+\\frac12\\sqrt{\\frac{zx}{y}}+\\frac12\\sqrt{\\frac{xy}{z}}\\ge\\sqrt{2(y+z)}$ (for example by AM-GM), or an equivalent estimate for one term."
+      },
+      {
+        "id": "m4",
+        "marks": 1,
+        "criterion": "Adds the three cyclic estimates to obtain $2T\\ge R$ and concludes. A complete proof by another route earns all marks."
+      }
+    ],
+    "alternative_routes": [],
+    "fatal_errors": [
+      {
+        "error": "Uses the condition as $x+y+z=1$ instead of $\\sqrt x+\\sqrt y+\\sqrt z=1$.",
+        "cap": 2
+      },
+      {
+        "error": "Applies an inequality in the wrong direction, such as an upper bound where a lower bound is needed, so that the chain does not prove the claim.",
+        "cap": 2
+      },
+      {
+        "error": "Proves the inequality only for $x=y=z$ or another special case.",
+        "cap": 1
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "kevin-supplied-2026-11-03"
+}
