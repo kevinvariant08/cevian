@@ -20,6 +20,27 @@
       "after_paragraph": 2
     }
   ],
+  "a-point-sliding-along-an-arc": [
+    {
+      "src": "figures/a-point-sliding-along-an-arc-solution.svg?v=5b976e16",
+      "alt": "Two equal circles with centres A and B, each passing through the other's centre, meet at E. C is the second point where line AB meets the circle centred at A, and P lies on arc CE away from B. Triangle ABE is equilateral with a 60 degree angle at E, triangle AEP is isosceles with AE = AP and apex angle theta at A, and segment EP is highlighted.",
+      "after_paragraph": 2
+    }
+  ],
+  "a-sphere-on-a-box": [
+    {
+      "src": "figures/a-sphere-on-a-box-solution.svg?v=b8b05bd4",
+      "alt": "Vertical section of the box through the top-face diagonal AC, drawn as rectangle A, C, Q, P with AC = 30 and AP = 25. The circle with centre O and radius 17 passes through A and C and touches PQ at its midpoint T; M is the midpoint of AC, with AM = 15, MO = 8 and OA = OT = 17, and triangle AMO is shaded with its right angle at M.",
+      "after_paragraph": 2
+    }
+  ],
+  "a-square-on-the-move": [
+    {
+      "src": "figures/a-square-on-the-move-solution.svg?v=4bf90ec9",
+      "alt": "The hexagon O(0,0), A(2,0), B(9,3), C(9,5), D(7,5), E(0,2) is the swept region. It is split by F(2,2) into the starting square OAFE, the parallelogram ABCF swept by the right side, and the parallelogram EFCD swept by the top side. A dashed segment runs from O to G(7,3), the path of the lower-left corner.",
+      "after_paragraph": 1
+    }
+  ],
   "closer-to-the-line": [
     {
       "src": "figures/closer-to-the-line-solution.svg?v=93858492",
@@ -32,6 +53,48 @@
       "src": "figures/colours-on-a-cut-up-decagon-solution.svg?v=847da111",
       "alt": "A convex 10-gon divided into triangles by 7 non-crossing diagonals. The shaded triangle has two polygon sides, va and vb, so no diagonal leaves v and the third side ab is a drawn diagonal. Removing v leaves a triangulated 9-gon in which ab is a side.",
       "after_paragraph": 3
+    }
+  ],
+  "diagonals-of-a-leaning-parallelogram": [
+    {
+      "src": "figures/diagonals-of-a-leaning-parallelogram-solution.svg?v=3fd4158c",
+      "alt": "Parallelogram ABCD with AB = 12 and height 5, the point E on line AB beyond B with BE = 12, and E' the reflection of E in line DC. Segments BD and CE are marked equal, and the dashed segment AE' has length 26.",
+      "after_paragraph": 1
+    }
+  ],
+  "feet-on-the-sides": [
+    {
+      "src": "figures/feet-on-the-sides-solution.svg?v=1fd2cc20",
+      "alt": "Acute triangle ABC drawn for h = 30, with base BC horizontal. The altitude AD from A to BC has length 20, the altitude BE from B to CA has length 21, and the altitude CF from C to AB is shown. All three feet lie inside their sides and are marked with right angles.",
+      "after_paragraph": 3
+    }
+  ],
+  "four-orthogonal-quadrilaterals": [
+    {
+      "src": "figures/four-orthogonal-quadrilaterals-solution.svg?v=ddbfb06a",
+      "alt": "A kite-shaped convex quadrilateral ABCD with P, Q, R, S on sides AB, BC, CD, DA. The segments PR and QS cross at O and split ABCD into four quadrilaterals, and in each the diagonal through O is perpendicular to the opposite diagonal: OA is perpendicular to PS, OB to PQ, OC to QR and OD to RS, marked with right angles. The circle through P, Q, R and S is dashed. Adapted from Beyond the Incenter, Problem 96.",
+      "after_paragraph": 0
+    }
+  ],
+  "four-sides-and-an-area": [
+    {
+      "src": "figures/four-sides-and-an-area-solution.svg?v=fe8d0521",
+      "alt": "Convex quadrilateral ABCD with AB = 2, BC = 9, CD = 6 and DA = 7. The diagonal AC is highlighted, and right angles are marked at B and D, so AC is the hypotenuse of both triangles ABC and ACD.",
+      "after_paragraph": 2
+    }
+  ],
+  "halfway-between-two-frames": [
+    {
+      "src": "figures/halfway-between-two-frames-solution.svg?v=7645ffe9",
+      "alt": "The set of midpoints drawn as a shaded rectangular frame. The outer rectangle RSTU measures 7 by 4, with R at (10, 5) and T at (17, 9), and the unshaded inner rectangle EFGH measures 3 by 2, with E at (12, 6) and G at (15, 8).",
+      "after_paragraph": 3
+    }
+  ],
+  "parallels-through-k": [
+    {
+      "src": "figures/parallels-through-k-solution.svg?v=81453e8e",
+      "alt": "Triangle ABC with K on BC beyond C. Through K, KP is parallel to AB with BP = BK, and KQ is parallel to AC with CQ = CK. The circle through K, P and Q meets AK again at T. The auxiliary point D, with triangle CTD similar to triangle CQA, is joined to A, B, C and T, and the dashed segments AP, AQ, BT, CT, PT and QT show the two similar pairs used in the proof. Adapted from Beyond the Incenter, Problem 86.",
+      "after_paragraph": 1
     }
   ],
   "three-chords": [

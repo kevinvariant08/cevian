@@ -10,7 +10,8 @@
 <path d='M45.914 145.59L60.086 43.543' stroke='currentColor' stroke-opacity='.62' fill='none' stroke-width='.448' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='2.59 1.993'/>
 <path d='M60.086 43.543L164.969 145.59' stroke='var(--fig-accent,currentColor)' fill='none' stroke-width='.996' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/>
 <path d='M150.797 43.543L45.914 145.59' stroke='var(--fig-accent,currentColor)' fill='none' stroke-width='.996' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/>
-<path d='M13.598 74.914H197.285' stroke='currentColor' stroke-opacity='.62' fill='none' stroke-width='.448' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='2.59 1.993'/>
+<path d='M13.598 74.914L105.441 87.672' stroke='currentColor' stroke-opacity='.62' fill='none' stroke-width='.448' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='2.59 1.993'/>
+<path d='M105.441 87.672L197.285 74.914' stroke='currentColor' stroke-opacity='.62' fill='none' stroke-width='.448' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='2.59 1.993'/>
 <path d='M105.441 12.934V275.781' stroke='currentColor' stroke-opacity='.62' fill='none' stroke-width='.448' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='2.59 1.993'/>
 <path d='M54.934 80.656L49.316 79.875L48.539 85.492L54.152 86.27L54.934 80.656' stroke='currentColor' fill='none' stroke-width='.498' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/>
 <path d='M105.441 43.543V37.871H111.109V43.543H105.441' stroke='currentColor' fill='none' stroke-width='.498' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/>
