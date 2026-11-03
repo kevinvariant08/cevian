@@ -1,7 +1,7 @@
 {
   "id": "residue-polynomials",
   "title": "Residue Polynomials",
-  "kyu": 2,
+  "kyu": 1,
   "topic": "N",
   "subtopics": [
     "fermat-euler-theorem",
