@@ -1,0 +1,40 @@
+{
+  "id": "where-the-circle-touches",
+  "title": "Where the Circle Touches",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "power-of-a-point",
+    "angle-bisector-theorem",
+    "parallel-segments-in-triangle",
+    "inradius"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In triangle $ABC$, $AB = 6$ and $AC = 10$. The bisector of angle $BAC$ meets side $BC$ at $D$. The circle through $A$ that is tangent to line $BC$ at $D$ meets side $AB$ again at $P$ and side $AC$ again at $Q$. The incentre of triangle $ABC$ lies on line $PQ$. The length $BC$ can be written as $\\sqrt{m} - n$, where $m$ and $n$ are positive integers. Find $m + n$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "d3fa7280",
+  "hints": [
+    "Look at the circle from $B$ and from $C$. Each of them lies on the tangent line at $D$ and on a line through $A$ that meets the circle a second time.",
+    "Use the power of a point at $B$ and at $C$, $BP \\cdot BA = BD^2$ and $CQ \\cdot CA = CD^2$, with $BD$ and $CD$ from the angle bisector theorem. Both give $\\frac{AP}{AB} = \\frac{AQ}{AC} = 1 - \\left(\\frac{BC}{AB + AC}\\right)^2$, so $PQ$ is parallel to $BC$.",
+    "Line $PQ$ is parallel to $BC$ at distance $\\left(\\frac{BC}{AB + AC}\\right)^2 h$ from it, where $h$ is the height of the triangle from $A$. The incentre is at distance $r$ from $BC$, and working out the area of $ABC$ in two ways gives $\\frac{r}{h} = \\frac{BC}{AB + BC + CA}$. Set the two distances equal and solve for $\\frac{AB + AC}{BC}$."
+  ],
+  "solution": "Write $a = BC$ and $x = \\frac{AB + AC}{BC} = \\frac{16}{a}$. By the angle bisector theorem, $BD = \\frac{6a}{16}$ and $CD = \\frac{10a}{16}$. Line $BC$ touches the circle at $D$, so the power of $B$ gives $BP \\cdot BA = BD^2$ and the power of $C$ gives $CQ \\cdot CA = CD^2$. Hence\n$$\\dfrac{BP}{BA} = \\dfrac{BD^2}{6^2} = \\dfrac{a^2}{16^2} = \\dfrac{CD^2}{10^2} = \\dfrac{CQ}{CA} = \\dfrac{1}{x^2}.$$\nSo $PQ$ is parallel to $BC$, and if $h$ is the height of the triangle from $A$, line $PQ$ is at distance $\\frac{h}{x^2}$ from $BC$.\n\nThe incentre $I$ is at distance $r$ from $BC$, where $r$ is the inradius, and $r(AB + BC + CA) = 2[ABC] = ah$ gives $r = \\frac{h}{x + 1}$. Both $I$ and $PQ$ are on the same side of $BC$ as $A$, so $I$ lies on $PQ$ exactly when\n$$\\dfrac{1}{x^2} = \\dfrac{1}{x + 1}, \\quad\\text{that is,}\\quad x^2 - x - 1 = 0.$$\nSo $x = \\frac{1 + \\sqrt{5}}{2}$ and\n$$BC = \\dfrac{16}{x} = 8\\sqrt{5} - 8 = \\sqrt{320} - 8.$$\n\nThis is about $9.89$, so a triangle with these sides exists. As $BC$ is irrational, the form $\\sqrt{m} - n$ is unique, and $m + n = 328$.",
+  "solution_figures": [
+    {
+      "src": "figures/where-the-circle-touches-solution.svg?v=a10a7c8f",
+      "alt": "Triangle ABC with AB = 6, AC = 10 and BC = 8 times root 5 minus 8, about 9.89. The bisector from A meets BC at D. A circle through A touches BC at D and crosses AB at P and AC at Q. The chord PQ is parallel to BC and passes through the incentre I, so I and PQ are at the same height above BC.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-where-the-circle-touches"
+}

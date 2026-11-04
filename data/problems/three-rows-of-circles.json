@@ -1,0 +1,39 @@
+{
+  "id": "three-rows-of-circles",
+  "title": "Three Rows of Circles",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "homothety",
+    "heron",
+    "inradius"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Triangle $ABC$ has the following property. Ten circles of radius $1$ can be placed in a row along side $BC$: no two of the circles overlap, every circle lies inside the triangle and touches $BC$, each circle touches the next one in the row, the first circle touches $AB$ and the last circle touches $CA$. In the same way, eleven circles of radius $1$ can be placed in a row along side $CA$, with the two end circles touching $BC$ and $AB$, and eighteen circles of radius $1$ can be placed in a row along side $AB$, with the two end circles touching $CA$ and $BC$. Find the area of triangle $ABC$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "e8937ff4",
+  "hints": [
+    "Look at the centres of the circles at the ends of the rows. The first circle of the row along $BC$ touches both $AB$ and $BC$. Where is its centre, and which other row has a circle in the same place?",
+    "Let $A'$, $B'$, $C'$ be the points inside the triangle at distance $1$ from both sides through $A$, $B$, $C$ respectively. The row along $BC$ runs from the circle centred at $B'$ to the circle centred at $C'$, so $B'C' = 2 \\cdot 9 = 18$. The sides of triangle $A'B'C'$ are parallel to those of $ABC$ at distance $1$, so the two triangles are related by a homothety about the incentre.",
+    "Triangle $A'B'C'$ has sides $18$, $20$ and $34$. Find its area and its inradius $r'$ by Heron's formula. The inradius of $ABC$ is $r' + 1$, and $ABC$ is similar to $A'B'C'$ with ratio $\\frac{r' + 1}{r'}$."
+  ],
+  "solution": "The first circle of the row along $BC$ lies inside the triangle and touches $AB$ and $BC$, so its centre is the point $B'$ on the bisector of angle $B$ at distance $1$ from both lines. Define $A'$ and $C'$ in the same way. The $10$ centres of the row along $BC$ lie on the line parallel to $BC$ at distance $1$, with consecutive centres $2$ apart. No two circles overlap, so the centres never turn back, since a turn would put two centres at the same point. So they run in one direction from $B'$ to $C'$, and $B'C' = 2 \\cdot 9 = 18$. In the same way $C'A' = 2 \\cdot 10 = 20$ and $A'B' = 2 \\cdot 17 = 34$.\n\nLet $I$ be the incentre and $r$ the inradius of $ABC$. The lines $B'C'$, $C'A'$, $A'B'$ are parallel to the sides at distance $1$ on the side of $I$, so each is at distance $r - 1$ from $I$. Hence triangle $A'B'C'$ has incentre $I$ and inradius $r - 1$, and it is the image of $ABC$ under the homothety with centre $I$ and ratio $\\frac{r - 1}{r}$.\n\nTriangle $A'B'C'$ has semiperimeter $36$ and area $\\sqrt{36 \\cdot 18 \\cdot 16 \\cdot 2} = 144$, so its inradius is $\\frac{144}{36} = 4$. So $r = 5$, the ratio is $\\frac{4}{5}$, and the area of $ABC$ is $144 \\cdot \\left(\\frac{5}{4}\\right)^2 = 225$.",
+  "solution_figures": [
+    {
+      "src": "figures/three-rows-of-circles-solution.svg?v=10d25f6c",
+      "alt": "Triangle ABC with side BC along the bottom. Ten circles of radius 1 sit in a row along BC without overlapping, each touching BC and the next one; the first touches AB and is centred at B', and the last touches CA and is centred at C'. A circle of radius 1 centred at A' touches AB and CA. The triangle A'B'C', with B'C' = 18, C'A' = 20 and A'B' = 34, has its sides parallel to those of ABC at distance 1; it has area 144 and inradius 4, and ABC has inradius 5 and area 225.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-three-rows-of-circles"
+}

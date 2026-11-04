@@ -1,0 +1,33 @@
+{
+  "id": "a-multiple-of-sixty-five-squared",
+  "title": "Sixty-Five Squared",
+  "kyu": 4,
+  "topic": "N",
+  "subtopics": [
+    "polynomial-factoring",
+    "orders-mod-n",
+    "lte",
+    "inclusion-exclusion"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For each positive integer $n$, let $a_n = 10^n + 5^n + 2^n + 1$. For how many positive integers $n \\le 1000$ is $a_n$ divisible by $4225$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "c679c502",
+  "hints": [
+    "Before looking at any prime, write $a_n$ as a product of two simpler numbers.",
+    "$a_n = (2^n + 1)(5^n + 1)$ and $4225 = 5^2 \\cdot 13^2$. For each of the primes $5$ and $13$, decide which of the two factors it divides and for which $n$, using orders modulo that prime, and use lifting the exponent for the squares. Check both factors for each prime.",
+    "You should find that $5 \\mid 2^n + 1$ exactly when $n \\equiv 2 \\pmod 4$, with $v_5(2^n + 1) = 1 + v_5(n)$. For $13$, there are two sources: $13 \\mid 5^n + 1$ exactly when $n \\equiv 2 \\pmod 4$, and $13 \\mid 2^n + 1$ exactly when $n \\equiv 6 \\pmod{12}$, and in each case the factor has $13$-adic valuation $1 + v_{13}(n)$. Turn this into a description of the good $n$ by residues, and count."
+  ],
+  "solution": "We have $a_n = (2^n + 1)(5^n + 1)$ and $4225 = 5^2 \\cdot 13^2$.\n\nThe prime $5$ does not divide $5^n + 1$. The powers of $2$ modulo $5$ are $2, 4, 3, 1$, so $5 \\mid 2^n + 1$ exactly when $n \\equiv 2 \\pmod 4$. Then $n = 2k$ with $k$ odd, and lifting the exponent gives $v_5(4^k + 1) = v_5(5) + v_5(k) = 1 + v_5(n)$. So $25 \\mid a_n$ exactly when $n \\equiv 2 \\pmod 4$ and $5 \\mid n$, that is, $n \\equiv 10 \\pmod{20}$.\n\nModulo $13$, $5^2 \\equiv -1$, so $13 \\mid 5^n + 1$ exactly when $n \\equiv 2 \\pmod 4$, and then, with $n = 2k$ and $k$ odd, $v_{13}(25^k + 1) = v_{13}(26) + v_{13}(k) = 1 + v_{13}(n)$. Also $2^4 \\equiv 3$ and $2^6 \\equiv -1$, so $2$ has order $12$ and $13 \\mid 2^n + 1$ exactly when $n \\equiv 6 \\pmod{12}$; then, with $n = 6j$ and $j$ odd, $v_{13}(64^j + 1) = v_{13}(65) + v_{13}(j) = 1 + v_{13}(n)$.\n\nNow let $n \\equiv 10 \\pmod{20}$. If $3 \\mid n$, then $n \\equiv 6 \\pmod{12}$, both factors are divisible by $13$, and $169 \\mid a_n$. If $3 \\nmid n$, only $5^n + 1$ is divisible by $13$, and $169 \\mid a_n$ exactly when $13 \\mid n$. So $4225 \\mid a_n$ exactly when $n \\equiv 10 \\pmod{20}$ and $n$ is divisible by $3$ or by $13$.\n\nUp to $1000$ there are $17$ such $n$ with $n \\equiv 30 \\pmod{60}$, $4$ with $n \\equiv 130 \\pmod{260}$, and $1$, namely $390$, in both classes. The answer is $17 + 4 - 1 = 20$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-multiple-of-sixty-five-squared"
+}

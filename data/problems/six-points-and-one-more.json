@@ -1,0 +1,40 @@
+{
+  "id": "six-points-and-one-more",
+  "title": "Six Points and One More",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "inscribed-angle-theorem",
+    "area-ratios",
+    "sine-area-formula",
+    "regular-polygon-central-triangles"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A regular hexagon $ABCDEF$ is inscribed in a circle, and $P$ is a point on the arc $AB$ of that circle that contains no other vertex of the hexagon. Line $PE$ meets side $AB$ at $U$, and line $PD$ meets side $AB$ at $V$. Given that $AU = 6$ and $VB = 7$, the area of the hexagon can be written as $k\\sqrt{3}$ for a positive integer $k$. Find $k$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "ead938fd",
+  "hints": [
+    "Work out the angles at $P$ between the lines $PA$, $PE$, $PD$ and $PB$. They are the same wherever $P$ is on the arc.",
+    "Comparing the areas of triangles $APX$ and $XPB$, a point $X$ on $AB$ splits it so that $\\frac{AX}{XB} = \\frac{PA \\sin\\angle APX}{PB \\sin\\angle XPB}$. Write this for $X = U$ and for $X = V$, and combine the two so that the unknown ratio $\\frac{PA}{PB}$ cancels.",
+    "The angles are $60^\\circ$ and $90^\\circ$ at $U$, and $90^\\circ$ and $60^\\circ$ at $V$, so $\\frac{AU \\cdot VB}{UB \\cdot AV} = \\frac{3}{4}$. Write $UV = m$ and solve for $m$."
+  ],
+  "solution": "Each side of the hexagon cuts off an arc of $60^\\circ$, so from $P$ each of $AF$, $FE$, $ED$, $DC$ and $CB$ is seen under an angle of $30^\\circ$. Hence $\\angle APU = 60^\\circ$, $\\angle UPB = 90^\\circ$, $\\angle APV = 90^\\circ$ and $\\angle VPB = 60^\\circ$, and the points lie in the order $A$, $U$, $V$, $B$.\n\nFor a point $X$ on $AB$, triangles $APX$ and $XPB$ have the same height from $P$, so\n$$\\dfrac{AX}{XB} = \\dfrac{[APX]}{[XPB]} = \\dfrac{PA \\sin\\angle APX}{PB \\sin\\angle XPB}.$$\nDividing this for $X = U$ by this for $X = V$ removes $\\frac{PA}{PB}$:\n$$\\dfrac{AU \\cdot VB}{UB \\cdot AV} = \\dfrac{\\sin^2 60^\\circ}{\\sin^2 90^\\circ} = \\dfrac{3}{4}.$$\n\nLet $UV = m$. Then $4 \\cdot 6 \\cdot 7 = 3(m + 7)(m + 6)$, so $m^2 + 13m - 14 = 0$ and $m = 1$. So $AB = 14$. This case occurs: the point of the arc with $\\frac{PA}{PB} = \\frac{\\sqrt{3}}{2}$ gives $\\frac{AU}{UB} = \\frac{3}{4}$ and $\\frac{AV}{VB} = 1$. The hexagon is six equilateral triangles of side $14$, so its area is $6 \\cdot \\frac{\\sqrt{3}}{4} \\cdot 14^2 = 294\\sqrt{3}$, and $k = 294$.",
+  "solution_figures": [
+    {
+      "src": "figures/six-points-and-one-more-solution.svg?v=47d9b670",
+      "alt": "A close-up of side AB = 14 of the regular hexagon, with P on the short arc AB above it. The lines from P towards the far vertices E and D cross AB at U and V, with AU = 6, UV = 1 and VB = 7. At P the angle APB of 150 degrees is split into 60, 30 and 60 degrees.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-six-points-and-one-more"
+}

@@ -211,7 +211,7 @@
   ],
   "three-rows-of-circles": [
     {
-      "src": "figures/three-rows-of-circles-solution.svg?v=2e86fdca",
+      "src": "figures/three-rows-of-circles-solution.svg?v=10d25f6c",
       "alt": "Triangle ABC with side BC along the bottom. Ten circles of radius 1 sit in a row along BC without overlapping, each touching BC and the next one; the first touches AB and is centred at B', and the last touches CA and is centred at C'. A circle of radius 1 centred at A' touches AB and CA. The triangle A'B'C', with B'C' = 18, C'A' = 20 and A'B' = 34, has its sides parallel to those of ABC at distance 1; it has area 144 and inradius 4, and ABC has inradius 5 and area 225.",
       "after_paragraph": 1
     }

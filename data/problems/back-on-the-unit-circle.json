@@ -1,0 +1,33 @@
+{
+  "id": "back-on-the-unit-circle",
+  "title": "Back on the Unit Circle",
+  "kyu": 4,
+  "topic": "A",
+  "subtopics": [
+    "roots-of-unity",
+    "geometric-interpretation",
+    "modular-arithmetic",
+    "inclusion-exclusion"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $\\zeta = \\cos 30^\\circ + i\\sin 30^\\circ$ and $\\eta = \\cos 45^\\circ + i\\sin 45^\\circ$. How many ordered pairs $(r, s)$ of integers with $1 \\le r \\le 48$ and $1 \\le s \\le 48$ satisfy $\\left|\\zeta^r + \\eta^s + 1\\right| = 1$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "6d05fb25",
+  "hints": [
+    "Call $w = \\zeta^r + \\eta^s + 1$. If $|w| = 1$, then $\\zeta^r + \\eta^s = w + (-1)$ equates two sums, each of two points on the unit circle.",
+    "Interpret the sums geometrically. Two unit vectors with a nonzero sum are mirror images in the line through $0$ and their sum, and the length of the sum fixes the angle between them, so the sum determines the pair.",
+    "So the condition holds exactly when $\\zeta^r = -1$, or $\\eta^s = -1$, or $\\zeta^r = -\\eta^s$. Turn each of these into a congruence, count the pairs in each case, and combine the three counts by inclusion-exclusion."
+  ],
+  "solution": "Put $u = \\zeta^r$ and $v = \\eta^s$, which lie on the unit circle, and $w = u + v + 1$. If $|w| = 1$, then $u + v = w + (-1)$, and both sides are sums of two unit vectors.\n\nTwo unit vectors with a nonzero sum $m$ are mirror images in the line through $0$ and $m$, each at the angle $\\theta$ to it with $\\cos\\theta = \\frac{|m|}{2}$, so $m$ determines the pair. Hence $u + v = 0$, or $\\{u, v\\} = \\{w, -1\\}$. Conversely, each of $u = -v$, $u = -1$ and $v = -1$ gives $|u + v + 1| = 1$. So the condition is\n$$\\zeta^r = -1, \\quad\\text{or}\\quad \\eta^s = -1, \\quad\\text{or}\\quad \\zeta^r = -\\eta^s.$$\n\nThe first holds when $r \\equiv 6 \\pmod{12}$, for $4$ values of $r$, giving $4 \\cdot 48 = 192$ pairs. The second holds when $s \\equiv 4 \\pmod 8$, giving $6 \\cdot 48 = 288$ pairs. The third says $30r - 45s \\equiv 180 \\pmod{360}$, that is $2r - 3s \\equiv 12 \\pmod{24}$, which holds exactly when $3 \\mid r$ and $s \\equiv 6r + 4 \\pmod 8$. Each of the $16$ multiples of $3$ has $6$ such values of $s$, giving $96$ pairs.\n\nThe first two together give $4 \\cdot 6 = 24$ pairs. The first and third force $\\eta^s = 1$, so $s \\equiv 0 \\pmod 8$, giving $24$ pairs. The second and third force $\\zeta^r = 1$, so $r \\equiv 0 \\pmod{12}$, giving $24$ pairs. All three would need $-1 = \\zeta^r = -\\eta^s = 1$, which is impossible. By inclusion-exclusion the answer is $192 + 288 + 96 - 3 \\cdot 24 = 504$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-back-on-the-unit-circle"
+}

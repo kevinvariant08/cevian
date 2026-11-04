@@ -1,0 +1,32 @@
+{
+  "id": "a-necklace-of-twenty-three",
+  "title": "A Necklace of Twenty-Three",
+  "kyu": 4,
+  "topic": "C",
+  "subtopics": [
+    "tilings",
+    "recursion",
+    "orbit-counting-under-rotation"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "The $23$ beads of a necklace are equally spaced around a circle, and each bead is coloured black or white so that no two neighbouring beads are both white and no three consecutive beads are all black. Two colourings count as the same if one can be turned into the other by rotating the necklace; turning the necklace over is not allowed. How many different colourings are there?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "4d65c6f8",
+  "hints": [
+    "Read the colours clockwise. What can come after a white bead before the next white bead appears?",
+    "Each white bead starts a block that is either white then black, or white then two blacks. So a colouring is a way of cutting the circle into blocks of lengths $2$ and $3$. Count these cuttings with a recursion for blocks in a row, and handle the circle by looking at the block that covers one fixed bead.",
+    "With $t_n$ the number of ordered ways to write $n$ as a sum of $2$s and $3$s, the colourings of the $23$ numbered positions number $t_{23} + t_{21} + 2t_{20}$. Then use the fact that $23$ is prime to see how rotation groups these colourings."
+  ],
+  "solution": "Read the colours clockwise. Some bead is white, since $23$ black beads would include three consecutive ones. After each white bead come one or two black beads and then the next white bead, because two whites are never neighbours and three blacks are never consecutive. So a colouring cuts the circle into blocks $WB$ and $WBB$, each starting at a white bead, and every such cutting gives an allowed colouring.\n\nLet $t_n$ be the number of ordered ways to write $n$ as a sum of $2$s and $3$s, so $t_0 = 1$, $t_1 = 0$, $t_2 = 1$ and $t_n = t_{n-2} + t_{n-3}$ for $n \\ge 3$. Number the positions $1$ to $23$ clockwise and look at the block containing position $1$. It starts at position $1$ in $t_{23}$ colourings; it is $WB$ starting at position $23$ in $t_{21}$; it is $WBB$ starting at position $23$ or at position $22$ in $t_{20}$ each. The recursion gives $t_{20} = 114$, $t_{21} = 151$ and $t_{23} = 265$, so there are\n$$t_{23} + t_{21} + 2t_{20} = 265 + 151 + 228 = 644$$\ncolourings of the numbered positions.\n\nA rotation through $k$ places with $0 < k < 23$ moves position $1$ through every position, since $\\gcd(k, 23) = 1$, so it fixes only the two single-colour necklaces, and neither is allowed. Hence the $23$ rotations of an allowed colouring are all different, the $644$ colourings fall into groups of $23$, and the answer is $\\frac{644}{23} = 28$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-necklace-of-twenty-three"
+}
