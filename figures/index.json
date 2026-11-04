@@ -13,13 +13,6 @@
       "after_paragraph": 1
     }
   ],
-  "a-hub-for-four-points": [
-    {
-      "src": "figures/a-hub-for-four-points-solution.svg?v=4a3aa649",
-      "alt": "The plane through line PQ and the point A, after B has been rotated about line PQ into this plane, onto the side away from A, to the point B'. P and Q lie on the line 8 apart. A is 3 from the line with foot P, and B' is 7 from the line with foot Q, both at right angles. The straight segment AB' crosses the line at X, and AB' squared is 8 squared plus 10 squared, which is 164.",
-      "after_paragraph": 4
-    }
-  ],
   "a-lone-solution": [
     {
       "src": "figures/a-lone-solution-solution.svg?v=92f79188",
@@ -160,6 +153,13 @@
       "after_paragraph": 2
     }
   ],
+  "one-point-two-circles": [
+    {
+      "src": "figures/one-point-two-circles-solution.svg?v=07621bbe",
+      "alt": "The circle omega with centre O and radius 21, and the first line through P drawn as a horizontal chord AB. Two small circles touch the chord at P from opposite sides, with radius 5 above and radius 7 below, and each touches omega internally at the end of a dashed radius from O. Here OP = 14 and AP times PB is 245.",
+      "after_paragraph": 1
+    }
+  ],
   "parallels-through-k": [
     {
       "src": "figures/parallels-through-k-solution.svg?v=81453e8e",
@@ -195,6 +195,13 @@
       "after_paragraph": 1
     }
   ],
+  "sixty-equal-slices": [
+    {
+      "src": "figures/sixty-equal-slices-solution.svg?v=700c6374",
+      "alt": "A regular hexagon with a good point X inside it. Rays from X to the six corners cut the hexagon into six triangles, one on each side. The triangle on side 5, at the lower left, is shaded and is cut by five more rays into six pieces of equal area. Perpendiculars from X to sides 1, 2 and 3, where side 1 is the right-hand side and the sides are numbered anticlockwise, have lengths d1, d2 and d3, here 12, 14 and 12 twentieths of the distance between opposite sides, and d1 - d2 + d3 is half that distance.",
+      "after_paragraph": 2
+    }
+  ],
   "three-areas-in-a-hexagon": [
     {
       "src": "figures/three-areas-in-a-hexagon-solution.svg?v=6ac7e34f",
@@ -206,6 +213,13 @@
     {
       "src": "figures/three-chords-solution.svg?v=1883ca08",
       "alt": "Part of the parabola y = x squared, with the triangle whose vertices have x-coordinates a = 0, b = 2 and c = 3. Its sides have slopes a + b = 2, a + c = 3 and b + c = 5, which is the sum of the x-coordinates at each pair of ends.",
+      "after_paragraph": 1
+    }
+  ],
+  "three-distances-to-one-point": [
+    {
+      "src": "figures/three-distances-to-one-point-solution.svg?v=ef8bfa59",
+      "alt": "Triangle ABC with BC = 102 along the bottom, CA = 136 and AB = 153, and the point P inside it joined to the three vertices, with PA = 96, PB = 81 and PC = 48. The three equal angles PAB, PBC and PCA are marked omega. Triangle PAB is shaded; its angle at P is 180 degrees minus angle B.",
       "after_paragraph": 1
     }
   ],
@@ -242,6 +256,20 @@
       "src": "figures/twenty-seven-points-solution.svg?v=849e83d7",
       "alt": "An oblique view of the cube whose corners have coordinates 0 and 2, with the nine points of its bottom face marked. A triangle PQR with vertices P = (2, 0, 1), Q = (0, 1, 2) and R = (2, 2, 2) is drawn above its shaded shadow P'Q'R' on the bottom face z = 0, and dashed vertical segments join each vertex to its shadow.",
       "after_paragraph": 1
+    }
+  ],
+  "twenty-six-different-corners": [
+    {
+      "src": "figures/twenty-six-different-corners-solution.svg?v=a15de968",
+      "alt": "A circle with centre O and five points on it. The tangents at these points form a convex pentagon around the circle. Two neighbouring points of tangency, P and Q, have tangents meeting at the corner V, with right angles marked at P and Q. The exterior angle at V, between the side through P extended beyond V and the side through Q, is marked and equals angle POQ at the centre: in the case drawn, both are 70 degrees.",
+      "after_paragraph": 2
+    }
+  ],
+  "twenty-two-around-the-edge": [
+    {
+      "src": "figures/twenty-two-around-the-edge-solution.svg?v=1e803cea",
+      "alt": "An L-shaped hexagon drawn inside a dashed 4 by 7 rectangle. Going round the hexagon, its sides are 4, 5, 1, 2, 3 and 7. The corner cut from the rectangle is the shaded 1 by 2 rectangle, so the hexagon's area is 28 minus 2, which is 26.",
+      "after_paragraph": 2
     }
   ],
   "two-circles-on-the-legs": [
