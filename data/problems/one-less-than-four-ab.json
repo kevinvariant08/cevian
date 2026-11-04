@@ -1,0 +1,84 @@
+{
+  "id": "one-less-than-four-ab",
+  "title": "One Less Than Four ab",
+  "kyu": 2,
+  "topic": "N",
+  "subtopics": [
+    "modular-arithmetic",
+    "vieta-jumping",
+    "extremal-principle"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $a$ and $b$ be positive integers such that $4ab - 1$ divides $(4a^2 - 1)^2$. Prove that $a = b$.",
+  "hints": [
+    "Work modulo $m = 4ab - 1$, where $4ab \\equiv 1$. Multiply $4a^2 - 1$ by $b$ and simplify.",
+    "This shows that $m$ divides $(a - b)^2$. Suppose $(a - b)^2 = k(4ab - 1)$ with $k \\ge 1$, fix $k$, and choose a solution with $a > b$ and $a + b$ as small as possible.",
+    "Read the equation as a quadratic in $a$. Its other root is $\\frac{b^2 + k}{a}$, a positive integer. Show it is smaller than $b$."
+  ],
+  "solution": "Let $m = 4ab - 1$. Modulo $m$ we have $b(4a^2 - 1) = a \\cdot 4ab - b \\equiv a - b$, so $b^2(4a^2 - 1)^2 \\equiv (a - b)^2$. Since $m \\equiv -1 \\pmod b$, $\\gcd(b, m) = 1$, and so $m \\mid (4a^2 - 1)^2$ if and only if $m \\mid (a - b)^2$.\n\nSuppose $a \\ne b$. Then $(a - b)^2 = k(4ab - 1)$ for a positive integer $k$. Fix this $k$. The equation is symmetric in $a$ and $b$, so among all pairs of positive integers $(x, y)$ with $x > y$ and $(x - y)^2 = k(4xy - 1)$, choose one, $(a, b)$, with $a + b$ minimal. Expanding, $a$ is a root of\n$$t^2 - (2b + 4kb)\\,t + b^2 + k = 0.$$\nThe other root is $a' = 2b + 4kb - a = \\dfrac{b^2 + k}{a}$. The first form shows $a'$ is an integer and the second that it is positive, and $(a', b)$ satisfies $(a' - b)^2 = k(4a'b - 1)$. As the right side is positive, $a' \\ne b$.\n\nSince $b(4ab - 1) \\ge 4ab - 1 \\ge 3a > a - b$, multiplying by $a - b > 0$ gives $(a - b)^2 < b(a - b)(4ab - 1)$, that is,\n$$k = \\dfrac{(a - b)^2}{4ab - 1} < b(a - b).$$\nHence $aa' = b^2 + k < b^2 + b(a - b) = ab$, so $a' < b$. Then $(b, a')$ is a pair with $b > a'$ satisfying the equation and $b + a' < a + b$, which contradicts the choice of $(a, b)$. So $a = b$. $\\blacksquare$",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Shows that $4ab - 1 \\mid (4a^2 - 1)^2$ is equivalent to $4ab - 1 \\mid (a - b)^2$, or implies it, for example by multiplying by $b$ and using $4ab \\equiv 1$, with the coprimality of $b$ and $4ab - 1$ justified."
+    },
+    {
+      "marks": 1,
+      "criterion": "For $a \\ne b$, writes $(a - b)^2 = k(4ab - 1)$ with a fixed positive integer $k$ and sets up a minimal counterexample or another descent, such as choosing $a + b$ minimal."
+    },
+    {
+      "marks": 2,
+      "criterion": "Shows that the other root $a' = 4kb + 2b - a = \\frac{b^2 + k}{a}$ of the quadratic in $a$ is a positive integer and gives a new solution $(a', b)$ with the same $k$."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves $a' < b$, or another strict decrease of $a + b$, for example from $k < b(a - b)$, and concludes with the contradiction. Deduct 1 if the case $a' = b$ is not excluded."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "cevian",
+    "source": "IMO 2007 P5"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Shows that $4ab - 1 \\mid (4a^2 - 1)^2$ is equivalent to $4ab - 1 \\mid (a - b)^2$, or implies it, for example by multiplying by $b$ and using $4ab \\equiv 1$, with the coprimality of $b$ and $4ab - 1$ justified."
+      },
+      {
+        "id": "m2",
+        "marks": 1,
+        "criterion": "For $a \\ne b$, writes $(a - b)^2 = k(4ab - 1)$ with a fixed positive integer $k$ and sets up a minimal counterexample or another descent, such as choosing $a + b$ minimal."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Shows that the other root $a' = 4kb + 2b - a = \\frac{b^2 + k}{a}$ of the quadratic in $a$ is a positive integer and gives a new solution $(a', b)$ with the same $k$."
+      },
+      {
+        "id": "m4",
+        "marks": 2,
+        "criterion": "Proves $a' < b$, or another strict decrease of $a + b$, for example from $k < b(a - b)$, and concludes with the contradiction. Deduct 1 if the case $a' = b$ is not excluded."
+      }
+    ],
+    "alternative_routes": [],
+    "fatal_errors": [
+      {
+        "error": "Claims that $4ab - 1 \\mid (a - b)^2$ forces $a = b$ because $(a - b)^2 < 4ab - 1$, which is false in general.",
+        "cap": 2
+      },
+      {
+        "error": "Runs the descent without fixing the quotient $k$, so the smaller pair is not a solution of the same equation.",
+        "cap": 3
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-one-less-than-four-ab"
+}

@@ -1,0 +1,110 @@
+{
+  "id": "four-integers-in-decreasing-order",
+  "title": "Four Integers in Decreasing Order",
+  "kyu": 1,
+  "topic": "N",
+  "subtopics": [
+    "polynomial-factoring",
+    "symmetric-expressions",
+    "bounding"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $a > b > c > d$ be positive integers such that\n$$ac + bd = (b + d + a - c)(b + d - a + c).$$\nProve that $ab + cd$ is not prime.",
+  "hints": [
+    "Expand the right side and rewrite the condition as an equality between an expression in $a$ and $c$ and an expression in $b$ and $d$.",
+    "The condition becomes $a^2 - ac + c^2 = b^2 + bd + d^2$. Compare the sizes of $ab + cd$, $ac + bd$ and $ad + bc$, and look for an identity linking their products.",
+    "Show that $(ab + cd)(ad + bc) = (ac + bd)(a^2 - ac + c^2)$."
+  ],
+  "solution": "The right side is $(b + d)^2 - (a - c)^2$, so the condition says\n$$a^2 - ac + c^2 = b^2 + bd + d^2. \\qquad (1)$$\nExpanding, $(ab + cd)(ad + bc) = ac(b^2 + d^2) + bd(a^2 + c^2)$. On the other hand, by (1),\n$$(ac + bd)(a^2 - ac + c^2) = ac(b^2 + bd + d^2) + bd(a^2 - ac + c^2) = ac(b^2 + d^2) + bd(a^2 + c^2).$$\nHence\n$$(ab + cd)(ad + bc) = (ac + bd)(a^2 - ac + c^2). \\qquad (2)$$\nAlso $(ab + cd) - (ac + bd) = (a - d)(b - c) > 0$ and $(ac + bd) - (ad + bc) = (a - b)(c - d) > 0$, so\n$$ab + cd > ac + bd > ad + bc > 0.$$\n\nSuppose $p = ab + cd$ is prime. Since $0 < ac + bd < p$, $p$ does not divide $ac + bd$, so by (2) $p$ divides $a^2 - ac + c^2$, which is positive. Write $a^2 - ac + c^2 = np$ with $n$ a positive integer. Dividing (2) by $p$ gives $ad + bc = n(ac + bd) \\ge ac + bd$, which contradicts $ac + bd > ad + bc$. So $ab + cd$ is not prime. $\\blacksquare$\n\n<b>Remark.</b> The identity (2) can be found by asking which product of two of $ab + cd$, $ac + bd$, $ad + bc$ can be rewritten using (1). A geometric route also exists: (1) says that a quadrilateral with sides $a$, $c$, $b$, $d$ in that order and opposite angles $60^\\circ$ and $120^\\circ$ is cyclic, and Ptolemy's theorem then produces the same relation.",
+  "rubric": [
+    {
+      "marks": 1,
+      "criterion": "Rewrites the condition as $a^2 - ac + c^2 = b^2 + bd + d^2$, or an equivalent form."
+    },
+    {
+      "marks": 3,
+      "criterion": "Proves the identity $(ab + cd)(ad + bc) = (ac + bd)(a^2 - ac + c^2)$, or another identity that writes a multiple of $ab + cd$ as a product of two factors each smaller than $ab + cd$, using the condition."
+    },
+    {
+      "marks": 1,
+      "criterion": "Proves $ab + cd > ac + bd > ad + bc$, for example from $(a - d)(b - c) > 0$ and $(a - b)(c - d) > 0$."
+    },
+    {
+      "marks": 2,
+      "criterion": "Concludes that $ab + cd$ is not prime: if it were a prime $p$, then $p \\nmid ac + bd$, so $p \\mid a^2 - ac + c^2$, and dividing gives $ad + bc \\ge ac + bd$, a contradiction."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "cevian",
+    "source": "IMO 2001 P6"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 1,
+        "criterion": "Rewrites the condition as $a^2 - ac + c^2 = b^2 + bd + d^2$, or an equivalent form."
+      },
+      {
+        "id": "m2",
+        "marks": 3,
+        "criterion": "Proves the identity $(ab + cd)(ad + bc) = (ac + bd)(a^2 - ac + c^2)$, or another identity that writes a multiple of $ab + cd$ as a product of two factors each smaller than $ab + cd$, using the condition."
+      },
+      {
+        "id": "m3",
+        "marks": 1,
+        "criterion": "Proves $ab + cd > ac + bd > ad + bc$, for example from $(a - d)(b - c) > 0$ and $(a - b)(c - d) > 0$."
+      },
+      {
+        "id": "m4",
+        "marks": 2,
+        "criterion": "Concludes that $ab + cd$ is not prime: if it were a prime $p$, then $p \\nmid ac + bd$, so $p \\mid a^2 - ac + c^2$, and dividing gives $ad + bc \\ge ac + bd$, a contradiction."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Cyclic quadrilateral and Ptolemy",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 1,
+            "criterion": "Rewrites the condition as $a^2 - ac + c^2 = b^2 + bd + d^2$."
+          },
+          {
+            "id": "a2",
+            "marks": 3,
+            "criterion": "Builds the cyclic quadrilateral with sides $a$, $c$, $b$, $d$ and angles $60^\\circ$ and $120^\\circ$, and uses Ptolemy's theorem and the law of cosines to derive an identity equivalent to $(ab + cd)(ad + bc) = (ac + bd)(a^2 - ac + c^2)$."
+          },
+          {
+            "id": "a3",
+            "marks": 1,
+            "criterion": "Proves $ab + cd > ac + bd > ad + bc$."
+          },
+          {
+            "id": "a4",
+            "marks": 2,
+            "criterion": "Concludes from the identity and the ordering that $ab + cd$ is not prime."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "From a prime $p$ dividing a product, concludes that $p$ divides a particular factor without showing that it does not divide the other one.",
+        "cap": 5
+      },
+      {
+        "error": "States an identity like (2) that is false, or uses one without any verification.",
+        "cap": 2
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-four-integers-in-decreasing-order"
+}

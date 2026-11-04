@@ -178,5 +178,12 @@
       "alt": "Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
       "after_paragraph": 1
     }
+  ],
+  "fencing-two-colours": [
+    {
+      "src": "figures/fencing-two-colours-solution.svg?v=295bf6d6",
+      "alt": "The lower-bound construction drawn small: three red points, labelled R and drawn in the accent colour, and three blue points, labelled B, alternate around a circle, and one more blue point lies off the circle. Every chord joining neighbouring points on the circle joins two colours, so some line must cross it. The highlighted line crosses exactly two sides of the hexagon formed by the six points, and no line can cross more than two.",
+      "after_paragraph": 2
+    }
   ]
 }
