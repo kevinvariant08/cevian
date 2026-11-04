@@ -1,0 +1,58 @@
+%! alt Triangle ABC in its circumcircle with centre O. On BC lie the midpoint E, the foot D of the bisector from A, and, beyond C, the foot F of the altitude from A, with DE = 3, DF = 12 and AF = 16. The bisector AD is extended to N, the lowest point of the circle, directly below E with NE = 4. The shaded right triangles DEN and DFA are similar, and dashed segments join O to N and to B.
+%! after_paragraph 1
+%! scale 1/6
+%! let R = 125/8
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){E} %! E = (0, 0)
+\tkzDefPoint(0.50000000,0.0){D} %! D = (3, 0)
+\tkzDefPoint(2.5000000,0.0){F} %! F = (15, 0)
+\tkzDefPoint(2.5000000,2.6666667){A} %! A = (15, 16)
+\tkzDefPoint(-1.7400511,0.0){B} %! B = (-sqrt(109), 0)
+\tkzDefPoint(1.7400511,0.0){C} %! C = (sqrt(109), 0)
+\tkzDefPoint(0.0,-0.66666667){N} %! N = (0, -4)
+\tkzDefPoint(0.0,1.9375000){O} %! O = (0, 93/8)
+%! fact dist(D, E) == 3
+%! fact dist(D, F) == 12
+%! fact dist(A, F) == 16
+%! fact perp(A, F, B, C)
+%! fact midpoint(E, B, C)
+%! fact on_segment(D, B, C)
+%! fact equal(angle(B, A, D), angle(D, A, C))
+%! fact collinear(N, A, D)
+%! fact on_circle(A, O, R)
+%! fact on_circle(B, O, R)
+%! fact on_circle(C, O, R)
+%! fact on_circle(N, O, R)
+%! fact perp(N, E, B, C)
+%! fact dist(N, E) == 4
+%! fact dist(D, N) == 5
+%! fact dist(A, D) == 20
+%! fact dist(D, B)*dist(D, C) == 100
+%! fact dist(E, B)**2 == 109
+%! fact dist(O, A) == 125/8
+\tkzFillPolygon[color=figaccenttint](D,E,N)
+\tkzFillPolygon[color=figaccenttint](D,F,A)
+\tkzDrawCircle(O,A)
+\tkzDrawSegment[aux](C,F)
+\tkzDrawSegment[aux](A,F)
+\tkzDrawSegment[aux](O,N)
+\tkzDrawSegment[aux](O,B)
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegment[key](A,N)
+\tkzMarkRightAngle[size=.3,mk](A,F,D)
+\tkzMarkRightAngle[size=.3,mk](N,E,D)
+\tkzDrawPoints(A,B,C,D,E,F,N,O)
+\tkzLabelPoint[above right,lbl](A){$A$}
+\tkzLabelPoint[left,lbl](B){$B$}
+\tkzLabelPoint[below,lbl](C){$C$}
+\tkzLabelPoint[below right,lbl](D){$D$}
+\tkzLabelPoint[above left,lbl](E){$E$}
+\tkzLabelPoint[below right,lbl](F){$F$}
+\tkzLabelPoint[below,lbl](N){$N$}
+\tkzLabelPoint[left,lbl](O){$O$}
+\tkzLabelSegment[right,len](A,F){$16$}
+\tkzLabelSegment[left,len](E,N){$4$}
+\end{tikzpicture}
+\end{document}

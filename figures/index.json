@@ -6,6 +6,20 @@
       "after_paragraph": 2
     }
   ],
+  "a-corner-of-forty-five-degrees": [
+    {
+      "src": "figures/a-corner-of-forty-five-degrees-solution.svg?v=718cade4",
+      "alt": "A regular 20-sided polygon in its circle, with centre O. A triangle joins three of its vertices. Two of them are 5 sides apart, and the arc between them, made of 5 sides, is highlighted: it makes a right angle, 90 degrees, at O. The third vertex lies on the long arc, and the angle of the triangle there is 45 degrees, half of 90 degrees.",
+      "after_paragraph": 1
+    }
+  ],
+  "a-hub-for-four-points": [
+    {
+      "src": "figures/a-hub-for-four-points-solution.svg?v=4a3aa649",
+      "alt": "The plane through line PQ and the point A, after B has been rotated about line PQ into this plane, onto the side away from A, to the point B'. P and Q lie on the line 8 apart. A is 3 from the line with foot P, and B' is 7 from the line with foot Q, both at right angles. The straight segment AB' crosses the line at X, and AB' squared is 8 squared plus 10 squared, which is 164.",
+      "after_paragraph": 4
+    }
+  ],
   "a-lone-solution": [
     {
       "src": "figures/a-lone-solution-solution.svg?v=92f79188",
@@ -99,8 +113,8 @@
   ],
   "four-of-twelve-vertices": [
     {
-      "src": "figures/four-of-twelve-vertices-solution.svg?v=1f3915ad",
-      "alt": "A regular dodecagon ABCDEFGHIJKL with centre O. The rectangle ABGH is shaded, with its short side AB a side of the dodecagon and its diagonals AG and BH diameters through O. The segments OA, OB, OG and OH cut it into four triangles: OAB and OGH have a 30 degree angle at O, and OBG and OHA have a 150 degree angle at O. Each of the four has area 30, the same as each of the twelve central triangles, so the rectangle has area 120.",
+      "src": "figures/four-of-twelve-vertices-solution.svg?v=42581488",
+      "alt": "A regular dodecagon ABCDEFGHIJKL with centre O, drawn with the chord AF across the top. Quadrilateral ABCF is shaded. The centre O lies below AF, outside ABCF. Segments OA, OB, OC and OF cut the pentagon OABCF into triangles OAB and OBC, each with a 30 degree angle at O, and OCF, with a right angle at O. Triangle OAF, shaded grey, has a 150 degree angle at O, so it has the same area as triangle OAB, which is 30. The quadrilateral is the pentagon with triangle OAF removed, so its area is 30 + 30 + 60 - 30 = 90.",
       "after_paragraph": 1
     }
   ],
@@ -123,6 +137,20 @@
       "src": "figures/halfway-between-two-frames-solution.svg?v=7645ffe9",
       "alt": "The set of midpoints drawn as a shaded rectangular frame. The outer rectangle RSTU measures 7 by 4, with R at (10, 5) and T at (17, 9), and the unshaded inner rectangle EFGH measures 3 by 2, with E at (12, 6) and G at (15, 8).",
       "after_paragraph": 3
+    }
+  ],
+  "medians-meeting-on-the-circle": [
+    {
+      "src": "figures/medians-meeting-on-the-circle-solution.svg?v=23b23d02",
+      "alt": "Triangle ABC with AB = 5, BC = 10 and CA = 13, an example of the condition. Its incircle has centre I and touches BC, CA and AB at Ta, Tb and Tc; the two tangents from A are marked x and the tangent from C along CA is marked z. The median from A to the midpoint Ma of BC is dashed; the centroid G, where the medians meet, lies on it and on the incircle.",
+      "after_paragraph": 1
+    }
+  ],
+  "nineteen-planted-plots": [
+    {
+      "src": "figures/nineteen-planted-plots-solution.svg?v=25780fe6",
+      "alt": "A 5 by 5 field of 1 m square plots. Six plots are left empty and shaded: the centre plot, the four plots diagonally next to it, and the middle plot of the bottom edge. No two empty plots share a side. The fencing, highlighted, runs round the outside of the field except along the bottom side of the empty edge plot, and round each of the five inner empty plots. It has length 22 + 5 times 4 = 42 metres.",
+      "after_paragraph": 2
     }
   ],
   "parallels-through-k": [
@@ -153,10 +181,24 @@
       "after_paragraph": 1
     }
   ],
+  "three-areas-in-a-hexagon": [
+    {
+      "src": "figures/three-areas-in-a-hexagon-solution.svg?v=6ac7e34f",
+      "alt": "Regular hexagon ABCDEF with a point P inside it, joined to all six vertices. Triangles PAB, PBC and PCD carry their areas 7, 10 and 15. The triangles PAB, PCD and PEF on alternate sides are shaded. The sides AB, CD and EF are extended to form a large equilateral triangle around the hexagon; the distances from P to its three sides add up to its height, so the shaded triangles make half of the hexagon. The opposite sides BC and EF are parallel, so triangles PBC and PEF make a third of it, and the hexagon has area 72.",
+      "after_paragraph": 1
+    }
+  ],
   "three-chords": [
     {
       "src": "figures/three-chords-solution.svg?v=1883ca08",
       "alt": "Part of the parabola y = x squared, with the triangle whose vertices have x-coordinates a = 0, b = 2 and c = 3. Its sides have slopes a + b = 2, a + c = 3 and b + c = 5, which is the sum of the x-coordinates at each pair of ends.",
+      "after_paragraph": 1
+    }
+  ],
+  "three-points-on-the-base": [
+    {
+      "src": "figures/three-points-on-the-base-solution.svg?v=698cd86f",
+      "alt": "Triangle ABC in its circumcircle with centre O. On BC lie the midpoint E, the foot D of the bisector from A, and, beyond C, the foot F of the altitude from A, with DE = 3, DF = 12 and AF = 16. The bisector AD is extended to N, the lowest point of the circle, directly below E with NE = 4. The shaded right triangles DEN and DFA are similar, and dashed segments join O to N and to B.",
       "after_paragraph": 1
     }
   ],
@@ -179,6 +221,13 @@
       "src": "figures/through-two-vertices-and-the-incentre-solution.svg?v=d8383ab8",
       "alt": "Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
       "after_paragraph": 1
+    }
+  ],
+  "two-circles-on-the-legs": [
+    {
+      "src": "figures/two-circles-on-the-legs-solution.svg?v=ed9e35de",
+      "alt": "Trapezium ABCD with AB parallel to CD. The circles on the legs AD and BC as diameters, centred at their midpoints M and N, touch at P on the midline MN. Segments PA = 75, PD = 100, PB = 65 and PC = 156 make right angles APD and BPC. A dashed circle of radius 60 centred at P touches all four sides: P is the centre of the inscribed circle.",
+      "after_paragraph": 2
     }
   ],
   "two-orbits": [
@@ -232,7 +281,7 @@
     {
       "src": "figures/where-the-coin-cannot-reach-solution.svg?v=739c0ab6",
       "alt": "Triangle ABC with BC = 20, CA = 15 and AB = 7, its incircle with centre I and radius 2, and the dashed inner triangle A'B'C', the image of ABC under the homothety at I with ratio 1/2. The coin of radius 1 is drawn pushed into each corner, centred at the vertices A', B' and C' of the inner triangle. At each vertex of ABC the shaded kite has corners at the vertex, the two points where the coin touches the sides, and the coin's centre; the part of the kite outside the coin is never covered. Dashed segments join I to C and to the incircle's points of contact on BC and CA, outlining the incircle's kite at C, which is twice the size of the coin's kite at C.",
-      "after_paragraph": 3
+      "after_paragraph": 4
     }
   ],
   "whole-number-distances": [
