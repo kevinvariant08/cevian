@@ -1,0 +1,32 @@
+{
+  "id": "adding-up-to-one",
+  "title": "Adding Up to One",
+  "kyu": 3,
+  "topic": "A",
+  "subtopics": [
+    "roots-of-unity",
+    "power-reduction-via-minimal-polynomial",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $\\zeta = \\cos 20^\\circ + i\\sin 20^\\circ$. How many subsets $S$ of the set $\\{1, \\zeta, \\zeta^2, \\dots, \\zeta^{17}\\}$ satisfy $$\\sum_{z \\in S} z = 1?$$",
+  "answer_format": "integer_0_999",
+  "answer_hash": "1a8239b7",
+  "hints": [
+    "Write $\\eta = \\zeta^2$. Since $\\zeta^9 = -1$, the eighteen numbers pair up as $\\eta^b$ and $-\\eta^b$ for $b = 0, 1, \\dots, 8$. Describe a subset by what it takes from each pair.",
+    "With $d_b \\in \\{-1, 0, 1\\}$ recording the net contribution of the pair $\\pm\\eta^b$, the sum is $\\sum d_b\\eta^b$. Use the polynomial $t^6 + t^3 + 1$, which has $\\eta$ as a root and is irreducible over $\\mathbb{Q}$, so that $1, \\eta, \\dots, \\eta^5$ are linearly independent over $\\mathbb{Q}$.",
+    "Reducing $\\eta^6$, $\\eta^7$ and $\\eta^8$ shows that $\\sum_{b=0}^{8} c_b\\eta^b = 0$ for rational $c_b$ exactly when $c_b = c_{b+3} = c_{b+6}$ for $b = 0, 1, 2$. Apply this with $c_0 = d_0 - 1$ and $c_b = d_b$ for $b \\ne 0$, remembering that $d_b = 0$ arises from two different choices."
+  ],
+  "solution": "Let $\\eta = \\zeta^2 = \\cos 40^\\circ + i\\sin 40^\\circ$. Since $\\zeta^9 = -1$, the eighteen numbers are $\\eta^b$ and $-\\eta^b$ for $b = 0, 1, \\dots, 8$, each appearing once. For a subset $S$ let $d_b = 1$ if $S$ contains $\\eta^b$ but not $-\\eta^b$, $d_b = -1$ if it contains $-\\eta^b$ but not $\\eta^b$, and $d_b = 0$ if it contains both or neither. Then $\\sum_{z \\in S} z = \\sum_{b=0}^{8} d_b\\eta^b$, and each vector $(d_0, \\dots, d_8)$ comes from exactly $2^k$ subsets, where $k$ is the number of zero entries.\n\nThe number $\\eta$ is a root of $t^9 - 1 = (t^3 - 1)(t^6 + t^3 + 1)$ with $\\eta^3 \\ne 1$, so $\\eta^6 + \\eta^3 + 1 = 0$. The polynomial $t^6 + t^3 + 1$ is irreducible over $\\mathbb{Q}$: replacing $t$ by $t + 1$ gives $t^6 + 6t^5 + 15t^4 + 21t^3 + 18t^2 + 9t + 3$, which is irreducible by Eisenstein's criterion with the prime $3$. So $1, \\eta, \\dots, \\eta^5$ are linearly independent over $\\mathbb{Q}$.\n\nFor rational $c_0, \\dots, c_8$, substituting $\\eta^6 = -1 - \\eta^3$, $\\eta^7 = -\\eta - \\eta^4$ and $\\eta^8 = -\\eta^2 - \\eta^5$ gives $$\\sum_{b=0}^{8} c_b\\eta^b = (c_0 - c_6) + (c_1 - c_7)\\eta + (c_2 - c_8)\\eta^2 + (c_3 - c_6)\\eta^3 + (c_4 - c_7)\\eta^4 + (c_5 - c_8)\\eta^5.$$ So the sum is $0$ exactly when $c_b = c_{b+3} = c_{b+6}$ for $b = 0, 1, 2$.\n\nThe condition $\\sum d_b\\eta^b = 1$ says that $\\sum c_b\\eta^b = 0$ with $c_0 = d_0 - 1$ and $c_b = d_b$ for $b \\ne 0$. On each of the classes $\\{1, 4, 7\\}$ and $\\{2, 5, 8\\}$ the three values $d_b$ must be equal to a common $m \\in \\{-1, 0, 1\\}$, which allows $2^3 + 1 + 1 = 10$ choices from the six numbers involved. On $\\{0, 3, 6\\}$ we need $d_0 - 1 = d_3 = d_6 = m$ with $m \\in \\{-1, 0\\}$: either $(d_0, d_3, d_6) = (1, 0, 0)$, in $1 \\cdot 2 \\cdot 2 = 4$ ways, or $(0, -1, -1)$, in $2 \\cdot 1 \\cdot 1 = 2$ ways, so $6$ choices in all.\n\nThe three classes use disjoint sets of pairs, so the number of subsets is $6 \\cdot 10 \\cdot 10 = 600$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-adding-up-to-one"
+}
