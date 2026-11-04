@@ -1,0 +1,37 @@
+%! alt Coordinate plane with the x-axis and the line y = 10. A = (0, 3) is reflected in the x-axis to A' = (0, -3), and B = (24, 5) is reflected in y = 10 to B' = (24, 15). The straight segment from A' to B', of length 30, crosses the x-axis at P = (4, 0) and the line y = 10 at Q = (52/3, 10). The highlighted path runs from A to P to Q to B.
+%! after_paragraph 1
+%! scale 1/5
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.60000000){A} %! A = (0, 3)
+\tkzDefPoint(4.8000000,1.0000000){B} %! B = (24, 5)
+\tkzDefPoint(0.0,-0.60000000){Ap} %! Ap = (0, -3)
+\tkzDefPoint(4.8000000,3.0000000){Bp} %! Bp = (24, 15)
+\tkzDefPoint(0.80000000,0.0){P} %! P = (4, 0)
+\tkzDefPoint(3.4666667,2.0000000){Q} %! Q = (52/3, 10)
+\tkzDefPoint(-0.40000000,0.0){L} %! L = (-2, 0)
+\tkzDefPoint(5.4000000,0.0){R} %! R = (27, 0)
+\tkzDefPoint(-0.40000000,2.0000000){U} %! U = (-2, 10)
+\tkzDefPoint(5.4000000,2.0000000){V} %! V = (27, 10)
+%! fact equal(dist(A, P), dist(Ap, P))
+%! fact equal(dist(Q, B), dist(Q, Bp))
+%! fact collinear(P, Ap, Bp)
+%! fact collinear(Q, Ap, Bp)
+%! fact dist(Ap, Bp) == 30
+%! fact dist(A, P) + dist(P, Q) + dist(Q, B) == 30
+\tkzDrawSegment(L,R)
+\tkzDrawSegment(U,V)
+\tkzDrawSegments[aux](Ap,P Q,Bp A,Ap B,Bp)
+\tkzDrawPolySeg[key](A,P,Q,B)
+\tkzDrawPoints(A,B,Ap,Bp,P,Q)
+\tkzLabelPoint[left,lbl](A){$A$}
+\tkzLabelPoint[right,lbl](B){$B$}
+\tkzLabelPoint[left,lbl](Ap){$A'$}
+\tkzLabelPoint[right,lbl](Bp){$B'$}
+\tkzLabelPoint[below right,lbl](P){$P$}
+\tkzLabelPoint[above left,lbl](Q){$Q$}
+\tkzLabelPoint[above,lbl](R){$y = 0$}
+\tkzLabelPoint[above,lbl](V){$y = 10$}
+\end{tikzpicture}
+\end{document}

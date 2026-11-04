@@ -1,0 +1,38 @@
+%! alt Regular hexagon ABCDEF with centre O. The dashed triangle ACE joins alternate vertices and covers half of the hexagon. The highlighted triangle PQR joins the midpoints P, Q and R of sides AB, CD and EF, and has the same centre O, with OP shorter than OA.
+%! after_paragraph 2
+%! scale 1
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
+\tkzDefPoint(-1.0000000,1.7320508){A} %! A = polar(O, 2, 120)
+\tkzDefPoint(1.0000000,1.7320508){B} %! B = polar(O, 2, 60)
+\tkzDefPoint(2.0000000,0.0){C} %! C = polar(O, 2, 0)
+\tkzDefPoint(1.0000000,-1.7320508){D} %! D = polar(O, 2, -60)
+\tkzDefPoint(-1.0000000,-1.7320508){E} %! E = polar(O, 2, -120)
+\tkzDefPoint(-2.0000000,0.0000000000000000000000000000000000000000000000000086696674){F} %! F = polar(O, 2, 180)
+\tkzDefPoint(0.0000000000000000000000000000000000000000000000000013363824,1.7320508){P} %! P = mid(A, B)
+\tkzDefPoint(1.5000000,-0.86602540){Q} %! Q = mid(C, D)
+\tkzDefPoint(-1.5000000,-0.86602540){R} %! R = mid(E, F)
+%! fact area(A, C, E) / area(A, B, C, D, E, F) == 1/2
+%! fact area(P, Q, R) / area(A, B, C, D, E, F) == 3/8
+%! fact (dist(O, P) / dist(O, A))**2 == 3/4
+%! fact angle(P, O, Q) == 120
+\tkzFillPolygon[color=figaccenttint](P,Q,R)
+\tkzDrawPolygon(A,B,C,D,E,F)
+\tkzDrawPolygon[aux](A,C,E)
+\tkzDrawPolygon[key](P,Q,R)
+\tkzDrawSegments[aux](O,A O,P)
+\tkzDrawPoints(A,B,C,D,E,F,O,P,Q,R)
+\tkzLabelPoint[above left,lbl](A){$A$}
+\tkzLabelPoint[above right,lbl](B){$B$}
+\tkzLabelPoint[right,lbl](C){$C$}
+\tkzLabelPoint[below right,lbl](D){$D$}
+\tkzLabelPoint[below left,lbl](E){$E$}
+\tkzLabelPoint[left,lbl](F){$F$}
+\tkzLabelPoint[above,lbl](P){$P$}
+\tkzLabelPoint[below right,lbl](Q){$Q$}
+\tkzLabelPoint[below left,lbl](R){$R$}
+\tkzLabelPoint[below,lbl](O){$O$}
+\end{tikzpicture}
+\end{document}
