@@ -1,0 +1,128 @@
+{
+  "id": "real-roots-and-a-product",
+  "title": "Real Roots and a Product",
+  "kyu": 3,
+  "topic": "A",
+  "subtopics": [
+    "conjugate-modulus-identity",
+    "power-reduction-via-minimal-polynomial",
+    "factored-form-of-polynomial",
+    "parity"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $n$ be a positive integer and let $P(x)$ be a polynomial of degree $n$ with integer coefficients and leading coefficient $1$. Suppose that its roots $r_1, r_2, \\dots, r_n$, listed with multiplicity, are all real, and that at least one $r_k$ is different from both $0$ and $1$. Determine the smallest possible value of\n$$\\prod_{k=1}^{n}\\left(r_k^2 - r_k + 1\\right).$$",
+  "hints": [
+    "Each factor $r_k^2 - r_k + 1$ is the product of two conjugate numbers $(\\alpha - r_k)(\\overline{\\alpha} - r_k)$. Which $\\alpha$, and what does the whole product become in terms of $P$?",
+    "With $\\omega = \\frac{1 + i\\sqrt{3}}{2}$, the product is $P(\\omega)P(\\overline{\\omega}) = |P(\\omega)|^2$. Since $\\omega^2 = \\omega - 1$, $P(\\omega) = A + B\\omega$ with integers $A$ and $B$, so the product is the positive integer $A^2 + AB + B^2$. Show that it is neither $1$ nor $2$.",
+    "Parity rules out $2$. To rule out $1$, divide $P$ by the factors $x$ and $x - 1$: the quotient $R$ is monic with integer coefficients, has a root, and $R(0)R(1)$ is a non-zero integer. Compare each factor $r^2 - r + 1$ with $|r(r - 1)|$."
+  ],
+  "solution": "The answer is $3$, for every $n$. It is attained by $P(x) = x^{n-1}(x + 1)$, whose roots are $0$, taken $n - 1$ times, and $-1$; they give $1^{n-1} \\cdot 3 = 3$.\n\nWrite $Q$ for the product and $f(r) = r^2 - r + 1$. Let $\\omega = \\frac{1 + i\\sqrt{3}}{2}$, so that $\\omega + \\overline{\\omega} = 1$ and $\\omega\\overline{\\omega} = 1$. For every real $r$ this gives $(\\omega - r)(\\overline{\\omega} - r) = f(r)$. Since $P(x) = \\prod_k (x - r_k)$, it follows that $Q = P(\\omega)P(\\overline{\\omega})$.\n\nFrom $\\omega^2 = \\omega - 1$, if $\\omega^j = u + v\\omega$ then $\\omega^{j+1} = -v + (u + v)\\omega$. Starting from $\\omega^0 = 1 + 0 \\cdot \\omega$, induction shows that every power of $\\omega$ is $u + v\\omega$ with integers $u$ and $v$. As $P$ has integer coefficients, $P(\\omega) = A + B\\omega$ for some integers $A$ and $B$, and as these coefficients are real, $P(\\overline{\\omega}) = A + B\\overline{\\omega}$. Therefore\n$$Q = (A + B\\omega)(A + B\\overline{\\omega}) = A^2 + AB + B^2.$$\nThis integer is never $2$: if $A$ and $B$ are both even it is divisible by $4$, and otherwise it is odd. So it is enough to prove $Q > 1$.\n\nLet $s_1, \\dots, s_m$ be the roots other than $0$ and $1$, listed with multiplicity, so that $m \\ge 1$. Then $P(x) = x^a(x - 1)^b R(x)$ with $R(x) = \\prod_{j=1}^{m}(x - s_j)$, and since $x^a(x - 1)^b$ is monic with integer coefficients, long division shows that $R$ has integer coefficients. As $f(0) = f(1) = 1$, we have $Q = \\prod_{j} f(s_j)$.\n\nFor real $s$ other than $0$ and $1$ we have $f(s) > |s(s - 1)| > 0$. Indeed $f(s) = 1 + s(s - 1)$, which exceeds $s(s - 1)$ when $s(s - 1) > 0$; and when $s(s - 1) < 0$,\n$$|s(s - 1)| = \\dfrac{1}{4} - \\left(s - \\dfrac{1}{2}\\right)^2 \\le \\dfrac{1}{4} < \\dfrac{3}{4} \\le \\left(s - \\dfrac{1}{2}\\right)^2 + \\dfrac{3}{4} = f(s).$$\nMultiplying these $m$ inequalities between positive numbers,\n$$Q > \\prod_{j=1}^{m}|s_j(s_j - 1)| = |R(0)R(1)| \\ge 1,$$\nbecause $R(0) = \\prod_j (-s_j)$ and $R(1) = \\prod_j (1 - s_j)$ are non-zero integers. So $Q$ is an integer greater than $1$ and different from $2$, which gives $Q \\ge 3$. The smallest possible value is $3$.\n\n<b>Remark.</b> Another integer can play the part of $R(0)R(1)$. By AM-GM on the four numbers $(2r - 1)^2$, $1$, $1$, $1$, every real $r$ satisfies $f(r) = \\frac{(2r - 1)^2 + 3}{4} \\ge |2r - 1|^{1/2}$, with equality only for $r \\in \\{0, 1\\}$; equivalently, $(2r - 1)^2 = 4f - 3$ and $f^4 - 4f + 3 = (f - 1)^2(f^2 + 2f + 3) \\ge 0$. Also $\\prod_k (1 - 2r_k) = 2^n P\\left(\\frac{1}{2}\\right) = 1 + \\sum_{j=0}^{n-1} a_j 2^{n-j}$, where $a_j$ is the coefficient of $x^j$, is odd and so non-zero. Hence every bound $|2r_k - 1|^{1/2}$ is positive, the bound is strict for a root other than $0$ and $1$, and $Q > \\left|2^n P\\left(\\frac{1}{2}\\right)\\right|^{1/2} \\ge 1$. The value $3$ is also attained by $x - 2$ and by $(x - 1)(x - 2)$, while a single factor $f(r)$ can be as small as $\\frac{3}{4}$, at $r = \\frac{1}{2}$, so no bound of this size holds factor by factor.",
+  "rubric": [
+    {
+      "marks": 1,
+      "criterion": "States that the smallest value is $3$ and, for each $n$, gives a polynomial of degree $n$ attaining it, such as $x^{n-1}(x + 1)$. The answer alone, or with an example of one degree only such as $x + 1$, earns $0$."
+    },
+    {
+      "marks": 3,
+      "criterion": "Shows that the product equals $P(\\omega)P(\\overline{\\omega}) = |P(\\omega)|^2 = A^2 + AB + B^2$ for integers $A$ and $B$, where $\\omega$ is a root of $x^2 - x + 1$, or an equivalent. Proving only that the product is an integer, for example as a symmetric function of the roots, without a form that excludes $2$, earns $1$ of these $3$ marks."
+    },
+    {
+      "marks": 1,
+      "criterion": "Shows that $A^2 + AB + B^2$ is never $2$, so that a product greater than $1$ is at least $3$."
+    },
+    {
+      "marks": 1,
+      "criterion": "Proves a strict pointwise bound for every real root $r$ other than $0$ and $1$ that compares $r^2 - r + 1$ with an expression whose product over the roots is an integer, such as $r^2 - r + 1 > |r(r - 1)|$, or an equivalent."
+    },
+    {
+      "marks": 1,
+      "criterion": "Combines the bound with a non-zero integer to conclude that the product is strictly greater than $1$: for example $|R(0)R(1)| \\ge 1$, where $R$ is $P$ with the factors $x$ and $x - 1$ divided out. Using $|P(0)P(1)| \\ge 1$ without first removing the roots $0$ and $1$, or leaving the strict inequality unjustified, earns $0$ for this line."
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 1,
+        "criterion": "States that the smallest value is $3$ and, for each $n$, gives a polynomial of degree $n$ attaining it, such as $x^{n-1}(x + 1)$. The answer alone, or with an example of one degree only such as $x + 1$, earns $0$."
+      },
+      {
+        "id": "m2",
+        "marks": 3,
+        "criterion": "Shows that the product equals $P(\\omega)P(\\overline{\\omega}) = |P(\\omega)|^2 = A^2 + AB + B^2$ for integers $A$ and $B$, where $\\omega$ is a root of $x^2 - x + 1$, or an equivalent. Proving only that the product is an integer, for example as a symmetric function of the roots, without a form that excludes $2$, earns $1$ of these $3$ marks."
+      },
+      {
+        "id": "m3",
+        "marks": 1,
+        "criterion": "Shows that $A^2 + AB + B^2$ is never $2$, so that a product greater than $1$ is at least $3$."
+      },
+      {
+        "id": "m4",
+        "marks": 1,
+        "criterion": "Proves a strict pointwise bound for every real root $r$ other than $0$ and $1$ that compares $r^2 - r + 1$ with an expression whose product over the roots is an integer, such as $r^2 - r + 1 > |r(r - 1)|$, or an equivalent."
+      },
+      {
+        "id": "m5",
+        "marks": 1,
+        "criterion": "Combines the bound with a non-zero integer to conclude that the product is strictly greater than $1$: for example $|R(0)R(1)| \\ge 1$, where $R$ is $P$ with the factors $x$ and $x - 1$ divided out. Using $|P(0)P(1)| \\ge 1$ without first removing the roots $0$ and $1$, or leaving the strict inequality unjustified, earns $0$ for this line."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Comparison with the value at one half",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 1,
+            "criterion": "States that the smallest value is $3$ and, for each $n$, gives a polynomial of degree $n$ attaining it, such as $x^{n-1}(x + 1)$. The answer alone, or with an example of one degree only such as $x + 1$, earns $0$."
+          },
+          {
+            "id": "a2",
+            "marks": 3,
+            "criterion": "Shows that the product equals $P(\\omega)P(\\overline{\\omega}) = |P(\\omega)|^2 = A^2 + AB + B^2$ for integers $A$ and $B$, where $\\omega$ is a root of $x^2 - x + 1$, or an equivalent. Proving only that the product is an integer, for example as a symmetric function of the roots, without a form that excludes $2$, earns $1$ of these $3$ marks."
+          },
+          {
+            "id": "a3",
+            "marks": 1,
+            "criterion": "Shows that $A^2 + AB + B^2$ is never $2$, so that a product greater than $1$ is at least $3$."
+          },
+          {
+            "id": "a4",
+            "marks": 1,
+            "criterion": "Proves $r^2 - r + 1 \\ge |2r - 1|^{1/2}$ for every real $r$, with equality only for $r \\in \\{0, 1\\}$, by AM-GM on $(2r - 1)^2$, $1$, $1$, $1$, or from $f^4 - 4f + 3 = (f - 1)^2(f^2 + 2f + 3) \\ge 0$ with $f = r^2 - r + 1$, or an equivalent."
+          },
+          {
+            "id": "a5",
+            "marks": 1,
+            "criterion": "Shows that $\\prod_k (1 - 2r_k) = 2^n P\\left(\\frac{1}{2}\\right)$ is an odd integer and concludes that the product is strictly greater than $1$, using that every bound is positive and that some root is not $0$ or $1$."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Assumes that the roots are integers or rational numbers.",
+        "cap": 1
+      },
+      {
+        "error": "Claims that every factor $r_k^2 - r_k + 1$ is at least $1$, which is false for $0 < r_k < 1$, and uses this to show that the product exceeds $1$.",
+        "cap": 5
+      },
+      {
+        "error": "Uses $|P(0)P(1)| \\ge 1$ without first removing the roots $0$ and $1$, although $P(0)P(1)$ may be $0$.",
+        "cap": 6
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-real-roots-and-a-product"
+}

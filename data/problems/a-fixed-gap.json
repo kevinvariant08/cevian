@@ -1,0 +1,114 @@
+{
+  "id": "a-fixed-gap",
+  "title": "A Fixed Gap",
+  "kyu": 3,
+  "topic": "N",
+  "subtopics": [
+    "modular-arithmetic",
+    "modular-inverse",
+    "coprime-divisibility",
+    "parity"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Determine all positive integers $d$ for which there exist coprime integers $a$ and $b$, both greater than $1$, such that $b - a = d$ and $a + b$ divides $a^b + b^a$.",
+  "hints": [
+    "Let $s = a + b$. Reduce $a^b + b^a$ modulo $s$ using $a \\equiv -b$, and use the fact that $b$ is coprime to $s$: the condition becomes a congruence for $b^d$ alone.",
+    "As $s$ grows, so does $b$, so replace $b$ by a fixed number: $2b = s + d \\equiv d \\pmod s$. When $s$ is odd, $2$ can be cancelled, and $s$ can then be chosen as a divisor of a number built from $d^d$ and $2^d$. The same congruence settles $d = 1$.",
+    "For odd $d \\ge 3$, try $s = d^d - 2^d$ and check the parity of $b$. For even $d = 2e$, both $a$ and $b$ are odd and $s$ is even, so $2$ cannot be cancelled. Write $s = 2t$. Then $b = t + e \\equiv e \\pmod t$, and the condition reads $2t \\mid (b^e - 1)(b^e + 1)$. Choose $t$ so that it divides one factor while the other supplies the $2$."
+  ],
+  "solution": "The answer is every $d \\ge 2$.\n\nLet $a$ and $b$ be coprime positive integers with $b - a = d$, and let $s = a + b$. Then $\\gcd(b, s) = \\gcd(b, a) = 1$. Since $a \\equiv -b \\pmod s$ and $b^b = b^a b^d$,\n$$a^b + b^a \\equiv (-1)^b b^b + b^a = b^a\\left((-1)^b b^d + 1\\right) \\pmod s,$$\nand as $b$ is coprime to $s$,\n$$s \\mid a^b + b^a \\iff s \\mid (-1)^b b^d + 1. \\qquad (1)$$\nAlso $2b = s + d$, so\n$$2b \\equiv d \\pmod s. \\qquad (2)$$\n\n<b>The gap $d = 1$.</b> Suppose that $s \\mid a^b + b^a$. By (1), $s$ divides $2\\left((-1)^b b + 1\\right) = (-1)^b \\cdot 2b + 2$, which by (2) is congruent to $(-1)^b + 2$ modulo $s$. So $s$ divides $1$ or $3$, and $a \\le 1$. Hence $d = 1$ has no pair with $a > 1$.\n\n<b>The gap $d = 2$.</b> The pair $(3, 5)$ works, since $3^5 + 5^3 = 368 = 8 \\cdot 46$.\n\n<b>Odd gaps $d \\ge 3$.</b> Let $s = d^d - 2^d$. It is odd, and\n$$s = (d - 2)\\left(d^{d-1} + 2d^{d-2} + \\dots + 2^{d-1}\\right) \\ge d^{d-1} \\ge d^2 \\ge 3d.$$\nPut $a = \\frac{s - d}{2}$ and $b = \\frac{s + d}{2}$. These are integers with $b - a = d$, $a + b = s$ and $a \\ge d > 1$. As $d - 1$ is even, $d^{d-1} \\equiv 1 \\pmod 4$, so $d^d \\equiv d \\pmod 4$. Together with $4 \\mid 2^d$ this gives $s + d \\equiv 2d \\equiv 2 \\pmod 4$, so $b$ is odd. A prime dividing both $a$ and $b$ divides $s$ and $d$, so it divides $d^d - s = 2^d$, which is impossible because $s$ is odd. So $\\gcd(a, b) = 1$. By (2), $(2b)^d \\equiv d^d \\equiv 2^d \\pmod s$, so $s \\mid 2^d\\left(b^d - 1\\right)$. Since $s$ is odd, $s \\mid b^d - 1 = -\\left((-1)^b b^d + 1\\right)$, and the pair works by (1).\n\n<b>Even gaps $d = 2e \\ge 4$.</b> Let $t = e^e + 1$, $a = t - e$ and $b = t + e$. Then $b - a = d$, $a + b = 2t = s$ and $a \\ge e^2 - e + 1 \\ge 3$. One of $e$ and $t$ is even and the other is odd, so $a$ and $b$ are odd. A prime dividing both $a$ and $b$ is odd and divides $b - a = 2e$ and $a + b = 2t$, so it divides both $e$ and $e^e + 1$, which is impossible. So $\\gcd(a, b) = 1$. As $b$ is odd, (1) says that the pair works exactly when $s \\mid b^{2e} - 1 = \\left(b^e - 1\\right)\\left(b^e + 1\\right)$. Now $b \\equiv e \\pmod t$ gives $b^e + 1 \\equiv e^e + 1 \\equiv 0 \\pmod t$, and $b^e - 1$ is even, so $2t$ divides the product.\n\nHence a pair exists exactly when $d \\ge 2$.\n\n<b>Remark.</b> Multiplying (1) by $2^d$ and using (2) shows that every pair with gap $d$ has $s \\mid (-1)^b d^d + 2^d$. This number is non-zero unless $d = 2$ and $b$ is odd, so every gap other than $2$ has only finitely many pairs. For odd $d$ this divisibility is equivalent to the condition, because $2$ is invertible modulo the odd number $s$. For example, the pairs with gap $3$ and $a > 1$ come from $s \\mid 35$ with $b$ even or from $s \\mid 19$ with $b$ odd, which leaves only $(8, 11)$. For even gaps, $t = e^e - 1$ also works when $e \\ge 3$, by the same argument with the roles of $b^e - 1$ and $b^e + 1$ exchanged, while $t = e^{2e} - 1$ works only for even $e$.",
+  "rubric": [
+    {
+      "marks": 1,
+      "criterion": "Reduces the condition, using $a \\equiv -b \\pmod{a + b}$ and $\\gcd(b, a + b) = 1$, to $a + b \\mid (-1)^b b^d + 1$, or an equivalent congruence."
+    },
+    {
+      "marks": 1,
+      "criterion": "Proves that $d = 1$ has no pair with $a > 1$, for example by showing that $a + b$ divides $1$ or $3$. The answer alone earns $0$."
+    },
+    {
+      "marks": 3,
+      "criterion": "For every odd $d \\ge 3$, gives coprime $a, b > 1$ with $b - a = d$ and $a + b \\mid a^b + b^a$, with proof, for example $a + b = d^d - 2^d$, using $2b \\equiv d \\pmod{a + b}$ and the invertibility of $2$ modulo the odd number $a + b$. Deduct 1 if the parity of $b$, the coprimality of $a$ and $b$ or the bound $a > 1$ is not justified."
+    },
+    {
+      "marks": 2,
+      "criterion": "For every even $d$, gives a valid pair with proof, for example $(e^e + 1 - e, e^e + 1 + e)$ for $d = 2e \\ge 4$ and $(3, 5)$ for $d = 2$, accounting for the factor $2$ in the even number $a + b$. Deduct 1 if $d = 2$ is not covered or the coprimality of $a$ and $b$ is not justified."
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 1,
+        "criterion": "Reduces the condition, using $a \\equiv -b \\pmod{a + b}$ and $\\gcd(b, a + b) = 1$, to $a + b \\mid (-1)^b b^d + 1$, or an equivalent congruence."
+      },
+      {
+        "id": "m2",
+        "marks": 1,
+        "criterion": "Proves that $d = 1$ has no pair with $a > 1$, for example by showing that $a + b$ divides $1$ or $3$. The answer alone earns $0$."
+      },
+      {
+        "id": "m3",
+        "marks": 3,
+        "criterion": "For every odd $d \\ge 3$, gives coprime $a, b > 1$ with $b - a = d$ and $a + b \\mid a^b + b^a$, with proof, for example $a + b = d^d - 2^d$, using $2b \\equiv d \\pmod{a + b}$ and the invertibility of $2$ modulo the odd number $a + b$. Deduct 1 if the parity of $b$, the coprimality of $a$ and $b$ or the bound $a > 1$ is not justified."
+      },
+      {
+        "id": "m4",
+        "marks": 2,
+        "criterion": "For every even $d$, gives a valid pair with proof, for example $(e^e + 1 - e, e^e + 1 + e)$ for $d = 2e \\ge 4$ and $(3, 5)$ for $d = 2$, accounting for the factor $2$ in the even number $a + b$. Deduct 1 if $d = 2$ is not covered or the coprimality of $a$ and $b$ is not justified."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Doubling both bases",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 1,
+            "criterion": "Shows, using $2a \\equiv -d$ and $2b \\equiv d \\pmod{a + b}$, that $2^{a+b}\\left(a^b + b^a\\right) \\equiv (2d)^a\\left((-1)^b d^d + 2^d\\right) \\pmod{a + b}$, or an equivalent congruence with no $a$ or $b$ left in the bases."
+          },
+          {
+            "id": "a2",
+            "marks": 1,
+            "criterion": "Proves that $d = 1$ has no pair with $a > 1$. The answer alone earns $0$."
+          },
+          {
+            "id": "a3",
+            "marks": 3,
+            "criterion": "For every odd $d \\ge 3$, gives a valid pair with proof, for example $a + b = d^d - 2^d$, cancelling $(2d)^a$ because the odd number $a + b$ is coprime to $2d$. Deduct 1 if the parity of $b$, the coprimality of $a$ and $b$ or the bound $a > 1$ is not justified."
+          },
+          {
+            "id": "a4",
+            "marks": 2,
+            "criterion": "For every even $d$, gives a valid pair with proof by an argument that does not cancel $2$ modulo the even number $a + b$, for example the one in m4. Deduct 1 if $d = 2$ is not covered or the coprimality of $a$ and $b$ is not justified."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "For even $d$, cancels $2$ or $2^d$ modulo the even number $a + b$, or reuses an odd-gap choice such as $a + b = d^d - 2^d$, which makes $a$ and $b$ both even.",
+        "cap": 5
+      },
+      {
+        "error": "Uses pairs with $a = 1$, such as $(1, 1 + d)$, or concludes that $d = 1$ is possible.",
+        "cap": 2
+      },
+      {
+        "error": "Checks pairs for particular values of $d$ only and asserts the general case from them.",
+        "cap": 2
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-fixed-gap"
+}

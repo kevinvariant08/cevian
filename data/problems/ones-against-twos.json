@@ -1,0 +1,114 @@
+{
+  "id": "ones-against-twos",
+  "title": "Ones Against Twos",
+  "kyu": 3,
+  "topic": "N",
+  "subtopics": [
+    "base-representation",
+    "modular-arithmetic",
+    "mathematical-induction",
+    "pairing-terms"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "For a positive integer $n$, write\n$$(1 + x + x^2)^n = c_0 + c_1x + c_2x^2 + \\dots + c_{2n}x^{2n}.$$\nDetermine all positive integers $n$ for which the number of the coefficients $c_0, c_1, \\dots, c_{2n}$ that leave remainder $1$ on division by $3$ is equal to the number that leave remainder $2$.",
+  "hints": [
+    "Work modulo $3$ and compute $(1 + x + x^2)^3$. Only three of its coefficients are not multiples of $3$.",
+    "Since $(1 + x + x^2)^3 \\equiv 1 + x^3 + x^6 \\pmod 3$ coefficient by coefficient, writing $n = 3N + r$ with $r \\in \\{0, 1, 2\\}$ gives $(1 + x + x^2)^n \\equiv (1 + x^3 + x^6)^N(1 + x + x^2)^r$. Let $D(n)$ be the number of coefficients $\\equiv 1$ minus the number $\\equiv 2 \\pmod 3$, relate $D(n)$ to $D(N)$ for each $r$, and induct on the base-$3$ digits of $n$.",
+    "For $r = 0$ and $r = 1$ no two terms of the product share an exponent, so $D(3N) = D(N)$ and $D(3N + 1) = 3D(N)$. For $r = 2$, reduce $(1 + x + x^2)^2$ modulo $3$ and compare the coefficients of $x^{3a}$ and $x^{3a + 1}$ in the product."
+  ],
+  "solution": "The counts are equal exactly for the $n$ whose base-$3$ representation contains the digit $2$.\n\nLet $\\varepsilon(t)$ be $1$, $-1$ or $0$ according as $t \\equiv 1$, $2$ or $0 \\pmod 3$, so $\\varepsilon(-t) = -\\varepsilon(t)$. For a polynomial $P$ with integer coefficients let $\\sigma(P)$ be the sum of $\\varepsilon$ over all its coefficients; zero coefficients add nothing. For $n \\ge 0$ put $D(n) = \\sigma\\left((1 + x + x^2)^n\\right)$. For $n \\ge 1$ this is the number of the $c_k$ that are $\\equiv 1$ minus the number that are $\\equiv 2$, so the counts are equal exactly when $D(n) = 0$. Also $D(0) = \\sigma(1) = 1$.\n\nBelow, $P \\equiv R$ means that every coefficient of $P - R$ is divisible by $3$. Such congruences can be multiplied, and $P \\equiv R$ implies $\\sigma(P) = \\sigma(R)$. Expanding, $(1 + x + x^2)^3 = 1 + 3x + 6x^2 + 7x^3 + 6x^4 + 3x^5 + x^6 \\equiv 1 + x^3 + x^6$. Fix $N \\ge 0$, write $(1 + y + y^2)^N = \\sum_{a \\ge 0} q_a y^a$ and put $q_{-1} = 0$. Then for $r \\in \\{0, 1, 2\\}$,\n$$(1 + x + x^2)^{3N + r} = \\left((1 + x + x^2)^3\\right)^N(1 + x + x^2)^r \\equiv (1 + x^3 + x^6)^N(1 + x + x^2)^r = \\sum_{a \\ge 0} q_a x^{3a}(1 + x + x^2)^r.$$\n\nIf $r = 0$, the right side has coefficient $q_a$ at $x^{3a}$ and no other terms, so $D(3N) = D(N)$. If $r = 1$, it is $\\sum_a q_a\\left(x^{3a} + x^{3a + 1} + x^{3a + 2}\\right)$, in which all the exponents are different, so each $q_a$ occurs as a coefficient three times and $D(3N + 1) = 3D(N)$.\n\nIf $r = 2$, then $(1 + x + x^2)^2 = 1 + 2x + 3x^2 + 2x^3 + x^4 \\equiv (1 + 2x) + x^3(2 + x)$. The term $q_a x^{3a} \\cdot x^3(2 + x)$ has exponents $3(a + 1)$ and $3(a + 1) + 1$, so collecting powers gives\n$$(1 + x + x^2)^{3N + 2} \\equiv \\sum_{a \\ge 0}\\left(u_a x^{3a} + v_a x^{3a + 1}\\right), \\qquad u_a = q_a + 2q_{a-1}, \\quad v_a = 2q_a + q_{a-1}.$$\nThe exponents on the right are all different, and $u_a + v_a = 3(q_a + q_{a-1})$, so $v_a \\equiv -u_a$ and $\\varepsilon(u_a) + \\varepsilon(v_a) = 0$ for every $a$. Hence $D(3N + 2) = 0$.\n\nNow we show by strong induction on $n \\ge 0$ that $D(n) = 0$ if $n$ has a digit $2$ in base $3$, and $D(n) > 0$ otherwise, where $0$ has no digits. For $n = 0$ this is $D(0) = 1$. For $n \\ge 1$ write $n = 3N + r$ with $r \\in \\{0, 1, 2\\}$, so $N < n$ and the base-$3$ digits of $n$ are those of $N$ followed by $r$. If $r = 2$, then $n$ has a digit $2$ and $D(n) = 0$. If $r \\in \\{0, 1\\}$, then $n$ has a digit $2$ exactly when $N$ does, and $D(n)$ is $D(N)$ or $3D(N)$, which is $0$ if $D(N) = 0$ and positive if $D(N) > 0$. In each case the claim for $N$ gives the claim for $n$.\n\nHence the two counts are equal exactly when the base-$3$ representation of $n$ contains the digit $2$. $\\blacksquare$\n\n<b>Solution 2.</b> Keep $\\varepsilon$, $\\sigma$, $D$ and the meaning of $\\equiv$ from above. Since $2 \\cdot 2 \\equiv 1 \\pmod 3$, $\\varepsilon(tu) = \\varepsilon(t)\\varepsilon(u)$ for all integers $t$ and $u$. First, $1 + x + x^2 = (x - 1)^2 + 3x \\equiv (x - 1)^2$. Next, $(y - 1)^3 = y^3 - 3y^2 + 3y - 1 \\equiv y^3 - 1$ for every polynomial $y$ with integer coefficients. By induction on $i$, $(x - 1)^{3^i} \\equiv x^{3^i} - 1$ for every $i \\ge 0$: the case $i = 0$ is trivial, and if it holds for $i$, then $(x - 1)^{3^{i+1}} = \\left((x - 1)^{3^i}\\right)^3 \\equiv \\left(x^{3^i} - 1\\right)^3 \\equiv x^{3^{i+1}} - 1$, the last step being the case $y = x^{3^i}$.\n\nWrite $2n = \\sum_{i=0}^{L} m_i \\cdot 3^i$ with digits $m_i \\in \\{0, 1, 2\\}$, so $2n < 3^{L+1}$. Then\n$$(1 + x + x^2)^n \\equiv (x - 1)^{2n} = \\prod_{i=0}^{L}\\left((x - 1)^{3^i}\\right)^{m_i} \\equiv \\prod_{i=0}^{L}\\left(x^{3^i} - 1\\right)^{m_i}.$$\nFor $m \\in \\{0, 1, 2\\}$ write $(y - 1)^m = \\sum_{j=0}^{m} g_m(j)\\,y^j$, so $g_0(0) = 1$; $g_1(0) = -1$ and $g_1(1) = 1$; $g_2(0) = 1$, $g_2(1) = -2$ and $g_2(2) = 1$. Expanding the product, each choice of $j_i \\in \\{0, \\dots, m_i\\}$ for every $i$ gives the term $\\prod_i g_{m_i}(j_i)\\,x^k$ with $k = \\sum_i j_i \\cdot 3^i \\le 2n$. Since every $j_i \\le 2$, this is the base-$3$ representation of $k$, so different choices give different exponents. Every $k \\le 2n$ has base-$3$ digits only in positions $0$ to $L$. Hence $c_k \\equiv \\prod_i g_{m_i}(j_i)$ if the base-$3$ digits $j_i$ of $k$ satisfy $j_i \\le m_i$ for every $i$, and $c_k \\equiv 0$ for every other $k$ from $0$ to $2n$; those $k$ contribute $\\varepsilon(0) = 0$.\n\nAs $\\varepsilon$ is multiplicative and depends only on residues modulo $3$,\n$$D(n) = \\sum \\prod_{i=0}^{L}\\varepsilon\\left(g_{m_i}(j_i)\\right) = \\prod_{i=0}^{L} F(m_i), \\qquad F(m) = \\sum_{j=0}^{m}\\varepsilon\\left(g_m(j)\\right),$$\nwhere the sum is over all choices with $0 \\le j_i \\le m_i$ for every $i$. Now $F(0) = 1$, $F(1) = -1 + 1 = 0$ and $F(2) = 1 + \\varepsilon(-2) + 1 = 3$. So $D(n) = 0$ if $2n$ has a digit $1$ in base $3$, and $D(n) = 3^t > 0$ otherwise, where $t$ is the number of digits $2$ of $2n$. Lucas' theorem gives the same product, since $c_k \\equiv (-1)^k\\binom{2n}{k}$ and $(-1)^k = \\prod_i (-1)^{j_i}$ as every $3^i$ is odd.\n\nFinally, $2n$ has no digit $1$ exactly when $n$ has no digit $2$. If every digit of $n$ is $0$ or $1$, doubling the digits gives digits $0$ or $2$ with no carries, and this is the base-$3$ representation of $2n$. Conversely, if every digit $m_i$ of $2n$ is $0$ or $2$, then $n = \\sum_i \\frac{m_i}{2} \\cdot 3^i$ has digits $0$ and $1$ only. This gives the same answer.\n\n<b>Remark.</b> Both solutions give the difference exactly: if $n$ has no digit $2$, then $D(n) = 3^t$, where $t$ is the number of digits $1$ of $n$. For $n = 2$ the coefficients are $1, 2, 3, 2, 1$, and for $n = 4$ they are $1, 4, 10, 16, 19, 16, 10, 4, 1$, all $\\equiv 1$.",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Reduces the coefficients modulo $3$ to a form that splits over base-$3$ digits: shows $(1 + x + x^2)^3 \\equiv 1 + x^3 + x^6 \\pmod 3$ and deduces $(1 + x + x^2)^{3N + r} \\equiv (1 + x^3 + x^6)^N(1 + x + x^2)^r$ coefficient by coefficient, or an equivalent."
+    },
+    {
+      "marks": 1,
+      "criterion": "Handles the digits $0$ and $1$: proves $D(3N) = D(N)$ and $D(3N + 1) = 3D(N)$, where $D(n)$ is the number of coefficients $\\equiv 1$ minus the number $\\equiv 2 \\pmod 3$, or an equivalent statement that appending a digit $0$ or $1$ to $N$ does not change whether the counts are equal."
+    },
+    {
+      "marks": 3,
+      "criterion": "Proves that the counts are equal when the last base-$3$ digit of $n$ is $2$: in $(1 + x^3 + x^6)^N(1 + x + x^2)^2$ modulo $3$, the coefficients of $x^{3a}$ and $x^{3a + 1}$ are negatives of each other and those of $x^{3a + 2}$ vanish, so $D(3N + 2) = 0$; or an equivalent treatment of the overlap of exponents that a digit $2$ causes."
+    },
+    {
+      "marks": 1,
+      "criterion": "Completes the induction in both directions, showing $D(n) = 0$ when $n$ has a digit $2$ in base $3$ and $D(n) \\ne 0$ otherwise, and states the answer."
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Reduces the coefficients modulo $3$ to a form that splits over base-$3$ digits: shows $(1 + x + x^2)^3 \\equiv 1 + x^3 + x^6 \\pmod 3$ and deduces $(1 + x + x^2)^{3N + r} \\equiv (1 + x^3 + x^6)^N(1 + x + x^2)^r$ coefficient by coefficient, or an equivalent."
+      },
+      {
+        "id": "m2",
+        "marks": 1,
+        "criterion": "Handles the digits $0$ and $1$: proves $D(3N) = D(N)$ and $D(3N + 1) = 3D(N)$, where $D(n)$ is the number of coefficients $\\equiv 1$ minus the number $\\equiv 2 \\pmod 3$, or an equivalent statement that appending a digit $0$ or $1$ to $N$ does not change whether the counts are equal."
+      },
+      {
+        "id": "m3",
+        "marks": 3,
+        "criterion": "Proves that the counts are equal when the last base-$3$ digit of $n$ is $2$: in $(1 + x^3 + x^6)^N(1 + x + x^2)^2$ modulo $3$, the coefficients of $x^{3a}$ and $x^{3a + 1}$ are negatives of each other and those of $x^{3a + 2}$ vanish, so $D(3N + 2) = 0$; or an equivalent treatment of the overlap of exponents that a digit $2$ causes."
+      },
+      {
+        "id": "m4",
+        "marks": 1,
+        "criterion": "Completes the induction in both directions, showing $D(n) = 0$ when $n$ has a digit $2$ in base $3$ and $D(n) \\ne 0$ otherwise, and states the answer."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Reduction to $(x - 1)^{2n}$ and the digits of $2n$",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 2,
+            "criterion": "Shows $1 + x + x^2 \\equiv (x - 1)^2 \\pmod 3$, so that $c_k \\equiv (-1)^k\\binom{2n}{k} \\pmod 3$, or an equivalent reduction of the coefficients to signed binomial coefficients."
+          },
+          {
+            "id": "a2",
+            "marks": 2,
+            "criterion": "Writes $2n$ in base $3$, expresses each $c_k$ modulo $3$ as a product over the digits (using $(x - 1)^{3^i} \\equiv x^{3^i} - 1$ or Lucas' theorem), and writes the difference of the counts as a product $\\prod F(m_i)$ over the digits $m_i$ of $2n$ with a multiplicative weighting such as the residue symbol modulo $3$. Equivalent forms earn this: an induction showing that the signed count for $(x - 1)^{3M + s}$ is $F(s)$ times that for $(x - 1)^M$, or the sign formula $c_k \\equiv (-1)^s$ for nonzero $c_k$, where $s$ is the number of positions with $m_i = 1$ and $j_i = 0$."
+          },
+          {
+            "id": "a3",
+            "marks": 2,
+            "criterion": "Computes the factors $F(0) = 1$, $F(1) = 0$ and $F(2) = 3$, or equivalently pairs the coefficients by toggling one digit-$1$ position of $2n$ and shows that every nonzero coefficient is $\\equiv 1$ when $2n$ has no digit $1$, and concludes that the counts are equal exactly when $2n$ has a digit $1$ in base $3$."
+          },
+          {
+            "id": "a4",
+            "marks": 1,
+            "criterion": "Proves that $2n$ has a digit $1$ in base $3$ exactly when $n$ has a digit $2$ (doubling the digits $0$ and $1$ causes no carries), and states the answer. Asserting this link without a reason earns 0 here."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Splits $(1 + x + x^2)^n$ over the base-$3$ digits of $n$ using $(1 + x + x^2)^{3^i} \\equiv 1 + x^{3^i} + x^{2 \\cdot 3^i}$ and treats the exponents from different digits as distinct, although a digit $2$ gives the factor $(1 + y + y^2)^2$ of degree $4$, whose terms overlap those of the next digit.",
+        "cap": 2
+      },
+      {
+        "error": "Treats $c_k$ as congruent to $\\binom{2n}{k}$, dropping the sign $(-1)^k$, so that the residues counted are those of the wrong numbers.",
+        "cap": 2
+      },
+      {
+        "error": "Proves only one direction: that the counts are equal when $n$ has a digit $2$, or that they differ when it has none.",
+        "cap": 5
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-ones-against-twos"
+}
