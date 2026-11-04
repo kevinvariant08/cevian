@@ -1,0 +1,96 @@
+{
+  "id": "fifth-powers-against-squares",
+  "title": "Fifth Powers Against Squares",
+  "kyu": 2,
+  "topic": "A",
+  "subtopics": [
+    "bounding",
+    "sos",
+    "am-gm"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $x$, $y$ and $z$ be positive real numbers with $xyz \\ge 1$. Prove that\n$$\\dfrac{x^5 - x^2}{x^5 + y^2 + z^2} + \\dfrac{y^5 - y^2}{y^5 + z^2 + x^2} + \\dfrac{z^5 - z^2}{z^5 + x^2 + y^2} \\ge 0.$$",
+  "hints": [
+    "The three denominators are different, and the numerators can be negative. Try to replace each denominator by one in which $x^2 + y^2 + z^2$ appears.",
+    "Compare $\\dfrac{x^5 - x^2}{x^5 + y^2 + z^2}$ with $\\dfrac{x^5 - x^2}{x^3(x^2 + y^2 + z^2)}$. Their difference has a sign you can read off, whether $x$ is above or below $1$.",
+    "The second fraction equals $\\dfrac{x^2 - \\frac{1}{x}}{x^2 + y^2 + z^2}$. Use $xyz \\ge 1$ to bound $\\frac{1}{x}$ by $yz$."
+  ],
+  "solution": "Let $S = x^2 + y^2 + z^2$. Since $x^3S - (x^5 + y^2 + z^2) = (x^3 - 1)(y^2 + z^2)$ and $x^5 - x^2 = x^2(x^3 - 1)$,\n$$\\dfrac{x^5 - x^2}{x^5 + y^2 + z^2} - \\dfrac{x^5 - x^2}{x^3S} = \\dfrac{(x^5 - x^2)(x^3 - 1)(y^2 + z^2)}{x^3S\\,(x^5 + y^2 + z^2)} = \\dfrac{x^2(x^3 - 1)^2(y^2 + z^2)}{x^3S\\,(x^5 + y^2 + z^2)} \\ge 0.$$\nSo the first term is at least $\\dfrac{x^5 - x^2}{x^3S} = \\dfrac{1}{S}\\left(x^2 - \\dfrac{1}{x}\\right)$, and the same holds for the other two terms.\n\nSince $xyz \\ge 1$, we have $\\frac{1}{x} \\le yz$, $\\frac{1}{y} \\le zx$ and $\\frac{1}{z} \\le xy$. So the sum is at least\n$$\\dfrac{1}{S}\\left(x^2 + y^2 + z^2 - yz - zx - xy\\right) = \\dfrac{(x - y)^2 + (y - z)^2 + (z - x)^2}{2S} \\ge 0. \\ \\blacksquare$$\n\n<b>Remark.</b> Equality holds only at $x = y = z = 1$. Another route: by Cauchy-Schwarz, $(x^5 + y^2 + z^2)(\\frac{1}{x} + y^2 + z^2) \\ge S^2$, which together with $\\frac{1}{x} \\le yz$ gives $\\frac{x^2 + y^2 + z^2}{x^5 + y^2 + z^2} \\le \\frac{yz + y^2 + z^2}{S}$. Summing and rewriting each term as $1 - \\frac{S}{x^5 + y^2 + z^2}$ gives the same conclusion.",
+  "rubric": [
+    {
+      "marks": 3,
+      "criterion": "Bounds each term below by an expression with a common denominator, such as $\\frac{x^5 - x^2}{x^5 + y^2 + z^2} \\ge \\frac{x^5 - x^2}{x^3(x^2 + y^2 + z^2)}$, with a proof valid for both signs of $x^5 - x^2$, or an equivalent bound such as the Cauchy-Schwarz step in the remark."
+    },
+    {
+      "marks": 2,
+      "criterion": "Uses $xyz \\ge 1$ correctly, for example to replace $\\frac{1}{x}$ by $yz$, reducing the problem to an inequality without the condition."
+    },
+    {
+      "marks": 2,
+      "criterion": "Finishes with $x^2 + y^2 + z^2 \\ge xy + yz + zx$, or an equivalent, and assembles the three terms into a complete proof."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "cevian",
+    "source": "IMO 2005 P3"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 3,
+        "criterion": "Bounds each term below by an expression with a common denominator, such as $\\frac{x^5 - x^2}{x^5 + y^2 + z^2} \\ge \\frac{x^5 - x^2}{x^3(x^2 + y^2 + z^2)}$, with a proof valid for both signs of $x^5 - x^2$, or an equivalent bound such as the Cauchy-Schwarz step in the remark."
+      },
+      {
+        "id": "m2",
+        "marks": 2,
+        "criterion": "Uses $xyz \\ge 1$ correctly, for example to replace $\\frac{1}{x}$ by $yz$, reducing the problem to an inequality without the condition."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Finishes with $x^2 + y^2 + z^2 \\ge xy + yz + zx$, or an equivalent, and assembles the three terms into a complete proof."
+      }
+    ],
+    "alternative_routes": [
+      {
+        "name": "Cauchy-Schwarz",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 2,
+            "criterion": "Rewrites each term as $1 - \\frac{x^2 + y^2 + z^2}{x^5 + y^2 + z^2}$, so that it is enough to prove $\\sum \\frac{x^2 + y^2 + z^2}{x^5 + y^2 + z^2} \\le 3$."
+          },
+          {
+            "id": "a2",
+            "marks": 3,
+            "criterion": "Proves $(x^5 + y^2 + z^2)(\\frac{1}{x} + y^2 + z^2) \\ge (x^2 + y^2 + z^2)^2$ and uses $\\frac{1}{x} \\le yz$ to bound each fraction by $\\frac{yz + y^2 + z^2}{x^2 + y^2 + z^2}$."
+          },
+          {
+            "id": "a3",
+            "marks": 2,
+            "criterion": "Sums the bounds and finishes with $xy + yz + zx \\le x^2 + y^2 + z^2$."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Bounds a term only for $x \\ge 1$, or uses an inequality that reverses when $x^5 - x^2 < 0$, without handling the other case.",
+        "cap": 3
+      },
+      {
+        "error": "Assumes $xyz = 1$, or scales the variables to reach it, without a valid justification.",
+        "cap": 4
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-fifth-powers-against-squares"
+}

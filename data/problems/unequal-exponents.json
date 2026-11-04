@@ -1,0 +1,29 @@
+{
+  "id": "unequal-exponents",
+  "title": "Unequal Exponents",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "am-gm"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Positive real numbers $a$, $b$ and $c$ satisfy $a + b + c = 3$. Find the largest possible value of $ab^2c^3$. Give your answer as a fraction in lowest terms.",
+  "answer_format": "rational",
+  "answer_hash": "01b4d5d8",
+  "hints": [
+    "Try to write $a + b + c$ as a sum of six terms whose product is a fixed multiple of $ab^2c^3$.",
+    "Apply AM-GM to the six numbers $a$, $\\frac{b}{2}$, $\\frac{b}{2}$, $\\frac{c}{3}$, $\\frac{c}{3}$, $\\frac{c}{3}$, and find when equality holds."
+  ],
+  "solution": "The six numbers $a, \\frac{b}{2}, \\frac{b}{2}, \\frac{c}{3}, \\frac{c}{3}, \\frac{c}{3}$ add up to $3$, so by AM-GM\n$$\\dfrac{ab^2c^3}{4 \\cdot 27} \\le \\left(\\dfrac{3}{6}\\right)^6 = \\dfrac{1}{64}.$$\nHence $ab^2c^3 \\le \\frac{108}{64} = \\frac{27}{16}$, with equality when $a = \\frac{b}{2} = \\frac{c}{3} = \\frac{1}{2}$, that is, at $(a, b, c) = (\\frac{1}{2}, 1, \\frac{3}{2})$. The largest value is $\\frac{27}{16}$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-unequal-exponents"
+}

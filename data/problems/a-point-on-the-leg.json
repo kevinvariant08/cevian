@@ -1,0 +1,37 @@
+{
+  "id": "a-point-on-the-leg",
+  "title": "A Point on the Leg",
+  "kyu": 8,
+  "topic": "G",
+  "subtopics": [
+    "angle-chasing",
+    "isosceles-triangle-axis"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Triangle $ABC$ has $AB = AC$ and $\\angle BAC = 40^\\circ$. Point $D$ lies on side $AC$, with $D \\ne C$, and $BD = BC$. Find $\\angle ABD$, in degrees.",
+  "answer_format": "integer",
+  "answer_hash": "85d962cf",
+  "hints": [
+    "Start with the two equal angles of triangle $ABC$.",
+    "Triangle $BCD$ is isosceles too, with $BD = BC$. Find its angles, then compare $\\angle DBC$ with $\\angle ABC$."
+  ],
+  "solution": "The angles of triangle $ABC$ at $B$ and $C$ are both $70^\\circ$. In triangle $BCD$, $BD = BC$, so $\\angle BDC = \\angle BCD = 70^\\circ$ and $\\angle DBC = 40^\\circ$. Hence $\\angle ABD = 70^\\circ - 40^\\circ = 30^\\circ$.",
+  "solution_figures": [
+    {
+      "src": "figures/a-point-on-the-leg-solution.svg?v=8c09ee12",
+      "alt": "Isosceles triangle ABC with AB = AC and a 40 degree angle at A. Point D on side AC has BD = BC, with tick marks on BD and BC. The angles at B and C of triangle ABC are 70 degrees, angle DBC is 40 degrees, and the highlighted angle ABD is 30 degrees.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-point-on-the-leg"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "a-sum-of-fifth-powers",
+  "title": "A Sum of Fifth Powers",
+  "kyu": 5,
+  "topic": "A",
+  "subtopics": [
+    "newton-sums",
+    "vieta",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Real numbers $a$, $b$ and $c$ satisfy $a + b + c = 0$ and $a^2 + b^2 + c^2 = 24$. Find the largest possible value of $a^5 + b^5 + c^5$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "86f7c2d4",
+  "hints": [
+    "With $a + b + c = 0$ fixed, every symmetric expression is a polynomial in $ab + bc + ca$ and $abc$. Find $ab + bc + ca$.",
+    "So $a$, $b$, $c$ are the roots of $t^3 - 12t - r = 0$ with $r = abc$. Use the cubic to express $a^5 + b^5 + c^5$ in terms of $r$, then find how large $r$ can be when all three roots are real."
+  ],
+  "solution": "Since $(a + b + c)^2 = 0$, we have $ab + bc + ca = -12$, so $a, b, c$ are the roots of $t^3 - 12t - r = 0$, where $r = abc$. Let $p_k = a^k + b^k + c^k$. Each root satisfies $t^k = 12t^{k-2} + rt^{k-3}$, so $p_k = 12p_{k-2} + rp_{k-3}$. From $p_0 = 3$, $p_1 = 0$, $p_2 = 24$ we get $p_3 = 3r$, $p_4 = 288$ and $p_5 = 36r + 24r = 60r$.\n\nThe cubic has three real roots exactly when its discriminant $4 \\cdot 12^3 - 27r^2$ is non-negative, that is, when $|r| \\le 16$. So $p_5 \\le 960$, with equality at $(a, b, c) = (4, -2, -2)$. The answer is $960$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-sum-of-fifth-powers"
+}

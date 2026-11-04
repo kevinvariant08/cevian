@@ -1,0 +1,30 @@
+{
+  "id": "neither-neighbours-nor-partners",
+  "title": "Neither Neighbours nor Partners",
+  "kyu": 4,
+  "topic": "C",
+  "subtopics": [
+    "graph-modeling",
+    "recursion"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "How many subsets of $\\{1, 2, \\dots, 14\\}$, including the empty set, contain no two consecutive integers and no two integers whose sum is $15$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "f8a565fa",
+  "hints": [
+    "Draw a graph on the numbers $1, \\dots, 14$, joining two numbers when they cannot both be in the subset. Place each $k$ next to $15 - k$.",
+    "The graph is a ladder whose $7$ rungs are the pairs $\\{k, 15 - k\\}$. Count its independent sets one rung at a time, keeping track of whether the last rung is empty or which of its ends is chosen."
+  ],
+  "solution": "Join two numbers when they cannot both be chosen. The edges are $\\{k, k + 1\\}$ for $1 \\le k \\le 13$ and $\\{k, 15 - k\\}$ for $1 \\le k \\le 7$, and $\\{7, 8\\}$ is in both lists. So the graph is a ladder with rails $1, 2, \\dots, 7$ and $14, 13, \\dots, 8$ and rungs $\\{k, 15 - k\\}$, and we need its independent sets.\n\nFor the first $n$ rungs, let $e_n$ count the independent sets with rung $n$ empty and $f_n$ those using one end of rung $n$. Then $e_n = e_{n-1} + f_{n-1}$. A chosen end of rung $n$ allows rung $n - 1$ to be empty or to use its other end, so $f_n = 2e_{n-1} + f_{n-1}$. Starting from $(e_1, f_1) = (1, 2)$, the pairs are $(3, 4)$, $(7, 10)$, $(17, 24)$, $(41, 58)$, $(99, 140)$ and $(239, 338)$. The answer is $239 + 338 = 577$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-neither-neighbours-nor-partners"
+}

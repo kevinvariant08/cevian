@@ -1,0 +1,32 @@
+{
+  "id": "back-after-ten-steps",
+  "title": "Back After Ten Steps",
+  "kyu": 5,
+  "topic": "A",
+  "subtopics": [
+    "trig-substitution",
+    "fixed-points-of-iteration",
+    "inclusion-exclusion"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $f(x) = x^2 - 2$. For a real number $x$, define $f_1(x) = f(x)$ and $f_{k+1}(x) = f\\bigl(f_k(x)\\bigr)$ for $k \\ge 1$. Find the number of real numbers $x$ such that $f_{10}(x) = x$ and $f_k(x) \\ne x$ for $k = 1, 2, \\dots, 9$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "3b917b2b",
+  "hints": [
+    "Look at what happens to $f_k(x)$ when $|x| > 2$. For the remaining $x$, look for a substitution that makes $f$ easy to iterate.",
+    "Put $x = 2\\cos\\theta$ with $0 \\le \\theta \\le \\pi$. Then $f(x) = 2\\cos 2\\theta$, so $f_k(x) = 2\\cos(2^k\\theta)$.",
+    "Now $f_n(x) = x$ exactly when $2^n\\theta \\equiv \\pm\\theta \\pmod{2\\pi}$, and this gives exactly $2^n$ values of $x$. A solution of $f_{10}(x) = x$ that comes back sooner satisfies $f_d(x) = x$ for $d = 2$ or $d = 5$."
+  ],
+  "solution": "If $|x| > 2$, then $f(x) - |x| = (|x| - 2)(|x| + 1) > 0$, so $f(x) > |x| > 2$. Repeating this, $f_k(x) > |x| \\ge x$ for every $k$, so such $x$ never return. For $|x| \\le 2$ write $x = 2\\cos\\theta$ with $0 \\le \\theta \\le \\pi$, which matches $[-2, 2]$ with $[0, \\pi]$ one to one. Since $f(2\\cos\\theta) = 2\\cos 2\\theta$, we have $f_k(x) = 2\\cos(2^k\\theta)$.\n\nSo $f_n(x) = x$ means $\\cos 2^n\\theta = \\cos\\theta$, that is, $(2^n - 1)\\theta$ or $(2^n + 1)\\theta$ is a multiple of $2\\pi$. In $[0, \\pi]$, the first gives $\\theta = \\frac{2\\pi j}{2^n - 1}$ for $0 \\le j \\le 2^{n-1} - 1$, and the second gives $\\theta = \\frac{2\\pi j}{2^n + 1}$ for $0 \\le j \\le 2^{n-1}$. The odd numbers $2^n - 1$ and $2^n + 1$ differ by $2$, so they are coprime, and the two lists share only $\\theta = 0$. Hence exactly $F(n) = 2^{n-1} + (2^{n-1} + 1) - 1 = 2^n$ real $x$ satisfy $f_n(x) = x$.\n\nIf $f_{10}(x) = x$ and $f_k(x) = x$ for some $k < 10$, the least such $k$ divides $10$, so $f_2(x) = x$ or $f_5(x) = x$. Both hold only when the least such $k$ divides $\\gcd(2, 5) = 1$, that is, when $f_1(x) = x$. By inclusion-exclusion, $F(2) + F(5) - F(1) = 4 + 32 - 2 = 34$ of the $1024$ solutions return sooner. The answer is $1024 - 34 = 990$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-back-after-ten-steps"
+}

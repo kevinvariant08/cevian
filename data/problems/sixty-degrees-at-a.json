@@ -1,0 +1,38 @@
+{
+  "id": "sixty-degrees-at-a",
+  "title": "Sixty Degrees at A",
+  "kyu": 5,
+  "topic": "G",
+  "subtopics": [
+    "law-of-cosines",
+    "law-of-sines",
+    "euler-line"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Triangle $ABC$ has $\\angle BAC = 60^\\circ$, $AB = 8$ and $BC = 7$. Let $O$ be its circumcentre and $H$ its orthocentre. Find the sum of all possible values of $OH^2$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "64a53bab",
+  "hints": [
+    "First find every possible length of $AC$. More than one triangle fits the data.",
+    "For each triangle, use $OH^2 = 9R^2 - (a^2 + b^2 + c^2)$, with the circumradius $R$ from the law of sines."
+  ],
+  "solution": "Let $AC = b$. The law of cosines gives $49 = 64 + b^2 - 8b$, so $b = 3$ or $b = 5$, and both triangles exist. In both, the law of sines gives $R = \\frac{7}{2\\sin 60^\\circ} = \\frac{7}{\\sqrt{3}}$, so $9R^2 = 147$.\n\nBy Euler's relation $OH^2 = 9R^2 - (a^2 + b^2 + c^2)$, with $a^2 + c^2 = 49 + 64 = 113$, we get $OH^2 = 147 - 113 - 9 = 25$ when $b = 3$ and $OH^2 = 147 - 113 - 25 = 9$ when $b = 5$. The sum is $34$.",
+  "solution_figures": [
+    {
+      "src": "figures/sixty-degrees-at-a-solution.svg?v=fffe4b12",
+      "alt": "Two triangles share side AB = 8 and the 60 degree angle at A. The third vertex lies on the same ray from A, at C with AC = 3 or at C' with AC' = 5. Both points are at distance 7 from B, on a dashed arc centred at B.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-sixty-degrees-at-a"
+}

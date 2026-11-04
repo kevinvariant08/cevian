@@ -1,0 +1,37 @@
+{
+  "id": "three-triangles-from-one-point",
+  "title": "Three Triangles from One Point",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "coordinate-bash",
+    "area-by-decomposition"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Square $ABCD$ has side length $12$. A point $P$ lies inside the square, and triangles $PAB$ and $PBC$ have areas $20$ and $30$. Find the area of triangle $PAC$.",
+  "answer_format": "integer",
+  "answer_hash": "cdd5217c",
+  "hints": [
+    "Work out how far $P$ is from the line $AB$ and from the line $BC$.",
+    "Put $B$ at the origin with $BC$ along the $x$-axis and $BA$ along the $y$-axis. Then you know $P$ exactly, and you can see which side of $AC$ it lies on."
+  ],
+  "solution": "Put $B = (0, 0)$, $C = (12, 0)$ and $A = (0, 12)$, and let $P = (x, y)$. Then $[PAB] = 6x = 20$ and $[PBC] = 6y = 30$, so $P = (\\frac{10}{3}, 5)$. The line $AC$ is $x + y = 12$, and $x + y = \\frac{25}{3}$, so $P$ is at distance $\\frac{11}{3\\sqrt{2}}$ from it. Since $AC = 12\\sqrt{2}$, $[PAC] = \\frac{1}{2} \\cdot 12\\sqrt{2} \\cdot \\frac{11}{3\\sqrt{2}} = 22$.",
+  "solution_figures": [
+    {
+      "src": "figures/three-triangles-from-one-point-solution.svg?v=c54197f8",
+      "alt": "Square with B at the origin, C = (12, 0) on the x-axis and A = (0, 12) on the y-axis, and the fourth vertex D. Point P = (10/3, 5) lies below the diagonal AC. Triangles PAB and PBC are shaded with areas 20 and 30, and triangle PAC is highlighted with area 22.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-three-triangles-from-one-point"
+}

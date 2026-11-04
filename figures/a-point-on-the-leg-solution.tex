@@ -1,0 +1,31 @@
+%! alt Isosceles triangle ABC with AB = AC and a 40 degree angle at A. Point D on side AC has BD = BC, with tick marks on BD and BC. The angles at B and C of triangle ABC are 70 degrees, angle DBC is 40 degrees, and the highlighted angle ABD is 30 degrees.
+%! after_paragraph 1
+%! scale 3/2
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){B} %! B = (0, 0)
+\tkzDefPoint(3.0000000,0.0){C} %! C = (2, 0)
+\tkzDefPoint(1.5000000,4.1212161){A} %! A = (1, 1/tand(20))
+\tkzDefPoint(2.2981333,1.9283628){D} %! D = polar(B, 2, 40)
+%! fact equal(dist(A, B), dist(A, C))
+%! fact angle(B, A, C) == 40
+%! fact on_segment(D, A, C)
+%! fact equal(dist(B, D), dist(B, C))
+%! fact angle(D, B, C) == 40
+%! fact angle(A, B, D) == 30
+\tkzFillPolygon[color=figtint](B,C,D)
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegment[key](B,D)
+\tkzMarkSegments[mark=|,size=2.5pt,mk](B,D B,C)
+\tkzMarkAngle[size=.55,arc=l,mark=none,mk](B,A,C)
+\tkzMarkAngle[size=.5,arc=l,mark=none,key](D,B,A)
+\tkzLabelAngle[pos=.85,font=\small](B,A,C){$40^\circ$}
+\tkzLabelAngle[pos=.82,font=\small](D,B,A){$30^\circ$}
+\tkzDrawPoints(A,B,C,D)
+\tkzLabelPoint[above,lbl](A){$A$}
+\tkzLabelPoint[below left,lbl](B){$B$}
+\tkzLabelPoint[below right,lbl](C){$C$}
+\tkzLabelPoint[right,lbl](D){$D$}
+\end{tikzpicture}
+\end{document}

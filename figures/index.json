@@ -143,5 +143,47 @@
       "alt": "Isosceles triangle ACE with CA = CE = h, drawn for h = 144. B is the midpoint of AE, with AB = BE = 90 and a right angle between BC and AE. D lies on side CE, AD bisects angle CAE, and CD = h squared over (h + 180). CB bisects angle ACE, so E is the reflection of A in line BC.",
       "after_paragraph": 3
     }
+  ],
+  "a-point-on-the-leg": [
+    {
+      "src": "figures/a-point-on-the-leg-solution.svg?v=8c09ee12",
+      "alt": "Isosceles triangle ABC with AB = AC and a 40 degree angle at A. Point D on side AC has BD = BC, with tick marks on BD and BC. The angles at B and C of triangle ABC are 70 degrees, angle DBC is 40 degrees, and the highlighted angle ABD is 30 degrees.",
+      "after_paragraph": 1
+    }
+  ],
+  "down-up-and-across": [
+    {
+      "src": "figures/down-up-and-across-solution.svg?v=5163219a",
+      "alt": "Coordinate plane with the x-axis and the line y = 10. A = (0, 3) is reflected in the x-axis to A' = (0, -3), and B = (24, 5) is reflected in y = 10 to B' = (24, 15). The straight segment from A' to B', of length 30, crosses the x-axis at P = (4, 0) and the line y = 10 at Q = (52/3, 10). The highlighted path runs from A to P to Q to B.",
+      "after_paragraph": 1
+    }
+  ],
+  "sixty-degrees-at-a": [
+    {
+      "src": "figures/sixty-degrees-at-a-solution.svg?v=fffe4b12",
+      "alt": "Two triangles share side AB = 8 and the 60 degree angle at A. The third vertex lies on the same ray from A, at C with AC = 3 or at C' with AC' = 5. Both points are at distance 7 from B, on a dashed arc centred at B.",
+      "after_paragraph": 1
+    }
+  ],
+  "three-triangles-from-one-point": [
+    {
+      "src": "figures/three-triangles-from-one-point-solution.svg?v=c54197f8",
+      "alt": "Square with B at the origin, C = (12, 0) on the x-axis and A = (0, 12) on the y-axis, and the fourth vertex D. Point P = (10/3, 5) lies below the diagonal AC. Triangles PAB and PBC are shaded with areas 20 and 30, and triangle PAC is highlighted with area 22.",
+      "after_paragraph": 1
+    }
+  ],
+  "through-two-vertices-and-the-incentre": [
+    {
+      "src": "figures/through-two-vertices-and-the-incentre-solution.svg?v=d8383ab8",
+      "alt": "Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
+      "after_paragraph": 1
+    }
+  ],
+  "fencing-two-colours": [
+    {
+      "src": "figures/fencing-two-colours-solution.svg?v=295bf6d6",
+      "alt": "The lower-bound construction drawn small: three red points, labelled R and drawn in the accent colour, and three blue points, labelled B, alternate around a circle, and one more blue point lies off the circle. Every chord joining neighbouring points on the circle joins two colours, so some line must cross it. The highlighted line crosses exactly two sides of the hexagon formed by the six points, and no line can cross more than two.",
+      "after_paragraph": 2
+    }
   ]
 }
