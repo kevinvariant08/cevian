@@ -18,6 +18,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: The gate's Python dependencies, for the review-server test that runs the real gate
+        run: pip install -r pipeline/verify/requirements.txt
       - run: node scripts/validate.mjs
       - name: Drafts must never be committed, because Pages serves this repo
         run: test -z "$(git ls-files review)"
