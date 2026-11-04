@@ -1,0 +1,40 @@
+{
+  "id": "three-points-on-the-base",
+  "title": "Three Points on the Base",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "arc-midpoint-on-bisector",
+    "similar-triangles",
+    "power-of-a-point",
+    "perpendicular-from-center-to-chord"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In triangle $ABC$, the bisector of angle $BAC$ meets side $BC$ at $D$, the foot of the perpendicular from $A$ to line $BC$ is $F$, and $E$ is the midpoint of $BC$. Given that $DE = 3$, $DF = 12$ and $AF = 16$, find the radius of the circle through $A$, $B$ and $C$. Give your answer as a fraction in lowest terms.",
+  "answer_format": "rational",
+  "answer_hash": "62153d7a",
+  "hints": [
+    "Extend the bisector $AD$ beyond $D$ until it meets the circle through $A$, $B$ and $C$ again, at a point $N$. Where does $N$ lie?",
+    "$N$ is the midpoint of the arc $BC$ that does not contain $A$, so it lies on the perpendicular bisector of $BC$, and $NE$ is parallel to $AF$. Use similar triangles to find $NE$, and then the power of the point $D$ to find $EB$.",
+    "Triangles $DEN$ and $DFA$ are similar, so $NE = 4$, $DN = 5$ and $AD = 20$, and $DB \\cdot DC = DA \\cdot DN$. The centre of the circle lies on line $NE$, at distance $R$ from $N$."
+  ],
+  "solution": "Let line $AD$ meet the circumcircle again at $N$. As $AN$ bisects angle $BAC$, $N$ is the midpoint of the arc $BC$ not containing $A$, so $N$ lies on the perpendicular bisector of $BC$ and $NE \\perp BC$. So $NE \\parallel AF$, and as $A$ and $N$ lie on opposite sides of $BC$, the point $D$ of segment $AN$ lies between $E$ and $F$. The right triangles $DEN$ and $DFA$ are therefore similar with ratio $DE : DF = 1 : 4$. Since $AD = \\sqrt{16^2 + 12^2} = 20$, this gives $NE = 4$ and $DN = 5$.\n\nBy the power of the point $D$, $DB \\cdot DC = DA \\cdot DN = 100$. With $EB = EC = m$ this reads $(m + 3)(m - 3) = 100$, so $m^2 = 109$.\n\nThe circumcentre $O$ lies on line $NE$ with $ON = R$. It is not beyond $N$, since then $OB > OE > ON = R$. So $OE = |R - 4|$, and $OB^2 = OE^2 + EB^2$ gives $R^2 = (R - 4)^2 + 109$. Hence $8R = 125$, and the radius is $\\frac{125}{8}$.",
+  "solution_figures": [
+    {
+      "src": "figures/three-points-on-the-base-solution.svg?v=698cd86f",
+      "alt": "Triangle ABC in its circumcircle with centre O. On BC lie the midpoint E, the foot D of the bisector from A, and, beyond C, the foot F of the altitude from A, with DE = 3, DF = 12 and AF = 16. The bisector AD is extended to N, the lowest point of the circle, directly below E with NE = 4. The shaded right triangles DEN and DFA are similar, and dashed segments join O to N and to B.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-three-points-on-the-base"
+}

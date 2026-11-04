@@ -1,0 +1,33 @@
+{
+  "id": "eight-sets-in-a-ring",
+  "title": "Eight Sets in a Ring",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "element-by-element-analysis",
+    "run-decomposition",
+    "stars-and-bars",
+    "correct-for-overcounting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Each of the eight sets $T_1, T_2, \\dots, T_8$ is a subset of $\\{1, 2, 3\\}$, and any of them may be empty. Read the indices around a circle, so that $T_0$ means $T_8$ and $T_9$ means $T_1$. How many ordered $8$-tuples $(T_1, T_2, \\dots, T_8)$ satisfy $T_i \\subseteq T_{i-1} \\cup T_{i+1}$ for every $i$ with $1 \\le i \\le 8$?",
+  "answer_format": "integer",
+  "answer_hash": "84d50f6f",
+  "hints": [
+    "Fix one element, say $1$, and write down for each $i$ whether $1$ is in $T_i$. What does the condition say about this record, and do the other elements affect it?",
+    "The condition holds if and only if it holds for each element separately, so count element by element and multiply. For a single element the record is a ring of $8$ zeros and ones in which no $1$ has a $0$ on both sides.",
+    "Apart from the rings of all zeros and all ones, such a ring is made of blocks of ones, each of length at least $2$, separated by blocks of zeros. Count the rings with one block and with two blocks. Three blocks would need at least $9$ places."
+  ],
+  "solution": "The condition fails at $T_i$ exactly when some element lies in $T_i$ but in neither $T_{i-1}$ nor $T_{i+1}$. So a tuple works if and only if, for each of $1$, $2$ and $3$, its pattern of membership, read around the ring of eight sets, has no $1$ with a $0$ on both sides. The three patterns can be chosen independently, so the answer is $w^3$, where $w$ is the number of such rings of $8$ binary digits.\n\nA valid ring is all zeros, all ones, or blocks of ones of length at least $2$ separated by blocks of zeros. One block of length $L$, with $2 \\le L \\le 7$, can start at any of $8$ places, giving $6 \\cdot 8 = 48$ rings. For two blocks, choose the start of one of them ($8$ ways) and then the lengths $l_1, m_1, l_2, m_2$ of the blocks in order round the ring, with $l_1, l_2 \\ge 2$, $m_1, m_2 \\ge 1$ and total $8$. Subtracting $2$ from each $l_j$ and $1$ from each $m_j$ leaves $2$ to share among four lengths, in $\\binom{5}{3} = 10$ ways. Each ring arises twice, once for each of its blocks, so there are $\\frac{8 \\cdot 10}{2} = 40$ rings. Three blocks need at least $3 \\cdot 2 + 3 = 9$ places.\n\nSo $w = 1 + 1 + 48 + 40 = 90$, and the answer is $90^3 = 729000$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-eight-sets-in-a-ring"
+}

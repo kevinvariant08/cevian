@@ -1,0 +1,41 @@
+{
+  "id": "two-circles-on-the-legs",
+  "title": "Two Circles on the Legs",
+  "kyu": 5,
+  "topic": "G",
+  "subtopics": [
+    "mutually-tangent-circles",
+    "angle-chasing",
+    "angle-in-semicircle",
+    "right-triangle-altitude",
+    "pitot-tangential-quadrilateral"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $ABCD$ be a trapezium with $AB$ parallel to $CD$. The circle with diameter $AD$ and the circle with diameter $BC$ touch each other externally at the point $P$. Given that $PA = 75$, $PD = 100$ and $PB = 65$, find $PC$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "a4380613",
+  "hints": [
+    "Let $M$ and $N$ be the midpoints of $AD$ and $BC$. Where does $P$ lie relative to the segment $MN$, and what kind of triangle is $MAP$?",
+    "The circles touch at $P$, so $P$ lies on the segment $MN$ of centres, which is the midline of the trapezium and so is parallel to $AB$. Chase angles in the isosceles triangle $MAP$ using this parallel, and show that $AP$ bisects angle $DAB$. Then do the same at $B$, $C$ and $D$.",
+    "So $P$ is at the same distance $r$ from all four sides. As $P$ lies on both circles, the angles $APD$ and $BPC$ are right angles, so $r$ is the altitude to the hypotenuse of each of the right triangles $APD$ and $BPC$. Write $r$ in terms of $PA$ and $PD$, and also in terms of $PB$ and $PC$."
+  ],
+  "solution": "Let $M$ and $N$ be the midpoints of $AD$ and $BC$, the centres of the circles. As the circles touch externally at $P$, the point $P$ lies on segment $MN$, the midline of the trapezium, so $MP \\parallel AB$. Since $MA = MP$, we get $\\angle PAD = \\angle MPA = \\angle PAB$, using alternate angles for the second step. So $AP$ bisects angle $DAB$. In the same way $DP$, $BP$ and $CP$ bisect the other three angles, so $P$ is at the same distance $r$ from all four sides.\n\nSince $P$ lies on both circles, $\\angle APD = \\angle BPC = 90^\\circ$, and $r$ is the altitude to the hypotenuse in both right triangles. From $PA \\cdot PD = AD \\cdot r$ and $AD^2 = PA^2 + PD^2$,\n$$\\dfrac{1}{PA^2} + \\dfrac{1}{PD^2} = \\dfrac{1}{r^2} = \\dfrac{1}{PB^2} + \\dfrac{1}{PC^2}.$$\nHere $\\frac{1}{75^2} + \\frac{1}{100^2} = \\frac{125^2}{75^2 \\cdot 100^2} = \\frac{1}{60^2}$, so $r = 60$. Then $\\frac{1}{PC^2} = \\frac{1}{60^2} - \\frac{1}{65^2} = \\frac{25^2}{60^2 \\cdot 65^2}$, so $PC = \\frac{60 \\cdot 65}{25} = 156$.\n\n<b>Solution 2.</b> Touching gives $MN = \\frac{1}{2}(AD + BC)$, and the midline gives $MN = \\frac{1}{2}(AB + CD)$, so $AB + CD = AD + BC$ and the trapezium has an inscribed circle. Its centre $I$ lies on $MN$, as it is equidistant from $AB$ and $CD$, and $\\angle AID = 90^\\circ$, as $AI$ and $DI$ bisect angles that add up to $180^\\circ$. So $MI = \\frac{1}{2}AD = MP$, giving $I = P$, and the computation above follows.",
+  "solution_figures": [
+    {
+      "src": "figures/two-circles-on-the-legs-solution.svg?v=ed9e35de",
+      "alt": "Trapezium ABCD with AB parallel to CD. The circles on the legs AD and BC as diameters, centred at their midpoints M and N, touch at P on the midline MN. Segments PA = 75, PD = 100, PB = 65 and PC = 156 make right angles APD and BPC. A dashed circle of radius 60 centred at P touches all four sides: P is the centre of the inscribed circle.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-two-circles-on-the-legs"
+}
