@@ -1,0 +1,47 @@
+%! alt A regular hexagon ABCDEF in its circle with centre O, with P on the short arc AB. The diameters AD and CF are dashed. Segments join P to A, D, C and F, so APD and CPF are right angles, and dashed perpendiculars drop from P to AD and to CF.
+%! after_paragraph 1
+%! scale 1
+%! let R = sqrt(14/sqrt(3))
+%! let T = atan(3*sqrt(3)/13)*180/pi
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
+\tkzDefPoint(2.8430448,0.0){A} %! A = polar(O, R, 0)
+\tkzDefPoint(1.4215224,2.4621490){B} %! B = polar(O, R, 60)
+\tkzDefPoint(-1.4215224,2.4621490){C} %! C = polar(O, R, 120)
+\tkzDefPoint(-2.8430448,0.000000000000000000000000000000000000000000000000012324126){D} %! D = polar(O, R, 180)
+\tkzDefPoint(-1.4215224,-2.4621490){E} %! E = polar(O, R, 240)
+\tkzDefPoint(1.4215224,-2.4621490){F} %! F = polar(O, R, 300)
+\tkzDefPoint(2.6399702,1.0552067){P} %! P = polar(O, R, T)
+\tkzDefPoint(2.6399702,0.00000000000000000000000000000000000000000000000000044014737){X} %! X = foot(P, A, D)
+\tkzDefPoint(0.20307463,-0.35173558){Z} %! Z = foot(P, C, F)
+%! fact on_circle(B, O, R)
+%! fact on_circle(P, O, R)
+%! fact equal(dist(A, B), R)
+%! fact dist(P, A)*dist(P, D) == 6
+%! fact dist(P, C)*dist(P, F) == 16
+%! fact perp(P, A, P, D)
+%! fact perp(P, C, P, F)
+%! fact area(A, B, C, D, E, F) == 21
+%! example dist(P, B)*dist(P, E) == 10
+\tkzDrawCircle(O,A)
+\tkzDrawPolygon(A,B,C,D,E,F)
+\tkzDrawSegment[aux](A,D)
+\tkzDrawSegment[aux](C,F)
+\tkzDrawSegment[aux](P,X)
+\tkzDrawSegment[aux](P,Z)
+\tkzDrawSegments[key](P,A P,D P,C P,F)
+\tkzMarkRightAngle[size=.18,mk](P,X,A)
+\tkzMarkRightAngle[size=.18,mk](P,Z,F)
+\tkzDrawPoints(O,A,B,C,D,E,F,P)
+\tkzLabelPoint[right,lbl](A){$A$}
+\tkzLabelPoint[above right,lbl](B){$B$}
+\tkzLabelPoint[above left,lbl](C){$C$}
+\tkzLabelPoint[left,lbl](D){$D$}
+\tkzLabelPoint[below left,lbl](E){$E$}
+\tkzLabelPoint[below right,lbl](F){$F$}
+\tkzLabelPoint[above right,lbl](P){$P$}
+\tkzLabelPoint[below left,lbl](O){$O$}
+\end{tikzpicture}
+\end{document}
