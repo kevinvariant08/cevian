@@ -132,6 +132,13 @@
       "after_paragraph": 2
     }
   ],
+  "half-in-common": [
+    {
+      "src": "figures/half-in-common-solution.svg?v=e5ea4715",
+      "alt": "Triangle ABC with BC = 13, CA = 10 and AB = 5, its incircle with centre I, and the dashed triangle A'B'C' obtained by the half-turn about I. Each side of A'B'C' is parallel to a side of ABC and cuts a small corner off ABC; the shaded hexagon left over is the common region, and its area is half that of ABC.",
+      "after_paragraph": 1
+    }
+  ],
   "halfway-between-two-frames": [
     {
       "src": "figures/halfway-between-two-frames-solution.svg?v=7645ffe9",
@@ -216,10 +223,24 @@
       "after_paragraph": 1
     }
   ],
+  "three-whole-segments": [
+    {
+      "src": "figures/three-whole-segments-solution.svg?v=3fe57497",
+      "alt": "Triangle ABC with BC = 18, CA = 27 and AB = 36, its incircle with centre I, and the three segments through I parallel to the sides, each with its ends on the other two sides. The segment parallel to BC has length 14, the one parallel to CA has length 18 and the one parallel to AB has length 20.",
+      "after_paragraph": 1
+    }
+  ],
   "through-two-vertices-and-the-incentre": [
     {
       "src": "figures/through-two-vertices-and-the-incentre-solution.svg?v=d8383ab8",
       "alt": "Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
+      "after_paragraph": 1
+    }
+  ],
+  "twenty-seven-points": [
+    {
+      "src": "figures/twenty-seven-points-solution.svg?v=849e83d7",
+      "alt": "An oblique view of the cube whose corners have coordinates 0 and 2, with the nine points of its bottom face marked. A triangle PQR with vertices P = (2, 0, 1), Q = (0, 1, 2) and R = (2, 2, 2) is drawn above its shaded shadow P'Q'R' on the bottom face z = 0, and dashed vertical segments join each vertex to its shadow.",
       "after_paragraph": 1
     }
   ],
