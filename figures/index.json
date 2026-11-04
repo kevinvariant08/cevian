@@ -169,8 +169,8 @@
   ],
   "six-points-and-one-more": [
     {
-      "src": "figures/six-points-and-one-more-solution.svg?v=7d196c50",
-      "alt": "A regular hexagon ABCDEF in its circle with centre O, with P on the short arc AB. The diameters AD and CF are dashed. Segments join P to A, D, C and F, so APD and CPF are right angles, and dashed perpendiculars drop from P to AD and to CF.",
+      "src": "figures/six-points-and-one-more-solution.svg?v=47d9b670",
+      "alt": "A close-up of side AB = 14 of the regular hexagon, with P on the short arc AB above it. The lines from P towards the far vertices E and D cross AB at U and V, with AU = 6, UV = 1 and VB = 7. At P the angle APB of 150 degrees is split into 60, 30 and 60 degrees.",
       "after_paragraph": 1
     }
   ],
@@ -205,7 +205,7 @@
   "three-rows-of-circles": [
     {
       "src": "figures/three-rows-of-circles-solution.svg?v=2e86fdca",
-      "alt": "Triangle ABC with side BC along the bottom. Ten circles of radius 1 sit in a row along BC, each touching BC and the next one; the first touches AB and is centred at B', and the last touches CA and is centred at C'. A circle of radius 1 centred at A' touches AB and CA. The triangle A'B'C', with B'C' = 18, C'A' = 20 and A'B' = 34, has its sides parallel to those of ABC at distance 1; it has area 144 and inradius 4, and ABC has inradius 5 and area 225.",
+      "alt": "Triangle ABC with side BC along the bottom. Ten circles of radius 1 sit in a row along BC without overlapping, each touching BC and the next one; the first touches AB and is centred at B', and the last touches CA and is centred at C'. A circle of radius 1 centred at A' touches AB and CA. The triangle A'B'C', with B'C' = 18, C'A' = 20 and A'B' = 34, has its sides parallel to those of ABC at distance 1; it has area 144 and inradius 4, and ABC has inradius 5 and area 225.",
       "after_paragraph": 1
     }
   ],
@@ -258,7 +258,7 @@
   ],
   "two-turns-on-repeat": [
     {
-      "src": "figures/two-turns-on-repeat-solution.svg?v=4cedf7eb",
+      "src": "figures/two-turns-on-repeat-solution.svg?v=b600d659",
       "alt": "The robot's path from O: six moves of 1 metre, starting north, with turns of 100 and 140 degrees clockwise in turn. P1 to P5 are its positions after 1 to 5 moves, and the sixth move ends at O. The moves meet at P1 at an angle of 80 degrees. The points O, P2 and P4, reached after 0, 2 and 4 moves, form an equilateral triangle with side 2 sin 40 degrees, drawn dashed with its sides highlighted, because each pair of moves is the previous pair rotated by 120 degrees.",
       "after_paragraph": 1
     }
@@ -272,8 +272,8 @@
   ],
   "where-the-circle-touches": [
     {
-      "src": "figures/where-the-circle-touches-solution.svg?v=47208ac9",
-      "alt": "Triangle ABC with AB = 10, BC = 12 and AC = 14. The bisector from A meets BC at D. A circle through A touches BC at D and crosses AB at P and AC at Q, and the chord PQ = 9 is parallel to BC, cutting off triangle APQ similar to ABC.",
+      "src": "figures/where-the-circle-touches-solution.svg?v=a10a7c8f",
+      "alt": "Triangle ABC with AB = 6, AC = 10 and BC = 8 times root 5 minus 8, about 9.89. The bisector from A meets BC at D. A circle through A touches BC at D and crosses AB at P and AC at Q. The chord PQ is parallel to BC and passes through the incentre I, so I and PQ are at the same height above BC.",
       "after_paragraph": 2
     }
   ],

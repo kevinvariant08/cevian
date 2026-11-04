@@ -1,0 +1,33 @@
+{
+  "id": "twice-as-much-same-total",
+  "title": "Twice as Much, Same Total",
+  "kyu": 4,
+  "topic": "N",
+  "subtopics": [
+    "carry-analysis",
+    "bijection",
+    "stars-and-bars",
+    "symmetry-reduction"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For a positive integer $n$, let $S(n)$ be the sum of the decimal digits of $n$. How many positive integers $n < 10000$ satisfy $S(2n) = S(n)$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "f23db5dd",
+  "hints": [
+    "Double $n$ by column addition, one digit at a time. Which digits of $n$ send a carry to the next place, and what does one carry do to the digit sum?",
+    "A place carries exactly when its digit is at least $5$, and each carry lowers the digit sum by $9$. So $S(2n) = 2S(n) - 9c$, where $c$ is the number of digits of $n$ that are at least $5$, and the condition becomes $S(n) = 9c$.",
+    "Write $n$ with four digits, using leading zeros, and write each digit as $5\\varepsilon + e$ with $\\varepsilon \\in \\{0, 1\\}$ and $0 \\le e \\le 4$. Then $c$ is the sum of the four values of $\\varepsilon$, and $S(n) = 9c$ says that the four values of $e$ add up to $4c$. The $\\varepsilon$ and the $e$ can be chosen independently, so count the strings of four values of $e$ with sum $0$, $4$, $8$, $12$ and $16$."
+  ],
+  "solution": "When $n$ is doubled by column addition, each place receives a carry of at most $1$, and $2 \\cdot 4 + 1 < 10$, so a place passes on a carry exactly when its digit is at least $5$. Each carry turns $10$ in one place into $1$ in the next, so $S(2n) = 2S(n) - 9c$, where $c$ is the number of digits of $n$ that are at least $5$. The condition is therefore $S(n) = 9c$.\n\nWrite $n$ with four digits, allowing leading zeros, and write each digit, in exactly one way, as $5\\varepsilon + e$ with $\\varepsilon \\in \\{0, 1\\}$ and $0 \\le e \\le 4$. Then $c$ is the sum of the four values of $\\varepsilon$, and $S(n) = 5c + E$, where $E$ is the sum of the four values of $e$. So the condition is $E = 4c$, and the $\\varepsilon$ and the $e$ can be chosen independently.\n\nLet $N(t)$ be the number of strings of four integers from $0$ to $4$ with sum $t$. Then $N(0) = 1$, $N(4) = \\binom{7}{3} = 35$ and, removing the strings with an entry above $4$, $N(8) = \\binom{11}{3} - 4\\binom{6}{3} = 85$; replacing each $e$ by $4 - e$ gives $N(12) = 35$ and $N(16) = 1$. With $\\binom{4}{c}$ ways to choose the digits that have $\\varepsilon = 1$, the count is $$\\sum_{c=0}^{4} \\binom{4}{c} N(4c) = 1 + 140 + 510 + 140 + 1 = 792,$$ which includes $0000$. The answer is $791$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-twice-as-much-same-total"
+}

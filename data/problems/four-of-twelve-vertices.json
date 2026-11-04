@@ -1,0 +1,39 @@
+{
+  "id": "four-of-twelve-vertices",
+  "title": "Four of Twelve Vertices",
+  "kyu": 7,
+  "topic": "G",
+  "subtopics": [
+    "regular-polygon-central-triangles",
+    "sine-area-formula",
+    "area-by-decomposition"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A regular dodecagon (a regular polygon with $12$ sides) has vertices $A, B, C, D, E, F, G, H, I, J, K, L$, in this order around its boundary, and its area is $360$. Find the area of quadrilateral $ABCF$.",
+  "answer_format": "integer",
+  "answer_hash": "f2f5fbb4",
+  "hints": [
+    "Let $O$ be the centre of the dodecagon. Draw $OA$, $OB$, $OC$ and $OF$, and decide whether $O$ lies inside quadrilateral $ABCF$.",
+    "A triangle with two sides equal to the circumradius $R$ and angle $\\theta$ between them has area $\\frac{1}{2}R^2 \\sin \\theta$. The dodecagon is made of the twelve triangles $OAB$, $OBC$, and so on, each with angle $30^\\circ$ at $O$, so each has area $\\frac{1}{4}R^2 = 30$.",
+    "The centre $O$ lies outside $ABCF$, on the other side of $AF$ from $B$ and $C$. So $ABCF$ is pentagon $OABCF$ with triangle $OAF$ removed. Angles $AOB$ and $BOC$ are $30^\\circ$, angle $COF$ is a right angle, and angle $AOF$ is $150^\\circ$, where $\\sin 150^\\circ = \\sin 30^\\circ$."
+  ],
+  "solution": "Let $O$ be the centre and $R$ the circumradius. A triangle with two sides $R$ and angle $\\theta$ between them has area $\\frac{1}{2}R^2 \\sin \\theta$, so each of the twelve triangles $OAB, OBC, \\dots, OLA$ that make up the dodecagon has area $\\frac{1}{4}R^2$, and $\\frac{1}{4}R^2 = \\frac{360}{12} = 30$.\n\nThe arc from $A$ to $F$ through $B$ and $C$ is $150^\\circ$, less than a semicircle, so $O$ lies on the other side of $AF$ from $B$ and $C$. Hence $ABCF$ is made of triangles $OAB$, $OBC$ and $OCF$, with triangle $OAF$ removed. Their angles at $O$ are $30^\\circ$, $30^\\circ$, $90^\\circ$ and $150^\\circ$, so the area of $ABCF$ is\n$$\\dfrac{1}{2}R^2\\left(\\sin 30^\\circ + \\sin 30^\\circ + \\sin 90^\\circ - \\sin 150^\\circ\\right) = \\dfrac{3}{4}R^2 = 90.$$",
+  "solution_figures": [
+    {
+      "src": "figures/four-of-twelve-vertices-solution.svg?v=42581488",
+      "alt": "A regular dodecagon ABCDEFGHIJKL with centre O, drawn with the chord AF across the top. Quadrilateral ABCF is shaded. The centre O lies below AF, outside ABCF. Segments OA, OB, OC and OF cut the pentagon OABCF into triangles OAB and OBC, each with a 30 degree angle at O, and OCF, with a right angle at O. Triangle OAF, shaded grey, has a 150 degree angle at O, so it has the same area as triangle OAB, which is 30. The quadrilateral is the pentagon with triangle OAF removed, so its area is 30 + 30 + 60 - 30 = 90.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-four-of-twelve-vertices"
+}

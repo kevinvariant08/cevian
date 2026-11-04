@@ -1,47 +1,57 @@
-%! alt A regular hexagon ABCDEF in its circle with centre O, with P on the short arc AB. The diameters AD and CF are dashed. Segments join P to A, D, C and F, so APD and CPF are right angles, and dashed perpendiculars drop from P to AD and to CF.
+%! alt A close-up of side AB = 14 of the regular hexagon, with P on the short arc AB above it. The lines from P towards the far vertices E and D cross AB at U and V, with AU = 6, UV = 1 and VB = 7. At P the angle APB of 150 degrees is split into 60, 30 and 60 degrees.
 %! after_paragraph 1
-%! scale 1
-%! let R = sqrt(14/sqrt(3))
-%! let T = atan(3*sqrt(3)/13)*180/pi
+%! scale 1/4
+%! let R = 14
+%! let T = 120 - atan(7*sqrt(3)/23)*180/pi
 \input{preamble}
 \begin{document}
 \begin{tikzpicture}
 \tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
-\tkzDefPoint(2.8430448,0.0){A} %! A = polar(O, R, 0)
-\tkzDefPoint(1.4215224,2.4621490){B} %! B = polar(O, R, 60)
-\tkzDefPoint(-1.4215224,2.4621490){C} %! C = polar(O, R, 120)
-\tkzDefPoint(-2.8430448,0.000000000000000000000000000000000000000000000000012324126){D} %! D = polar(O, R, 180)
-\tkzDefPoint(-1.4215224,-2.4621490){E} %! E = polar(O, R, 240)
-\tkzDefPoint(1.4215224,-2.4621490){F} %! F = polar(O, R, 300)
-\tkzDefPoint(2.6399702,1.0552067){P} %! P = polar(O, R, T)
-\tkzDefPoint(2.6399702,0.00000000000000000000000000000000000000000000000000044014737){X} %! X = foot(P, A, D)
-\tkzDefPoint(0.20307463,-0.35173558){Z} %! Z = foot(P, C, F)
-%! fact on_circle(B, O, R)
+\tkzDefPoint(-1.7500000,3.0310889){A} %! A = polar(O, R, 120)
+\tkzDefPoint(1.7500000,3.0310889){B} %! B = polar(O, R, 60)
+\tkzDefPoint(3.5000000,0.0){C} %! C = polar(O, R, 0)
+\tkzDefPoint(1.7500000,-3.0310889){D} %! D = polar(O, R, 300)
+\tkzDefPoint(-1.7500000,-3.0310889){E} %! E = polar(O, R, 240)
+\tkzDefPoint(-3.5000000,0.000000000000000000000000000000000000000000000000015171918){F} %! F = polar(O, R, 180)
+\tkzDefPoint(-0.13461538,3.4974103){P} %! P = polar(O, R, T)
+\tkzDefPoint(-0.25000000,3.0310889){U} %! U = meet(P, E, A, B)
+\tkzDefPoint(0.0000000000000000000000000000000000000000000000000060137206,3.0310889){V} %! V = meet(P, D, A, B)
+\tkzDefPoint(-2.2750000,2.1217622){Fa} %! Fa = lerp(A, F, 0.3)
+\tkzDefPoint(2.2750000,2.1217622){Cb} %! Cb = lerp(B, C, 0.3)
+\tkzDefPoint(-0.81307692,0.75544062){Ee} %! Ee = lerp(P, E, 0.42)
+\tkzDefPoint(0.65692308,0.75544062){Dd} %! Dd = lerp(P, D, 0.42)
 %! fact on_circle(P, O, R)
-%! fact equal(dist(A, B), R)
-%! fact dist(P, A)*dist(P, D) == 6
-%! fact dist(P, C)*dist(P, F) == 16
-%! fact perp(P, A, P, D)
-%! fact perp(P, C, P, F)
-%! fact area(A, B, C, D, E, F) == 21
-%! example dist(P, B)*dist(P, E) == 10
-\tkzDrawCircle(O,A)
-\tkzDrawPolygon(A,B,C,D,E,F)
-\tkzDrawSegment[aux](A,D)
-\tkzDrawSegment[aux](C,F)
-\tkzDrawSegment[aux](P,X)
-\tkzDrawSegment[aux](P,Z)
-\tkzDrawSegments[key](P,A P,D P,C P,F)
-\tkzMarkRightAngle[size=.18,mk](P,X,A)
-\tkzMarkRightAngle[size=.18,mk](P,Z,F)
-\tkzDrawPoints(O,A,B,C,D,E,F,P)
-\tkzLabelPoint[right,lbl](A){$A$}
+%! fact dist(A, B) == 14
+%! fact dist(B, C) == 14
+%! fact dist(A, U) == 6
+%! fact dist(V, B) == 7
+%! fact dist(U, V) == 1
+%! fact on_segment(U, A, B)
+%! fact on_segment(V, A, B)
+%! fact angle(A, P, U) == 60
+%! fact angle(U, P, V) == 30
+%! fact angle(V, P, B) == 60
+%! fact angle(A, P, V) == 90
+%! fact angle(U, P, B) == 90
+%! fact equal(dist(P, A)/dist(P, B), sqrt(3)/2)
+%! fact area(A, B, C, D, E, F)/sqrt(3) == 294
+\tkzDrawArc(O,B)(A)
+\tkzDrawSegments(A,B A,Fa B,Cb)
+\tkzDrawSegments[aux](P,A P,B)
+\tkzDrawSegments[key](P,Ee P,Dd)
+\tkzMarkAngle[size=.3,arc=l,mark=none,mk](A,P,U)
+\tkzMarkAngle[size=1.9,arc=l,mark=none,mk](U,P,V)
+\tkzMarkAngle[size=.3,arc=l,mark=none,mk](V,P,B)
+\tkzLabelAngle[pos=2.25,font=\small](U,P,V){$30^\circ$}
+\tkzDrawPoints(A,B,P,U,V)
+\tkzLabelPoint[above left,lbl](A){$A$}
 \tkzLabelPoint[above right,lbl](B){$B$}
-\tkzLabelPoint[above left,lbl](C){$C$}
-\tkzLabelPoint[left,lbl](D){$D$}
-\tkzLabelPoint[below left,lbl](E){$E$}
-\tkzLabelPoint[below right,lbl](F){$F$}
-\tkzLabelPoint[above right,lbl](P){$P$}
-\tkzLabelPoint[below left,lbl](O){$O$}
+\tkzLabelPoint[above,lbl](P){$P$}
+\tkzLabelPoint[below left,lbl](U){$U$}
+\tkzLabelPoint[below right,lbl](V){$V$}
+\tkzLabelPoint[below,lbl](Ee){to $E$}
+\tkzLabelPoint[below,lbl](Dd){to $D$}
+\tkzLabelSegment[below,pos=.5,len](A,U){$6$}
+\tkzLabelSegment[below,pos=.5,len](V,B){$7$}
 \end{tikzpicture}
 \end{document}

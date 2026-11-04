@@ -1,0 +1,40 @@
+{
+  "id": "where-the-coin-cannot-reach",
+  "title": "Where the Coin Cannot Reach",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "homothety",
+    "incircle-and-semiperimeter",
+    "heron",
+    "area-by-decomposition"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A coin of radius $1$ is placed flat inside a triangle with side lengths $7$, $15$ and $20$, and is moved into every position in which it lies entirely inside the triangle. The points of the triangle that the coin never covers form a region of area $a - \\pi$. Find $a$. Give your answer as a fraction in lowest terms.",
+  "answer_format": "rational",
+  "answer_hash": "2289a912",
+  "hints": [
+    "Follow the centre of the coin rather than the coin. Which points can the centre reach, and what shape do they form?",
+    "The centre can be any point at distance at least $1$ from all three sides. These points form a triangle with sides parallel to those of the original one, and it is the image of the original under a homothety centred at the incentre. The coin covers exactly the points within distance $1$ of this inner triangle.",
+    "The triangle has area $42$ and inradius $2$, so the homothety has ratio $\\frac{1}{2}$. The points within $1$ of a triangle make up the triangle itself, a rectangle of width $1$ on each side, and a sector of radius $1$ at each corner, and the angles of the three sectors add up to $360^\\circ$."
+  ],
+  "solution": "By Heron's formula the triangle $ABC$ has area $\\sqrt{21 \\cdot 14 \\cdot 6 \\cdot 1} = 42$, and its semiperimeter is $21$, so its inradius is $r = 2$. Let $I$ be the incentre.\n\nThe coin fits exactly when its centre is at distance at least $1$ from all three sides. These centres form the triangle $A'B'C'$ cut out by the lines parallel to the sides at distance $1$ inside $ABC$. Since $I$ is at distance $r - 1 = 1$ from each of these lines, $A'B'C'$ is the image of $ABC$ under the homothety centred at $I$ with ratio $\\frac{1}{2}$. Its area is $\\frac{42}{4} = \\frac{21}{2}$ and its perimeter is $21$.\n\nThe covered points are exactly those within $1$ of $A'B'C'$. They form $A'B'C'$, a rectangle of width $1$ on each of its sides, of total area $21$, and a sector of radius $1$ at each vertex, with angle $180^\\circ$ minus the angle of the triangle there. These angles add up to $3 \\cdot 180^\\circ - 180^\\circ = 360^\\circ$, so the sectors have total area $\\pi$. The uncovered region has area $42 - \\frac{21}{2} - 21 - \\pi = \\frac{21}{2} - \\pi$, so $a = \\frac{21}{2}$.\n\n<b>Solution 2.</b> The perpendiculars from $A'$, $B'$ and $C'$ to the sides cut $ABC$ into $A'B'C'$, three rectangles of width $1$ on its sides, which the coin covers, and a kite at each vertex. In the kite at $A$, formed by $A$, $A'$ and the feet of the perpendiculars from $A'$, the nearest point of $A'B'C'$ is always $A'$, so the coin covers only the sector of radius $1$ about $A'$. This kite is the image of the incircle's kite at $A$, formed by $A$, $I$ and the points where the incircle touches $AB$ and $AC$, under the homothety centred at $A$ with ratio $\\frac{1}{r} = \\frac{1}{2}$. The incircle kites fill $ABC$, so the coin kites have total area $\\frac{42}{4}$, and the uncovered area is again $\\frac{21}{2} - \\pi$.",
+  "solution_figures": [
+    {
+      "src": "figures/where-the-coin-cannot-reach-solution.svg?v=739c0ab6",
+      "alt": "Triangle ABC with BC = 20, CA = 15 and AB = 7, its incircle with centre I and radius 2, and the dashed inner triangle A'B'C', the image of ABC under the homothety at I with ratio 1/2. The coin of radius 1 is drawn pushed into each corner, centred at the vertices A', B' and C' of the inner triangle. At each vertex of ABC the shaded kite has corners at the vertex, the two points where the coin touches the sides, and the coin's centre; the part of the kite outside the coin is never covered. Dashed segments join I to C and to the incircle's points of contact on BC and CA, outlining the incircle's kite at C, which is twice the size of the coin's kite at C.",
+      "after_paragraph": 4
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-where-the-coin-cannot-reach"
+}

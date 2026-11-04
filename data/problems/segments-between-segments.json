@@ -1,0 +1,39 @@
+{
+  "id": "segments-between-segments",
+  "title": "Segments Between Segments",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "similar-triangles",
+    "linear-recurrence-closed-form",
+    "invariant"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Trapezium $ABCD$ has $AB$ parallel to $CD$, $AB = 4$ and $CD = 6$. Let $\\ell_0$ be the segment $AB$ and $\\ell_1$ the segment $CD$. For each $n \\ge 1$, the endpoints of $\\ell_{n-1}$ and $\\ell_n$ are the vertices of a trapezium; let $\\ell_{n+1}$ be the segment through the point where its diagonals meet, parallel to $AB$, with endpoints on the lines $AD$ and $BC$. As $n$ increases, the length of $\\ell_n$ approaches a limit. Find this limit. Give your answer as a fraction in lowest terms.",
+  "answer_format": "rational",
+  "answer_hash": "49bef2ad",
+  "hints": [
+    "Look at a single step first. In a trapezium whose parallel sides have lengths $x$ and $y$, how long is the segment through the meeting point of the diagonals, parallel to those sides?",
+    "Similar triangles show that this segment has length $\\frac{2xy}{x + y}$. Pass to reciprocals: with $u_n = \\frac{1}{\\ell_n}$, each new term is the average of the two terms before it.",
+    "From $u_{n+1} = \\frac{u_n + u_{n-1}}{2}$, the quantity $u_{n+1} + \\frac{1}{2} u_n$ is the same for every $n$. Evaluate it at the start, where $u_0 = \\frac{1}{4}$ and $u_1 = \\frac{1}{6}$, and then let $n$ grow."
+  ],
+  "solution": "Take a trapezium $PQRS$ with $PQ \\parallel SR$, $PQ = x$ and $SR = y$, whose diagonals meet at $O$, and let the line through $O$ parallel to $PQ$ meet $PS$ at $M$ and $QR$ at $N$. Triangles $OPQ$ and $ORS$ are similar with ratio $x : y$, so $\\frac{SO}{SQ} = \\frac{RO}{RP} = \\frac{y}{x + y}$. Triangles $SMO$ and $SPQ$ are similar, so $MO = \\frac{xy}{x + y}$, and in the same way triangles $RNO$ and $RQP$ give $ON = \\frac{xy}{x + y}$. Hence $\\frac{1}{MN} = \\frac{1}{2}\\left(\\frac{1}{x} + \\frac{1}{y}\\right)$.\n\nSo $u_n = \\frac{1}{\\ell_n}$ satisfies $u_{n+1} = \\frac{u_n + u_{n-1}}{2}$ for $n \\ge 1$; for example $\\ell_2 = \\frac{24}{5}$ and $\\ell_3 = \\frac{16}{3}$. This gives $u_{n+1} + \\frac{1}{2} u_n = u_n + \\frac{1}{2} u_{n-1}$, so $u_{n+1} + \\frac{1}{2} u_n = u_1 + \\frac{1}{2} u_0 = \\frac{1}{6} + \\frac{1}{8} = \\frac{7}{24}$ for every $n$. It also gives $u_{n+1} - u_n = -\\frac{1}{2}(u_n - u_{n-1})$, so the differences halve at each step and $u_n$ tends to a limit $u$, with $\\frac{3}{2} u = \\frac{7}{24}$. Thus $u = \\frac{7}{36}$, and the length of $\\ell_n$ tends to $\\frac{36}{7}$.",
+  "solution_figures": [
+    {
+      "src": "figures/segments-between-segments-solution.svg?v=2fb9b1d5",
+      "alt": "Trapezium ABCD with AB = 4 at the top and CD = 6 at the bottom. The diagonals of ABCD meet at a point on the highlighted segment l2, of length 24/5, which runs between the legs AD and BC parallel to AB. The diagonals of the trapezium with parallel sides CD and l2 meet on l3, of length 16/3, and the diagonals of the trapezium with parallel sides l2 and l3 meet on l4. Each new segment lies between the two before it, so the segments close in on one limiting segment.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-segments-between-segments"
+}
