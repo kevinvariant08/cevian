@@ -181,6 +181,13 @@
       "after_paragraph": 1
     }
   ],
+  "sixty-at-both-ends": [
+    {
+      "src": "figures/sixty-at-both-ends-solution.svg?v=9cf556a8",
+      "alt": "Equilateral triangle ABE drawn dashed, with D on side AE and C on side BE. The quadrilateral ABCD has 60 degree angles at A and B; the shaded triangle DEC that is cut off has a 60 degree angle at E, with ED = x and EC = y. In the case drawn AB = 12, x = 3, y = 8 and CD = 7.",
+      "after_paragraph": 1
+    }
+  ],
   "sixty-degrees-at-a": [
     {
       "src": "figures/sixty-degrees-at-a-solution.svg?v=fffe4b12",
@@ -220,13 +227,6 @@
     {
       "src": "figures/three-triangles-from-one-point-solution.svg?v=c54197f8",
       "alt": "Square with B at the origin, C = (12, 0) on the x-axis and A = (0, 12) on the y-axis, and the fourth vertex D. Point P = (10/3, 5) lies below the diagonal AC. Triangles PAB and PBC are shaded with areas 20 and 30, and triangle PAC is highlighted with area 22.",
-      "after_paragraph": 1
-    }
-  ],
-  "three-whole-segments": [
-    {
-      "src": "figures/three-whole-segments-solution.svg?v=3fe57497",
-      "alt": "Triangle ABC with BC = 18, CA = 27 and AB = 36, its incircle with centre I, and the three segments through I parallel to the sides, each with its ends on the other two sides. The segment parallel to BC has length 14, the one parallel to CA has length 18 and the one parallel to AB has length 20.",
       "after_paragraph": 1
     }
   ],
