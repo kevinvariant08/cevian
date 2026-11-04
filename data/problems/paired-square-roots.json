@@ -1,0 +1,75 @@
+{
+  "id": "paired-square-roots",
+  "title": "Paired Square Roots",
+  "kyu": 1,
+  "topic": "A",
+  "subtopics": [
+    "cauchy-schwarz",
+    "telescoping",
+    "bounding"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $\\{a_i\\}$ and $\\{b_i\\}$ be sequences of real numbers. Prove that\n$$\\sum_{m,n=1}^{2020}\\dfrac{a_mb_n}{(\\sqrt{m}+\\sqrt{n})^2}\\le 2\\left(\\sum_{m=1}^{2020}a_m^2\\right)^{1/2}\\left(\\sum_{n=1}^{2020}b_n^2\\right)^{1/2}.$$",
+  "hints": [
+    "Split each term $\\dfrac{a_mb_n}{(\\sqrt{m}+\\sqrt{n})^2}$ into a factor containing $a_m$ times a factor containing $b_n$, weighted so that after squaring, each inner sum over the other index is bounded by a constant.",
+    "Apply the Cauchy inequality to the factors $\\dfrac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{m}{n}\\right)^{1/4}$ and $\\dfrac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{n}{m}\\right)^{1/4}$. It then suffices to prove $\\displaystyle\\sum_{n=1}^{2020}\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{m}{n}\\right)^{1/2}\\le 2$ for each $m$, and the same with $m$ and $n$ swapped.",
+    "Bound each term of that sum by $2\\left(\\dfrac{1}{\\sqrt{\\frac{n-1}{m}}+1}-\\dfrac{1}{\\sqrt{\\frac{n}{m}}+1}\\right)$, which telescopes."
+  ],
+  "solution": "<b>Proof.</b> The left side of the inequality is\n$$\\sum_{m,n=1}^{2020}\\left[\\dfrac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{m}{n}\\right)^{1/4}\\right]\\left[\\dfrac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{n}{m}\\right)^{1/4}\\right].$$\nBy the Cauchy inequality,\n$$\\sum_{m,n=1}^{2020}\\left[\\dfrac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{m}{n}\\right)^{1/4}\\right]\\left[\\dfrac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{n}{m}\\right)^{1/4}\\right]\\le\\left(\\sum_{m,n=1}^{2020}\\left[\\dfrac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{m}{n}\\right)^{1/4}\\right]^2\\right)^{1/2}\\left(\\sum_{m,n=1}^{2020}\\left[\\dfrac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{n}{m}\\right)^{1/4}\\right]^2\\right)^{1/2}.$$\nFrom the identities\n$$\\sum_{m,n=1}^{2020}\\left[\\dfrac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{m}{n}\\right)^{1/4}\\right]^2=\\sum_{m=1}^{2020}a_m^2\\sum_{n=1}^{2020}\\left[\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{m}{n}\\right)^{1/2}\\right]$$\nand\n$$\\sum_{m,n=1}^{2020}\\left[\\dfrac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\dfrac{n}{m}\\right)^{1/4}\\right]^2=\\sum_{n=1}^{2020}b_n^2\\sum_{m=1}^{2020}\\left[\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{n}{m}\\right)^{1/2}\\right],$$\nit suffices to prove\n$$\\sum_{n=1}^{2020}\\left[\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{m}{n}\\right)^{1/2}\\right]\\le 2 \\qquad (1)$$\nand\n$$\\sum_{m=1}^{2020}\\left[\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{n}{m}\\right)^{1/2}\\right]\\le 2. \\qquad (2)$$\nThese two inequalities are the same ($m$ and $n$ swapped).\n\nWe now prove\n$$\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{m}{n}\\right)^{1/2}\\le 2\\left(\\dfrac{1}{\\sqrt{\\dfrac{n-1}{m}}+1}-\\dfrac{1}{\\sqrt{\\dfrac{n}{m}}+1}\\right). \\qquad (3)$$\nThis inequality is equivalent to\n$$\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\left(\\dfrac{m}{n}\\right)^{1/2}\\le 2\\left(\\dfrac{\\sqrt{m}}{\\sqrt{n-1}+\\sqrt{m}}-\\dfrac{\\sqrt{m}}{\\sqrt{n}+\\sqrt{m}}\\right)\\iff$$\n$$\\dfrac{1}{(\\sqrt{m}+\\sqrt{n})^2}\\cdot\\dfrac{1}{\\sqrt{n}}\\le 2\\cdot\\dfrac{\\sqrt{n}-\\sqrt{n-1}}{(\\sqrt{n-1}+\\sqrt{m})(\\sqrt{n}+\\sqrt{m})},$$\nand from $(\\sqrt{n-1}+\\sqrt{m})(\\sqrt{n}+\\sqrt{m})\\le(\\sqrt{m}+\\sqrt{n})^2$ and $2(\\sqrt{n}-\\sqrt{n-1})=\\dfrac{2}{\\sqrt{n}+\\sqrt{n-1}}\\ge\\dfrac{1}{\\sqrt{n}}$, the last inequality holds. Summing (3) gives (1), as required. $\\blacksquare$",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Applies the Cauchy inequality to the split $\\left[\\frac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\frac{m}{n}\\right)^{1/4}\\right]\\left[\\frac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\frac{n}{m}\\right)^{1/4}\\right]$, or an equivalent weighting, and reduces the problem to (1) and (2)."
+    },
+    {
+      "marks": 3,
+      "criterion": "Proves inequality (3), or another bound on each term of (1) whose sum over $n$ is at most $2$."
+    },
+    {
+      "marks": 2,
+      "criterion": "Sums (3) to obtain (1), obtains (2) by swapping $m$ and $n$, and concludes."
+    }
+  ],
+  "provenance": {
+    "kind": "classical",
+    "author": "Kevin Hu",
+    "source": "Chinese olympiad problem book (contest source not identified)"
+  },
+  "marking": {
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Applies the Cauchy inequality to the split $\\left[\\frac{a_m}{\\sqrt{m}+\\sqrt{n}}\\left(\\frac{m}{n}\\right)^{1/4}\\right]\\left[\\frac{b_n}{\\sqrt{m}+\\sqrt{n}}\\left(\\frac{n}{m}\\right)^{1/4}\\right]$, or an equivalent weighting, and reduces the problem to (1) and (2)."
+      },
+      {
+        "id": "m2",
+        "marks": 3,
+        "criterion": "Proves inequality (3), or another bound on each term of (1) whose sum over $n$ is at most $2$."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Sums (3) to obtain (1), obtains (2) by swapping $m$ and $n$, and concludes."
+      }
+    ],
+    "alternative_routes": [],
+    "fatal_errors": [
+      {
+        "error": "Applies the Cauchy inequality without weights such as $\\left(\\frac{m}{n}\\right)^{1/4}$, so the remaining sums are not bounded by a constant.",
+        "cap": 2
+      },
+      {
+        "error": "Proves (1) but does not explain why (2) also holds or how the two give the result.",
+        "cap": 5
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-paired-square-roots"
+}
