@@ -113,15 +113,16 @@ class CliBackend(Backend):
 
     def __init__(self, concurrency=4):
         super().__init__(concurrency=concurrency, name="cli")
+        # Looked up on first use, so a draft that fails a free check never needs the CLI.
         self.exe = shutil.which("claude")
-        if not self.exe:
-            raise ModelError("the claude CLI isn't on PATH")
 
     def _send_images(self, model, system, prompt, effort, max_tokens, role, draft_id, salt, images):
         """The CLI takes images only through its Read tool, so this one call gets that tool and a folder holding just the images."""
         return self._send(model, system, prompt, effort, max_tokens, role, draft_id, salt, images=images)
 
     def _send(self, model, system, prompt, effort, max_tokens, role, draft_id, salt, images=None):
+        if not self.exe:
+            raise ModelError("the claude CLI isn't on PATH")
         env = {k: v for k, v in os.environ.items() if k not in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN")}
         env["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(max_tokens)
         # A capped reply makes the CLI retry up to four times. A budget of exactly one capped reply stops that.
