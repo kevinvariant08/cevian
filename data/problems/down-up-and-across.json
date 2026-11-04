@@ -1,0 +1,37 @@
+{
+  "id": "down-up-and-across",
+  "title": "Down, Up and Across",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "reflection-across-line",
+    "triangle-inequality"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In the coordinate plane, let $A = (0, 3)$ and $B = (24, 5)$. A path goes in a straight line from $A$ to a point $P$ on the $x$-axis, then in a straight line from $P$ to a point $Q$ on the line $y = 10$, and then in a straight line from $Q$ to $B$. Find the smallest possible length of the path.",
+  "answer_format": "integer",
+  "answer_hash": "c66bdc30",
+  "hints": [
+    "The segment $AP$ has the same length as the segment from $P$ to $(0, -3)$. Is there a point that does the same job for the segment $QB$?",
+    "Reflect $A$ in the $x$-axis and $B$ in the line $y = 10$. The path then has the same length as a broken line between two fixed points, and a straight line is shortest. Check that the straight line really meets the two lines in the right order."
+  ],
+  "solution": "Let $A' = (0, -3)$ be the reflection of $A$ in the $x$-axis and $B' = (24, 15)$ the reflection of $B$ in $y = 10$. Then $AP = A'P$ and $QB = QB'$, so the length is $A'P + PQ + QB' \\ge A'B' = \\sqrt{24^2 + 18^2} = 30$.\n\nThe segment $A'B'$ meets $y = 0$ at $(4, 0)$ and $y = 10$ at $(\\frac{52}{3}, 10)$, in that order, so $P = (4, 0)$ and $Q = (\\frac{52}{3}, 10)$ give a path of length exactly $30$. The minimum is $30$.",
+  "solution_figures": [
+    {
+      "src": "figures/down-up-and-across-solution.svg?v=5163219a",
+      "alt": "Coordinate plane with the x-axis and the line y = 10. A = (0, 3) is reflected in the x-axis to A' = (0, -3), and B = (24, 5) is reflected in y = 10 to B' = (24, 15). The straight segment from A' to B', of length 30, crosses the x-axis at P = (4, 0) and the line y = 10 at Q = (52/3, 10). The highlighted path runs from A to P to Q to B.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-down-up-and-across"
+}

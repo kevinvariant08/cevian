@@ -1,15 +1,15 @@
-%! alt Acute triangle ABC inscribed in a circle with centre O and radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.
+%! alt Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.
 %! after_paragraph 1
-%! scale 1/8
+%! scale 1/6
 \input{preamble}
 \begin{document}
 \begin{tikzpicture}
 \tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
-\tkzDefPoint(-1.5000000,-0.62500000){B} %! B = (-12, -5)
-\tkzDefPoint(1.5000000,-0.62500000){C} %! C = (12, -5)
-\tkzDefPoint(-0.50215262,1.5454668){A} %! A = polar(O, 13, 108)
-\tkzDefPoint(0.0,-1.6250000){M} %! M = (0, -13)
-\tkzDefPoint(-0.28201624,0.15558048){I} %! I = incentre(A, B, C)
+\tkzDefPoint(-2.0000000,-0.83333333){B} %! B = (-12, -5)
+\tkzDefPoint(2.0000000,-0.83333333){C} %! C = (12, -5)
+\tkzDefPoint(-0.66953682,2.0606225){A} %! A = polar(O, 13, 108)
+\tkzDefPoint(0.0,-2.1666667){M} %! M = (0, -13)
+\tkzDefPoint(-0.37602166,0.20744064){I} %! I = incentre(A, B, C)
 %! fact dist(B, C) == 24
 %! fact on_circle(A, O, 13)
 %! fact on_circle(B, O, 13)
@@ -17,18 +17,17 @@
 %! fact collinear(I, A, M)
 %! fact equal(dist(M, I), dist(M, B))
 %! fact equal(dist(M, C), dist(M, B))
-%! fact dist(M, B)**2 == 208
+%! example dist(M, B)**2 == 208
 \tkzDrawCircle(O,A)
 \tkzDrawCircle[key](M,B)
 \tkzDrawPolygon(A,B,C)
 \tkzDrawSegment[aux](A,M)
 \tkzDrawSegments[aux](M,B M,C)
-\tkzDrawPoints(A,B,C,O,M,I)
+\tkzDrawPoints(A,B,C,M,I)
 \tkzLabelPoint[above,lbl](A){$A$}
 \tkzLabelPoint[left,lbl](B){$B$}
 \tkzLabelPoint[right,lbl](C){$C$}
-\tkzLabelPoint[below right,lbl](O){$O$}
 \tkzLabelPoint[below right,lbl](M){$M$}
-\tkzLabelPoint[left,lbl](I){$I$}
+\tkzLabelPoint[below left,lbl](I){$I$}
 \end{tikzpicture}
 \end{document}

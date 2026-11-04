@@ -151,25 +151,11 @@
       "after_paragraph": 1
     }
   ],
-  "a-wedge-in-the-square": [
-    {
-      "src": "figures/a-wedge-in-the-square-solution.svg?v=4107b92a",
-      "alt": "Square ABCD with side 12, A at the bottom left, B at the bottom right, C at the top right and D at the top left. E is on BC with BE = 4 and F is on CD with DF = 6, so angle EAF is 45 degrees. Rotating F by 90 degrees about A gives G on line CB beyond B, with BG = 6. Triangle AEF is highlighted and is congruent to the dashed triangle AGE, and EF = GE = 10.",
-      "after_paragraph": 1
-    }
-  ],
   "down-up-and-across": [
     {
       "src": "figures/down-up-and-across-solution.svg?v=5163219a",
       "alt": "Coordinate plane with the x-axis and the line y = 10. A = (0, 3) is reflected in the x-axis to A' = (0, -3), and B = (24, 5) is reflected in y = 10 to B' = (24, 15). The straight segment from A' to B', of length 30, crosses the x-axis at P = (4, 0) and the line y = 10 at Q = (52/3, 10). The highlighted path runs from A to P to Q to B.",
       "after_paragraph": 1
-    }
-  ],
-  "midpoints-of-alternate-sides": [
-    {
-      "src": "figures/midpoints-of-alternate-sides-solution.svg?v=21cf4d85",
-      "alt": "Regular hexagon ABCDEF with centre O. The dashed triangle ACE joins alternate vertices and covers half of the hexagon. The highlighted triangle PQR joins the midpoints P, Q and R of sides AB, CD and EF, and has the same centre O, with OP shorter than OA.",
-      "after_paragraph": 2
     }
   ],
   "sixty-degrees-at-a": [
@@ -188,16 +174,9 @@
   ],
   "through-two-vertices-and-the-incentre": [
     {
-      "src": "figures/through-two-vertices-and-the-incentre-solution.svg?v=31e6e353",
-      "alt": "Acute triangle ABC inscribed in a circle with centre O and radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
+      "src": "figures/through-two-vertices-and-the-incentre-solution.svg?v=d8383ab8",
+      "alt": "Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
       "after_paragraph": 1
-    }
-  ],
-  "two-small-incircles": [
-    {
-      "src": "figures/two-small-incircles-solution.svg?v=6a46afed",
-      "alt": "Right-angled triangle ABC with the right angle at C, AC = 30, BC = 40 and hypotenuse AB = 50, drawn with AB horizontal. D is the foot of the perpendicular from C to AB, with AD = 18 and CD = 24. The incircles of triangles ACD and BCD are drawn, with radii 6 and 8.",
-      "after_paragraph": 2
     }
   ]
 }

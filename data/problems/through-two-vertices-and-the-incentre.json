@@ -1,0 +1,38 @@
+{
+  "id": "through-two-vertices-and-the-incentre",
+  "title": "Through Two Vertices and the Incentre",
+  "kyu": 5,
+  "topic": "G",
+  "subtopics": [
+    "incenter-excenter-lemma",
+    "law-of-sines",
+    "double-and-half-angle-formulas"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "An acute triangle $ABC$ has $BC = 24$ and circumradius $13$. Let $I$ be its incentre, and let $r$ be the radius of the circle through $B$, $C$ and $I$. Find $r^2$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "29efdd7a",
+  "hints": [
+    "Let $M$ be the midpoint of the arc $BC$ of the circumcircle that does not contain $A$. The line $AI$ passes through $M$. Compare the lengths $MB$, $MC$ and $MI$.",
+    "Angle-chase to show $\\angle MBI = \\angle MIB$. Then $M$ is the centre of the circle through $B$, $C$ and $I$, and $MB$ is a chord of the circumcircle that you can compute."
+  ],
+  "solution": "Write $\\angle A = 2\\alpha$ and $\\angle B = 2\\beta$. Let $M$ be the midpoint of arc $BC$ not containing $A$, so $AM$ bisects $\\angle A$ and passes through $I$. Then $\\angle MBI = \\angle MBC + \\angle CBI = \\angle MAC + \\beta = \\alpha + \\beta$, and $\\angle MIB = \\angle IAB + \\angle IBA = \\alpha + \\beta$ as an exterior angle of triangle $ABI$. So $MI = MB$, and likewise $MI = MC$: the circle through $B$, $C$, $I$ has centre $M$ and radius $MB$.\n\nFrom $BC = 2 \\cdot 13 \\sin A$ we get $\\sin A = \\frac{12}{13}$, and $A$ is acute, so $\\cos A = \\frac{5}{13}$. The chord $MB$ subtends the angle $\\alpha$ at $A$, so\n$$r^2 = MB^2 = \\left(26 \\sin \\tfrac{A}{2}\\right)^2 = 676 \\cdot \\dfrac{1 - \\cos A}{2} = 676 \\cdot \\dfrac{4}{13} = 208.$$",
+  "solution_figures": [
+    {
+      "src": "figures/through-two-vertices-and-the-incentre-solution.svg?v=d8383ab8",
+      "alt": "Acute triangle ABC inscribed in a circle of radius 13, with BC = 24. M is the midpoint of the arc BC not containing A, and the bisector AM passes through the incentre I. The highlighted circle with centre M passes through B, I and C, and MB = MI = MC.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-through-two-vertices-and-the-incentre"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "mean-twelve-median-fifteen",
+  "title": "Mean Twelve, Median Fifteen",
+  "kyu": 7,
+  "topic": "A",
+  "subtopics": [
+    "bounding",
+    "greedy-optimization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Five different positive integers have mean $12$ and median $15$. What is the largest possible value of the largest of the five integers?",
+  "answer_format": "integer",
+  "answer_hash": "b293cf4d",
+  "hints": [
+    "The five integers add up to $60$. List them in increasing order: which one is fixed?",
+    "To make the largest one as big as possible, make each of the other three as small as the conditions allow."
+  ],
+  "solution": "Write the integers as $p < q < 15 < s < t$. Their sum is $60$, so $t = 45 - p - q - s$, and $p \\ge 1$, $q \\ge 2$, $s \\ge 16$ give $t \\le 26$. The integers $1, 2, 15, 16, 26$ attain it, so the answer is $26$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-mean-twelve-median-fifteen"
+}

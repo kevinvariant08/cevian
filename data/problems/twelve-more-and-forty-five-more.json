@@ -1,0 +1,30 @@
+{
+  "id": "twelve-more-and-forty-five-more",
+  "title": "Twelve More and Forty-Five More",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "difference-of-squares",
+    "factor-pair-enumeration"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Find the sum of all positive integers $n$ for which both $n + 12$ and $n + 45$ are perfect squares.",
+  "answer_format": "integer",
+  "answer_hash": "875667da",
+  "hints": [
+    "Write $n + 12 = a^2$ and $n + 45 = b^2$, where $a$ and $b$ are non-negative integers. What is $b^2 - a^2$?",
+    "Factorise $b^2 - a^2 = 33$ as $(b - a)(b + a)$, and go through the ways of writing $33$ as a product of two positive integers."
+  ],
+  "solution": "Let $n + 12 = a^2$ and $n + 45 = b^2$ with $0 \\le a < b$. Then $(b - a)(b + a) = 33$, so $(b - a, b + a)$ is $(1, 33)$ or $(3, 11)$, giving $(a, b) = (16, 17)$ or $(4, 7)$. These give $n = 244$ and $n = 4$, and both are positive. The sum is $248$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-twelve-more-and-forty-five-more"
+}
