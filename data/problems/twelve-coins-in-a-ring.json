@@ -1,0 +1,32 @@
+{
+  "id": "twelve-coins-in-a-ring",
+  "title": "Twelve Coins in a Ring",
+  "kyu": 4,
+  "topic": "C",
+  "subtopics": [
+    "invariant",
+    "binomial-selection",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Twelve coins lie in fixed positions around a circle, all showing heads. A move consists of choosing four coins in consecutive positions around the circle and turning each of them over. Two arrangements are different if some position shows heads in one and tails in the other. How many different arrangements with exactly six coins showing tails can be reached by a sequence of moves?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "052c1369",
+  "hints": [
+    "Number the positions $0$ to $11$ and group them by remainder on division by $4$: $\\{0, 4, 8\\}$, $\\{1, 5, 9\\}$, $\\{2, 6, 10\\}$ and $\\{3, 7, 11\\}$. What does one move do to each group?",
+    "Each move turns over exactly one coin in each group, so the numbers of tails in the four groups always have the same parity. To see whether that is the only restriction, compare the moves that start at two neighbouring positions.",
+    "The moves starting at $i$ and at $i + 1$ together turn over only the coins at $i$ and $i + 4$, so any two coins of one group can be turned over. Hence the reachable arrangements are exactly those whose four group counts are all even or all odd. Count those with six tails."
+  ],
+  "solution": "Number the positions $0$ to $11$ and split them into four groups of three by remainder modulo $4$. A move turns over four consecutive coins, one in each group, so it changes the parity of the number of tails in every group. At the start every group has $0$ tails, so in every reachable arrangement the four group counts have the same parity.\n\nConversely, every such arrangement is reachable. The moves starting at $i$ and $i + 1$ together turn over exactly the coins at $i$ and $i + 4$, so within a group any two of its three coins can be turned over, and hence any even number of them. If all four counts are even this reaches the arrangement directly. If all are odd, one move first gives one tail in each group, and the rest of the change is even in every group.\n\nNow count arrangements with six tails and group counts $t_0, t_1, t_2, t_3 \\in \\{0, 1, 2, 3\\}$ of equal parity. If all are even, they are $2, 2, 2, 0$ in some order, which gives $4 \\cdot 3^3 = 108$ arrangements. If all are odd, they are $3, 1, 1, 1$ in some order, which gives $4 \\cdot 3^3 = 108$ arrangements. The answer is $108 + 108 = 216$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-twelve-coins-in-a-ring"
+}

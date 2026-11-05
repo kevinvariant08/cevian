@@ -1,0 +1,32 @@
+{
+  "id": "a-hundred-right-triangles",
+  "title": "A Hundred Right Triangles",
+  "kyu": 4,
+  "topic": "N",
+  "subtopics": [
+    "sfft",
+    "divisor-counting",
+    "prime-factorization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For a positive integer $k$, let $T(k)$ be the number of right-angled triangles whose three side lengths are positive integers and whose area is equal to $k$ times their perimeter, where congruent triangles are counted once. Find the smallest positive integer $k$ with $T(k) = 100$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "6efbbaa9",
+  "hints": [
+    "Call the legs $a$ and $b$ and the hypotenuse $c$. Solve the condition $\\frac{ab}{2} = k(a + b + c)$ for $c$, and then use $c^2 = a^2 + b^2$ to remove $c$ altogether.",
+    "Squaring $c = \\frac{ab}{2k} - a - b$ and simplifying gives $(a - 4k)(b - 4k) = 8k^2$, so the triangles come from factorisations of $8k^2$. Check that both factors must be positive by looking at the sign of $c$.",
+    "So $T(k)$ is half the number of positive divisors of $8k^2$. Write $k = 2^e \\cdot p_1^{f_1} \\cdots p_r^{f_r}$ with odd primes $p_i$, and solve $(2e + 4)(2f_1 + 1) \\cdots (2f_r + 1) = 200$."
+  ],
+  "solution": "Let the legs be $a \\le b$ and the hypotenuse $c$. The condition $\\frac{ab}{2} = k(a + b + c)$ gives $c = \\frac{ab}{2k} - a - b$. Squaring, using $c^2 = a^2 + b^2$ and dividing by $\\frac{ab}{4k^2}$ gives\n$$(a - 4k)(b - 4k) = 8k^2.$$\n\nPut $u = a - 4k$ and $v = b - 4k$. Then $c = \\frac{(u + 4k)(v + 4k)}{2k} - u - v - 8k = u + v + 4k$. Since $uv > 0$, the factors have the same sign. If both were negative, then $u, v > -4k$ and $uv = 8k^2$ would force $u, v < -2k$, so $c < 0$. Hence $u$ and $v$ are positive. Conversely, for every factorisation $8k^2 = uv$ into positive integers, expanding shows that the sides $u + 4k$, $v + 4k$ and $u + v + 4k$ form a right-angled triangle with area $k$ times its perimeter. The exponent of $2$ in $8k^2$ is odd, so $8k^2$ is not a square, and $T(k)$ is half the number of divisors of $8k^2$.\n\nWrite $k = 2^e \\cdot p_1^{f_1} \\cdots p_r^{f_r}$ with odd primes $p_i$. Then $T(k) = 100$ means $(e + 2)(2f_1 + 1) \\cdots (2f_r + 1) = 100$. The odd part of $100$ is $25$, so $e + 2$ is $4$, $20$ or $100$. With $e = 2$ the odd factors multiply to $25$, so either one $f_i = 12$ or two of them equal $2$, and the smallest such $k$ is $2^2 \\cdot 3^2 \\cdot 5^2 = 900$. Every other choice gives $k \\ge 2^2 \\cdot 3^{12}$ or $k \\ge 2^{18} \\cdot 3^2$. The answer is $900$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-hundred-right-triangles"
+}

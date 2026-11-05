@@ -1,0 +1,32 @@
+{
+  "id": "a-level-valley",
+  "title": "A Level Valley",
+  "kyu": 4,
+  "topic": "A",
+  "subtopics": [
+    "monotonicity-analysis",
+    "arithmetic-series-sum",
+    "pell-equation"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For each positive integer $n$, define $$f_n(x) = |x - 1| + |2x - 1| + |3x - 1| + \\dots + |nx - 1|$$ for real $x$. Find the sum of all positive integers $n \\le 999$ for which the minimum value of $f_n$ is attained at more than one real number $x$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "d8d17732",
+  "hints": [
+    "Write $|kx - 1| = k\\left|x - \\frac{1}{k}\\right|$. Where does the graph of $f_n$ have corners, and what is its slope between two neighbouring corners?",
+    "The graph of $f_n$ is convex and made of straight pieces, so the minimum is attained at more than one point exactly when one piece is horizontal. For $\\frac{1}{m} < x < \\frac{1}{m-1}$, the term $k\\left|x - \\frac{1}{k}\\right|$ has slope $k$ if $\\frac{1}{k}$ is to the left of $x$ and $-k$ if it is to the right, so this piece is horizontal exactly when $1 + 2 + \\dots + (m-1) = m + (m+1) + \\dots + n$.",
+    "That condition reads $2m(m-1) = n(n+1)$, which rearranges to $(2n+1)^2 - 2(2m-1)^2 = -1$. List the positive solutions of $p^2 - 2q^2 = -1$ with $p \\le 1999$."
+  ],
+  "solution": "Since $|kx - 1| = k\\left|x - \\frac{1}{k}\\right|$, the function $f_n$ is convex and piecewise linear, with corners at $1, \\frac{1}{2}, \\dots, \\frac{1}{n}$. For $x < \\frac{1}{n}$ its slope is $-\\frac{n(n+1)}{2}$, for $x > 1$ it is $\\frac{n(n+1)}{2}$, and for $\\frac{1}{m} < x < \\frac{1}{m-1}$, where $2 \\le m \\le n$, the corners $\\frac{1}{k}$ with $k \\ge m$ lie to the left of $x$, so the slope is\n$$\\big(m + (m+1) + \\dots + n\\big) - \\big(1 + 2 + \\dots + (m-1)\\big).$$\n\nA convex piecewise linear function has more than one minimiser exactly when one of its slopes is $0$. Here that means $1 + 2 + \\dots + (m-1) = \\frac{1}{2}(1 + 2 + \\dots + n)$ for some $m$ with $2 \\le m \\le n$, that is, $2m(m-1) = n(n+1)$. Multiplying by $4$ and completing squares gives $(2n+1)^2 - 2(2m-1)^2 = -1$.\n\nThe positive solutions of $p^2 - 2q^2 = -1$ are given by $p + q\\sqrt{2} = (1 + \\sqrt{2})^{2j+1}$ for $j \\ge 0$. They are $(1, 1), (7, 5), (41, 29), (239, 169), (1393, 985)$, and the next has $p > 1999$. In each, $p$ and $q$ are odd, and $n = \\frac{p - 1}{2}$, $m = \\frac{q + 1}{2}$ give $n = 0, 3, 20, 119, 696$. Every solution with $n \\ge 1$ has $2 \\le m \\le n$, since $m = 1$ gives $n = 0$ and $m \\ge n + 1$ would give $2m(m-1) \\ge 2n(n+1) > n(n+1)$. So the values of $n$ are $3, 20, 119$ and $696$, and their sum is $838$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-level-valley"
+}
