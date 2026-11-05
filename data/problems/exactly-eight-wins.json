@@ -1,0 +1,31 @@
+{
+  "id": "exactly-eight-wins",
+  "title": "Exactly Eight Wins",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "double-counting",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "In a tournament, each of $12$ players plays each other player exactly once, and every game has a winner and a loser. What is the largest possible number of players who win exactly $8$ games?",
+  "answer_format": "integer",
+  "answer_hash": "8c0b7892",
+  "hints": [
+    "Look at the players who do not win exactly $8$ games, and at the games they play against each other.",
+    "Count the games by their winners: there are $66$ games in all. If $k$ players win exactly $8$ games each, the other $12 - k$ players play $\\binom{12 - k}{2}$ games among themselves, and each of those games is won by one of them.",
+    "So $8k + \\binom{12 - k}{2} \\le 66$. Find the largest $k$ for which this holds. To show that many is possible, let those $k$ players beat every other player and share the games among themselves evenly."
+  ],
+  "solution": "Each of the $\\binom{12}{2} = 66$ games has one winner. Suppose $k$ players win exactly $8$ games each. The other $12 - k$ players play $\\binom{12-k}{2}$ games among themselves, each won by one of them, so $8k + \\binom{12-k}{2} \\le 66$. For $k = 8, 9, 10, 11, 12$ the left side is $70$, $75$, $81$, $88$ and $96$, so $k \\le 7$.\n\nSeven players can each win exactly $8$ games. Seat them round a circle and let each beat the next three clockwise, so each wins $3$ of the games among the seven, and let each of the seven beat all of the other five players. Each of the seven then wins $3 + 5 = 8$ games, while each of the other five wins at most $4$. The answer is $7$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-exactly-eight-wins"
+}

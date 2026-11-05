@@ -1,0 +1,32 @@
+{
+  "id": "threes-in-the-table",
+  "title": "Threes in the Table",
+  "kyu": 8,
+  "topic": "A",
+  "subtopics": [
+    "polynomial-factoring",
+    "complementary-counting",
+    "difference-of-squares"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A multiplication table has $10$ rows and $10$ columns, both numbered from $1$ to $10$, and the entry in row $i$ and column $j$ is $i \\cdot j$. Equal products in different places are separate entries: for example, $12$ appears four times, as $2 \\cdot 6$, $3 \\cdot 4$, $4 \\cdot 3$ and $6 \\cdot 2$. What is the sum of all the entries in the table that are multiples of $3$?",
+  "answer_format": "integer",
+  "answer_hash": "588ae7e5",
+  "hints": [
+    "Find the sum of all $100$ entries, and separately the sum of the entries that are not multiples of $3$.",
+    "Row $i$ adds up to $i \\cdot (1 + 2 + \\dots + 10)$, so the whole table adds up to $(1 + 2 + \\dots + 10)^2$. Since $3$ is prime, a product $i \\cdot j$ is a multiple of $3$ exactly when $i$ or $j$ is.",
+    "So the entries that are not multiples of $3$ are the products $i \\cdot j$ with neither $i$ nor $j$ a multiple of $3$. They form a smaller multiplication table on the numbers $1, 2, 4, 5, 7, 8, 10$, and its sum factorises in the same way."
+  ],
+  "solution": "Row $i$ adds up to $55i$, so the whole table adds up to $55 \\cdot (1 + 2 + \\dots + 10) = 55^2$. As $3$ is prime, $i \\cdot j$ is not a multiple of $3$ exactly when neither $i$ nor $j$ is. The numbers from $1$ to $10$ that are not multiples of $3$ add up to $55 - 3 - 6 - 9 = 37$, so in the same way the entries that are not multiples of $3$ add up to $37^2$. The answer is $55^2 - 37^2 = 18 \\cdot 92 = 1656$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-threes-in-the-table"
+}

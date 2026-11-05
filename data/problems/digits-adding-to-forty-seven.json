@@ -1,0 +1,32 @@
+{
+  "id": "digits-adding-to-forty-seven",
+  "title": "Digits Adding to Forty-Seven",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "divisibility-rules",
+    "parity",
+    "greedy-optimization"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "What is the smallest positive integer that is a multiple of $11$ and whose digits add up to $47$?",
+  "answer_format": "integer",
+  "answer_hash": "ee26630f",
+  "hints": [
+    "Split the digits into two groups: those in the $1$st, $3$rd, $5$th, $\\dots$ places counting from the right, and those in the $2$nd, $4$th, $6$th, $\\dots$ places. Let $x$ and $y$ be the sums of the two groups.",
+    "A number is a multiple of $11$ exactly when $x - y$ is. Here $x + y = 47$ is odd, so $x - y$ is odd as well, and in particular it cannot be $0$.",
+    "So $x - y$ is $\\pm 11$ or $\\pm 33$, and one of $x$ and $y$ is at least $29$. That group needs at least $4$ digits, so the number has at least $7$. With exactly $7$ digits, find $x$ and $y$, then make the digits as small as possible from the left."
+  ],
+  "solution": "Let $x$ and $y$ be the sums of the digits in the odd and the even places, counting from the right. The number is a multiple of $11$ exactly when $11$ divides $x - y$. As $x + y = 47$ is odd, $x - y$ is odd too, hence $\\pm 11$ or $\\pm 33$, and one of $x$, $y$ is at least $\\frac{47 + 11}{2} = 29$. Three digits add up to at most $27$, so that group has at least $4$ digits and the number has at least $7$.\n\nWith $7$ digits the odd places hold $4$ digits and the even places $3$, so $x \\le 36$ and $y \\le 27$, which leaves only $x = 29$ and $y = 18$. The three odd-place digits after the first add up to at most $27$, so the first digit is at least $2$. If it is $2$, the other odd-place digits are all $9$, and the even-place digits, adding up to $18$, are smallest as $0$, $9$, $9$ from the left. The answer is $2099999 = 11 \\cdot 190909$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-digits-adding-to-forty-seven"
+}
