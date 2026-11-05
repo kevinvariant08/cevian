@@ -1,0 +1,56 @@
+%! alt Points A, B and C on a line with B between A and C, and equilateral triangles ABD and BCE drawn above the line, with their circumcircles dashed. Segments AE and CD cross at P, which lies on both circles. The lengths PD = 9, PE = 25 and PB = 15 are marked, and the angles APB and BPC are both 60 degrees.
+%! after_paragraph 1
+%! scale 1/10
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){A} %! A = (0, 0)
+\tkzDefPoint(2.1000000,0.0){B} %! B = (21, 0)
+\tkzDefPoint(5.6000000,0.0){C} %! C = (56, 0)
+\tkzDefPoint(1.0500000,1.8186533){D} %! D = (21/2, 21*sqrt(3)/2)
+\tkzDefPoint(3.8500000,3.0310889){E} %! E = (77/2, 35*sqrt(3)/2)
+\tkzDefPoint(1.8857143,1.4846150){P} %! P = (132/7, 60*sqrt(3)/7)
+\tkzDefPoint(1.0500000,0.60621778){Oa} %! Oa = (21/2, 7*sqrt(3)/2)
+\tkzDefPoint(3.8500000,1.0103630){Ob} %! Ob = (77/2, 35*sqrt(3)/6)
+%! fact on_segment(B, A, C)
+%! fact on_segment(P, A, E)
+%! fact on_segment(P, C, D)
+%! fact equal(dist(A, B), dist(B, D))
+%! fact equal(dist(A, B), dist(A, D))
+%! fact equal(dist(B, C), dist(C, E))
+%! fact equal(dist(B, C), dist(B, E))
+%! fact concyclic(A, B, P, D)
+%! fact concyclic(B, C, E, P)
+%! fact on_circle(P, Oa, dist(Oa, A))
+%! fact on_circle(P, Ob, dist(Ob, B))
+%! fact dist(P, D) == 9
+%! fact dist(P, E) == 25
+%! fact dist(P, A) == 24
+%! fact dist(P, C) == 40
+%! fact dist(P, B) == 15
+%! fact dist(A, C) == 56
+%! fact angle(A, P, B) == 60
+%! fact angle(B, P, C) == 60
+%! fact dist(P, D) == dist(P, A) - dist(P, B)
+%! fact dist(P, E) == dist(P, C) - dist(P, B)
+\tkzFillPolygon[color=figaccenttint](A,P,C)
+\tkzDrawCircle[aux](Oa,A)
+\tkzDrawCircle[aux](Ob,B)
+\tkzDrawPolygon(A,B,D)
+\tkzDrawPolygon(B,C,E)
+\tkzDrawSegments(A,E C,D)
+\tkzDrawSegment[key](P,B)
+\tkzMarkAngle[size=.5,arc=l,mark=none,mk](A,P,B)
+\tkzMarkAngle[size=.6,arc=l,mark=none,mk](B,P,C)
+\tkzDrawPoints(A,B,C,D,E,P)
+\tkzLabelPoint[below left,lbl](A){$A$}
+\tkzLabelPoint[below,lbl](B){$B$}
+\tkzLabelPoint[below right,lbl](C){$C$}
+\tkzLabelPoint[above left,lbl](D){$D$}
+\tkzLabelPoint[above,lbl](E){$E$}
+\tkzLabelPoint[above,lbl](P){$P$}
+\tkzLabelSegment[above right,pos=.5,len](P,D){$9$}
+\tkzLabelSegment[above left,pos=.5,len](P,E){$25$}
+\tkzLabelSegment[right,pos=.45,len](P,B){$15$}
+\end{tikzpicture}
+\end{document}

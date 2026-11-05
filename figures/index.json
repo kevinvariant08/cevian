@@ -139,6 +139,13 @@
       "after_paragraph": 1
     }
   ],
+  "nine-and-twenty-five": [
+    {
+      "src": "figures/nine-and-twenty-five-solution.svg?v=9746287f",
+      "alt": "Points A, B and C on a line with B between A and C, and equilateral triangles ABD and BCE drawn above the line, with their circumcircles dashed. Segments AE and CD cross at P, which lies on both circles. The lengths PD = 9, PE = 25 and PB = 15 are marked, and the angles APB and BPC are both 60 degrees.",
+      "after_paragraph": 1
+    }
+  ],
   "nineteen-planted-plots": [
     {
       "src": "figures/nineteen-planted-plots-solution.svg?v=25780fe6",
