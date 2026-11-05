@@ -1,0 +1,50 @@
+%! alt The rectangle of largest area, about 9.1 wide and 10.5 tall, with P inside, nearer the bottom right corner B. Segments join P to the corners, with PA = 7, PB = 3, PC = 9 and PD = 11. Dashed perpendiculars from P to the four sides have lengths p and q to the left and right sides and r and s to the bottom and top sides.
+%! after_paragraph 2
+%! scale 3/5
+%! let k = sqrt(130)
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){A} %! A = (0, 0)
+\tkzDefPoint(5.4728420,0.0){B} %! B = (104/k, 0)
+\tkzDefPoint(5.4728420,6.3148177){C} %! C = (104/k, 120/k)
+\tkzDefPoint(0.0,6.3148177){D} %! D = (0, 120/k)
+\tkzDefPoint(4.0520080,1.1050931){P} %! P = (77/k, 21/k)
+\tkzDefPoint(0.0,1.1050931){Fp} %! Fp = (0, 21/k)
+\tkzDefPoint(5.4728420,1.1050931){Fq} %! Fq = (104/k, 21/k)
+\tkzDefPoint(4.0520080,0.0){Fr} %! Fr = (77/k, 0)
+\tkzDefPoint(4.0520080,6.3148177){Fs} %! Fs = (77/k, 120/k)
+%! fact dist(P, A) == 7
+%! fact dist(P, B) == 3
+%! fact dist(P, C) == 9
+%! fact dist(P, D) == 11
+%! fact area(A, B, C, D) == 96
+%! fact perp(A, B, B, C)
+%! fact perp(B, C, C, D)
+%! fact perp(C, D, D, A)
+%! fact perp(P, Fp, D, A)
+%! fact perp(P, Fr, A, B)
+%! fact collinear(Fp, P, Fq)
+%! fact collinear(Fr, P, Fs)
+%! fact dist(P, Fp) * dist(P, Fq) == dist(P, Fr) * dist(P, Fs)
+%! fact dist(P, A) * dist(P, C) + dist(P, B) * dist(P, D) == 96
+\tkzFillPolygon[color=figaccenttint](A,B,C,D)
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments[aux](Fp,Fq Fr,Fs)
+\tkzDrawSegments[key](P,A P,B P,C P,D)
+\tkzDrawPoints(A,B,C,D,P)
+\tkzLabelPoint[below left,lbl](A){$A$}
+\tkzLabelPoint[below right,lbl](B){$B$}
+\tkzLabelPoint[above right,lbl](C){$C$}
+\tkzLabelPoint[above left,lbl](D){$D$}
+\tkzLabelPoint[above right,lbl](P){$P$}
+\tkzLabelSegment[above,pos=.35,len](P,A){$7$}
+\tkzLabelSegment[right,pos=.5,len](P,B){$3$}
+\tkzLabelSegment[right,pos=.5,len](P,C){$9$}
+\tkzLabelSegment[above right,pos=.5,len](P,D){$11$}
+\tkzLabelSegment[above,pos=.5,len](Fp,P){$p$}
+\tkzLabelSegment[below,pos=.5,len](P,Fq){$q$}
+\tkzLabelSegment[left,pos=.5,len](P,Fr){$r$}
+\tkzLabelSegment[left,pos=.7,len](P,Fs){$s$}
+\end{tikzpicture}
+\end{document}

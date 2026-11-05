@@ -1,0 +1,42 @@
+%! alt The octahedron with vertices (5, 0, 0), (0, 5, 0), (0, 0, 5) and their negatives, drawn in parallel projection with hidden edges dashed. The face in the plane x + y + z = 5 and the opposite face in the plane x + y + z = -5 are shaded. A line through the centre O in the direction (1, 2, 2) meets these two planes at X1 = (1, 2, 2) and X2 = (-1, -2, -2), and O is the midpoint of X1X2.
+%! after_paragraph 1
+%! scale 3/5
+%! let a = 7/20
+%! let b = 1/4
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
+\tkzDefPoint(-1.0500000,-0.75000000){Xp} %! Xp = (-5*a, -5*b)
+\tkzDefPoint(1.0500000,0.75000000){Xm} %! Xm = (5*a, 5*b)
+\tkzDefPoint(3.0000000,0.0){Yp} %! Yp = (5, 0)
+\tkzDefPoint(-3.0000000,0.0){Ym} %! Ym = (-5, 0)
+\tkzDefPoint(0.0,3.0000000){Zp} %! Zp = (0, 5)
+\tkzDefPoint(0.0,-3.0000000){Zm} %! Zm = (0, -5)
+\tkzDefPoint(0.99000000,1.0500000){Q} %! Q = (2 - a, 2 - b)
+\tkzDefPoint(-0.99000000,-1.0500000){R} %! R = (-2 + a, -2 + b)
+\tkzDefPoint(1.9800000,2.1000000){S} %! S = (2*(2 - a), 2*(2 - b))
+\tkzDefPoint(-1.9800000,-2.1000000){T} %! T = (-2*(2 - a), -2*(2 - b))
+%! example collinear(Q, O, R)
+%! example collinear(S, O, T)
+%! example midpoint(O, Q, R)
+%! example parallel(Xp, Yp, Xm, Ym)
+%! example parallel(Yp, Zp, Ym, Zm)
+%! example parallel(Zp, Xp, Zm, Xm)
+%! example area(Xp, Yp, Q) + area(Yp, Zp, Q) + area(Zp, Xp, Q) == area(Xp, Yp, Zp)
+%! example 5 * area(Xp, Yp, Q) == area(Xp, Yp, Zp) * 2
+\tkzFillPolygon[color=figaccenttint](Xp,Yp,Zp)
+\tkzFillPolygon[color=figtint](Xm,Ym,Zm)
+\tkzDrawSegments[aux](Xm,Yp Xm,Ym Xm,Zp Xm,Zm)
+\tkzDrawSegments(Xp,Yp Xp,Ym Xp,Zp Xp,Zm Yp,Zp Yp,Zm Ym,Zp Ym,Zm)
+\tkzDrawSegment[key](T,S)
+\tkzDrawPoints(O,Q,R)
+\tkzLabelPoint[left,lbl](O){$O$}
+\tkzLabelPoint[left,lbl](Q){$X_1$}
+\tkzLabelPoint[right,lbl](R){$X_2$}
+\tkzLabelPoint[right,lbl](S){$\ell$}
+\tkzLabelPoint[above,lbl](Zp){$(0,0,t)$}
+\tkzLabelPoint[right,lbl](Yp){$(0,t,0)$}
+\tkzLabelPoint[below left,lbl](Xp){$(t,0,0)$}
+\end{tikzpicture}
+\end{document}

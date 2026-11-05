@@ -48,6 +48,13 @@
       "after_paragraph": 2
     }
   ],
+  "a-rectangle-around-a-point": [
+    {
+      "src": "figures/a-rectangle-around-a-point-solution.svg?v=53d6c05b",
+      "alt": "The rectangle of largest area, about 9.1 wide and 10.5 tall, with P inside, nearer the bottom right corner B. Segments join P to the corners, with PA = 7, PB = 3, PC = 9 and PD = 11. Dashed perpendiculars from P to the four sides have lengths p and q to the left and right sides and r and s to the bottom and top sides.",
+      "after_paragraph": 2
+    }
+  ],
   "a-sphere-on-a-box": [
     {
       "src": "figures/a-sphere-on-a-box-solution.svg?v=b8b05bd4",
@@ -335,7 +342,7 @@
   ],
   "where-three-circles-meet": [
     {
-      "src": "figures/where-three-circles-meet-solution.svg?v=dc3eb1dc",
+      "src": "figures/where-three-circles-meet-solution.svg?v=f30241ed",
       "alt": "Three circles touch in pairs at D, E and F, with D at the top between the two equal circles of radius 25/6 centred at O2 and O3, and E and F on the large circle of radius 75/7 centred at O1. Triangle DEF has DE = DF = 5 and EF = 6. A dashed circle through D, E and F, centred at I with radius 25/8, is the incircle of the dashed triangle O1O2O3 of centres, touching its sides at D, E and F.",
       "after_paragraph": 1
     }
