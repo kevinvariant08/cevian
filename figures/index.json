@@ -141,7 +141,7 @@
   ],
   "nine-and-twenty-five": [
     {
-      "src": "figures/nine-and-twenty-five-solution.svg?v=9746287f",
+      "src": "figures/nine-and-twenty-five-solution.svg?v=5f9c519e",
       "alt": "Points A, B and C on a line with B between A and C, and equilateral triangles ABD and BCE drawn above the line, with their circumcircles dashed. Segments AE and CD cross at P, which lies on both circles. The lengths PD = 9, PE = 25 and PB = 15 are marked, and the angles APB and BPC are both 60 degrees.",
       "after_paragraph": 1
     }
@@ -193,6 +193,13 @@
       "src": "figures/sixty-degrees-at-a-solution.svg?v=fffe4b12",
       "alt": "Two triangles share side AB = 8 and the 60 degree angle at A. The third vertex lies on the same ray from A, at C with AC = 3 or at C' with AC' = 5. Both points are at distance 7 from B, on a dashed arc centred at B.",
       "after_paragraph": 1
+    }
+  ],
+  "thirteen-points-one-circle": [
+    {
+      "src": "figures/thirteen-points-one-circle-solution.svg?v=213b1d9a",
+      "alt": "A regular 12-gon inscribed in its circumcircle with centre O. Points X and Y on the circumcircle lie in the gaps on either side of a run of four consecutive vertices, and M is the midpoint of the arc XY through the run. Two circles pass through X and Y with their centres on ray OM: the nearer one, drawn solid, encloses the run and O, and the farther one, drawn dashed, encloses the run but not O. Neither encloses any other vertex.",
+      "after_paragraph": 2
     }
   ],
   "three-areas-in-a-hexagon": [
