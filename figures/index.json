@@ -335,7 +335,7 @@
   ],
   "where-three-circles-meet": [
     {
-      "src": "figures/where-three-circles-meet-solution.svg?v=b1e41d04",
+      "src": "figures/where-three-circles-meet-solution.svg?v=dc3eb1dc",
       "alt": "Three circles touch in pairs at D, E and F, with D at the top between the two equal circles of radius 25/6 centred at O2 and O3, and E and F on the large circle of radius 75/7 centred at O1. Triangle DEF has DE = DF = 5 and EF = 6. A dashed circle through D, E and F, centred at I with radius 25/8, is the incircle of the dashed triangle O1O2O3 of centres, touching its sides at D, E and F.",
       "after_paragraph": 1
     }
