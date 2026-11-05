@@ -125,13 +125,6 @@
       "after_paragraph": 2
     }
   ],
-  "half-in-common": [
-    {
-      "src": "figures/half-in-common-solution.svg?v=e5ea4715",
-      "alt": "Triangle ABC with BC = 13, CA = 10 and AB = 5, its incircle with centre I, and the dashed triangle A'B'C' obtained by the half-turn about I. Each side of A'B'C' is parallel to a side of ABC and cuts a small corner off ABC; the shaded hexagon left over is the common region, and its area is half that of ABC.",
-      "after_paragraph": 1
-    }
-  ],
   "halfway-between-two-frames": [
     {
       "src": "figures/halfway-between-two-frames-solution.svg?v=7645ffe9",
@@ -193,13 +186,6 @@
       "src": "figures/sixty-degrees-at-a-solution.svg?v=fffe4b12",
       "alt": "Two triangles share side AB = 8 and the 60 degree angle at A. The third vertex lies on the same ray from A, at C with AC = 3 or at C' with AC' = 5. Both points are at distance 7 from B, on a dashed arc centred at B.",
       "after_paragraph": 1
-    }
-  ],
-  "sixty-equal-slices": [
-    {
-      "src": "figures/sixty-equal-slices-solution.svg?v=700c6374",
-      "alt": "A regular hexagon with a good point X inside it. Rays from X to the six corners cut the hexagon into six triangles, one on each side. The triangle on side 5, at the lower left, is shaded and is cut by five more rays into six pieces of equal area. Perpendiculars from X to sides 1, 2 and 3, where side 1 is the right-hand side and the sides are numbered anticlockwise, have lengths d1, d2 and d3, here 12, 14 and 12 twentieths of the distance between opposite sides, and d1 - d2 + d3 is half that distance.",
-      "after_paragraph": 3
     }
   ],
   "three-areas-in-a-hexagon": [
