@@ -1,0 +1,52 @@
+%! alt Three circles touch in pairs at D, E and F, with D at the top between the two equal circles of radius 25/6 centred at O2 and O3, and E and F on the large circle of radius 75/7 centred at O1. Triangle DEF has DE = DF = 5 and EF = 6. A dashed circle through D, E and F, centred at I with radius 25/8, is the incircle of the dashed triangle O1O2O3 of centres, touching its sides at D, E and F.
+%! after_paragraph 1
+%! scale 1/3
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){I} %! I = (0, 0)
+\tkzDefPoint(0.0,1.0416667){D} %! D = (0, 25/8)
+\tkzDefPoint(-1.0000000,-0.29166667){E} %! E = (-3, -7/8)
+\tkzDefPoint(1.0000000,-0.29166667){F} %! F = (3, -7/8)
+\tkzDefPoint(0.0,-3.7202381){O1} %! O1 = (0, -625/56)
+\tkzDefPoint(1.3888889,1.0416667){O2} %! O2 = (25/6, 25/8)
+\tkzDefPoint(-1.3888889,1.0416667){O3} %! O3 = (-25/6, 25/8)
+%! fact dist(D, E) == 5
+%! fact dist(D, F) == 5
+%! fact dist(E, F) == 6
+%! fact dist(I, D) == 25/8
+%! fact dist(I, E) == 25/8
+%! fact dist(I, F) == 25/8
+%! fact dist(O1, E) == 75/7
+%! fact dist(O1, F) == 75/7
+%! fact dist(O2, D) == 25/6
+%! fact dist(O2, F) == 25/6
+%! fact dist(O3, D) == 25/6
+%! fact dist(O3, E) == 25/6
+%! fact on_segment(F, O1, O2)
+%! fact on_segment(E, O1, O3)
+%! fact on_segment(D, O2, O3)
+%! fact perp(O1, E, E, I)
+%! fact perp(O1, F, F, I)
+%! fact perp(O2, D, D, I)
+%! fact tangent_circles(O1, 75/7, O2, 25/6)
+%! fact tangent_circles(O1, 75/7, O3, 25/6)
+%! fact tangent_circles(O2, 25/6, O3, 25/6)
+\tkzFillPolygon[color=figaccenttint](D,E,F)
+\tkzDrawCircle(O1,E)
+\tkzDrawCircle(O2,D)
+\tkzDrawCircle(O3,D)
+\tkzDrawPolygon[aux](O1,O2,O3)
+\tkzDrawCircle[aux](I,D)
+\tkzDrawPolygon[key](D,E,F)
+\tkzDrawSegments[aux](I,E I,F)
+\tkzDrawPoints(D,E,F,I,O1,O2,O3)
+\tkzLabelPoint[above,lbl](D){$D$}
+\tkzLabelPoint[left,lbl](E){$E$}
+\tkzLabelPoint[right,lbl](F){$F$}
+\tkzLabelPoint[below,lbl](I){$I$}
+\tkzLabelPoint[below,lbl](O1){$O_1$}
+\tkzLabelPoint[right,lbl](O2){$O_2$}
+\tkzLabelPoint[left,lbl](O3){$O_3$}
+\end{tikzpicture}
+\end{document}

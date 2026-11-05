@@ -197,7 +197,7 @@
   ],
   "thirteen-points-one-circle": [
     {
-      "src": "figures/thirteen-points-one-circle-solution.svg?v=213b1d9a",
+      "src": "figures/thirteen-points-one-circle-solution.svg?v=27787f3c",
       "alt": "A regular 12-gon inscribed in its circumcircle with centre O. Points X and Y on the circumcircle lie in the gaps on either side of a run of four consecutive vertices, and M is the midpoint of the arc XY through the run. Two circles pass through X and Y with their centres on ray OM: the nearer one, drawn solid, encloses the run and O, and the farther one, drawn dashed, encloses the run but not O. Neither encloses any other vertex.",
       "after_paragraph": 2
     }
@@ -331,6 +331,13 @@
       "src": "figures/where-the-coin-cannot-reach-solution.svg?v=739c0ab6",
       "alt": "Triangle ABC with BC = 20, CA = 15 and AB = 7, its incircle with centre I and radius 2, and the dashed inner triangle A'B'C', the image of ABC under the homothety at I with ratio 1/2. The coin of radius 1 is drawn pushed into each corner, centred at the vertices A', B' and C' of the inner triangle. At each vertex of ABC the shaded kite has corners at the vertex, the two points where the coin touches the sides, and the coin's centre; the part of the kite outside the coin is never covered. Dashed segments join I to C and to the incircle's points of contact on BC and CA, outlining the incircle's kite at C, which is twice the size of the coin's kite at C.",
       "after_paragraph": 4
+    }
+  ],
+  "where-three-circles-meet": [
+    {
+      "src": "figures/where-three-circles-meet-solution.svg?v=b1e41d04",
+      "alt": "Three circles touch in pairs at D, E and F, with D at the top between the two equal circles of radius 25/6 centred at O2 and O3, and E and F on the large circle of radius 75/7 centred at O1. Triangle DEF has DE = DF = 5 and EF = 6. A dashed circle through D, E and F, centred at I with radius 25/8, is the incircle of the dashed triangle O1O2O3 of centres, touching its sides at D, E and F.",
+      "after_paragraph": 1
     }
   ],
   "whole-number-distances": [
