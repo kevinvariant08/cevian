@@ -146,6 +146,13 @@
       "after_paragraph": 3
     }
   ],
+  "legs-of-thirteen-and-twenty": [
+    {
+      "src": "figures/legs-of-thirteen-and-twenty-solution.svg?v=b3873811",
+      "alt": "Two horizontal parallel lines 12 apart, with A and B on the lower line and AB = 24. On the upper line, D and D' are the two points at distance 13 from A, 5 to the right and 5 to the left of the point above A, and C and C' are the two points at distance 20 from B, 16 to the right and 16 to the left of the point above B. The trapezium ABCD is outlined and shaded, with the perpendicular of length 12 from D to AB dashed. Dashed segments join A to D' and B to C', the other positions of D and C. The four possible top sides are DC = 35, D'C = 45, DC' = 3 and D'C' = 13.",
+      "after_paragraph": 1
+    }
+  ],
   "medians-meeting-on-the-circle": [
     {
       "src": "figures/medians-meeting-on-the-circle-solution.svg?v=23b23d02",
@@ -237,6 +244,13 @@
       "after_paragraph": 1
     }
   ],
+  "three-points-of-balance": [
+    {
+      "src": "figures/three-points-of-balance-solution.svg?v=e30a39f7",
+      "alt": "Triangle ABC with BC = 11 along the bottom, CA = 13 and AB = 20, and A up to the right of C. D on BC has BD = 2 and DC = 9, E on CA has CE = 11, and F on AB has AF = 9. Dashed segments join each of D, E and F to the opposite vertex. Triangle ABD is shaded in the accent tint and triangle ACD in grey: they share AD, and AB + BD = AC + CD = 22, half the perimeter. The area of ABC is 66.",
+      "after_paragraph": 1
+    }
+  ],
   "three-points-on-the-base": [
     {
       "src": "figures/three-points-on-the-base-solution.svg?v=698cd86f",
@@ -291,6 +305,13 @@
       "src": "figures/two-circles-on-the-legs-solution.svg?v=ed9e35de",
       "alt": "Trapezium ABCD with AB parallel to CD. The circles on the legs AD and BC as diameters, centred at their midpoints M and N, touch at P on the midline MN. Segments PA = 75, PD = 100, PB = 65 and PC = 156 make right angles APD and BPC. A dashed circle of radius 60 centred at P touches all four sides: P is the centre of the inscribed circle.",
       "after_paragraph": 2
+    }
+  ],
+  "two-lines-across-two-circles": [
+    {
+      "src": "figures/two-lines-across-two-circles-solution.svg?v=8bb8d86d",
+      "alt": "Two circles with the same centre O, drawn with inner radius 12. The lower horizontal line crosses the outer circle at A and D and the inner circle at B and C, with AB = 3 and BC = 21; the perpendicular from O meets it at M, the midpoint of both chords. A second, slanting line crosses the outer circle at P and S and the inner circle at Q and R; the perpendicular from O meets it at N, and the inner circle cuts PS into three equal parts PQ = QR = RS = 6, so PS = 18. For both lines the squared distance from the foot to an outer point minus the squared distance to an inner point is 72.",
+      "after_paragraph": 1
     }
   ],
   "two-orbits": [
