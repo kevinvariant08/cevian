@@ -1,0 +1,39 @@
+{
+  "id": "three-distances-to-one-point",
+  "title": "Three Distances to One Point",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "law-of-sines",
+    "law-of-cosines",
+    "brocard-point"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Point $P$ lies inside triangle $ABC$, and $\\angle PAB = \\angle PBC = \\angle PCA$. Given that $PA = 96$, $PB = 81$ and $PC = 48$, find the perimeter of triangle $ABC$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "25aadab9",
+  "hints": [
+    "Look at the three small triangles $PAB$, $PBC$ and $PCA$. Express $\\angle APB$, $\\angle BPC$ and $\\angle CPA$ in terms of the angles of triangle $ABC$.",
+    "Call the common angle $\\omega$. In triangle $PAB$ the angle at $B$ is $\\angle B - \\omega$, so $\\angle APB = 180^\\circ - \\angle B$, and similarly for the other two. Apply the law of sines in each small triangle and compare $PA$, $PB$, $PC$ with the sides $a = BC$, $b = CA$, $c = AB$.",
+    "The law of sines gives $PA = k \\cdot \\frac{b}{a}$, $PB = k \\cdot \\frac{c}{b}$ and $PC = k \\cdot \\frac{a}{c}$ with the same factor $k = 2R\\sin\\omega$, where $R$ is the circumradius of $ABC$, so $k^3 = PA \\cdot PB \\cdot PC$ and the three distances fix the ratio $a : b : c$. The size then follows from the law of cosines in triangle $PAB$, whose angle at $P$ is $180^\\circ - \\angle B$."
+  ],
+  "solution": "Let $a = BC$, $b = CA$ and $c = AB$, let $R$ be the circumradius of $ABC$, and let $\\omega$ be the common angle. In triangle $PAB$ the angle at $B$ is $\\angle B - \\omega$, so $\\angle APB = 180^\\circ - \\angle B$; in the same way $\\angle BPC = 180^\\circ - \\angle C$ and $\\angle CPA = 180^\\circ - \\angle A$. The law of sines in triangles $PCA$, $PAB$ and $PBC$, together with $\\sin A = \\frac{a}{2R}$ and its analogues, gives $$PA = \\dfrac{b\\sin\\omega}{\\sin A} = k \\cdot \\dfrac{b}{a}, \\qquad PB = \\dfrac{c\\sin\\omega}{\\sin B} = k \\cdot \\dfrac{c}{b}, \\qquad PC = \\dfrac{a\\sin\\omega}{\\sin C} = k \\cdot \\dfrac{a}{c}, \\qquad \\text{where } k = 2R\\sin\\omega.$$\n\nMultiplying, $k^3 = 96 \\cdot 81 \\cdot 48 = 2^9 \\cdot 3^6 = 72^3$, so $k = 72$, $\\frac{b}{a} = \\frac{96}{72} = \\frac{4}{3}$ and $\\frac{c}{b} = \\frac{81}{72} = \\frac{9}{8}$. Hence $a : b : c = 6 : 8 : 9$ and $\\cos B = \\frac{36 + 81 - 64}{108} = \\frac{53}{108}$. The law of cosines in triangle $PAB$, whose angle at $P$ is $180^\\circ - \\angle B$, gives $$c^2 = 96^2 + 81^2 + 2 \\cdot 96 \\cdot 81 \\cdot \\dfrac{53}{108} = 15777 + 7632 = 23409 = 153^2,$$ so $c = 153$ and the sides are $a = 102$, $b = 136$ and $c = 153$.\n\nThese data occur: every triangle has a point $P$ inside it with $\\angle PAB = \\angle PBC = \\angle PCA$ (its first Brocard point), and for the sides $102$, $136$ and $153$ the formulas above give $PA : PB : PC = \\frac{4}{3} : \\frac{9}{8} : \\frac{2}{3} = 96 : 81 : 48$, with the scale fixed by the same law of cosines. The perimeter of triangle $ABC$ is $102 + 136 + 153 = 391$.",
+  "solution_figures": [
+    {
+      "src": "figures/three-distances-to-one-point-solution.svg?v=ef8bfa59",
+      "alt": "Triangle ABC with BC = 102 along the bottom, CA = 136 and AB = 153, and the point P inside it joined to the three vertices, with PA = 96, PB = 81 and PC = 48. The three equal angles PAB, PBC and PCA are marked omega. Triangle PAB is shaded; its angle at P is 180 degrees minus angle B.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-three-distances-to-one-point"
+}
