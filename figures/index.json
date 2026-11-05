@@ -76,6 +76,13 @@
       "after_paragraph": 1
     }
   ],
+  "chords-at-sixty-degrees": [
+    {
+      "src": "figures/chords-at-sixty-degrees-solution.svg?v=4c99df32",
+      "alt": "A circle with centre O and radius the square root of 425. Three chords pass through the point P inside it, at 60 degrees to each other, with lengths 32, 38 and 40. Their midpoints M1, M2 and M3 are the feet of the perpendiculars from O, at distances 13, 8 and 5 from O. The midpoints lie on the dashed circle with diameter OP and form an equilateral triangle, shaded, with O on the arc between M2 and M3.",
+      "after_paragraph": 1
+    }
+  ],
   "closer-to-the-line": [
     {
       "src": "figures/closer-to-the-line-solution.svg?v=93858492",
@@ -101,6 +108,13 @@
     {
       "src": "figures/down-up-and-across-solution.svg?v=5163219a",
       "alt": "Coordinate plane with the x-axis and the line y = 10. A = (0, 3) is reflected in the x-axis to A' = (0, -3), and B = (24, 5) is reflected in y = 10 to B' = (24, 15). The straight segment from A' to B', of length 30, crosses the x-axis at P = (4, 0) and the line y = 10 at Q = (52/3, 10). The highlighted path runs from A to P to Q to B.",
+      "after_paragraph": 1
+    }
+  ],
+  "dropped-onto-the-diagonals": [
+    {
+      "src": "figures/dropped-onto-the-diagonals-solution.svg?v=fbd08bb0",
+      "alt": "Convex quadrilateral ABCD with AB = 29 along the bottom, BC = 11, CD = 26 and DA = 19, and its diagonals AC and BD meeting at E. Dashed perpendiculars drop from A and C to line BD, with feet A1 and C1, and from B and D to line AC, with feet B1 and D1. The shaded quadrilateral A1B1C1D1 is a copy of ABCD turned over and shrunk by the factor 3/5, the cosine of the angle between the diagonals, so its perimeter is 51.",
       "after_paragraph": 1
     }
   ],
@@ -136,6 +150,13 @@
     {
       "src": "figures/four-sides-and-an-area-solution.svg?v=fe8d0521",
       "alt": "Convex quadrilateral ABCD with AB = 2, BC = 9, CD = 6 and DA = 7. The diagonal AC is highlighted, and right angles are marked at B and D, so AC is the hypotenuse of both triangles ABC and ACD.",
+      "after_paragraph": 2
+    }
+  ],
+  "grazing-the-incircle": [
+    {
+      "src": "figures/grazing-the-incircle-solution.svg?v=23ebbfda",
+      "alt": "Acute triangle ABC with BC = 10 along the bottom and A above, near B, with AB + AC = 15. Dashed altitudes from B and C have feet E on CA and F on AB, and segment EF touches the incircle, centred at I. Reflecting EF in the dashed bisector AI gives the segment from E' on AB to F' on AC, which is parallel to BC and touches the incircle at its top, at height twice the inradius above BC.",
       "after_paragraph": 2
     }
   ],
@@ -186,6 +207,13 @@
       "src": "figures/parallels-through-k-solution.svg?v=81453e8e",
       "alt": "Triangle ABC with K on BC beyond C. Through K, KP is parallel to AB with BP = BK, and KQ is parallel to AC with CQ = CK. The circle through K, P and Q meets AK again at T. The auxiliary point D, with triangle CTD similar to triangle CQA, is joined to A, B, C and T, and the dashed segments AP, AQ, BT, CT, PT and QT show the two similar pairs used in the proof. Adapted from Beyond the Incenter, Problem 86.",
       "after_paragraph": 1
+    }
+  ],
+  "planes-through-the-grid": [
+    {
+      "src": "figures/planes-through-the-grid-solution.svg?v=3454c565",
+      "alt": "A cube of side 2 in parallel projection, with its hidden edges dashed and its centre K = (1, 1, 1) marked. The plane through K normal to (1, 1, 1) cuts the cube in a shaded regular hexagon whose vertices are the six edge midpoints (2, 0, 1), (2, 1, 0), (1, 2, 0), (0, 2, 1), (0, 1, 2) and (1, 0, 2). Its three long diagonals pass through K and are three of the thirteen lines through K: the lines in directions (1, -1, 0), (0, 1, -1) and (1, 0, -1). Opposite vertices of the hexagon are symmetric about K.",
+      "after_paragraph": 5
     }
   ],
   "segments-between-segments": [
@@ -242,6 +270,13 @@
       "src": "figures/three-distances-to-one-point-solution.svg?v=ef8bfa59",
       "alt": "Triangle ABC with BC = 102 along the bottom, CA = 136 and AB = 153, and the point P inside it joined to the three vertices, with PA = 96, PB = 81 and PC = 48. The three equal angles PAB, PBC and PCA are marked omega. Triangle PAB is shaded; its angle at P is 180 degrees minus angle B.",
       "after_paragraph": 1
+    }
+  ],
+  "three-pieces-of-an-altitude": [
+    {
+      "src": "figures/three-pieces-of-an-altitude-solution.svg?v=3e420947",
+      "alt": "Triangle ABC with BC = 300 along the bottom and the altitude from A dropped vertically to H on BC, close to B. The incircle, centred at I, touches BC at D and AB at F, and the altitude crosses it at P and Q with AP = 63, PQ = 112 and QH = 14. The perpendicular from I to the altitude meets it at M, the midpoint of PQ, so M and I are both 70, the inradius, above BC. The tangent AF has length 105.",
+      "after_paragraph": 2
     }
   ],
   "three-points-of-balance": [

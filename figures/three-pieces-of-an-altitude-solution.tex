@@ -1,0 +1,53 @@
+%! alt Triangle ABC with BC = 300 along the bottom and the altitude from A dropped vertically to H on BC, close to B. The incircle, centred at I, touches BC at D and AB at F, and the altitude crosses it at P and Q with AP = 63, PQ = 112 and QH = 14. The perpendicular from I to the altitude meets it at M, the midpoint of PQ, so M and I are both 70, the inradius, above BC. The tangent AF has length 105.
+%! after_paragraph 2
+%! scale 1/40
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){H} %! H = (0, 0)
+\tkzDefPoint(0.0,4.7250000){A} %! A = (0, 189)
+\tkzDefPoint(-1.2000000,0.0){B} %! B = (-48, 0)
+\tkzDefPoint(6.3000000,0.0){C} %! C = (252, 0)
+\tkzDefPoint(1.0500000,1.7500000){I} %! I = (42, 70)
+\tkzDefPoint(0.0,3.1500000){P} %! P = (0, 126)
+\tkzDefPoint(0.0,0.35000000){Q} %! Q = (0, 14)
+\tkzDefPoint(0.0,1.7500000){M} %! M = (0, 70)
+\tkzDefPoint(1.0500000,0.0){D} %! D = (42, 0)
+\tkzDefPoint(-0.64615385,2.1807692){F} %! F = foot(I, A, B)
+%! fact perp(A, H, B, C)
+%! fact on_circle(P, I, 70)
+%! fact on_circle(Q, I, 70)
+%! fact tangent(I, 70, B, C)
+%! fact tangent(I, 70, A, B)
+%! fact tangent(I, 70, A, C)
+%! fact midpoint(M, P, Q)
+%! fact perp(I, M, A, H)
+%! fact dist(A, P) == 63
+%! fact dist(P, Q) == 112
+%! fact dist(Q, H) == 14
+%! fact dist(A, F) == 105
+%! fact dist(B, C) == 300
+%! fact dist(C, A) == 315
+%! fact dist(A, B) == 195
+%! fact area(A, B, C) == 28350
+%! fact circumradius(A, B, C) == 325/2
+\tkzDrawCircle(I,D)
+\tkzDrawSegments[aux](A,H I,M I,F I,D)
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegment[key](P,Q)
+\tkzMarkRightAngle[size=.25,mk](A,H,C)
+\tkzDrawPoints(A,B,C,H,I,P,Q,M,D,F)
+\tkzLabelPoint[above,lbl](A){$A$}
+\tkzLabelPoint[below left,lbl](B){$B$}
+\tkzLabelPoint[below right,lbl](C){$C$}
+\tkzLabelPoint[below,lbl](H){$H$}
+\tkzLabelPoint[right,lbl](I){$I$}
+\tkzLabelPoint[left,lbl](P){$P$}
+\tkzLabelPoint[above right,lbl](Q){$Q$}
+\tkzLabelPoint[left,lbl](M){$M$}
+\tkzLabelPoint[below,lbl](D){$D$}
+\tkzLabelPoint[left,lbl](F){$F$}
+\tkzLabelSegment[right,len](A,P){$63$}
+\tkzLabelSegment[below,len](B,C){$300$}
+\end{tikzpicture}
+\end{document}
