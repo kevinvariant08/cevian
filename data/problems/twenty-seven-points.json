@@ -1,0 +1,39 @@
+{
+  "id": "twenty-seven-points",
+  "title": "Twenty-Seven Points",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "orthogonal-projection-area",
+    "vector-method",
+    "double-counting"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $S$ be the set of the $27$ points $(x, y, z)$ in space whose coordinates $x$, $y$ and $z$ each belong to $\\{0, 1, 2\\}$. For each of the $\\binom{27}{3}$ sets of three distinct points of $S$, square the area of the triangle with those three points as vertices, where three collinear points count as a triangle of area $0$. Let $T$ be the sum of all these squared areas. Find the remainder when $T$ is divided by $1000$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "a8671be6",
+  "hints": [
+    "Look at the shadows of a triangle on the three coordinate planes. How is the area of the triangle related to the areas of its three shadows?",
+    "The squared area of a triangle in space is the sum of the squared areas of its projections onto the planes $x = 0$, $y = 0$ and $z = 0$, because these areas are half the components of a cross product. So by symmetry you need only the squared areas of the plane triangles whose vertices are projections of points of $S$. Write twice a signed area as $d(P_1, P_2) + d(P_2, P_3) + d(P_3, P_1)$ with $d(P, Q) = x_Py_Q - x_Qy_P$, and sum its square over ordered triples of points.",
+    "Shift the coordinates to $\\{-1, 0, 1\\}$ first. Then every cross term such as $d(P_1, P_2)\\,d(P_2, P_3)$ sums to $0$ over the ordered triples, and each square term sums to $27\\sum_{P, Q} d(P, Q)^2 = 27 \\cdot 2\\bigl(\\sum x^2 \\sum y^2 - (\\sum xy)^2\\bigr)$."
+  ],
+  "solution": "For points $P$, $Q$, $R$ in space, the vector $(Q - P) \\times (R - P)$ has length twice the area of triangle $PQR$, and its three components are, up to sign, twice the areas of the projections of the triangle onto the planes $x = 0$, $y = 0$ and $z = 0$. So the squared area is the sum of the squared areas of the three projections, and by symmetry $T = 3T_z$, where $T_z$ is the sum of the squared areas of the projections onto the plane $z = 0$.\n\nShifting every coordinate down by $1$ changes no area, so take the coordinates in $\\{-1, 0, 1\\}$. For points of the plane write $d(P, Q) = x_Py_Q - x_Qy_P$; twice the signed area of $P_1P_2P_3$ is $d(P_1, P_2) + d(P_2, P_3) + d(P_3, P_1)$. Sum its square over all $27^3$ ordered triples $(P_1, P_2, P_3)$ of points of $S$, each projected onto $z = 0$. Triples with a repeated point contribute $0$, and each $3$-element set appears $6$ times. Every cross term, such as $d(P_1, P_2)\\,d(P_2, P_3)$, is linear in the coordinates of one of the points, here $P_1$, and $\\sum x = \\sum y = 0$ over $S$, so the cross terms add up to $0$. Each of the three square terms gives\n\n$$27\\sum_{P, Q \\in S} d(P, Q)^2 = 27 \\cdot 2\\Bigl(\\sum x^2 \\sum y^2 - \\bigl(\\sum xy\\bigr)^2\\Bigr) = 27 \\cdot 2 \\cdot (18 \\cdot 18 - 0) = 17496,$$\n\nbecause $18$ of the $27$ points have $x = \\pm 1$, and likewise for $y$. So $T_z = \\frac{3 \\cdot 17496}{4 \\cdot 6} = 2187$ and $T = 3 \\cdot 2187 = 6561$. The remainder is $561$.",
+  "solution_figures": [
+    {
+      "src": "figures/twenty-seven-points-solution.svg?v=849e83d7",
+      "alt": "An oblique view of the cube whose corners have coordinates 0 and 2, with the nine points of its bottom face marked. A triangle PQR with vertices P = (2, 0, 1), Q = (0, 1, 2) and R = (2, 2, 2) is drawn above its shaded shadow P'Q'R' on the bottom face z = 0, and dashed vertical segments join each vertex to its shadow.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-twenty-seven-points"
+}

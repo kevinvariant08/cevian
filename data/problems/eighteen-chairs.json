@@ -1,0 +1,33 @@
+{
+  "id": "eighteen-chairs",
+  "title": "Eighteen Chairs",
+  "kyu": 4,
+  "topic": "C",
+  "subtopics": [
+    "favorable-over-total",
+    "graph-modeling",
+    "run-decomposition",
+    "binomial-selection"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Eighteen chairs are equally spaced around a circular table. Five of the chairs are chosen at random, with all sets of five chairs equally likely. The probability that no two of the chosen chairs are next to each other and no two of them are directly opposite each other is $\\frac{m}{n}$, where $m$ and $n$ are coprime positive integers. Find $m + n$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "b7175e97",
+  "hints": [
+    "A chosen chair rules out the chair directly opposite it. Group the chairs into the nine pairs of opposite chairs. How many chairs can a set with both properties take from one pair?",
+    "A set of five chairs with both properties takes one chair from each of five of the nine pairs. Arrange the pairs in a cycle, with the pair of a chair next to the pair of its neighbour, and work out when chairs from two pairs can be next to each other. Then split the count by how the five chosen pairs fall into runs of consecutive pairs.",
+    "Chairs from two pairs can be next to each other only if the pairs are consecutive in the cycle, and then each chair of one pair is next to exactly one chair of the other. So five pairs forming $b$ runs give $2^b$ sets of chairs with both properties. Count the ways to choose five of the nine pairs around the cycle with $b$ runs, for $b = 1, 2, 3, 4$."
+  ],
+  "solution": "Number the chairs $0, 1, \\dots, 17$ around the table, with indices modulo $18$, so chair $j$ is opposite chair $j + 9$. For $j = 0, 1, \\dots, 8$ call $\\{j, j + 9\\}$ pair $j$. Call a set of five chairs good if no two of its chairs are next to each other or opposite. A good set takes at most one chair from each pair, so it takes one chair from each of five pairs.\n\nArrange the pairs in a cycle, pair $j$ next to pair $j \\pm 1$ modulo $9$. Two chairs are next to each other only when they differ by $\\pm 1$ modulo $18$, which needs their pairs to be next to each other in this cycle. For consecutive pairs, each chair of one is next to exactly one chair of the other, since chair $j$ is next to $j + 1$ but not to $j + 10$. So in each run of consecutive chosen pairs, the chair from the first pair can be either of two, and every later chair of the run is then forced. Five pairs forming $b$ runs give $2^b$ good sets.\n\nThe four unchosen pairs also form $b$ runs. Choosing the lengths of the chosen runs ($\\binom{4}{b-1}$ ways), of the unchosen runs ($\\binom{3}{b-1}$ ways) and the pair where a chosen run starts ($9$ ways) counts each selection $b$ times. This gives $9$, $54$, $54$ and $9$ selections for $b = 1, 2, 3, 4$, which total $\\binom{9}{5} = 126$. The number of good sets is\n$$9 \\cdot 2 + 54 \\cdot 4 + 54 \\cdot 8 + 9 \\cdot 16 = 810.$$\n\nThere are $\\binom{18}{5} = 8568$ sets in all, so the probability is $\\frac{810}{8568} = \\frac{45}{476}$, and $m + n = 521$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-eighteen-chairs"
+}

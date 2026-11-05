@@ -1,0 +1,65 @@
+%! alt A regular dodecagon ABCDEFGHIJKL with centre O, drawn with the chord AF across the top. Quadrilateral ABCF is shaded. The centre O lies below AF, outside ABCF. Segments OA, OB, OC and OF cut the pentagon OABCF into triangles OAB and OBC, each with a 30 degree angle at O, and OCF, with a right angle at O. Triangle OAF, shaded grey, has a 150 degree angle at O, so it has the same area as triangle OAB, which is 30. The quadrilateral is the pentagon with triangle OAF removed, so its area is 30 + 30 + 60 - 30 = 90.
+%! after_paragraph 1
+%! scale 1/3
+%! let R = sqrt(120)
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
+\tkzDefPoint(-3.5270624,0.94507353){A} %! A = polar(O, R, 165)
+\tkzDefPoint(-2.5819889,2.5819889){B} %! B = polar(O, R, 135)
+\tkzDefPoint(-0.94507353,3.5270624){C} %! C = polar(O, R, 105)
+\tkzDefPoint(0.94507353,3.5270624){D} %! D = polar(O, R, 75)
+\tkzDefPoint(2.5819889,2.5819889){E} %! E = polar(O, R, 45)
+\tkzDefPoint(3.5270624,0.94507353){F} %! F = polar(O, R, 15)
+\tkzDefPoint(3.5270624,-0.94507353){G} %! G = polar(O, R, -15)
+\tkzDefPoint(2.5819889,-2.5819889){H} %! H = polar(O, R, -45)
+\tkzDefPoint(0.94507353,-3.5270624){I} %! I = polar(O, R, -75)
+\tkzDefPoint(-0.94507353,-3.5270624){J} %! J = polar(O, R, -105)
+\tkzDefPoint(-2.5819889,-2.5819889){K} %! K = polar(O, R, -135)
+\tkzDefPoint(-3.5270624,-0.94507353){L} %! L = polar(O, R, -165)
+\tkzDefPoint(-4.0744204,1.0917377){LA} %! LA = polar(O, R + 1.7, 165)
+\tkzDefPoint(-2.9826827,2.9826827){LB} %! LB = polar(O, R + 1.7, 135)
+\tkzDefPoint(-1.0917377,4.0744204){LC} %! LC = polar(O, R + 1.7, 105)
+\tkzDefPoint(1.0917377,4.0744204){LD} %! LD = polar(O, R + 1.7, 75)
+\tkzDefPoint(2.9826827,2.9826827){LE} %! LE = polar(O, R + 1.7, 45)
+\tkzDefPoint(4.0744204,1.0917377){LF} %! LF = polar(O, R + 1.7, 15)
+\tkzDefPoint(4.0744204,-1.0917377){LG} %! LG = polar(O, R + 1.7, -15)
+\tkzDefPoint(2.9826827,-2.9826827){LH} %! LH = polar(O, R + 1.7, -45)
+\tkzDefPoint(1.0917377,-4.0744204){LI} %! LI = polar(O, R + 1.7, -75)
+\tkzDefPoint(-1.0917377,-4.0744204){LJ} %! LJ = polar(O, R + 1.7, -105)
+\tkzDefPoint(-2.9826827,-2.9826827){LK} %! LK = polar(O, R + 1.7, -135)
+\tkzDefPoint(-4.0744204,-1.0917377){LL} %! LL = polar(O, R + 1.7, -165)
+\tkzDefPoint(0.87849906,0.66199653){Q} %! Q = polar(O, 3.3, 37)
+%! fact area(A, B, C, D, E, F, G, H, I, J, K, L) == 360
+%! fact area(O, A, B) == 30
+%! fact area(O, B, C) == 30
+%! fact area(O, A, F) == 30
+%! fact angle(A, O, B) == 30
+%! fact angle(C, O, F) == 90
+%! fact angle(A, O, F) == 150
+%! fact area(A, B, C, F) == 90
+%! fact equal(area(O, A, B, C, F), area(A, B, C, F) + area(O, A, F))
+\tkzFillPolygon[color=figaccenttint](A,B,C,F)
+\tkzFillPolygon[color=figtint](O,A,F)
+\tkzDrawPolygon(A,B,C,D,E,F,G,H,I,J,K,L)
+\tkzDrawPolygon[key](A,B,C,F)
+\tkzDrawSegments[aux](O,A O,B O,C O,F)
+\tkzMarkRightAngle[size=.35,mk](C,O,F)
+\tkzLabelPoint[anchor=center,font=\small](Q){$150^\circ$}
+\tkzDrawPoints(O,A,B,C,D,E,F,G,H,I,J,K,L)
+\tkzLabelPoint[below,lbl](O){$O$}
+\tkzLabelPoint[anchor=center,lbl](LA){$A$}
+\tkzLabelPoint[anchor=center,lbl](LB){$B$}
+\tkzLabelPoint[anchor=center,lbl](LC){$C$}
+\tkzLabelPoint[anchor=center,lbl](LD){$D$}
+\tkzLabelPoint[anchor=center,lbl](LE){$E$}
+\tkzLabelPoint[anchor=center,lbl](LF){$F$}
+\tkzLabelPoint[anchor=center,lbl](LG){$G$}
+\tkzLabelPoint[anchor=center,lbl](LH){$H$}
+\tkzLabelPoint[anchor=center,lbl](LI){$I$}
+\tkzLabelPoint[anchor=center,lbl](LJ){$J$}
+\tkzLabelPoint[anchor=center,lbl](LK){$K$}
+\tkzLabelPoint[anchor=center,lbl](LL){$L$}
+\end{tikzpicture}
+\end{document}

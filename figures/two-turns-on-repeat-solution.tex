@@ -1,0 +1,31 @@
+%! alt The robot's path from O: six moves of 1 metre, starting north, with turns of 100 and 140 degrees clockwise in turn. P1 to P5 are its positions after 1 to 5 moves, and the sixth move ends at O. The moves meet at P1 at an angle of 80 degrees. The points O, P2 and P4, reached after 0, 2 and 4 moves, form an equilateral triangle with side 2 sin 40 degrees, drawn dashed with its sides highlighted, because each pair of moves is the previous pair rotated by 120 degrees.
+%! after_paragraph 1
+%! scale 5
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){O} %! O = (0, 0)
+\tkzDefPoint(0.000000000000000000000000000000000000000000000000010837084,5.0000000){P1} %! P1 = polar(O, 1, 90)
+\tkzDefPoint(4.9240388,4.1317591){P2} %! P2 = polar(P1, 1, -10)
+\tkzDefPoint(0.59391175,1.6317591){P3} %! P3 = polar(P2, 1, -150)
+\tkzDefPoint(-1.1161890,6.3302222){P4} %! P4 = polar(P3, 1, 110)
+\tkzDefPoint(3.2139380,3.8302222){P5} %! P5 = polar(P4, 1, -30)
+%! fact dist(O, P1) == 1
+%! fact dist(P5, O) == 1
+%! fact angle(O, P1, P2) == 80
+%! fact dist(O, P2) == 2*sind(40)
+%! fact equal(dist(O, P2), dist(P2, P4))
+%! fact equal(dist(P2, P4), dist(P4, O))
+\tkzDrawPolygon[key,dash pattern=on 2.6pt off 2pt](O,P2,P4)
+\tkzDrawSegments(O,P1 P1,P2 P2,P3 P3,P4 P4,P5 P5,O)
+\tkzMarkAngle[size=.4,arc=l,mark=none,mk](O,P1,P2)
+\tkzLabelAngle[pos=.75,font=\small](O,P1,P2){$80^\circ$}
+\tkzDrawPoints(O,P1,P2,P3,P4,P5)
+\tkzLabelPoint[below,lbl](O){$O$}
+\tkzLabelPoint[above,lbl](P1){$P_1$}
+\tkzLabelPoint[right,lbl](P2){$P_2$}
+\tkzLabelPoint[below,lbl](P3){$P_3$}
+\tkzLabelPoint[above left,lbl](P4){$P_4$}
+\tkzLabelPoint[right,lbl](P5){$P_5$}
+\end{tikzpicture}
+\end{document}

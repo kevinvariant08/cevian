@@ -1,0 +1,114 @@
+{
+  "id": "one-from-each-set",
+  "title": "One From Each Set",
+  "kyu": 2,
+  "topic": "C",
+  "subtopics": [
+    "rule-of-product",
+    "greedy-optimization",
+    "am-gm",
+    "jensen"
+  ],
+  "type": "proof",
+  "status": "beta",
+  "statement": "Let $n$ be a positive integer and let $A_1, A_2, \\dots, A_n$ be non-empty finite sets such that\n$$\\dfrac{1}{|A_1|} + \\dfrac{1}{|A_2|} + \\dots + \\dfrac{1}{|A_n|} \\le 1.$$\nProve that there are at least $n!$ ordered $n$-tuples $(a_1, a_2, \\dots, a_n)$ such that $a_i \\in A_i$ for every $i$ and the elements $a_1, a_2, \\dots, a_n$ are pairwise distinct.",
+  "hints": [
+    "Number the sets so that $|A_1| \\le |A_2| \\le \\dots \\le |A_n|$ and choose $a_1$, then $a_2$, and so on. Bound the number of choices at each step from below, and look at what happens when all the sets are the same set of $n$ elements.",
+    "With $x_k = |A_k|$ the count is at least $\\prod_{k=1}^{n}(x_k - k + 1)$, so it suffices to show that this product is at least $n!$. Put $t_k = \\frac{1}{x_k}$ and write $x_k - k + 1 = \\frac{1}{t_k}\\left(1 - (k-1)t_k\\right)$. The AM-GM inequality bounds the product of the numbers $\\frac{1}{t_k}$. For the other product, use the weighted AM-GM inequality after writing $(t_1, \\dots, t_n)$ as a weighted average of simpler vectors.",
+    "As $t_1 \\ge t_2 \\ge \\dots \\ge t_n$, the weights $\\lambda_i = i(t_i - t_{i+1})$ for $1 \\le i \\le n$, with $t_{n+1} = 0$, and $\\lambda_0 = 1 - (t_1 + \\dots + t_n)$ are non-negative with sum $1$, and $t_k = \\sum_{i=k}^{n}\\frac{\\lambda_i}{i}$. So $(t_1, \\dots, t_n)$ is a weighted average of the zero vector and the vectors whose first $i$ entries are $\\frac{1}{i}$ and whose other entries are $0$. Apply the weighted AM-GM inequality to each $1 - (k-1)t_k$ written in this way, and compute the product over $k$ for each of these vectors."
+  ],
+  "solution": "Write $x_i = |A_i|$ and call an $n$-tuple as in the statement good. Renumbering the sets permutes the coordinates of every good $n$-tuple, so it does not change their number, and we may number the sets so that $x_1 \\le x_2 \\le \\dots \\le x_n$. Let\n$$P = \\prod_{k=1}^{n}(x_k - k + 1).$$\n\n<b>Counting.</b> For $1 \\le k \\le n$ the sizes $x_1, \\dots, x_k$ are at most $x_k$, so $\\frac{k}{x_k} \\le \\frac{1}{x_1} + \\dots + \\frac{1}{x_k} \\le 1$. Hence $x_k \\ge k$, and every factor $x_k - k + 1$ of $P$ is at least $1$.\n\nFor $0 \\le k \\le n$ let $N_k$ be the number of $k$-tuples $(a_1, \\dots, a_k)$ of pairwise distinct elements with $a_j \\in A_j$ for every $j \\le k$, so that $N_0 = 1$ and $N_n$ is the number of good $n$-tuples. A $k$-tuple of this kind with $k < n$ can be extended by any element of $A_{k+1}$ other than $a_1, \\dots, a_k$, so it has at least $x_{k+1} - k$ extensions, and different $k$-tuples have different extensions. Hence $N_{k+1} \\ge (x_{k+1} - k)\\,N_k$ for $0 \\le k < n$. All these factors are positive, so chaining the $n$ inequalities gives $N_n \\ge P\\,N_0 = P$, and it suffices to prove that $P \\ge n!$.\n\n<b>Splitting the product.</b> Put $t_k = \\frac{1}{x_k}$. Then $t_1 \\ge t_2 \\ge \\dots \\ge t_n > 0$, $t_1 + t_2 + \\dots + t_n \\le 1$ and\n$$x_k - k + 1 = \\dfrac{1}{t_k}\\left(1 - (k-1)t_k\\right).$$\nBy the AM-GM inequality, $\\left(t_1 t_2 \\cdots t_n\\right)^{1/n} \\le \\frac{1}{n}\\left(t_1 + \\dots + t_n\\right) \\le \\frac{1}{n}$, so\n$$\\prod_{k=1}^{n}\\dfrac{1}{t_k} \\ge n^n. \\qquad (1)$$\n\n<b>A weighted average.</b> Let $t_{n+1} = 0$, let $\\lambda_i = i(t_i - t_{i+1})$ for $1 \\le i \\le n$, and let $\\lambda_0 = 1 - (t_1 + \\dots + t_n)$. These numbers are non-negative, and\n$$\\lambda_1 + \\lambda_2 + \\dots + \\lambda_n = \\sum_{i=1}^{n} i\\,t_i - \\sum_{i=2}^{n}(i-1)\\,t_i = \\sum_{i=1}^{n} t_i,$$\nso $\\lambda_0 + \\lambda_1 + \\dots + \\lambda_n = 1$. Moreover $t_k = \\sum_{i=k}^{n}(t_i - t_{i+1}) = \\sum_{i=k}^{n}\\frac{\\lambda_i}{i}$, and therefore\n$$1 - (k-1)t_k = \\sum_{i=0}^{n}\\lambda_i\\,c_{ik}, \\qquad c_{ik} = \\begin{cases} 1 - \\dfrac{k-1}{i} & \\text{if } i \\ge k, \\\\ 1 & \\text{if } i < k. \\end{cases}$$\nFor $i \\ge k$ we have $c_{ik} \\ge 1 - \\frac{i-1}{i} = \\frac{1}{i}$, so every $c_{ik}$ is positive.\n\n<b>The second product.</b> For each $k$, the weighted AM-GM inequality with weights $\\lambda_0, \\lambda_1, \\dots, \\lambda_n$ gives\n$$1 - (k-1)t_k \\ge \\prod_{i=0}^{n} c_{ik}^{\\lambda_i},$$\nwhere a factor with $\\lambda_i = 0$ equals $1$. Multiplying these $n$ inequalities,\n$$\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\prod_{i=0}^{n} g_i^{\\lambda_i}, \\qquad \\text{where } g_i = \\prod_{k=1}^{n} c_{ik}.$$\nHere $g_0 = 1$, and for $1 \\le i \\le n$ only the factors with $k \\le i$ differ from $1$, so\n$$g_i = \\prod_{k=1}^{i}\\dfrac{i - k + 1}{i} = \\dfrac{i!}{i^i}.$$\nSince $\\frac{g_{i+1}}{g_i} = \\left(\\frac{i}{i+1}\\right)^{i} < 1$ for $i \\ge 1$ and $g_0 = g_1 = 1$, every $g_i$ with $0 \\le i \\le n$ satisfies $g_i \\ge g_n = \\frac{n!}{n^n} > 0$. As $\\lambda_i \\ge 0$, each $g_i^{\\lambda_i}$ is at least $g_n^{\\lambda_i}$, and the weights add up to $1$, so\n$$\\prod_{i=0}^{n} g_i^{\\lambda_i} \\ge g_n^{\\lambda_0 + \\lambda_1 + \\dots + \\lambda_n} = g_n,$$\nand hence\n$$\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\dfrac{n!}{n^n}. \\qquad (2)$$\n\nMultiplying (1) and (2) gives $P \\ge n!$, so there are at least $n!$ good $n$-tuples. If every $A_i$ is the same set of $n$ elements, there are exactly $n!$, so the bound cannot be improved.\n\n<b>Remark.</b> For nested sets $A_1 \\subseteq A_2 \\subseteq \\dots \\subseteq A_n$ the number of good $n$-tuples is exactly $P$, so the problem is equivalent to the inequality $P \\ge n!$. A comparison factor by factor fails, since $x_1$ may be $2$. So does an induction on $n$ that bounds $P$ below by one of its factors times $(n-1)!$, since this gives $n!$ only when that factor is at least $n$: for the sizes $3, 4, 5, 6$ every factor of $P$ equals $3$, which is less than $n = 4$. Another route to (2) is majorisation. The same weights show that any $j$ of the numbers $(k-1)t_k$ have sum at most the sum of the $j$ largest of $\\frac{0}{n}, \\frac{1}{n}, \\dots, \\frac{n-1}{n}$, and the weak form of Karamata's inequality for the convex increasing function $-\\log(1 - x)$ then gives (2).",
+  "rubric": [
+    {
+      "marks": 2,
+      "criterion": "Orders the sets by size and proves that the number of good $n$-tuples is at least $\\prod_{k=1}^{n}(x_k - k + 1)$, where $x_1 \\le x_2 \\le \\dots \\le x_n$ are the sizes, or an equivalent reduction to an inequality about the sizes alone. Deduct 1 if the bounds for the successive choices are multiplied together without a proof that $x_k \\ge k$ for every $k$, which makes every factor positive, for example because the sets were not ordered by size before the choices were counted."
+    },
+    {
+      "marks": 1,
+      "criterion": "Splits each factor as $\\frac{1}{t_k}\\left(1 - (k-1)t_k\\right)$ with $t_k = \\frac{1}{x_k}$, or as $x_k\\left(1 - \\frac{k-1}{x_k}\\right)$, proves that $x_1 x_2 \\cdots x_n \\ge n^n$, and so reduces the problem to $\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\frac{n!}{n^n}$."
+    },
+    {
+      "marks": 2,
+      "criterion": "Writes $(t_1, \\dots, t_n)$ as a weighted average of the zero vector and the vectors whose first $i$ entries are $\\frac{1}{i}$, with weights $i(t_i - t_{i+1})$, or proves an equivalent majorisation or concavity statement that reduces the remaining product to these vectors."
+    },
+    {
+      "marks": 2,
+      "criterion": "Proves $\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\frac{n!}{n^n}$, for example by the weighted AM-GM inequality and the fact that $\\frac{i!}{i^i}$ decreases, and concludes that there are at least $n!$ good $n$-tuples. Deduct 1 if it is not shown that $\\frac{i!}{i^i}$ decreases. A complete proof by another route earns all marks."
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "marking": {
+    "alternative_routes": [
+      {
+        "name": "Majorisation and Karamata's inequality",
+        "milestones": [
+          {
+            "id": "a1",
+            "marks": 2,
+            "criterion": "Orders the sets by size and proves that the number of good $n$-tuples is at least $\\prod_{k=1}^{n}(x_k - k + 1)$, or an equivalent reduction. Deduct 1 if the bounds for the successive choices are multiplied together without a proof that $x_k \\ge k$ for every $k$, which makes every factor positive."
+          },
+          {
+            "id": "a2",
+            "marks": 1,
+            "criterion": "Proves $x_1 x_2 \\cdots x_n \\ge n^n$ and reduces the problem to $\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\frac{n!}{n^n}$ with $t_k = \\frac{1}{x_k}$."
+          },
+          {
+            "id": "a3",
+            "marks": 3,
+            "criterion": "Proves that for every $j$, any $j$ of the numbers $(k-1)t_k$ have sum at most the sum of the $j$ largest of $\\frac{0}{n}, \\frac{1}{n}, \\dots, \\frac{n-1}{n}$."
+          },
+          {
+            "id": "a4",
+            "marks": 1,
+            "criterion": "Applies the weak form of Karamata's inequality to the convex increasing function $-\\log(1 - x)$, or an equivalent argument, and concludes."
+          }
+        ]
+      }
+    ],
+    "fatal_errors": [
+      {
+        "error": "Asserts without proof that $\\prod (x_k - k + 1)$ is smallest when all the $x_k$ are equal, for example by symmetry or by a smoothing step that is not justified under the ordering $x_1 \\le \\dots \\le x_n$.",
+        "cap": 3
+      },
+      {
+        "error": "Compares the factors one by one, for example claims $x_k - k + 1 \\ge n - k + 1$ for every $k$, which fails when $x_1 < n$, or proves the bound only when every set has at least $n$ elements.",
+        "cap": 3
+      },
+      {
+        "error": "Proves $\\prod_{k=1}^{n}(x_k - k + 1) \\ge n!$ but proves that the number of good $n$-tuples is at least this product only for nested sets $A_1 \\subseteq A_2 \\subseteq \\dots \\subseteq A_n$, or assumes without proof that the sets may be taken to be nested.",
+        "cap": 5
+      }
+    ],
+    "milestones": [
+      {
+        "id": "m1",
+        "marks": 2,
+        "criterion": "Orders the sets by size and proves that the number of good $n$-tuples is at least $\\prod_{k=1}^{n}(x_k - k + 1)$, where $x_1 \\le x_2 \\le \\dots \\le x_n$ are the sizes, or an equivalent reduction to an inequality about the sizes alone. Deduct 1 if the bounds for the successive choices are multiplied together without a proof that $x_k \\ge k$ for every $k$, which makes every factor positive, for example because the sets were not ordered by size before the choices were counted."
+      },
+      {
+        "id": "m2",
+        "marks": 1,
+        "criterion": "Splits each factor as $\\frac{1}{t_k}\\left(1 - (k-1)t_k\\right)$ with $t_k = \\frac{1}{x_k}$, or as $x_k\\left(1 - \\frac{k-1}{x_k}\\right)$, proves that $x_1 x_2 \\cdots x_n \\ge n^n$, and so reduces the problem to $\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\frac{n!}{n^n}$."
+      },
+      {
+        "id": "m3",
+        "marks": 2,
+        "criterion": "Writes $(t_1, \\dots, t_n)$ as a weighted average of the zero vector and the vectors whose first $i$ entries are $\\frac{1}{i}$, with weights $i(t_i - t_{i+1})$, or proves an equivalent majorisation or concavity statement that reduces the remaining product to these vectors."
+      },
+      {
+        "id": "m4",
+        "marks": 2,
+        "criterion": "Proves $\\prod_{k=1}^{n}\\left(1 - (k-1)t_k\\right) \\ge \\frac{n!}{n^n}$, for example by the weighted AM-GM inequality and the fact that $\\frac{i!}{i^i}$ decreases, and concludes that there are at least $n!$ good $n$-tuples. Deduct 1 if it is not shown that $\\frac{i!}{i^i}$ decreases. A complete proof by another route earns all marks."
+      }
+    ]
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-one-from-each-set"
+}

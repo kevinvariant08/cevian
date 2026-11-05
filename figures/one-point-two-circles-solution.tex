@@ -1,0 +1,48 @@
+%! alt The circle omega with centre O and radius 21, and the first line through P drawn as a horizontal chord AB. Two small circles touch the chord at P from opposite sides, with radius 5 above and radius 7 below, and each touches omega internally at the end of a dashed radius from O. Here OP = 14 and AP times PB is 245.
+%! after_paragraph 1
+%! scale 1/6
+%! let u = 7*sqrt(15)/2
+%! let w = 7*sqrt(35)/2
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){P} %! P = (0, 0)
+\tkzDefPoint(2.2592403,-0.58333333){O} %! O = (u, -7/2)
+\tkzDefPoint(0.0,0.83333333){C1} %! C1 = (0, 5)
+\tkzDefPoint(0.0,-1.1666667){C2} %! C2 = (0, -7)
+\tkzDefPoint(-0.70601259,1.2760417){T1} %! T1 = lerp(O, C1, 21/16)
+\tkzDefPoint(-1.1296201,-1.4583333){T2} %! T2 = lerp(O, C2, 21/14)
+\tkzDefPoint(-1.1918063,0.0){A} %! A = (u - w, 0)
+\tkzDefPoint(5.7102868,0.0){B} %! B = (u + w, 0)
+%! fact dist(O, A) == 21
+%! fact dist(O, B) == 21
+%! fact dist(O, T1) == 21
+%! fact dist(O, T2) == 21
+%! fact dist(C1, P) == 5
+%! fact dist(C1, T1) == 5
+%! fact dist(C2, P) == 7
+%! fact dist(C2, T2) == 7
+%! fact perp(C1, C2, A, B)
+%! fact collinear(C1, P, C2)
+%! fact collinear(P, A, B)
+%! fact dist(O, P) == 14
+%! fact dist(A, P) * dist(P, B) == 245
+%! fact 1/dist(C1, P) + 1/dist(C2, P) == 12/35
+%! fact y(O) == -7/2
+\tkzFillCircle[color=figaccenttint](C1,P)
+\tkzFillCircle[color=figaccenttint](C2,P)
+\tkzDrawCircle(O,A)
+\tkzDrawCircle[key](C1,P)
+\tkzDrawCircle[key](C2,P)
+\tkzDrawSegments[aux](O,T1 O,T2)
+\tkzDrawSegment(A,B)
+\tkzDrawSegments[len](C1,P C2,P)
+\tkzDrawPoints(P,O,A,B,T1,T2,C1,C2)
+\tkzLabelPoint[below right,lbl](P){$P$}
+\tkzLabelPoint[below,lbl](O){$O$}
+\tkzLabelPoint[left,lbl](A){$A$}
+\tkzLabelPoint[right,lbl](B){$B$}
+\tkzLabelSegment[left,len](C1,P){$5$}
+\tkzLabelSegment[left,len](C2,P){$7$}
+\end{tikzpicture}
+\end{document}

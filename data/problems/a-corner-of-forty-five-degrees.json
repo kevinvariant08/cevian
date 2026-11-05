@@ -1,0 +1,39 @@
+{
+  "id": "a-corner-of-forty-five-degrees",
+  "title": "A Corner of Forty-Five Degrees",
+  "kyu": 6,
+  "topic": "G",
+  "subtopics": [
+    "inscribed-angle-theorem",
+    "correct-for-overcounting",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Three of the $20$ vertices of a regular polygon with $20$ sides are chosen, and they are joined to form a triangle. For how many of the $\\binom{20}{3}$ choices does the triangle have at least one angle of exactly $45^\\circ$?",
+  "answer_format": "integer",
+  "answer_hash": "db9ac858",
+  "hints": [
+    "All $20$ vertices lie on one circle. For each angle of the triangle, look at the arc between the other two vertices that does not contain the vertex of that angle.",
+    "An angle inscribed in a circle is half the angle that its arc makes at the centre. Each side of the polygon makes $18^\\circ$ at the centre, so each angle of the triangle is $9^\\circ$ times the number of sides of the polygon along the arc opposite it.",
+    "So an angle of $45^\\circ$ means that two of the chosen vertices are $5$ sides apart, with the third vertex on the longer arc between them. Count these choices, then correct for the triangles in which this happens twice."
+  ],
+  "solution": "The vertices lie on a circle, and each side of the polygon subtends $18^\\circ$ at its centre. If the chosen vertices cut the circle into arcs of $p$, $q$ and $r$ sides, then by the inscribed angle theorem the triangle has angles $9p^\\circ$, $9q^\\circ$ and $9r^\\circ$. So it has an angle of $45^\\circ$ exactly when one of these arcs has $5$ sides.\n\nEach of the $20$ pairs of vertices $5$ sides apart gives such a triangle with each of the $14$ vertices strictly inside the other arc, of $15$ sides. There are $20$ triangles with arcs of $5$, $5$ and $10$ sides, one for each choice of the vertex between the two short arcs, and this counts them twice and every other triangle once. The answer is $20 \\cdot 14 - 20 = 260$.",
+  "solution_figures": [
+    {
+      "src": "figures/a-corner-of-forty-five-degrees-solution.svg?v=718cade4",
+      "alt": "A regular 20-sided polygon in its circle, with centre O. A triangle joins three of its vertices. Two of them are 5 sides apart, and the arc between them, made of 5 sides, is highlighted: it makes a right angle, 90 degrees, at O. The third vertex lies on the long arc, and the angle of the triangle there is 45 degrees, half of 90 degrees.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-corner-of-forty-five-degrees"
+}

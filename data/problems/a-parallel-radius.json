@@ -1,0 +1,39 @@
+{
+  "id": "a-parallel-radius",
+  "title": "A Parallel Radius",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "angle-chasing",
+    "law-of-sines",
+    "pythagorean-triples"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A triangle is called level if, for at least one of its vertices, the line through that vertex and the circumcentre of the triangle is parallel to the opposite side. Find the number of level triangles with integer side lengths and perimeter less than $1000$. Congruent triangles are counted once.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "77bd1f7b",
+  "hints": [
+    "Draw the altitude from $A$. If $OA$ is parallel to $BC$, what is the angle between $AO$ and this altitude, and how is that angle related to the angles of the triangle?",
+    "The angle between $AO$ and the altitude from $A$ is $|\\angle B - \\angle C|$, so the triangle is level exactly when one of $\\angle B$, $\\angle C$ exceeds the other by $90^\\circ$. Say $\\angle B = \\angle C + 90^\\circ$, and use the sine rule to write $a : b : c$ in terms of $\\cos C$ and $\\sin C$.",
+    "You should find $a : b : c = \\cos 2C : \\cos C : \\sin C$. Integer sides force $\\cos C = \\frac{p}{r}$ and $\\sin C = \\frac{q}{r}$ for a primitive Pythagorean triple with legs $q < p$ and hypotenuse $r$, and then the triangle is $m(p^2 - q^2, pr, qr)$ for a positive integer $m$, with perimeter $m(p + q)(p - q + r)$. Find the primitive triples for which this perimeter can be below $1000$."
+  ],
+  "solution": "Let $a = BC$, $b = CA$, $c = AB$. The line $AO$ and the altitude from $A$ are reflections of each other in the bisector of angle $A$, and the angle between them is $|\\angle B - \\angle C|$. The altitude is perpendicular to $BC$, so the triangle is level exactly when $|\\angle B - \\angle C| = 90^\\circ$.\n\nSwapping the names $B$ and $C$ if needed, let $\\angle B - \\angle C = 90^\\circ$, so $\\angle A = 90^\\circ - 2\\angle C$ and $\\angle C < 45^\\circ$. By the sine rule, $a : b : c = \\sin A : \\sin B : \\sin C = \\cos 2C : \\cos C : \\sin C$. Conversely, for any $\\angle C < 45^\\circ$ the angles $90^\\circ - 2C$, $C + 90^\\circ$, $C$ give a level triangle with these ratios.\n\nFor integer sides, $\\cos C$ is rational by the cosine rule, and so is $\\tan C = \\frac{c}{b}$. Hence $\\cos C = \\frac{p}{r}$ and $\\sin C = \\frac{q}{r}$ for a primitive Pythagorean triple with legs $q < p$ and hypotenuse $r$, and $a : b : c = (p^2 - q^2) : pr : qr$. These three numbers have no common prime factor: such a prime would divide $pr$ and $qr$, hence $r$, and then $p^2 - q^2 \\equiv 2p^2 \\pmod r$ with $r$ odd and coprime to $p$. So the integer level triangles are $m(p^2 - q^2, pr, qr)$ for $m \\ge 1$, with perimeter $m(p + q)(p - q + r)$; the smallest is $(7, 20, 15)$.\n\nNo integer triangle is counted twice: two differences of $90^\\circ$ between angles force the angles $30^\\circ, 30^\\circ, 120^\\circ$, whose sides are in ratio $1 : 1 : \\sqrt{3}$.\n\nThe value of $(p + q)(p - q + r)$ is $42$ for $(3, 4, 5)$, $340$ for $(5, 12, 13)$, $552$ for $(8, 15, 17)$, $1302$ for $(7, 24, 25)$ and $1230$ for $(20, 21, 29)$. For $r \\ge 37$ both factors are at least $r + 1$, as $p + q > r$, so the value exceeds $1000$. The count is $\\lfloor \\frac{999}{42} \\rfloor + \\lfloor \\frac{999}{340} \\rfloor + \\lfloor \\frac{999}{552} \\rfloor = 23 + 2 + 1 = 26$.",
+  "solution_figures": [
+    {
+      "src": "figures/a-parallel-radius-solution.svg?v=591b45f4",
+      "alt": "Triangle ABC with BC = 7, CA = 20 and AB = 15, and its circumcircle with centre O. The foot H of the altitude from A lies on line BC beyond B, so the angle at B is obtuse. Segment AO is parallel to BC and so perpendicular to the altitude AH, and angle B exceeds angle C by 90 degrees.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-parallel-radius"
+}

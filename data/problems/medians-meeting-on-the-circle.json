@@ -1,0 +1,40 @@
+{
+  "id": "medians-meeting-on-the-circle",
+  "title": "Medians Meeting on the Circle",
+  "kyu": 3,
+  "topic": "G",
+  "subtopics": [
+    "centroid-distance-sum",
+    "incircle-and-semiperimeter",
+    "centroid-medians",
+    "perfect-square-exponent-parity"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A triangle has integer side lengths, its perimeter is at most $300$, and its centroid (the point where its three medians meet) lies on its incircle. How many such triangles are there? Congruent triangles are counted once.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "48a61589",
+  "hints": [
+    "Work with the tangent lengths $x = s - a$, $y = s - b$ and $z = s - c$ from the vertices to the incircle, where $s$ is the semiperimeter, and compare the squared distances from the incentre $I$ to the three vertices with the squared distance from $I$ to the centroid $G$.",
+    "Use $IA^2 + IB^2 + IC^2 = 3IG^2 + GA^2 + GB^2 + GC^2$, together with $GA^2 + GB^2 + GC^2 = \\frac{1}{3}(a^2 + b^2 + c^2)$ and $IA^2 = x^2 + r^2$. The condition $IG = r$ becomes $x^2 + y^2 + z^2 = 2(xy + yz + zx)$.",
+    "Rewrite the condition as $(x + y - z)^2 = 4xy$ and work with $X = 2x$, $Y = 2y$, $Z = 2z$. The product $XY$ is a perfect square, so the three numbers are $gu^2$, $gv^2$ and $g(u + v)^2$ with $u$ and $v$ coprime. Parity forces $g$ to be even, and with $g = 2h$ the perimeter is $4h(u^2 + uv + v^2)$."
+  ],
+  "solution": "Write $a = BC$, $b = CA$, $c = AB$, let $s$ be the semiperimeter, and let $I$, $r$ and $G$ be the incentre, the inradius and the centroid. Put $x = s - a$, $y = s - b$ and $z = s - c$, the lengths of the tangents to the incircle from $A$, $B$ and $C$. Then $a = y + z$, $b = z + x$, $c = x + y$, and $IA^2 = x^2 + r^2$, $IB^2 = y^2 + r^2$, $IC^2 = z^2 + r^2$.\n\nFor every point $P$ we have $PA^2 + PB^2 + PC^2 = 3PG^2 + GA^2 + GB^2 + GC^2$, and $GA^2 + GB^2 + GC^2 = \\frac{1}{3}(a^2 + b^2 + c^2)$ because each of $GA$, $GB$, $GC$ is two thirds of a median. Taking $P = I$ gives $$x^2 + y^2 + z^2 + 3r^2 = 3\\,IG^2 + \\dfrac{a^2 + b^2 + c^2}{3}.$$ So $G$ lies on the incircle, which means $IG = r$, exactly when $3(x^2 + y^2 + z^2) = a^2 + b^2 + c^2 = 2(x^2 + y^2 + z^2) + 2(xy + yz + zx)$, that is, when $$x^2 + y^2 + z^2 = 2(xy + yz + zx), \\quad \\text{or equivalently} \\quad (x + y - z)^2 = 4xy.$$\n\nLet $X = 2x = b + c - a$, $Y = 2y$ and $Z = 2z$. These are positive integers with $(X + Y - Z)^2 = 4XY$, so $XY$ is a perfect square. Let $g = \\gcd(X, Y)$. Then $\\frac{X}{g}$ and $\\frac{Y}{g}$ are coprime with a square product, so both are squares: $X = gp^2$ and $Y = gq^2$ with $p$ and $q$ coprime positive integers. Then $X + Y - Z = \\pm 2gpq$ gives $Z = g(p + q)^2$ or $Z = g(p - q)^2$. In both cases the three numbers $X$, $Y$, $Z$ are, in some order, $gu^2$, $gv^2$ and $g(u + v)^2$ for coprime positive integers $u \\ge v$: in the first case $\\{u, v\\} = \\{p, q\\}$, and in the second $p \\ne q$ because $Z > 0$, and $\\{u, v\\} = \\{|p - q|, \\min(p, q)\\}$.\n\nConversely, for any positive integer $g$ and coprime positive integers $u \\ge v$, taking $\\{X, Y, Z\\} = \\{gu^2, gv^2, g(u + v)^2\\}$ gives positive $x$, $y$, $z$ that satisfy the equation, and so a triangle with sides $y + z$, $z + x$, $x + y$ whose centroid lies on its incircle. The triangle determines $g = \\gcd(X, Y, Z)$ and the pair $\\{u, v\\}$, so different choices give non-congruent triangles.\n\nThe sides $\\frac{Y + Z}{2}$, $\\frac{Z + X}{2}$, $\\frac{X + Y}{2}$ are integers exactly when $X$, $Y$, $Z$ have the same parity. As $u$ and $v$ are coprime, $u^2$, $v^2$ and $(u + v)^2$ are not all of the same parity, so $g$ must be even, say $g = 2h$, and then every choice works. The perimeter is $$X + Y + Z = 2h\\left(u^2 + v^2 + (u + v)^2\\right) = 4h(u^2 + uv + v^2).$$\n\nSo we count pairs $(h, \\{u, v\\})$ with $u \\ge v \\ge 1$ coprime and $h(u^2 + uv + v^2) \\le 75$. The coprime pairs with $Q = u^2 + uv + v^2 \\le 75$ are $(1, 1)$, $(2, 1)$, $(3, 1)$, $(3, 2)$, $(4, 1)$, $(5, 1)$, $(4, 3)$, $(5, 2)$, $(6, 1)$, $(5, 3)$, $(7, 1)$, $(5, 4)$, $(7, 2)$ and $(8, 1)$, with $Q = 3, 7, 13, 19, 21, 31, 37, 39, 43, 49, 57, 61, 67, 73$. Each pair allows $\\lfloor 75/Q \\rfloor$ values of $h$, so the total is $$25 + 10 + 5 + 3 + 3 + 2 + 2 + 7 \\cdot 1 = 57.$$\n\nThe answer is $57$.",
+  "solution_figures": [
+    {
+      "src": "figures/medians-meeting-on-the-circle-solution.svg?v=23b23d02",
+      "alt": "Triangle ABC with AB = 5, BC = 10 and CA = 13, an example of the condition. Its incircle has centre I and touches BC, CA and AB at Ta, Tb and Tc; the two tangents from A are marked x and the tangent from C along CA is marked z. The median from A to the midpoint Ma of BC is dashed; the centroid G, where the medians meet, lies on it and on the incircle.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-medians-meeting-on-the-circle"
+}

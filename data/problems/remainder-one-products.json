@@ -1,0 +1,32 @@
+{
+  "id": "remainder-one-products",
+  "title": "Products Leaving One",
+  "kyu": 4,
+  "topic": "N",
+  "subtopics": [
+    "orders-mod-n",
+    "roots-of-unity-filter",
+    "bijection"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For a subset $S$ of $\\{1, 2, \\dots, 12\\}$, let $P(S)$ be the product of the elements of $S$, where the empty set has $P(\\varnothing) = 1$. For how many of the $2^{12}$ subsets $S$ does $P(S)$ leave remainder $1$ on division by $13$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "b96955a1",
+  "hints": [
+    "Look at the powers of $2$ modulo $13$. Each of $1, 2, \\dots, 12$ is congruent to exactly one of $2^0, 2^1, \\dots, 2^{11}$, so every element of $S$ can be replaced by an exponent.",
+    "If $k \\equiv 2^{e(k)} \\pmod{13}$, then $P(S) \\equiv 1$ exactly when $\\sum_{k \\in S} e(k)$ is a multiple of $12$, and $e$ is a bijection onto $\\{0, 1, \\dots, 11\\}$. Count the subsets of $\\{0, 1, \\dots, 11\\}$ whose sum is divisible by $12$ with a roots of unity filter on $F(x) = \\prod_{e=0}^{11}(1 + x^e)$.",
+    "The count is $\\frac{1}{12}\\sum_{j=0}^{11} F(\\omega^j)$ with $\\omega = e^{2\\pi i/12}$. If $\\omega^j$ has order $d$, then $F(\\omega^j) = \\left(\\prod_{\\zeta^d = 1}(1 + \\zeta)\\right)^{12/d}$, and the inner product equals $1 - (-1)^d$."
+  ],
+  "solution": "Since $2^4 \\equiv 3$ and $2^6 \\equiv -1 \\pmod{13}$, the order of $2$ modulo $13$ is $12$. So for each $k \\in \\{1, \\dots, 12\\}$ there is a unique $e(k) \\in \\{0, \\dots, 11\\}$ with $2^{e(k)} \\equiv k \\pmod{13}$, and $e$ is a bijection. Now $P(S) \\equiv 2^{\\sum_{k \\in S} e(k)}$, which is $1$ exactly when $\\sum_{k \\in S} e(k) \\equiv 0 \\pmod{12}$. So we count the subsets $T$ of $\\{0, 1, \\dots, 11\\}$ whose sum is divisible by $12$.\n\nLet $F(x) = \\prod_{e=0}^{11}(1 + x^e)$ and $\\omega = e^{2\\pi i/12}$. The count is $\\frac{1}{12}\\sum_{j=0}^{11} F(\\omega^j)$. If $\\omega^j$ has order $d$, the powers $\\omega^{je}$ for $e = 0, \\dots, 11$ run through the $d$th roots of unity, each $\\frac{12}{d}$ times. From $\\prod_{\\zeta^d = 1}(x - \\zeta) = x^d - 1$ at $x = -1$ we get $\\prod_{\\zeta^d=1}(1 + \\zeta) = 1 - (-1)^d$. Hence $F(\\omega^j) = \\left(1 - (-1)^d\\right)^{12/d}$, which is $2^{12/d}$ for odd $d$ and $0$ for even $d$.\n\nThe odd orders are $d = 1$, for $j = 0$, and $d = 3$, for $j = 4$ and $j = 8$. The count is $\\frac{1}{12}\\left(2^{12} + 2 \\cdot 2^4\\right) = \\frac{4128}{12} = 344$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-remainder-one-products"
+}

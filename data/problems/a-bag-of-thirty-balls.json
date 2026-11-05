@@ -1,0 +1,31 @@
+{
+  "id": "a-bag-of-thirty-balls",
+  "title": "A Bag of Thirty Balls",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "pigeonhole",
+    "extremal-principle"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A bag contains $30$ balls: $3$ red, $6$ blue, $9$ green and $12$ yellow. Balls are taken out one at a time, without looking and without putting any back. What is the smallest number of balls that must be taken out to be certain that, among the balls taken out, there are at least $4$ balls of one colour and at least $4$ balls of a second, different colour?",
+  "answer_format": "integer",
+  "answer_hash": "f39a29c7",
+  "hints": [
+    "Think about the longest possible unlucky draw, one that still fails. In a failing draw, how many colours can have $4$ or more balls?",
+    "Use a worst case: a failing draw has at most one colour with $4$ or more balls, and each other colour gives at most $3$. Choose which colour is allowed to be large so that the failing draw is as long as possible.",
+    "Make yellow the large colour and take all $12$ yellow balls. Red has only $3$ balls, so it can never reach $4$. Count the most balls that red, blue and green can add while each stays at $3$ or fewer."
+  ],
+  "solution": "A draw fails exactly when at most one colour has $4$ or more balls, and then every other colour has at most $3$. No colour has more than $12$ balls, so a failing draw has at most $12 + 3 + 3 + 3 = 21$ balls, and taking all $12$ yellow balls with $3$ red, $3$ blue and $3$ green is a failing draw of that size. Hence $21$ balls are not enough, and any $22$ balls succeed. The answer is $22$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-bag-of-thirty-balls"
+}

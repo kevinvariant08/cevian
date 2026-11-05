@@ -1,0 +1,39 @@
+{
+  "id": "one-point-two-circles",
+  "title": "One Point, Two Circles",
+  "kyu": 4,
+  "topic": "G",
+  "subtopics": [
+    "mutually-tangent-circles",
+    "coordinate-bash",
+    "power-of-a-point"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Circle $\\omega$ has radius $21$, and $P$ is a point inside $\\omega$. For each line $\\ell$ through $P$ there are exactly two circles that touch $\\ell$ at $P$ and touch $\\omega$ internally, one on each side of $\\ell$. For one line through $P$ these two circles have radii $5$ and $7$. For a second line through $P$, one of the two circles has radius $12$ and the other has radius $\\frac{m}{n}$, where $m$ and $n$ are coprime positive integers. Find $m + n$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "2129e8a1",
+  "hints": [
+    "Let $O$ be the centre of $\\omega$. Neither $OP$ nor the angle between the two lines is given, so look for a combination of the two radii on one line that is the same for every line through $P$.",
+    "Use coordinates with the line as the $x$-axis and $P$ at the origin, and let $O = (u, v)$. The two circles have centres $(0, r)$ and $(0, -r')$. Write internal tangency as a distance from $O$ equal to $21$ minus a radius, expand, and use $u^2 + v^2 = OP^2$.",
+    "You get $r(42 - 2v) = 441 - OP^2$ and $r'(42 + 2v) = 441 - OP^2$. Adding $\\frac{1}{r}$ and $\\frac{1}{r'}$ removes $v$, which is the only place the direction of the line appears. Use the first line to find $441 - OP^2$."
+  ],
+  "solution": "Let $O$ be the centre of $\\omega$. Take a line $\\ell$ through $P$ as the $x$-axis with $P$ at the origin, and let $O = (u, v)$, so that $u^2 + v^2 = OP^2$. The circle on the side $y > 0$, with radius $r$, has centre $(0, r)$, and internal tangency gives $u^2 + (v - r)^2 = (21 - r)^2$, that is, $r(42 - 2v) = 441 - OP^2$. The circle on the other side, with radius $r'$ and centre $(0, -r')$, gives $r'(42 + 2v) = 441 - OP^2$ in the same way. Hence\n$$\\dfrac{1}{r} + \\dfrac{1}{r'} = \\dfrac{84}{441 - OP^2},$$\nwhich is the same for every line through $P$.\n\nThe first line gives $\\frac{1}{5} + \\frac{1}{7} = \\frac{12}{35}$, so $441 - OP^2 = 245$ and $OP = 14$; it is the line with $v = -\\frac{7}{2}$. For the second line, $\\frac{1}{r'} = \\frac{12}{35} - \\frac{1}{12} = \\frac{109}{420}$, so $r' = \\frac{420}{109}$. This line exists, because $r = 12$ needs $42 - 2v = \\frac{245}{12}$, that is, $v = \\frac{259}{24}$, and $\\frac{259}{24} < 14$. The answer is $420 + 109 = 529$.",
+  "solution_figures": [
+    {
+      "src": "figures/one-point-two-circles-solution.svg?v=07621bbe",
+      "alt": "The circle omega with centre O and radius 21, and the first line through P drawn as a horizontal chord AB. Two small circles touch the chord at P from opposite sides, with radius 5 above and radius 7 below, and each touches omega internally at the end of a dashed radius from O. Here OP = 14 and AP times PB is 245.",
+      "after_paragraph": 1
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-one-point-two-circles"
+}

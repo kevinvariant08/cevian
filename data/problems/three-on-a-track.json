@@ -1,0 +1,32 @@
+{
+  "id": "three-on-a-track",
+  "title": "Three on a Track",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "rate-and-mixture-modeling",
+    "inclusion-exclusion",
+    "lcm-gcd-reasoning"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Three runners start at the same moment from the same point of a circular track, and each runs at a constant speed. The first runs anticlockwise at $4$ laps per hour, the second runs clockwise at $5$ laps per hour, and the third runs anticlockwise at $10$ laps per hour. Let $t$ be the time in minutes since the start. For how many values of $t$ with $0 < t \\le 60$ are at least two of the runners at the same point of the track?",
+  "answer_format": "integer",
+  "answer_hash": "40881483",
+  "hints": [
+    "Measure each runner's position in laps, anticlockwise from the start. Two runners are at the same point exactly when their positions differ by a whole number of laps.",
+    "Use relative speeds. After $h$ hours the runners are $4h$, $-5h$ and $10h$ laps from the start, so the first and second, the first and third, and the second and third are together exactly when $9h$, $6h$ and $15h$ are whole numbers. Count each pair's meetings, then look for moments counted more than once.",
+    "If two of the pairs are together at the same moment, all three runners are together then. That happens exactly when $3h$ is a whole number, and each such moment appears in all three pair counts."
+  ],
+  "solution": "After $h$ hours the runners are $4h$, $-5h$ and $10h$ laps anticlockwise from the start. So the first and second, the first and third, and the second and third are together exactly when $9h$, $6h$ and $15h$ are integers, which for $0 < h \\le 1$ happens $9 + 6 + 15 = 30$ times. If two pairs are together then all three runners are, so only meetings of all three are counted more than once, each three times. These need $9h$ and $6h$ to be integers, so $3h = 9h - 6h$ is an integer, and conversely; that gives $h = \\frac{1}{3}, \\frac{2}{3}, 1$. The answer is $30 - 2 \\cdot 3 = 24$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-three-on-a-track"
+}

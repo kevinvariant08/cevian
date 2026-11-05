@@ -1,0 +1,31 @@
+{
+  "id": "a-polynomial-fed-to-itself",
+  "title": "A Polynomial Fed to Itself",
+  "kyu": 5,
+  "topic": "A",
+  "subtopics": [
+    "coefficient-matching",
+    "casework"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Find the sum of $P(10)$ over all polynomials $P(x)$ with real coefficients such that\n$$P(P(x)) - P(x)^2 = -4x^2 + 16x - 18$$\nfor every real number $x$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "adc7c3de",
+  "hints": [
+    "Let $d$ be the degree of $P$. Compare the degree of $P(P(x))$ with the degree of $P(x)^2$, and decide which values of $d$ can leave a quadratic on the left.",
+    "For $d \\ge 3$ the left side has degree $d^2$, because $d^2 > 2d$, and a constant $P$ gives a constant. So $P$ is linear or quadratic. Compare coefficients in each case, and keep every solution you find.",
+    "If $P(x) = ax^2 + bx + c$, the left side is $(a - 1)P(x)^2 + bP(x) + c$, which forces $a = 1$. If $P(x) = ax + b$, the coefficient of $x^2$ on the left is $-a^2$, so $a = \\pm 2$."
+  ],
+  "solution": "Let $P$ have degree $d$. If $d \\ge 3$, then $P(P(x))$ has degree $d^2 > 2d$, so the left side has degree $d^2 > 2$. A constant $P$ gives a constant. So $d = 1$ or $d = 2$.\n\nIf $P(x) = ax^2 + bx + c$ with $a \\ne 0$, then $P(P(x)) - P(x)^2 = (a - 1)P(x)^2 + bP(x) + c$, which has degree $4$ unless $a = 1$. For $a = 1$ it equals $bx^2 + b^2x + (b + 1)c$, so $b = -4$, the coefficient $b^2 = 16$ agrees, and $-3c = -18$ gives $c = 6$. This is $P(x) = x^2 - 4x + 6$.\n\nIf $P(x) = ax + b$ with $a \\ne 0$, the left side is $-a^2x^2 + (a^2 - 2ab)x + ab + b - b^2$. So $a^2 = 4$ and $4 - 2ab = 16$, which gives $ab = -6$, that is $(a, b) = (2, -3)$ or $(-2, 3)$. The constant term gives $-6 + b - b^2 = -18$, so $b = 4$ or $b = -3$. Only $(a, b) = (2, -3)$ fits both, which is $P(x) = 2x - 3$.\n\nBoth polynomials satisfy the identity, with $P(10) = 66$ and $P(10) = 17$. The answer is $66 + 17 = 83$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-a-polynomial-fed-to-itself"
+}

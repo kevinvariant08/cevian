@@ -1,0 +1,42 @@
+%! alt An L-shaped hexagon drawn inside a dashed 4 by 7 rectangle. Going round the hexagon, its sides are 4, 5, 1, 2, 3 and 7. The corner cut from the rectangle is the shaded 1 by 2 rectangle, so the hexagon's area is 28 minus 2, which is 26.
+%! after_paragraph 2
+%! scale 2/3
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){A} %! A = (0, 0)
+\tkzDefPoint(2.6666667,0.0){B} %! B = (4, 0)
+\tkzDefPoint(2.6666667,3.3333333){C} %! C = (4, 5)
+\tkzDefPoint(2.0000000,3.3333333){D} %! D = (3, 5)
+\tkzDefPoint(2.0000000,4.6666667){E} %! E = (3, 7)
+\tkzDefPoint(0.0,4.6666667){F} %! F = (0, 7)
+\tkzDefPoint(2.6666667,4.6666667){G} %! G = (4, 7)
+%! fact dist(A, B) == 4
+%! fact dist(B, C) == 5
+%! fact dist(C, D) == 1
+%! fact dist(D, E) == 2
+%! fact dist(E, F) == 3
+%! fact dist(F, A) == 7
+%! fact perp(A, B, B, C)
+%! fact perp(B, C, C, D)
+%! fact perp(C, D, D, E)
+%! fact perp(D, E, E, F)
+%! fact perp(E, F, F, A)
+%! fact area(A, B, G, F) == 28
+%! fact area(C, G, E, D) == 2
+%! fact area(A, B, C, D, E, F) == 26
+\tkzFillPolygon[color=figtint](A,B,C,D,E,F)
+\tkzFillPolygon[color=figaccenttint](D,C,G,E)
+\tkzDrawSegment[aux](C,G)
+\tkzDrawSegment[aux](G,E)
+\tkzDrawPolygon(A,B,C,D,E,F)
+\tkzDrawSegment[key](C,D)
+\tkzDrawSegment[key](D,E)
+\tkzLabelSegment[below,len](A,B){$4$}
+\tkzLabelSegment[right,len](B,C){$5$}
+\tkzLabelSegment[below,len](C,D){$1$}
+\tkzLabelSegment[left,len](D,E){$2$}
+\tkzLabelSegment[above,len](E,F){$3$}
+\tkzLabelSegment[left,len](F,A){$7$}
+\end{tikzpicture}
+\end{document}

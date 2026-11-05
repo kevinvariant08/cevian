@@ -1,0 +1,33 @@
+{
+  "id": "eighteen-digits-of-ones-and-twos",
+  "title": "Eighteen Digits, Ones and Twos",
+  "kyu": 6,
+  "topic": "N",
+  "subtopics": [
+    "divisibility-rules",
+    "bounding",
+    "carry-analysis",
+    "vandermonde-identity"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "How many $18$-digit positive integers have every digit equal to $1$ or $2$ and are divisible by each of $7$, $11$ and $13$?",
+  "answer_format": "integer",
+  "answer_hash": "329763e9",
+  "hints": [
+    "Multiply $7$, $11$ and $13$. Then cut the $18$-digit number into six blocks of three digits.",
+    "Since $7 \\cdot 11 \\cdot 13 = 1001$ and $1000 \\equiv -1 \\pmod{1001}$, the number is divisible by $1001$ exactly when the alternating sum of its six three-digit blocks is. Each block lies between $111$ and $222$, which makes this alternating sum small.",
+    "The alternating sum lies between $-333$ and $333$, so it must be $0$: the first, third and fifth blocks have the same total as the other three. Adding three blocks produces no carries, so compare the hundreds, the tens and the units separately."
+  ],
+  "solution": "Split the number into three-digit blocks $G_1, G_2, \\dots, G_6$, from the right. Since $7 \\cdot 11 \\cdot 13 = 1001$ and $1000 \\equiv -1 \\pmod{1001}$, the number is divisible by all three primes exactly when $1001$ divides $S = G_1 - G_2 + G_3 - G_4 + G_5 - G_6$. Each block is between $111$ and $222$, so $|S| \\le 666 - 333 = 333 < 1001$. Hence $S = 0$, that is, $G_1 + G_3 + G_5 = G_2 + G_4 + G_6$.\n\nIn a sum of three blocks each column adds three digits equal to $1$ or $2$, which is at most $6$, so there are no carries. The equation therefore holds exactly when the hundreds, the tens and the units columns agree separately. In one column, the three digits from $G_1, G_3, G_5$ must contain as many $2$s as the three from $G_2, G_4, G_6$, which happens in $\\binom{3}{0}^2 + \\binom{3}{1}^2 + \\binom{3}{2}^2 + \\binom{3}{3}^2 = 20$ ways. The columns are independent, so the answer is $20^3 = 8000$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-eighteen-digits-of-ones-and-twos"
+}

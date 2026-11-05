@@ -1,0 +1,39 @@
+{
+  "id": "nineteen-planted-plots",
+  "title": "Nineteen Planted Plots",
+  "kyu": 7,
+  "topic": "C",
+  "subtopics": [
+    "element-by-element-analysis",
+    "pigeonhole",
+    "bounding"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A square field is divided into a $5 \\times 5$ grid of $25$ square plots, each $1$ m by $1$ m. Exactly $6$ of the plots are left empty and the other $19$ are planted. Fencing is put along every side of a planted plot that lies on the edge of the field or is shared with an empty plot, and along no other side. What is the largest possible total length of the fencing, in metres?",
+  "answer_format": "integer",
+  "answer_hash": "67095461",
+  "hints": [
+    "With all $25$ plots planted, the fencing is just the $20$ m round the field. Work out how leaving one plot empty changes this, depending on where that plot is.",
+    "Add up the change plot by plot. An empty plot with no empty neighbour adds $4$ m if it is one of the $9$ plots away from the edge of the field, $2$ m if it is on an edge but not at a corner, and nothing at a corner. Each side shared by two empty plots is fenced on neither side, which takes $2$ m off that total.",
+    "So you want as many empty plots as possible among the $3 \\times 3$ block of inner plots, with no two sharing a side. Split that block into its centre and four $1 \\times 2$ pieces to see how many it can hold, then decide where the last empty plot goes."
+  ],
+  "solution": "Start from the $20$ m of fencing round the field with every plot planted. An empty plot with $b$ sides on the edge of the field removes those $b$ metres and adds its other $4 - b$ sides, so it adds $4$ m if it is one of the $9$ inner plots, $2$ m elsewhere on an edge and $0$ m at a corner. A side shared by two empty plots is added twice but not fenced, so each such side takes off $2$ m. The $9$ inner plots split into the centre and four $1 \\times 2$ pieces, so if all six empty plots are inner, two of them share a side and the fencing is at most $20 + 6 \\cdot 4 - 2 = 42$ m. Otherwise at most five are inner and the fencing is at most $20 + 5 \\cdot 4 + 2 = 42$ m.\n\nLeaving empty the centre plot, the four plots diagonally next to it and the middle plot of one edge gives exactly $42$ m, as no two of these share a side. The answer is $42$.",
+  "solution_figures": [
+    {
+      "src": "figures/nineteen-planted-plots-solution.svg?v=25780fe6",
+      "alt": "A 5 by 5 field of 1 m square plots. Six plots are left empty and shaded: the centre plot, the four plots diagonally next to it, and the middle plot of the bottom edge. No two empty plots share a side. The fencing, highlighted, runs round the outside of the field except along the bottom side of the empty edge plot, and round each of the five inner empty plots. It has length 22 + 5 times 4 = 42 metres.",
+      "after_paragraph": 2
+    }
+  ],
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-nineteen-planted-plots"
+}

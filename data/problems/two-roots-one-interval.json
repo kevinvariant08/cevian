@@ -1,0 +1,32 @@
+{
+  "id": "two-roots-one-interval",
+  "title": "Two Roots, One Interval",
+  "kyu": 6,
+  "topic": "A",
+  "subtopics": [
+    "quadratic-discriminant",
+    "geometric-probability",
+    "vieta"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Real numbers $p$ and $q$ are chosen independently and uniformly at random from the interval $[-2, 2]$. What is the probability that the equation $x^2 + px + q = 0$ has two real roots, possibly equal, that both lie in the interval $[0, 1]$? Give your answer as a fraction in lowest terms.",
+  "answer_format": "rational",
+  "answer_hash": "7c6ee97f",
+  "hints": [
+    "Treat $(p, q)$ as a random point of a square of area $16$. Find the region of the square where the condition holds, and then its area.",
+    "Let $f(x) = x^2 + px + q$. Both roots are real and lie in $[0, 1]$ exactly when $p^2 \\ge 4q$, $f(0) \\ge 0$, $f(1) \\ge 0$ and the midpoint $-\\frac{p}{2}$ of the roots lies in $[0, 1]$. Write each condition as an inequality in $p$ and $q$.",
+    "The region lies over $-2 \\le p \\le 0$, below the parabola $q = \\frac{p^2}{4}$ and above both of the lines $q = 0$ and $q = -1 - p$, each of which touches the parabola. Its area is the area under the parabola over $-2 \\le p \\le 0$ minus a triangle."
+  ],
+  "solution": "Let $f(x) = x^2 + px + q$. If $f$ has real roots $r \\le s$ in $[0, 1]$, then $p^2 \\ge 4q$, $f(0) = rs \\ge 0$, $f(1) = (1 - r)(1 - s) \\ge 0$ and $0 \\le r + s = -p \\le 2$. Conversely, suppose these four conditions hold. If $r < 0$, then $rs \\ge 0$ gives $s \\le 0$ and so $r + s < 0$, which is false; hence $r \\ge 0$. In the same way, $(1 - r)(1 - s) \\ge 0$ and $r + s \\le 2$ give $s \\le 1$.\n\nSo the good points are those with $-2 \\le p \\le 0$ and $\\max(0, -1 - p) \\le q \\le \\frac{p^2}{4}$, and they all lie in the square. Since $\\frac{p^2}{4} - (-1 - p) = \\frac{(p + 2)^2}{4} \\ge 0$, the line $q = -1 - p$ stays below the parabola and touches it at $p = -2$. The good region is therefore the region under the parabola and above $q = 0$ over $-2 \\le p \\le 0$, of area $\\int_{-2}^{0} \\frac{p^2}{4}\\, dp = \\frac{2}{3}$, minus the triangle with vertices $(-2, 0)$, $(-1, 0)$ and $(-2, 1)$ that lies below $q = -1 - p$, of area $\\frac{1}{2}$. Its area is $\\frac{2}{3} - \\frac{1}{2} = \\frac{1}{6}$.\n\nThe probability is $\\frac{1}{6} \\div 16 = \\frac{1}{96}$.\n\n<b>Solution 2.</b> The map $(r, s) \\mapsto (-(r + s), rs)$ sends the triangle $0 \\le r \\le s \\le 1$ one-to-one onto the good region, and its Jacobian has absolute value $s - r$. So the area of the region is $\\int_0^1 \\int_0^s (s - r)\\, dr\\, ds = \\frac{1}{6}$, and again the probability is $\\frac{1}{96}$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-two-roots-one-interval"
+}

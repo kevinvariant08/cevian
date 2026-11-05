@@ -1,0 +1,33 @@
+{
+  "id": "three-roots-with-product-one",
+  "title": "Three Roots with Product One",
+  "kyu": 3,
+  "topic": "A",
+  "subtopics": [
+    "roots-of-unity",
+    "geometric-interpretation",
+    "complementary-counting",
+    "orbit-counting-under-rotation"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Let $U$ be the set of the $151$ complex numbers $z$ with $z^{151} = 1$. How many $3$-element subsets $\\{u, v, w\\}$ of $U$ satisfy both $uvw = 1$ and $|u + v + w| < 1$?",
+  "answer_format": "integer_0_999",
+  "answer_hash": "e02c9527",
+  "hints": [
+    "Draw $u$, $v$ and $w$ on the unit circle and look at the three arcs into which they cut it. Find how $|u + v + w|$ depends on these arcs, and leave the condition $uvw = 1$ until the end.",
+    "For numbers of modulus $1$, $uv + vw + wu = uvw \\cdot \\overline{u + v + w}$, which gives $(u + v)(v + w)(w + u) = uvw\\left(|u + v + w|^2 - 1\\right)$. Writing each factor such as $u + v$ through the half-angle of the arc between $u$ and $v$ shows that $|u + v + w| < 1$ exactly when every arc is shorter than a semicircle.",
+    "Rotating a subset, that is, multiplying all three elements by the same $\\zeta \\in U$, keeps its arcs and multiplies its product by $\\zeta^3$. Since $3$ is invertible modulo $151$, each class of $151$ rotated copies contains exactly one subset with product $1$. So count all $3$-element subsets of $U$ with every arc shorter than a semicircle, and divide by $151$."
+  ],
+  "solution": "Write $u = e^{i\\alpha}$, $v = e^{i\\beta}$ and $w = e^{i\\gamma}$ with $\\alpha < \\beta < \\gamma < \\alpha + 2\\pi$, and let $p = \\beta - \\alpha$, $q = \\gamma - \\beta$ and $r = 2\\pi - (\\gamma - \\alpha)$ be the three arcs, so that $p, q, r > 0$ and $p + q + r = 2\\pi$.\n\nSince $|u| = |v| = |w| = 1$, we have $uv + vw + wu = uvw\\,(\\bar w + \\bar u + \\bar v) = uvw \\cdot \\overline{u + v + w}$, and therefore $$(u + v)(v + w)(w + u) = (u + v + w)(uv + vw + wu) - uvw = uvw\\left(|u + v + w|^2 - 1\\right).$$ On the other hand $u + v = 2\\cos\\frac{p}{2}\\, e^{i(\\alpha + \\beta)/2}$, $v + w = 2\\cos\\frac{q}{2}\\, e^{i(\\beta + \\gamma)/2}$ and $w + u = 2\\cos\\frac{p + q}{2}\\, e^{i(\\gamma + \\alpha)/2}$, and the product of the three exponentials is $e^{i(\\alpha + \\beta + \\gamma)} = uvw$. As $\\cos\\frac{p + q}{2} = \\cos\\left(\\pi - \\frac{r}{2}\\right) = -\\cos\\frac{r}{2}$, comparing the two expressions gives $$|u + v + w|^2 - 1 = -8\\cos\\dfrac{p}{2}\\cos\\dfrac{q}{2}\\cos\\dfrac{r}{2}.$$\n\nEach arc is a multiple of $\\frac{2\\pi}{151}$, so no arc equals $\\pi$, and at most one arc exceeds $\\pi$. If all three arcs are less than $\\pi$, the product of the cosines is positive and $|u + v + w| < 1$. If one arc exceeds $\\pi$, exactly one cosine is negative and $|u + v + w| > 1$. So the condition $|u + v + w| < 1$ says that every arc is shorter than a semicircle, that is, at most $75$ steps of $\\frac{2\\pi}{151}$.\n\nFirst count the $3$-element subsets of $U$ with this property, ignoring the product. A subset fails exactly when it has an arc of at least $76$ steps. Such an arc is unique; let $u$ be the element at its anticlockwise end. Then the other two elements lie among the $75$ elements that follow $u$ anticlockwise, and conversely any such choice gives a failing subset. So $151\\binom{75}{2}$ subsets fail, and the number with every arc shorter than a semicircle is $$\\binom{151}{3} - 151\\binom{75}{2} = 562475 - 151 \\cdot 2775 = 562475 - 419025 = 143450.$$\n\nNow bring in the product. Let $\\zeta = e^{2\\pi i/151}$. Multiplying all elements of a subset by $\\zeta^t$ keeps its arcs and multiplies its product by $\\zeta^{3t}$. For $t = 1, \\dots, 150$ this rotation moves the elements of $U$ in a single cycle of length $151$, because $151$ is prime, so it fixes no $3$-element subset. Hence the subsets fall into classes of $151$ rotated copies with the same arcs, and in a class whose first member has product $\\zeta^s$ the products are $\\zeta^{s + 3t}$ for $t = 0, 1, \\dots, 150$. As $\\gcd(3, 151) = 1$, these are all $151$ elements of $U$, each once, so exactly one subset in each class has product $1$.\n\nTherefore the number of subsets with $uvw = 1$ and $|u + v + w| < 1$ is $\\frac{143450}{151} = 950$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-three-roots-with-product-one"
+}

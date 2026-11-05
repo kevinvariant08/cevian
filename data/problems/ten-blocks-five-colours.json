@@ -1,0 +1,32 @@
+{
+  "id": "ten-blocks-five-colours",
+  "title": "Ten Blocks, Five Colours",
+  "kyu": 4,
+  "topic": "C",
+  "subtopics": [
+    "parity",
+    "inclusion-exclusion",
+    "favorable-over-total"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Ten blocks, two of each of five different colours, are placed in a row in a random order, with each of the $\\frac{10!}{2^5}$ distinguishable orders equally likely. Blocks of the same colour are identical. The probability that, for every colour, the number of blocks strictly between the two blocks of that colour is even and positive is $\\frac{m}{n}$, where $m$ and $n$ are coprime positive integers. Find $m + n$.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "5f19d9da",
+  "hints": [
+    "Number the positions $1$ to $10$. What does an even number of blocks between two positions say about the parities of those two positions?",
+    "Between positions $i < j$ there are $j - i - 1$ blocks, which is even exactly when $i$ and $j$ have opposite parities. So each colour has one block in an odd position and one in an even position, and the word positive says that these two positions are not neighbours. Fix the colours in the odd positions and count the ways to fill the even positions by inclusion-exclusion.",
+    "Name the colours so that position $2i - 1$ holds colour $i$. Position $2i$ may hold neither colour $i$ nor colour $i + 1$, so you need the permutations $\\tau$ of $\\{1, \\dots, 5\\}$ with $\\tau(i) \\ne i$ and $\\tau(i) \\ne i + 1$. The $9$ forbidden cells form a staircase, and $k$ of them with no two in the same row or column can be chosen in $\\binom{10-k}{k}$ ways."
+  ],
+  "solution": "Between positions $i < j$ there are $j - i - 1$ blocks. This number is even exactly when $i$ and $j$ have opposite parities, and positive exactly when $j \\ne i + 1$. So an order is favourable exactly when each colour occupies one odd and one even position, and these two positions are not adjacent.\n\nThere are $5!$ ways to put the colours in the odd positions $1, 3, \\dots, 9$. Name the colours so that position $2i - 1$ holds colour $i$. Position $2i$ is adjacent to positions $2i - 1$ and $2i + 1$, so if it holds colour $\\tau(i)$, then $\\tau$ is a permutation of $\\{1, \\dots, 5\\}$ with $\\tau(i) \\ne i$ and $\\tau(i) \\ne i + 1$. The forbidden cells $(1,1), (1,2), (2,2), (2,3), \\dots, (5,5)$ form a staircase of $9$ cells, and two of them share a row or a column exactly when they are consecutive in this list. So $k$ forbidden cells in distinct rows and columns can be chosen in $\\binom{10-k}{k}$ ways, and by inclusion-exclusion the number of such $\\tau$ is\n\n$$\\sum_{k=0}^{5} (-1)^k \\binom{10-k}{k}(5-k)! = 120 - 216 + 168 - 70 + 15 - 1 = 16.$$\n\nThe probability is $\\dfrac{5! \\cdot 16}{10!/2^5} = \\dfrac{1920}{113400} = \\dfrac{16}{945}$, so $m + n = 961$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-ten-blocks-five-colours"
+}

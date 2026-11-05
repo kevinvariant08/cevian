@@ -1,0 +1,39 @@
+%! alt Triangle ABC with BC = 7, CA = 20 and AB = 15, and its circumcircle with centre O. The foot H of the altitude from A lies on line BC beyond B, so the angle at B is obtuse. Segment AO is parallel to BC and so perpendicular to the altitude AH, and angle B exceeds angle C by 90 degrees.
+%! after_paragraph 1
+%! scale 1/3.2
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(0.0,0.0){B} %! B = (0, 0)
+\tkzDefPoint(2.1875000,0.0){C} %! C = (7, 0)
+\tkzDefPoint(-2.8125000,3.7500000){A} %! A = (-9, 12)
+\tkzDefPoint(1.0937500,3.7500000){O} %! O = (7/2, 12)
+\tkzDefPoint(-2.8125000,0.0){H} %! H = foot(A, B, C)
+%! fact parallel(O, A, B, C)
+%! fact perp(A, H, B, C)
+%! fact perp(A, H, A, O)
+%! fact dist(O, A) == dist(O, B)
+%! fact dist(O, C) == dist(O, B)
+%! fact angle(A, B, C) - angle(A, C, B) == 90
+%! example dist(B, C) == 7
+%! example dist(C, A) == 20
+%! example dist(A, B) == 15
+\tkzDrawCircle[aux](O,B)
+\tkzFillPolygon[color=figtint](A,B,C)
+\tkzDrawSegment[aux](H,B)
+\tkzDrawSegment[aux](A,H)
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegment[key](A,O)
+\tkzMarkRightAngle[size=.3,mk](B,H,A)
+\tkzMarkRightAngle[size=.3,mk](H,A,O)
+\tkzDrawPoints(A,B,C,O,H)
+\tkzLabelPoint[above left,lbl](A){$A$}
+\tkzLabelPoint[below,lbl](B){$B$}
+\tkzLabelPoint[below right,lbl](C){$C$}
+\tkzLabelPoint[above right,lbl](O){$O$}
+\tkzLabelPoint[below,lbl](H){$H$}
+\tkzLabelSegment[above,pos=.62,len](B,C){$7$}
+\tkzLabelSegment[above right,pos=.45,len](A,C){$20$}
+\tkzLabelSegment[below left,pos=.55,len](A,B){$15$}
+\end{tikzpicture}
+\end{document}

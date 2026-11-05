@@ -1,0 +1,32 @@
+{
+  "id": "forwards-and-backwards",
+  "title": "Forwards and Backwards",
+  "kyu": 7,
+  "topic": "N",
+  "subtopics": [
+    "place-value-representation",
+    "modular-arithmetic",
+    "rule-of-product"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "A four-digit positive integer is added to the number obtained by writing its four digits in reverse order. For example, $1234$ gives $1234 + 4321 = 5555$, and $3710$ gives $3710 + 0173 = 3710 + 173 = 3883$. How many four-digit positive integers give a total of $12331$?",
+  "answer_format": "integer",
+  "answer_hash": "268c662b",
+  "hints": [
+    "Call the digits $a$, $b$, $c$ and $d$, from left to right, and write the total in terms of $a + d$ and $b + c$.",
+    "The total is $1001(a + d) + 110(b + c)$. Divide by $11$, then look at units digits to find $a + d$.",
+    "Dividing by $11$ gives $91(a + d) + 10(b + c) = 1121$, so $a + d$ ends in $1$. As $a + d \\le 18$, it is $1$ or $11$, and $a + d = 1$ would make $b + c$ far too large. Now count the pairs of digits."
+  ],
+  "solution": "With digits $a, b, c, d$ from left to right, the total is $1001(a + d) + 110(b + c) = 12331$, so $91(a + d) + 10(b + c) = 1121$. Hence $a + d$ ends in $1$, and as $a + d \\le 18$ it is $1$ or $11$. If $a + d = 1$ then $b + c = 103$, which is impossible, so $a + d = 11$ and $b + c = 12$. There are $8$ pairs $(a, d)$ of digits with sum $11$, from $(2, 9)$ to $(9, 2)$, and $7$ pairs $(b, c)$ with sum $12$, from $(3, 9)$ to $(9, 3)$. The answer is $8 \\cdot 7 = 56$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-forwards-and-backwards"
+}

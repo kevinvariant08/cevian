@@ -1,0 +1,52 @@
+%! alt Trapezium ABCD with AB parallel to CD. The circles on the legs AD and BC as diameters, centred at their midpoints M and N, touch at P on the midline MN. Segments PA = 75, PD = 100, PB = 65 and PC = 156 make right angles APD and BPC. A dashed circle of radius 60 centred at P touches all four sides: P is the centre of the inscribed circle.
+%! after_paragraph 2
+%! scale 1/40
+\input{preamble}
+\begin{document}
+\begin{tikzpicture}
+\tkzDefPoint(-1.1250000,0.0){A} %! A = (-45, 0)
+\tkzDefPoint(0.62500000,0.0){B} %! B = (25, 0)
+\tkzDefPoint(3.6000000,3.0000000){C} %! C = (144, 120)
+\tkzDefPoint(-2.0000000,3.0000000){D} %! D = (-80, 120)
+\tkzDefPoint(0.0,1.5000000){P} %! P = (0, 60)
+\tkzDefPoint(-1.5625000,1.5000000){M} %! M = (-125/2, 60)
+\tkzDefPoint(2.1125000,1.5000000){N} %! N = (169/2, 60)
+\tkzDefPoint(0.0,0.0){T} %! T = (0, 0)
+\tkzDefPoint(0.35000000,1.9000000){Lp} %! Lp = (14, 76)
+%! fact parallel(A, B, D, C)
+%! fact midpoint(M, A, D)
+%! fact midpoint(N, B, C)
+%! fact tangent_circles(M, dist(A, D)/2, N, dist(B, C)/2)
+%! fact on_circle(P, M, dist(A, D)/2)
+%! fact on_circle(P, N, dist(B, C)/2)
+%! fact on_segment(P, M, N)
+%! fact dist(P, A) == 75
+%! fact dist(P, D) == 100
+%! fact dist(P, B) == 65
+%! fact dist(P, C) == 156
+%! fact perp(P, A, P, D)
+%! fact perp(P, B, P, C)
+%! fact dist(P, foot(P, A, B)) == 60
+%! fact dist(P, foot(P, D, C)) == 60
+%! fact dist(P, foot(P, A, D)) == 60
+%! fact dist(P, foot(P, B, C)) == 60
+%! fact equal(dist(A, B) + dist(C, D), dist(A, D) + dist(B, C))
+%! fact on_circle(T, P, 60)
+\tkzDrawCircle(M,A)
+\tkzDrawCircle(N,B)
+\tkzDrawCircle[aux](P,T)
+\tkzDrawSegment[aux](M,N)
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments[key](P,A P,D P,B P,C)
+\tkzMarkRightAngle[size=.25,mk](A,P,D)
+\tkzMarkRightAngle[size=.25,mk](B,P,C)
+\tkzDrawPoints(A,B,C,D,P,M,N)
+\tkzLabelPoint[below left,lbl](A){$A$}
+\tkzLabelPoint[below,lbl](B){$B$}
+\tkzLabelPoint[above right,lbl](C){$C$}
+\tkzLabelPoint[above left,lbl](D){$D$}
+\tkzLabelPoint[lbl,anchor=center](Lp){$P$}
+\tkzLabelPoint[below left,lbl](M){$M$}
+\tkzLabelPoint[below right,lbl](N){$N$}
+\end{tikzpicture}
+\end{document}

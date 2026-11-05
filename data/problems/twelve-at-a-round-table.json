@@ -1,0 +1,32 @@
+{
+  "id": "twelve-at-a-round-table",
+  "title": "Twelve at a Round Table",
+  "kyu": 6,
+  "topic": "C",
+  "subtopics": [
+    "forced-propagation",
+    "casework",
+    "orbit-counting-under-rotation"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "Twelve seats around a round table are numbered $1$ to $12$ in order, and one person sits in each seat. Each person is either a truth-teller, who always tells the truth, or a liar, who always lies. Each of the twelve people says: \"At least one of my two neighbours is a liar.\" Two arrangements are different if some seat holds a truth-teller in one arrangement and a liar in the other. How many different arrangements of truth-tellers and liars are possible?",
+  "answer_format": "integer",
+  "answer_hash": "429f8ca5",
+  "hints": [
+    "Work out what each kind of person forces. What must both neighbours of a liar be? What must at least one neighbour of a truth-teller be?",
+    "A liar's statement is false, so both neighbours of a liar are truth-tellers, and every truth-teller sits next to a liar. So, going round the table, consecutive liars have exactly $1$ or $2$ truth-tellers between them. Cut the circle into blocks, each made of a liar and the truth-tellers that follow it.",
+    "The blocks have lengths $2$ and $3$, with total $12$: six blocks of length $2$, or four of length $3$, or three of length $2$ and two of length $3$. Fix the seat of one liar and the order of the block lengths going round from it, then work out how many times each arrangement is produced this way."
+  ],
+  "solution": "Both neighbours of a liar tell the truth, as the liar's claim is false, and every truth-teller has a liar beside them; conversely, these two conditions make every claim consistent. So liars are never adjacent, and no three truth-tellers sit in a row, as the middle one would have no liar beside them. Cutting the table just before each liar therefore splits it into blocks of length $2$ or $3$, each a liar followed by truth-tellers. Choose the seat of one liar ($12$ ways) and the block lengths in order going round from it; an arrangement with $m$ liars arises $m$ times. The lengths are six $2$s, or four $3$s, or three $2$s and two $3$s in one of $\\binom{5}{2} = 10$ orders, so the answer is $\\frac{12}{6} + \\frac{12}{4} + \\frac{12 \\cdot 10}{5} = 2 + 3 + 24 = 29$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-twelve-at-a-round-table"
+}

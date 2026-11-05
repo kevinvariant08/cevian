@@ -1,0 +1,33 @@
+{
+  "id": "one-real-solution",
+  "title": "Exactly One Real Solution",
+  "kyu": 4,
+  "topic": "A",
+  "subtopics": [
+    "variable-substitution",
+    "quadratic-discriminant",
+    "symmetric-expressions",
+    "rational-ratio-lowest-terms"
+  ],
+  "type": "answer",
+  "status": "beta",
+  "statement": "For positive integers $a$, $b$ and $c$, consider the system of equations\n\n$$x^3 - xyz = a, \\qquad y^3 - xyz = b, \\qquad z^3 - xyz = c$$\n\nin real numbers $x$, $y$ and $z$. Find the number of ordered triples $(a, b, c)$ of positive integers with $a \\le 100$, $b \\le 100$ and $c \\le 100$ for which the system has exactly one solution $(x, y, z)$ in real numbers.",
+  "answer_format": "integer_0_999",
+  "answer_hash": "3accd1cb",
+  "hints": [
+    "Give the common product its own name, $p = xyz$. What single equation must $p$ satisfy, and how many solutions $(x, y, z)$ does each real value of $p$ give?",
+    "The value $p$ satisfies $p^3 = (p + a)(p + b)(p + c)$, which is a quadratic equation in $p$, and each real root gives exactly one solution. So you need its discriminant to be $0$. Write the discriminant in terms of $u = ab$, $v = bc$ and $w = ca$, and factorise it as in Heron's formula.",
+    "The discriminant vanishes exactly when, for some ordering, $\\frac{1}{\\sqrt{b}} = \\frac{1}{\\sqrt{a}} + \\frac{1}{\\sqrt{c}}$. Show that the integer solutions of this are $M\\bigl(s^2(s + t)^2, s^2t^2, t^2(s + t)^2\\bigr)$ with $s$ and $t$ coprime, and count those whose entries are at most $100$."
+  ],
+  "solution": "Let $(x, y, z)$ be a real solution and put $p = xyz$. Then $x^3 = p + a$, $y^3 = p + b$ and $z^3 = p + c$, so $p^3 = (p + a)(p + b)(p + c)$, that is,\n\n$$q(p) = (a + b + c)p^2 + (ab + bc + ca)p + abc = 0.$$\n\nConversely, for each real root $p$ of $q$ the real cube roots $x = \\sqrt[3]{p + a}$, $y = \\sqrt[3]{p + b}$ and $z = \\sqrt[3]{p + c}$ have $xyz = \\sqrt[3]{p^3} = p$, so they form a solution, and different roots give different solutions. So there is exactly one solution exactly when the discriminant of $q$ is $0$.\n\nWith $u = ab$, $v = bc$ and $w = ca$ we have $abc(a + b + c) = uv + vw + wu$, so the discriminant is\n\n$$(u + v + w)^2 - 4(uv + vw + wu) = -(\\sqrt{u} + \\sqrt{v} + \\sqrt{w})(-\\sqrt{u} + \\sqrt{v} + \\sqrt{w})(\\sqrt{u} - \\sqrt{v} + \\sqrt{w})(\\sqrt{u} + \\sqrt{v} - \\sqrt{w}).$$\n\nIt is $0$ exactly when one of $\\sqrt{u}$, $\\sqrt{v}$, $\\sqrt{w}$ is the sum of the other two. Dividing $\\sqrt{ca} = \\sqrt{ab} + \\sqrt{bc}$ by $\\sqrt{abc}$ gives $\\frac{1}{\\sqrt{b}} = \\frac{1}{\\sqrt{a}} + \\frac{1}{\\sqrt{c}}$, and the other two cases permute $a$, $b$, $c$.\n\nSquaring this shows that $\\sqrt{ac}$ is rational, so $ac$ is a square, and with $L = \\gcd(a, c)$ we get $a = Ls^2$ and $c = Lt^2$ for coprime positive integers $s$ and $t$. Then $b = \\frac{Ls^2t^2}{(s + t)^2}$, and as $s + t$ is coprime to $st$, $(s + t)^2$ divides $L$. Hence $(a, b, c) = M\\bigl(s^2(s + t)^2, s^2t^2, t^2(s + t)^2\\bigr)$ for a positive integer $M$, and every such triple works.\n\nThe largest entry, $M(s + t)^2\\max(s, t)^2$, is at most $100$ for $(s, t) = (1, 1)$ with $M \\le 25$, and for $(s, t) = (1, 2)$ or $(2, 1)$ with $M \\le 2$; every other coprime pair has $(s + t)\\max(s, t) \\ge 12$. The entry in the role of $b$ is strictly the smallest, so each triple comes from one position of that entry and one choice of $M$, $s$ and $t$. The number of triples is $3(25 + 2 + 2) = 87$.",
+  "provenance": {
+    "kind": "original",
+    "author": "cevian"
+  },
+  "stats": {
+    "solves": 0,
+    "attempts": 0,
+    "liked": 0
+  },
+  "verification": "gate-2026-11-04-one-real-solution"
+}
